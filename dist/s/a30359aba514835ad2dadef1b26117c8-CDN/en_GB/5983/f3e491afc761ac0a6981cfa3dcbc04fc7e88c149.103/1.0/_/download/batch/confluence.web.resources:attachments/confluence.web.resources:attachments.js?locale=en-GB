@@ -1,0 +1,96 @@
+;try {
+/* module-key = 'confluence.web.resources:attachments', location = '/includes/soy/attachments.soy' */
+// This file was automatically generated from attachments.soy.
+// Please don't edit this file by hand.
+
+if (typeof Confluence == 'undefined') { var Confluence = {}; }
+if (typeof Confluence.Templates == 'undefined') { Confluence.Templates = {}; }
+if (typeof Confluence.Templates.Attachments == 'undefined') { Confluence.Templates.Attachments = {}; }
+
+
+Confluence.Templates.Attachments.removalConfirmationTitle = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append(soy.$$escapeHtml("Attachment deletion confirmation"));
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Attachments.removalConfirmationBody = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<div>', soy.$$escapeHtml(AJS.format("Are you sure you want to send the attached file \x22{0}\x22 to the trash? Only a space administrator can undo this action.",opt_data.filename)), '</div>');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Attachments.versionRemovalConfirmationTitle = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append(soy.$$escapeHtml("Attachment Version Deletion Confirmation"));
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Attachments.versionRemovalConfirmationBody = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<div>', soy.$$escapeHtml(AJS.format("Are you sure you want to delete version {0} of the attached file {1}?",opt_data.version,opt_data.filename)), '</div>');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Attachments.removalErrorTitle = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append(soy.$$escapeHtml("Attachment Deletion Error"));
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Attachments.removalErrorBody = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<div class="aui-message error">');
+  if (! opt_data.messages) {
+    output.append(soy.$$escapeHtml("An error occurred while trying to delete the attachment.  Please check the current state. The file may have been removed already."));
+  } else {
+    if (opt_data.messages.length == 1) {
+      var messageList24 = opt_data.messages;
+      var messageListLen24 = messageList24.length;
+      for (var messageIndex24 = 0; messageIndex24 < messageListLen24; messageIndex24++) {
+        var messageData24 = messageList24[messageIndex24];
+        output.append(soy.$$escapeHtml(messageData24));
+      }
+    } else {
+      output.append('<ul>');
+      var messageList29 = opt_data.messages;
+      var messageListLen29 = messageList29.length;
+      for (var messageIndex29 = 0; messageIndex29 < messageListLen29; messageIndex29++) {
+        var messageData29 = messageList29[messageIndex29];
+        output.append('<li>', soy.$$escapeHtml(messageData29), '</li>');
+      }
+      output.append('</ul>');
+    }
+  }
+  output.append('</div>');
+  return opt_sb ? '' : output.toString();
+};
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+;
+;try {
+/* module-key = 'confluence.web.resources:attachments', location = '/includes/js/attachments.js' */
+AJS.Attachments={showOlderVersions:function(b){b(".attachment-history a").click(function(c){var a=b(this).parents("table.attachments"),e=b(this).parents("tr:first")[0].id.substr(11),a=b(".history-"+e,a);b(this).toggleClass("icon-section-opened");b(this).toggleClass("icon-section-closed");a.toggleClass("hidden");return AJS.stopEvent(c)})}};
+AJS.toInit(function(b){function c(f,a){return b(f).parents("["+a+"]").attr(a)}function a(f,a,c){var d=AJS.ConfluenceDialog({width:600,height:200,id:"attachment-removal-confirm-dialog"});d.addHeader(a);d.addPanel("",c);d.addSubmit("OK",function(){var a;a={};AJS.safe.ajax({type:"POST",url:f,data:a,success:function(){location.reload(!0)},error:function(a){var f=null;a.responseText&&(a=b.parseJSON(a.responseText),a.actionErrors&&(f=a.actionErrors));a=AJS.ConfluenceDialog({width:600,
+height:200,id:"attachment-removal-error-dialog"});a.addHeader(g.removalErrorTitle());a.addPanel("",g.removalErrorBody({messages:f}));a.addButton("Close",function(){location.reload(true)});a.show();d.remove()}})});d.addCancel("Cancel",function(){d.remove()});d.show()}var e=b("#more-attachments-link");e.click(function(a){b(".more-attachments").removeClass("hidden");e.addClass("hidden");return AJS.stopEvent(a)});AJS.Attachments.showOlderVersions(b);var g=
+AJS.Confluence.Templates.Attachments;b(".removeAttachmentLink").click(function(){AJS.Attachments.showRemoveAttachmentConfirmDialog(this);return!1});b(".removeAttachmentLinkVersion").click(function(){a(AJS.Confluence.getContextPath()+"/json/removeattachmentversion.action"+this.search,g.versionRemovalConfirmationTitle(),g.versionRemovalConfirmationBody({filename:c(this,"data-attachment-filename"),version:c(this,"data-attachment-version")}));return!1});AJS.Attachments.showRemoveAttachmentConfirmDialog=
+function(b){var e=AJS.Confluence.getContextPath()+"/json/removeattachment.action"+b.search,h=g.removalConfirmationTitle(),b=g.removalConfirmationBody({filename:c(b,"data-attachment-filename")});a(e,h,b)}});
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+;

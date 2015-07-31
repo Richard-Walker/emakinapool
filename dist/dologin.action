@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+            <title>Log In - Share!</title>
+    
+        
+
+                        
+    
+                        
+    
+                        
+    
+	    
+	
+	        <meta http-equiv="X-UA-Compatible" content="IE=EDGE,chrome=IE7">
+<meta charset="UTF-8">
+<meta id="confluence-context-path" name="confluence-context-path" content="">
+<meta id="confluence-base-url" name="confluence-base-url" content="https://share.emakina.net">
+
+<meta id="atlassian-token" name="atlassian-token" content="c63bad7b32a069b80c63eee1b9bf7efb1d1ad754">
+
+
+<script type="text/javascript">
+        var contextPath = '';
+</script>
+
+    
+
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="robots" content="noarchive">
+    <meta name="confluence-request-time" content="1438344612702">
+        
+    
+        
+            <meta name="ajs-is-space-admin" content=""> <meta name="ajs-has-space-config" content="">
+            <meta name="ajs-use-keyboard-shortcuts" content="true">
+            <meta name="ajs-discovered-plugin-features" content="{&quot;com.atlassian.confluence.plugins.confluence-previews&quot;:[&quot;add-annotations&quot;,&quot;view-annotations&quot;],&quot;com.atlassian.confluence.plugins.confluence-jira-metadata&quot;:[&quot;linked-issues-dropdown&quot;],&quot;com.atlassian.confluence.plugins.confluence-hipchat-integration-plugin&quot;:[&quot;hipChatSpaceIntegration&quot;,&quot;hipChatServerIntegration&quot;]}">
+            <meta name="ajs-keyboardshortcut-hash" content="2f6cd99b72a44ccc4ca2487d159dd4b9">
+            <meta id="team-calendars-has-jira-link" content="true">
+            <meta name="ajs-team-calendars-display-time-format" content="displayTimeFormat24">
+            <meta id="team-calendars-user-timezone" content="Europe/Paris">
+            <script type="text/x-template" id="team-calendars-messages" title="team-calendars-messages"><fieldset class="i18n hidden"><input type="hidden" name="calendar3.month.long.july" value="July"><input type="hidden" name="calendar3.day.short.wednesday" value="Wed"><input type="hidden" name="calendar3.day.short.thursday" value="Thu"><input type="hidden" name="calendar3.month.short.march" value="Mar"><input type="hidden" name="calendar3.month.long.april" value="April"><input type="hidden" name="calendar3.month.long.october" value="October"><input type="hidden" name="calendar3.month.long.august" value="August"><input type="hidden" name="calendar3.month.short.july" value="Jul"><input type="hidden" name="calendar3.month.short.may" value="May"><input type="hidden" name="calendar3.month.short.november" value="Nov"><input type="hidden" name="calendar3.day.long.friday" value="Friday"><input type="hidden" name="calendar3.day.long.sunday" value="Sunday"><input type="hidden" name="calendar3.day.long.saturday" value="Saturday"><input type="hidden" name="calendar3.month.short.april" value="Apr"><input type="hidden" name="calendar3.day.long.wednesday" value="Wednesday"><input type="hidden" name="calendar3.month.long.december" value="December"><input type="hidden" name="calendar3.month.short.october" value="Oct"><input type="hidden" name="calendar3.day.long.monday" value="Monday"><input type="hidden" name="calendar3.month.short.june" value="Jun"><input type="hidden" name="calendar3.day.short.monday" value="Mon"><input type="hidden" name="calendar3.day.short.tuesday" value="Tue"><input type="hidden" name="calendar3.day.short.saturday" value="Sat"><input type="hidden" name="calendar3.month.long.march" value="March"><input type="hidden" name="calendar3.month.long.june" value="June"><input type="hidden" name="calendar3.month.short.february" value="Feb"><input type="hidden" name="calendar3.month.short.august" value="Aug"><input type="hidden" name="calendar3.month.short.december" value="Dec"><input type="hidden" name="calendar3.day.short.sunday" value="Sun"><input type="hidden" name="calendar3.month.long.february" value="February"><input type="hidden" name="calendar3.day.long.tuesday" value="Tuesday"><input type="hidden" name="calendar3.month.long.may" value="May"><input type="hidden" name="calendar3.month.long.september" value="September"><input type="hidden" name="calendar3.month.long.november" value="November"><input type="hidden" name="calendar3.month.short.january" value="Jan"><input type="hidden" name="calendar3.month.short.september" value="Sep"><input type="hidden" name="calendar3.day.long.thursday" value="Thursday"><input type="hidden" name="calendar3.month.long.january" value="January"><input type="hidden" name="calendar3.day.short.friday" value="Fri"></fieldset></script>
+            <meta name="ajs-is-confluence-admin" content="false">
+            <meta name="ajs-connection-timeout" content="10000">
+            
+    
+    
+            <meta name="ajs-context-path" content="">
+            <meta name="ajs-base-url" content="https://share.emakina.net">
+            <meta name="ajs-version-number" content="5.8.5">
+            <meta name="ajs-build-number" content="5983">
+            <meta name="ajs-remote-user" content="rwa">
+            <meta name="ajs-remote-user-key" content="2c90e5f840ba6c740140ba6d8c3401ab">
+            <meta name="ajs-current-user-fullname" content="Richard Walker">
+            <meta name="ajs-current-user-avatar-url" content="/download/attachments/1540690/rwa-97993-pp-sherlock.gif?version=1&amp;modificationDate=1425475703247&amp;api=v2">
+            <meta name="ajs-static-resource-url-prefix" content="/s/fr_FR/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_">
+            <meta name="ajs-global-settings-attachment-max-size" content="1073741824">
+            <meta name="ajs-user-locale" content="en_GB">
+            <meta name="ajs-enabled-dark-features" content="confluence-inline-comments-resolved,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareContentEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.mentions.api.ConfluenceMentionEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.security.ForgotPasswordEvent,pdf-preview,notification.plugin.api.enabled.com.atlassian.confluence.plugins.tasklist.event.SendTaskEmailEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageMovedEvent,previews.sharing,previews.versions,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentUpdateEvent,file-annotations,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.attachment.AttachmentBatchUploadCompletedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingLessUsersEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentRemoveEvent,atlassian.aui.raphael.disabled,previews.conversion-service,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.follow.FollowEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageEditedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostCreateEvent,previews.trigger-all-file-types,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentResolveEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.like.LikeCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentCreateEvent,previews.sharing.pushstate,confluence-inline-comments-rich-editor,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostUpdateEvent,file-annotations.likes,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentMentionUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingNoSpaceCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.hipchat.api.events.HipChatUserMapped,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareAttachmentEvent,confluence-inline-comments,confluence-inline-comments-dangling-comment,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostMovedEvent">
+            <meta name="ajs-atl-token" content="c63bad7b32a069b80c63eee1b9bf7efb1d1ad754">
+            <meta name="ajs-confluence-flavour" content="VANILLA">
+            <meta name="ajs-user-date-pattern" content="dd MMM yyyy">
+            <meta name="ajs-date.format" content="MMM dd, yyyy">
+    
+    <link rel="shortcut icon" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_/favicon.ico">
+
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch/osd.action" title="Share!"/>
+
+<script>
+window.WRM=window.WRM||{};window.WRM._unparsedData=window.WRM._unparsedData||{};
+WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-rest:web-resource-manager.resource-base-url-pattern"]="\"(?:(?:/s/.*?/_)?/download)\"";
+WRM._unparsedData["com.atlassian.confluence.plugins.confluence-license-banner:confluence-license-banner-resources.license-details"]="{\"daysBeforeLicenseExpiry\":0,\"daysBeforeMaintenanceExpiry\":0,\"showLicenseExpiryBanner\":false,\"showMaintenanceExpiryBanner\":false,\"renewUrl\":null,\"salesEmail\":null}";
+WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path.context-path"]="\"\"";
+WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:nps-acknowledgement-resources.analytics-enabled-data-provider"]="\"true\"";
+WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:nps-acknowledgement-resources.sen-data-provider"]="\"SEN-5485876\"";
+WRM._unparsedData["com.atlassian.confluence.plugins.confluence-feature-discovery-plugin:confluence-feature-discovery-plugin-resources.test-mode"]="false";
+WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:atlassian-nps-plugin-resources.is-server-instance-data-provider"]="true";
+WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:browser-metrics.feature-data-provider-legacy"]="true";
+</script>
+<link type="text/css" rel="stylesheet" href="/s/022d3d634eb84eb55f3095f53c0f183b-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/212/_/download/superbatch/css/batch.css?build-number=5983" media="all">
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/212/_/download/superbatch/css/batch.css?conditionalComment=lt+IE+9" media="all">
+<![endif]-->
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/212/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="/s/ec0655f13d81acb5dd3c5f3d25e75b7a-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/fada4defec12029cbaf0c37d3c100eb7/_/download/contextbatch/css/main,atl.general/batch.css?flavour=VANILLA" media="all">
+<link type="text/css" rel="stylesheet" href="/s/9469bd02b5026e2a62844d59952960c5-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/97dc6390d588612f887919b07575c554/_/download/contextbatch/css/login/batch.css" media="all">
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/9469bd02b5026e2a62844d59952960c5-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/97dc6390d588612f887919b07575c554/_/download/contextbatch/css/login/batch.css?conditionalComment=lte+IE+9" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:batch/com.refinedwiki.confluence.plugins.theme.original:batch.css" media="all">
+<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/103/_/styles/colors.css" media="all">
+<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/resources/com.refinedwiki.confluence.plugins.theme.original:RefinedWikiTheme50/default-theme.css" media="all">
+<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/103/_/styles/theme-colors.css?completeModuleKey=com.refinedwiki.confluence.plugins.theme.original%3ARefinedWikiTheme50&amp;stylesheetName=color-scheme.css" media="all">
+<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/103/_/styles/custom.css" media="all">
+<script type="text/javascript" src="/s/60e123c7220e4e4a51de7627a76016d9-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/212/_/download/superbatch/js/batch.js?atlassian.aui.raphael.disabled=true&amp;locale=en-GB&amp;build-number=5983" ></script>
+<script type="text/javascript" src="/s/3375fd96a8777a0b6cdc80b4965f3c30-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/fada4defec12029cbaf0c37d3c100eb7/_/download/contextbatch/js/main,atl.general/batch.js?analytics-uploadable=true&amp;flavour=VANILLA&amp;nps-acknowledged=true&amp;analytics-enabled=true&amp;locale=en-GB&amp;user-logged-in=true&amp;is-server-instance=true&amp;hostenabled=true" ></script>
+<script type="text/javascript" src="/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/1.0/_/download/batch/confluence.web.resources:login/confluence.web.resources:login.js?locale=en-GB" ></script>
+<script type="text/javascript" src="/s/2f827b242ab1e78368a4837542922e31-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:batch/com.refinedwiki.confluence.plugins.theme.original:batch.js?locale=en-GB" ></script>
+
+
+        
+    
+
+            
+            
+            
+            
+	    		    
+		    
+			
+	
+		
+
+
+
+<script>
+	
+			if (typeof RW === 'undefined') {
+    	var RW = {};
+	}
+	
+		RW.confluenceVersion = 5.85; 
+	
+		
+	
+		RW.isConfluenceAdministrator = false
+	
+				var contextPath = '';
+	
+					RW.scrollSearchActive = true;
+	
+				RW.userDashboardRedirection = true;
+		
+	
+				RW.remoteUser = 'rwa'; 
+		
+		var originalTheme = RW;
+	
+		RW.cacheSettings = {};
+	RW.cacheSettings.params = {};
+	RW.cacheSettings.lastChange = {}
+
+	    
+    		RW.cacheSettings.params['footer'] = true;
+    	    		RW.cacheSettings.params['globalmenu'] = true;
+    	    		RW.cacheSettings.params['usercategory'] = false;
+    	    		RW.cacheSettings.params['category'] = true;
+    	    		RW.cacheSettings.params['docache'] = true;
+    	            			RW.cacheSettings.lastChange['footer'] = 1438330509030;
+        			RW.cacheSettings.lastChange['globalmenu'] = 1438330509030;
+        			RW.cacheSettings.lastChange['usercategory'] = 1438334106024;
+        			RW.cacheSettings.lastChange['category'] = 1438334106024;
+    </script>
+
+
+
+
+	
+				
+	
+<!--[if !IE]><!-->
+ 	<style type="text/css">
+		.rw_toolbar_menu li .rw_toolbar_dropdown li a:hover
+		{
+			color: #ffffff;	
+			background: #3572b0;
+		}
+		
+		/* Scroll office fix */
+		#com-k15t-confluence-scroll-pdf-launcher:hover
+		{
+			color: #ffffff;	
+			background: #3572b0;
+		}
+	</style>
+<!--<![endif]-->
+
+		
+<!--[if IE 6]>
+	<link type="text/css" rel="stylesheet" href="/download/resources/com.refinedwiki.confluence.plugins.theme.original/styles/legacy/ie6-fix.css" media="all"/>
+<![endif]-->
+
+<!--[if IE 7]>
+	<link type="text/css" rel="stylesheet" href="/download/resources/com.refinedwiki.confluence.plugins.theme.original/styles/legacy/ie7-fix.css" media="all"/>
+<![endif]-->
+
+
+
+
+
+
+        	
+    	    	    			
+    	    				<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/resources/com.refinedwiki.confluence.plugins.theme.original:batch/designs/point/css/style.css" media="all"/>
+			
+				
+				        					
+		    	    		
+    		    		    			
+<style type="text/css">
+
+	body 
+	{
+		background:#000000;
+	}
+
+	body #rw_wrapper 
+	{
+		
+					background:#000000;
+			}
+	
+	#rw_category_menu li a span.rw_item_left, #rw_breadcrumb li span, #rw_breadcrumb li a  
+	{
+		color:#ff8400;
+	}
+	
+	#rw_breadcrumb li a:hover 
+	{
+					color:#ff8400;
+			}
+	
+</style>
+    		    
+    	    
+
+
+
+
+<style type="text/css">
+	/* Key navigation in popup */
+	li.rw_selected a { background: #fd9602 !important; border-color: #fd9602 !important; }
+	li.rw_selected * { color: #fff !important; }
+	li.rw_selected a span.rw_item_left { background: none !important; border-color:none !important;}
+	
+	/* Key navigation category menu */
+	#rw_category_menu ul li.rw_active.rw_selected a > span { border-color: #fd9602; }
+	
+	/* Key navigation for page tree */
+	.rw_pagetree_list li.rw_selected > div.rw_icon_content { background: #fd9602 !important; border-color: #fd9602 !important; }
+	.rw_pagetree_list li.rw_selected > div.rw_icon_content a { color:#fff !important;}
+	.rw_pagetree_list li.rw_selected a {background: none !important; border-color: none; color:#333 !important;}
+	
+	/* Key navigation for activity popup */
+	li.rw_selected div.rw_no_link { background: #fd9602 !important; border-color: #fd9602 !important; }
+	
+	/* Main Key Navigation */
+	.rw_keynavigation_row > div.rw_selected { background: #fd9602 !important; color:#fff !important;}
+	.rw_keynavigation_container > div.rw_keynavigation_empty_item { background: none;}
+	
+	/* Menu keynav exceptions */
+	#notifications-anchor.rw_selected {background: #fd9602 !important; color:#fff !important;}
+	
+	
+		
+	        
+        
+        #rw_main #rw_create_button .aui-button.aui-button-primary.aui-style 
+        {
+            background-image: -moz-linear-gradient(top, #3572b0, #2d6195);
+            background-image: -ms-linear-gradient(top,  #3572b0, #2d6195);
+            background-image: -webkit-linear-gradient(top,  #3572b0, #2d6195);
+            background-image: -o-linear-gradient(top,  #3572b0, #2d6195);
+            background-image: linear-gradient(top,  #3572b0, #2d6195);
+            text-shadow: 0 1px 0 #234c75;
+        }
+        
+    	#rw_main #rw_create_button .aui-button.aui-button-primary.aui-style 
+    	{
+    		border-color: #3572b0;
+    	}
+        #rw_main #rw_create_button .aui-button.aui-button-primary.aui-style:hover, 
+        #rw_main #rw_create_button .aui-button.aui-button-primary.aui-style:focus 
+        {
+            background-image: -moz-linear-gradient(top, #3089e3, #31669b);
+            background-image: -ms-linear-gradient(top, #3089e3, #31669b);
+            background-image: -webkit-linear-gradient(top, #3089e3, #31669b);
+            background-image: -o-linear-gradient(top, #3089e3, #31669b);
+            background-image: linear-gradient(top, #3089e3, #31669b);
+        }
+		
+	
+				
+	
+	
+    	        #com-atlassian-confluence #inline-dialog-notifications-miniview
+        {
+            position:fixed;
+            top: 57px !important;
+            right: 80px !important;
+			margin: 0px !important;
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:after,
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:before
+        {
+            border: medium solid transparent;
+            bottom: 100%;
+            content: " ";
+            height: 0;
+            pointer-events: none;
+            position: absolute;
+            width: 0;
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:after
+        {
+            
+            border-color: rgba(237, 237, 237, 0) rgba(237, 237, 237, 0) rgba(237, 237, 237, 0) #fff;
+            border-width: 8px;  
+            top:22px;
+            right: -15px;   
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:before
+        {
+            border-color: rgba(221, 221, 221, 0) rgba(221, 221, 221, 0) rgba(221, 221, 221, 0) #ddd;
+            border-width: 10px;  
+            top: 20px;
+            right: -19px;
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview #arrow-notifications-miniview
+        {
+            display:none;
+        }
+		
+</style>
+	
+    
+
+    
+
+	
+</head>
+
+<body             onload="placeFocus()"
+     id="com-atlassian-confluence" class="RefinedWikiTheme50 login aui-layout aui-theme-default  confluence_5 ">
+    
+        
+            <div id='stp-licenseStatus-banner'></div>
+    <div id="page">
+    <div id="full-height-container">
+        <div id="header-precursor">
+            <div class="cell">
+                
+                                    </div>
+        </div>
+        
+				
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+		
+		
+								
+
+		<div id="rw_wrapper" class="rw_popup_design_default rw_menu_layout_v2">
+			
+						
+
+
+
+        
+
+
+			<div id="rw_main">
+    				
+    			    				
+
+
+<div class="rw_box rw_no_print" id="point_design_banner">	
+	
+		   		
+	
+		<div id="point_search_wrapper">
+			<div id="rw_search_container">
+		<div id="rw_search" class="rw_search">
+			
+						<form style="width:0px; height:0px; overflow:hidden; "><input type="text" name="hack" onfocus="this.blur()" /></form>
+			    
+			<form id="rw_search_form" class="rw_search_form" method="get" action="/dosearchsite.action">
+		   		<label for="rw_search_query" class="assistive">Quick Search</label>
+				<input class="rw_search_query" id="rw_search_query" type="text" accessKey="search-pages-action.accesskey" autocomplete="off" name="queryString" size="25" />
+		    
+		   		<div style="clear:both;"></div>
+		        <div id="rw_search_result_container" class="rw_search_result_container rw_corners" style="display:none;">
+		        	
+		        </div>
+		
+		        <fieldset class="hidden parameters">
+		            <input type="hidden" id="quickNavEnabled" value="true" />
+		            		        </fieldset>
+		    </form>	
+	    </div>
+	</div>
+	</div>
+	
+			
+			
+	
+		
+		
+		        	    		<ul id="rw_app_switcher" class="rw_inline_menu rw_header_menu rw_left">
+        		<li>
+        			<a class=" aui-dropdown2-trigger app-switcher-trigger" aria-owns="app-switcher" aria-controls="app-switcher" aria-haspopup="true" data-aui-trigger href="#app-switcher"><span class="aui-icon aui-icon-small aui-iconfont-appswitcher">Linked Applications</span></a><div id="app-switcher" class="aui-dropdown2 aui-style-default"><div class="app-switcher-loading">Loading&hellip;</div></div><script>
+            (function (NL) {
+                var initialise = function () {
+                    // For some milestones of AUI, the atlassian soy namespace was renamed to aui. Handle that here by ensuring that window.atlassian is defined.
+                    window.atlassian = window.atlassian || window.aui;
+                    new NL.AppSwitcher({
+                        dropdownContents: '#app-switcher'
+                    });
+                };
+                if (NL.AppSwitcher) {
+                    initialise();
+                } else {
+                    NL.onInit = initialise;
+                }
+            }(window.NL = (window.NL || {})));
+            window.NL.isUserAdmin = false</script>
+        		</li>
+        	</ul>
+						
+	
+	 	<div id="rw_breadcrumb">	
+		<table height="40px" style="padding-left: 8px;"><tr><td>
+				
+			<div class="rw_breadcrumbs_container">
+    		        		<ol id="breadcrumbs">
+        			<li class="rw_first">
+                        <span>
+                            <a href="/dashboard.action">
+																	Share!
+													        </a>
+                        </span>
+                    </li>
+                            		</ol>
+    		
+            		</div>
+			</td></tr></table>
+	</div>	
+	
+</div>
+
+
+<div id="rw_top" class="rw_no_print">
+	<table class="top_table" border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+									<td style="width:100%;vertical-align:bottom;">		
+				
+									
+			
+		<div id="rw_category_menu" 
+		class=" rw_version_2  "
+		>
+	
+					<div id="rw_category_menu_scroll_container">
+					<ul>
+								<li id="rw_dashboard_link" class="rw_first">
+					<a  
+						 title="Share! ( Type 'n' )" 												>
+						<span class="rw_item_left">
+							
+																					
+							<span>
+																	Share!
+															</span>
+						</span>
+						<span class="rw_item_right"></span>
+					</a>
+				</li>	
+			</ul>
+					</div><!-- # rw_category_menu_scroll_container -->
+			</div>		
+	
+	
+		<div id="rw_category_dropdown_wrapper" class="rw_popup rw_corners" style="display:none;">
+		<div id="rw_category_dropdown_users"></div>
+		<div id="rw_category_dropdown_container" class="rw_popup_container"></div>
+		<div id="rw_category_dropdown_loader" class="rw_popup_loader">
+			<div class="rw_popup_loader_image"></div>
+		</div>
+	</div>
+	
+		<script type="text/x-template" id="rw_category_menu_right_button_template">
+	 	<div id="rw_category_menu_right_container" style="display:none;">
+		 	<a id="rw_category_menu_right_button" class="rw_corners">
+		 		<span class="rw_icon_container_16"></span>
+		 	</a>
+		 </div>
+	</script>
+	
+		<script type="text/x-template" id="rw_category_menu_left_button_template">
+		<div id="rw_category_menu_left_container" style="display:none;">	 		
+	 		<a id="rw_category_menu_left_button" class="rw_corners">
+	 			<span class="rw_icon_container_16"></span>
+	 		</a>
+ 		</div>
+	</script>
+
+		<script type="text/x-template" id="rw_category_menu_item_template">
+		<li>
+			<a>
+				<!-- rw_item_left & rw_item_right is deprecated since RWOT 3.3 -->
+				<span class="rw_item_left">
+					<span class="rw_item_logo"></span>
+					<span class="rw_item_name"></span>
+					<span class="rw_item_icon"></span>
+				</span>
+				<span class="rw_item_right"></span>
+			</a>
+		</li>
+	</script>
+	
+	
+		<div id="rw_category_menu_parameters" style="display:none;">
+	
+				<div id="rw_category_dd_disabled">false</div>
+		<div id="rw_category_dd_layout">dynamic_column</div>
+		<div id="rw_sub_category_collapsed">false</div>
+		<div id="rw_show_category_logo">false</div>
+		<div id="rw_exclude_archived_spaces">true</div>
+		<div id="rw_show_space_logo">false</div>
+		<div id="rw_show_space_icon">true</div>
+		<div id="rw_min_column_width">340</div>
+		<div id="rw_active_category_key"></div>
+		<div id="rw_is_dashboard"></div>
+		<div id="rw_manual_permissions">false</div>
+		<div id="rw_disable_subdashboards">false</div>
+	</div>
+				
+			</td>
+		</tr>
+	</table>
+</div> <!-- top -->
+
+
+<div id="point_design_content">
+<div style="clear:both;"></div>
+    						
+    			
+    			    			
+            
+            	
+        	            	<div id="rw_menu_bar_wrapper" >
+    		                        	<div id="rw_menu_bar_button" ></div>
+    		    		
+    		        
+    <div id="rw_menu_bar" class="rw_corners" >
+    	
+    	    	
+    		
+    	    	    	    	    	    	
+    	    	    	
+    	
+    	    	    	    	    	
+    
+    	    	        	
+        	        	        		
+        		<h1 id="title-heading" class="pagetitle">
+					
+        			<span>
+						        					            <a href="/homepage.action">Share!</a>
+        					    					    					        			</span>
+        		</h1>
+    		    		
+    		    			
+	                                            <div id="rw_create_button" class="rw_create_button_container">
+            	<a title="Create Content" href="" id="create-page-button" class="aui-button aui-style aui-button-primary aui-nav-imagelink">
+                    <span>Create</span>
+                </a>
+        	</div>
+            
+    		
+    	    		
+    </div> <!-- #rw_menu_bar -->
+    
+        	    	</div> <!-- #rw_menu_bar_wrapper -->
+		
+        
+                <div id="main" class="aui-page-panel">
+                    
+        
+                    
+		
+        
+		
+        <div id="login-container" >
+                    <div class="login-section">
+                <h2>Log in</h2>
+                
+
+<div id="action-messages">
+                        </div>
+                <p>You are currently logged in as rwa.</p>
+                <p class="last"><a href="dashboard.action">Click here</a> for the dashboard. To log in as another user, you must first <a href="logout.action">log out</a>.</p>
+            </div>
+                </div>
+                    
+        	
+                </div><!-- \#main -->
+				
+								                                	
+
+</div> <!-- point_design_content -->
+                
+						
+
+
+                                
+            	
+	        		
+		<div class="rw_license_banner rw_evaluate" >
+			You are evaluating RefinedWiki Original Theme.
+			
+
+	<div class="rw_market_buttons">
+		<a class="rw_button" href="/plugins/servlet/upm#manage/com.refinedwiki.confluence.plugins.theme.original" title="rw.license.manage">
+			<span class="rw_market">
+									Manage license
+							</span>
+		</a>
+	</div>
+		</div>
+    
+
+    		</div><!-- \#rw_main -->
+						<script type="text/x-template" id="rw_popup_loader_template">
+	<div class='rw_popup_loader'>
+		<div class="rw_popup_loader_image"></div>
+	</div>
+</script>
+
+
+<script type="text/x-template" id="rw_search_item">
+    <li>
+		<a>
+			<span class="rw_search_item_title"></span>
+			<span class="rw_search_item_space"></span>
+		</a>
+	</li>
+</script>
+
+
+<script type="text/x-template" id="rw_icon_text_item">
+    <li>
+		<a>
+			<span class="rw_item_icon">
+				<img style="display:none;" />
+			</span>
+			<span class="rw_item_content">
+			</span>
+		</a>
+	</li>
+</script>
+
+<script type="text/x-template" id="rw_icon_content_item_template">
+    <li>
+		<a>
+			<span class="rw_item_icon">
+			</span>
+			<span class="rw_item_content">
+			</span>
+		</a>
+	</li>
+</script>
+
+
+<script type="text/x-template" id="rw_section_template">
+    <ul>
+	</ul>
+</script>
+
+<script type="text/x-template" id="rw_items_template">
+    <ul class="rw_items">
+	</ul>
+</script>
+
+<script type="text/x-template" id="rw_section_with_heading_template">
+    <div>
+    	<h2></h2>
+    	<ul>
+    	</ul>
+    </div>
+</script>
+
+
+<script type="text/x-template" id="rw_span_icon_template">
+		<span class="rw_icon_container_16"></span>  </script>
+
+<script type="text/x-template" id="rw_clear_template">
+	<div style="clear:both;"></div>
+</script>
+
+
+<script type="text/x-template" id="rw_category_section_template">
+   
+   <div class="rw_dd_category">
+       <h2><a class="rw_sub_category_link"></a></h2>
+       <ul></ul>
+   </div>
+</script>
+
+
+<script type="text/x-template" id="rw_category_bottom_template">
+	<div class="rw_popup_bottom">
+		<a href="#" class="rw_dashboard_link" >Dashboard</a>
+		<a href="#" class="rw_close_link">Close</a>
+	</div>
+</script>
+
+
+
+
+<script type="text/x-template" id="rw_popup_template">
+	<div class='rw_popup rw_corners' style='display:none;'>
+		<div class="rw_popup_container rw_corners">
+			<div class="rw_popup_top">
+				<h1 style="border:0px;"></h1>
+			</div>
+			<div class="rw_popup_content">
+				
+			</div>
+			<div class="rw_popup_bottom">
+				<a href="#"></a>
+			</div>
+		</div>
+		<div class='rw_popup_loader'>
+			<div class="rw_popup_loader_image"></div>
+		</div>
+	</div>	
+</script>
+
+
+
+<script type="text/x-template" id="rw_load_more_template">
+	
+	<a class="rw_load_more_link rw_corners rw_menu_color" >			
+	    <span class="rw_load_more_text">More</span>
+	</a>
+	
+</script>
+
+<script type="text/x-template" id="rw_more_button_template">
+	
+	<a class="rw_load_more_link rw_menu_color" >			
+	    <span class="rw_load_more_text">More</span>
+	</a>
+	
+</script>
+
+
+<script type="text/x-template" id="rw_load_more_section_template">
+	
+	<ul>
+		<li class="rw_corners">
+			<a class="rw_load_more_link rw_corners" >			
+			    <span class="rw_load_more_text">More</span>
+			</a>
+		</li>
+	</ul>
+	
+</script>
+
+
+<script type="text/x-template" id="rw_button_template">
+	<a class="rw_button"><span></span></a>
+</script>
+
+
+<div id='rw_popup_bg' style='display:none;'></div>
+
+
+<div id="rw_keyboard_shortcuts" style="display:none;"></div>
+	
+<script type="text/x-template" id="rw_keynavigation_container_template">
+	<div class="rw_keynavigation_container" style="display:none;"></div>
+</script>
+
+<script type="text/x-template" id="rw_keynavigation_row_template">
+	<div class="rw_keynavigation_row">
+	</div>
+</script>
+
+<script type="text/x-template" id="rw_keynavigation_item_template">
+	<div class="rw_keynavigation_item">
+		<span class="rw_item_icon"></span><br />
+		<span class="rw_item_content">Navigate Menu</span>
+		<div class="rw_keynavigation_item_target" style="display:none"></div>
+	</div>
+</script>
+
+<script type="text/x-template" id="rw_keynavigation_empty_item_template">
+	<div class="rw_keynavigation_empty_item">
+	
+	</div>
+</script>
+
+<script type="text/x-template" id="rw_favourite_no_spaces_template">
+	<span class="rw_text_gray">You currently do not have any spaces on your favourites list. To add one, click the <em>All</em> tab and then on <img src=/download/resources/com.refinedwiki.confluence.plugins.theme.original/images/gray_star.png> next to the spaces you want to add as favourites.</div>	
+</script>
+
+<script type="text/x-template" id="rw_favourite_no_pages_template">
+	<span class="rw_text_gray">There are currently no pages on your favourites list. You can add pages to this list by selecting Favourite from the Tools menu on the page you're viewing.</div>	
+</script>
+
+
+<script type="text/x-template" id="rw_board_template">
+	<div class="rw_board"></div>
+</script>
+
+<script type="text/x-template" id="rw_board_column_template">
+	<div class="rw_board_column"></div>
+</script>
+
+<script type="text/x-template" id="rw_popup_cancel_button_template">
+	<button class="button-panel-button rw_button rw_right">
+		<span class="rw_del">Close</span>
+	</button>
+</script>
+		</div><!-- \#rw_wrapper -->
+		
+				<div id="rw_fullscreen_bg" style="display:none;"></div>
+		
+                        
+            
+            
+
+<div id="footer" role="contentinfo">
+    <section class="footer-body">
+
+                                                    
+        
+                <ul id="login-language">
+                                            <li>
+                            <a href="/login.action?language=de_DE">Deutsch</a>
+                        </li>
+                                            <li>
+                            <a href="/login.action?language=en_GB">English</a>
+                        </li>
+                                            <li>
+                            <a href="/login.action?language=es_ES">Español</a>
+                        </li>
+                                            <li>
+                            <a href="/login.action?language=fr_FR">Français</a>
+                        </li>
+                                            <li>
+                            <a href="/login.action?language=ja_JP">日本語</a>
+                        </li>
+                                    </ul>
+            
+
+        <ul id="poweredby">
+            <li class="noprint">Powered by <a href="http://www.atlassian.com/software/confluence" class="hover-footer-link">Atlassian Confluence</a> <span id='footer-build-information'>5.8.5</span>, <a href="http://www.atlassian.com/software/confluence/overview/team-collaboration-software?utm_source=confluence-footer" class="hover-footer-link">Team Collaboration Software</a></li>
+            <li class="print-only">Printed by Atlassian Confluence 5.8.5, Team Collaboration Software.</li>
+            <li class="noprint"><a href="https://jira.atlassian.com/browse/CONF" class="hover-footer-link">Report a bug</a></li>
+            <li class="noprint"><a href="http://www.atlassian.com/about/connected.jsp?s_kwcid=Confluence-stayintouch" class="hover-footer-link">Atlassian News</a></li>
+        </ul>
+
+        
+
+        <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+
+                    
+        
+    </section>
+</div>
+
+        </div><!-- \#full-height-container -->
+</div><!-- \#page -->
+</body>
+</html>

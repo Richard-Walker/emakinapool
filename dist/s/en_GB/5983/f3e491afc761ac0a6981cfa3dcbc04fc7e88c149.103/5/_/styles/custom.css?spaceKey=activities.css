@@ -1,0 +1,209 @@
+
+/* Custom styles for Confluence (included for all themes by default) */
+
+#addSpaceLink {
+#display:none;
+#}
+
+.wiki-content a {
+text-decoration: none;
+}
+
+#footer, #rw_upgrade, #header-precursor {
+display:none;
+}
+
+.rw_evaluate, .rw_upgrade {
+display:none;
+}
+
+#top {
+    padding-top: 35px;
+    height: 50px;
+}
+
+#top_logo_wrapper {
+    width: 0;
+}
+
+.contenteditor #main {
+background: transparent none !important;
+}
+
+#tinymce {
+background: #ffffff;
+}
+
+#rw_footer
+{ display:none; }
+
+#rw_wrapper
+{ background: #000000 url(https://share.emakina.net/images/emk/bg_body.jpg) no-repeat 50% 0 !important; }
+
+#page
+{ background: transparent none; }
+
+#full-height-container 
+{background: transparent none !important;}
+
+body #page #rw_top 
+{padding-top: 65px;}
+
+#rw_menu_bar
+{ background: #000000; }
+
+#rw_pagetree{
+background: #000000;
+}
+
+#rw_breadcrumb 
+{background: transparent url(https://share.emakina.net/images/emk/bg_navbar.png) repeat-x 0 0;}
+
+.no_icons a {
+    color:white;
+}
+
+a.space_back {
+    background: #000000;
+    border-color: #CCCCCC -moz-use-text-color #CCCCCC #CCCCCC;
+    border-style: solid none solid solid;
+    border-width: 1px 0 1px 1px;
+    cursor: pointer;
+    float: left;
+    height: 33px;
+    margin: -1px 8px 0 -11px;
+    width: 25px;
+}
+
+a.space_link {
+    background: url("https://share.emakina.net/images/emk/space_icon.jpg") no-repeat scroll 0 0 transparent;
+    padding: 0 0 0 15px;
+    color:#ff8400;
+    float: none;
+ }
+
+#com-atlassian-confluence #rw_menu_bar h1
+{ color:#ff8400; }
+
+#com-atlassian-confluence.login h1
+{ color:#ff8400; }
+
+#com-atlassian-confluence h1
+{ color:#ff8400; }
+
+.space_news ul li a span {
+    color: white;
+}
+	
+.page_left_section.space_news {
+    background: none repeat scroll 0 0 #000000;
+}
+
+.space_news ul li a {
+    background: none repeat scroll 0 0 #000000;
+}
+
+.space_news ul li a.space_news_alternating {
+    background: none repeat scroll 0 0 #000000;
+}
+
+.space_news ul li a:hover {
+    background: #ff8400;
+}
+
+a.rw_space_link span {
+color: #FF8400;
+}
+a.rw_space_link:hover,
+a.rw_menu_back:hover {
+    background: none repeat scroll 0 0 #FF8400;
+}
+a.rw_space_link:hover span,
+a.rw_menu_back:hover span {
+    color:#fff;
+}
+/*.rw_toolbar_menu li a {
+color: #FF8400;
+}*/
+.rw_toolbar_menu li a:hover, 
+.rw_toolbar_menu li.dropdown_open a.rw_toolbar_dropdown_button, 
+.rw_toolbar_menu .ajs-button a.rw_active, 
+ul.rw_spaces_links li a:hover, 
+.rw_spaces_category_title:hover {
+background-color: #FF8400 !important;
+}
+body .rw_space_filter_menu li a {
+color: #FF8400;
+}
+body .rw_space_filter_menu li.rw_active a {
+color: #fff;
+background: none repeat scroll 0 0 #AAAAAA;
+}
+body #rw_spacelist_team:hover #rw_spacelist_team_link, 
+body #rw_spaces_team:hover #rw_team_menu_link {
+    background: none repeat scroll 0 0 #FF8400;
+color:#fff;
+}
+body .rw_space_filter_menu li a:hover {
+background: none repeat scroll 0 0 #FF8400;
+color:#fff;
+}
+body .rw_space_filter_menu li .rw_drop_menu li a:hover,
+body .rw_space_filter_menu li.rw_active .rw_drop_menu a:hover {
+    background: none repeat scroll 0 0 #FF8400;
+    color: #FFFFFF;
+}
+#rw_top_menu_items_container ul li.rw_selected, 
+#rw_top_menu_items_container ul li a:hover {
+background: none repeat scroll 0 0 #FF8400 !important;
+color:#fff;
+}
+.rw_icon_button_active, .rw_icon_button_padded_active, .rw_icon_button_28_active {
+background-color: #FF8400 !important;
+}
+.plugin_pagetree_children_list a:link, .plugin_pagetree_children_list a:visited, .plugin_pagetree_children_list a:focus, .plugin_pagetree_children_list a:hover, .plugin_pagetree_children_list a:active {
+    color: #FFFFFF !important;
+}
+
+
+/* Bug in the dashboard with conf 5.1.5 https://refinedwiki.atlassian.net/browse/RWOT-440 */
+.sectionMacro {  
+    display: table;  
+    margin-top: 10px;  
+    width: 100%;  
+}  
+
+.sectionMacroRow {  
+    display: table-row;  
+}  
+
+.columnMacro {  
+    display: table-cell;  
+    vertical-align: top;  
+}  
+
+.sectionMacro .columnMacro {  
+    border: medium none;  
+    padding: 0;  
+}  
+.sectionMacro .columnMacro + .columnMacro {  
+    padding-left: 20px;  
+}  
+.sectionMacroWithBorder .columnMacro {  
+    border-color: #CCCCCC;  
+    border-style: dashed;  
+    border-width: 1px;  
+    padding: 10px;  
+}  
+  
+.rw_dashboard .sectionMacro > .sectionMacroRow > .columnMacro  {  
+    padding: 15px;  
+} 
+
+#aPermissionsTable {
+display:none;
+}
+
+/* End custom styles for Confluence */
+
+

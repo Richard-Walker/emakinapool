@@ -1,0 +1,555 @@
+/* 
+
+Common elements
+
+*/
+
+.wiki-content h1 {
+  font-weight: bold;
+  margin-top: 100px!important;
+  margin-bottom: 35px!important;
+}
+
+.wiki-content h2 {
+  font-weight: bold;
+}
+
+
+/*
+
+Confluence elements
+
+*/
+
+.wiki-content .cell {
+    display: block;
+}
+
+/*
+
+Navigation header
+
+*/
+
+
+/* Toolbar */
+
+.wiki-content .contentLayout2 .columnLayout .cell {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#page-toolbar {
+  margin-top: -28px;
+}
+#page-toolbar .aui-toolbar2-primary {
+  float:right;
+}
+#button-set1 {
+  margin: 0px;
+}
+
+/* Tabs */
+
+#title-text {
+  color: #333;
+  font-size: 24px;
+}
+
+.client-side-toc-macro {
+  margin-bottom: 60px!important;
+  border-bottom: 1px dotted #AAA;
+  padding-bottom: 14px;
+}
+
+.client-side-toc-macro a {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #888 !important;
+  padding: 15px;
+  margin-right: 10px;
+  padding-bottom: 10px;
+}
+
+.client-side-toc-macro a:hover,
+.client-side-toc-macro a.active {
+  text-decoration: none;
+  border-bottom: 6px solid #FD9C41;
+  color: #333 !important;
+}
+
+.client-side-toc-macro .toc-separator {
+  display: none;
+}
+
+
+/* 
+
+Mobile display (=default)
+Hidding everything that should not be in the mobile view 
+
+*/
+
+/* hide toolbar */
+#page-toolbar {
+  display: none;
+}
+
+/* hide nav items */
+.client-side-toc-macro span.toc-item-body:nth-of-type(2) a,
+.client-side-toc-macro span.toc-item-body:nth-of-type(4) a,
+.client-side-toc-macro span.toc-item-body:nth-of-type(10) a {
+  display: none;  
+}
+
+/* hide sections */
+.contentLayout2 .columnLayout:nth-child(2),
+.contentLayout2 .columnLayout:nth-child(3),
+.contentLayout2 .columnLayout:nth-child(4),
+.contentLayout2 .columnLayout:nth-child(7) {
+  display: none;
+}
+
+/* hide matches */
+.matches-table tr:nth-child(n+4) {
+  display: none;
+}
+
+/* hide tooltips */
+a[href $= "-tooltip"] + * {
+  display: none;
+}
+
+
+/*
+
+Profile section
+
+*/
+
+
+.profile-title ~ .table-wrap {
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.profile-summary {
+  margin-right: 250px;
+}
+.profile-summary td {
+  padding: 0px;
+  border: none;
+}
+
+.profile-summary h4 {
+  margin-top: 0px;
+}
+
+.profile-summary img {
+  border-radius: 50%;
+}
+
+.profile-summary .aui-lozenge {
+  padding: 8px 15px;
+  color: #668316!important;
+  border-width: 1px;
+  border-color: #668316!important;
+}
+
+.profile-summary ul {
+  padding-left: 0px!important;
+}
+
+.profile-stats {
+  border-bottom: 3px solid #FD9C41;
+  background-color: #f7f7f7;
+}
+.profile-stats th {
+  font-weight: normal!important;
+  background-color: transparent!important;
+  text-align: right!important;
+  color: #333!important;
+  padding-left: 50px;
+}
+.profile-stats td {
+  color: #777;
+  padding-right: 50px;
+}
+.profile-stats tr:last-child > * {
+  padding-bottom: 20px;
+}
+.profile-stats tr:first-child > * {
+  padding-top: 20px;
+}
+
+
+.profile-stats td, .profile-stats th {
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+/*
+
+Achievements section
+
+*/
+
+
+.achievements-title {
+  margin-top: 50px!important;
+}
+
+/* Achievement gauge */
+
+.achievements-title + p  {
+  background-color: #f7f7f7;
+  position: relative;
+  z-index: 0;
+}
+
+.achievements-title + p::before  {
+  z-index: -1;
+  content: " ";
+  height: 100%;
+  width: 32%;
+  background-color: #FBC391 ;
+  display: block;
+  position: absolute;
+}
+.achievements-title + p .aui-lozenge {
+  background-color: transparent;
+  color: #333;
+  font-weight: bold;
+  border: none;
+  padding: 7px;
+}
+
+/* Achievements check list */
+
+.achievements-title ~ .table-wrap {
+  display: inline-block;
+  vertical-align: top;
+  width: 250px;
+  margin-right: 35px;
+}
+
+
+.achievements-title ~ div.table-wrap:last-of-type {
+  width: 500px;
+}
+
+.achievements-title ~ .table-wrap table{
+  width:100%;
+}
+
+.achievements-title ~ .table-wrap td{
+  border: none;
+  padding: 5px 0px;
+  vertical-align: middle;
+}
+
+.achievements-title ~ .table-wrap td img {
+  margin: 0px!important;
+}
+
+.achievements-title ~ .table-wrap td p {
+  margin: 0px!important;
+}
+
+
+.achievements-title ~ .table-wrap td p:nth-child(1) {
+  font-weight: bold;
+}
+
+.achievements-title ~ .table-wrap td p:nth-child(2) {
+  font-size: smaller;
+  color: #444;
+}
+
+.achievements-title ~ .table-wrap td p:nth-child(3) {
+  font-size: smaller;
+  color: #444;
+}
+.achievements-title ~ .table-wrap td p:nth-child(3)::before {
+  content: url('./Gift-12.png');
+  padding-right: 3px;
+}
+
+
+.achievements-title ~ .table-wrap th{
+  border: none;
+  background-color: transparent!important;
+  padding: 30px 0px 10px 0px;
+  font-weight: normal!important;
+  text-transform: uppercase;
+}
+
+.achievements-title ~ .table-wrap td:first-child {
+  width:50px;
+  padding-left:7px;
+  padding-right: 12px;
+}
+
+
+/* Achievements completion */
+
+.achievements-title ~ .table-wrap tr:not(.completed) td p {
+  color: #aaa;
+}
+
+.achievements-title ~ .table-wrap tr:not(.completed) td:first-child img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.15;
+}
+
+
+
+/*
+
+Players sections
+
+*/
+
+.players-table {
+  width:100%;
+  white-space: nowrap; 
+}
+
+.players-table th:nth-last-child(1),
+.players-table th:nth-last-child(2),
+.players-table th:nth-last-child(3),
+.players-table th:nth-last-child(4),
+.players-table th:nth-last-child(5),
+.players-table td:nth-last-child(1),
+.players-table td:nth-last-child(2),
+.players-table td:nth-last-child(3),
+.players-table td:nth-last-child(4),
+.players-table td:nth-last-child(5) {
+  display: none;
+}
+
+.players-table td p:not(:first-child) {
+  margin-top: 3px;
+}
+
+/*
+
+Matches section
+
+*/
+
+.matches-table {
+  width:100%;
+  white-space: nowrap;   
+}
+
+.matches-table td p:not(:first-child) {
+  margin-top: 1px;
+}
+
+
+/*
+
+Gallery section
+
+*/
+
+.gallery table {
+  width:100%;
+}
+
+.gallery-image {
+  vertical-align: middle!important;
+}
+.gallery-caption {
+  padding-top: 5px;
+  padding-bottom: 100px;
+}
+
+.gallery-image img {
+  /* border: 1px solid #ccc; */
+}
+
+
+.plugin_attachments_table_container {
+  display: none;
+}
+.drop-zone-empty-text {
+  display: none;
+}
+
+
+/*
+
+FAQ section
+
+*/
+
+.expand-control {
+  font-size: 14pt;
+}
+.expand-content {
+  margin-bottom: 50px;
+}
+.expand-control-text:hover {
+  text-decoration: none;
+}
+.expand-control-icon {
+  vertical-align: middle;
+}
+
+
+
+/*
+
+Forms
+
+*/
+
+
+form.aui fieldset {
+  margin: 30px 0px;
+}
+
+
+
+/* Toolbar */
+
+.wiki-content a.aui-button {
+  color: inherit;
+}
+
+/* Forms */
+
+.large-field-group {
+  height: 110px;
+}
+
+.medium-large-field-group {
+  height: 85px;
+}
+
+form.aui .field-group .error {
+  background: none;
+  margin-top: 7px;
+}
+
+.user-mention img {
+  margin-right:7px;
+  height:30px;
+  vertical-align: text-bottom;
+}
+
+/* Message zone */
+
+#aui-message-bar {
+  padding-bottom: 20px;
+}
+
+/* Hide meta data display at top of page */
+
+.page-metadata-wrapper {
+display:none
+}
+
+/* Disable click on visuals */
+
+#main-content > p:first-of-type img,
+#main-content > div > p:first-of-type img,
+.rw_news_item img {
+pointer-events: none;
+cursor: default;
+}
+
+/* Match information styles */
+
+p.match-rankings, p.match-titles {
+  font-size:75%; 
+  margin-top:4px;
+}
+
+/* Icons */
+
+img.pool-icon {
+  vertical-align: middle;
+  width: 25px; height: 25px;
+}
+
+/* Remove "@" from usernames */
+
+.user-mention:before {
+  content:none!important;
+}
+
+
+.wiki-content .current-user-mention {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  color: #3572b0!important;
+  font-weight: bold;
+}
+
+/****************/
+/* Forms        */
+/****************/
+
+.aui-inline-dialog {
+  z-index: 10000!important;
+}
+
+.aui-dropdown2 {
+  z-index: 10001!important;
+}
+
+
+/****************/
+/* Fancy titles */
+/****************/
+/*
+#rw_page_toolbar,
+#rw_blogpost_toolbar {
+margin-bottom: 20px
+}
+
+#rw_wrapper h1.rw_page_title,
+#rw_wrapper h1.rw_page_title::before,
+#rw_wrapper h1.rw_page_title::after {
+  position: absolute;
+  background: rgba(255, 132, 0,0.8);
+  color: #FFF;
+}
+
+#rw_wrapper h1.rw_page_title {
+  top: 180px;
+  padding: 20px;
+  background: rgba(255, 132, 0,0.8);
+  color: #FFF;
+  font-weight: bold;
+  font-size: 24pt;
+  max-width: 30%;
+  z-index: 10;
+}
+
+#rw_wrapper h1.rw_page_title::before,
+#rw_wrapper h1.rw_page_title::after {
+  content: "";
+  position: absolute;
+  height: 33%;
+}
+
+#rw_wrapper h1.rw_page_title::before {
+  width: 15px;
+  right: -15px;
+  top: 0px;
+}
+
+h1#rw_page_title::after {
+  bottom: 34%;
+  width: 40px;
+  right: -40px;
+}
+
+*/

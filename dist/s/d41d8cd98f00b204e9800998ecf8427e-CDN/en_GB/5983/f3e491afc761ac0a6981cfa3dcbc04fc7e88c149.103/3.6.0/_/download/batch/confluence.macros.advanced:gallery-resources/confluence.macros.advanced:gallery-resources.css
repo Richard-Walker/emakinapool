@@ -1,0 +1,2 @@
+/* module-key = 'confluence.macros.advanced:gallery-resources', location = 'com/atlassian/confluence/plugins/macros/advanced/gallery.css' */
+.gallery{margin:10px;overflow-x:auto;overflow-y:hidden}.gallery table{border-collapse:collapse}.gallery th,.gallery td{text-align:center}.gallery td{padding:0;vertical-align:top}.gallery .gallery-image{line-height:0}.gallery .gallery-image a.gallery-link{display:block}.gallery .gallery-image img{margin:5px}.gallery .gallery-caption{text-align:center}
