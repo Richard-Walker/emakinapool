@@ -1,17 +1,17 @@
 /*
 
-Desktop enhancements:
+EP.Enhancements
 
+Desktop enhancements:
   * More sections and buttons
   * Tabs
   * Tooltips
 
 */
 
+var EP = EP || {};
 
-
-$(function() {
-
+EP.Enhancements = function() {
 
 	// SECTION AND TOOLBAR ----------------------------------
 
@@ -104,6 +104,4 @@ $(function() {
 
 	//TODO: implement
 
-});
-
-
+};

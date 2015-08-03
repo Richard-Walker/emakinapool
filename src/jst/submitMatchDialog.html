@@ -2,7 +2,7 @@
     <!-- Dialog header -->
     <header class="aui-dialog2-header">
         <!-- The dialog's title -->
-        <h2 class="aui-dialog2-header-main">Match Details</h2>
+        <h2 class="aui-dialog2-header-main">Match summary</h2>
         <!-- Close icon -->
         <a class="aui-dialog2-header-close">
             <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
@@ -11,75 +11,75 @@
     <!-- Main dialog content -->
     <div class="aui-dialog2-content">
         <form class="aui" onsubmit="return false;">
-        	<fieldset>
-              	<div class="field-group">
-                    <label for="match-opponent">Your opponent</label>
-                    <select class="select medium-long-field" id="match-opponent">
-                    	<option value=""></option>
-                    	<option value="1">Toto</option>
-                      	<option value="2">Tata</option>
-                    </select>
-              	</div>
-            </fieldset>
-          	<fieldset>
-              	<div class="field-group">
-                    <label>Outcome</label>
-		            <div class="radio">
-		                <input class="radio" type="radio" name="match-outcome" id="match-outcome-won">
-		                <label for="match-outcome-won">I won</label>
-		            </div>
-		            <div class="radio">
-		                <input class="radio" type="radio" name="match-outcome" id="match-outcome-lost">
-		                <label for="match-outcome-lost">I lost</label>
-		            </div>
-              	</div>
-            </fieldset>
-        	<fieldset>
-              	<div class="field-group">
-                  	<label for="match-game">
-                      Game
-                      &nbsp;
-                      <span id="tooltip-games" class="aui-icon icon-inline-help" title="<b>8 ball</b> is the most common game; you have a type (stripes or fulls) and you make the black in the end.<br><br>But there are plenty others, check-out the <b>help section</b> to learn new exciting games!"><span>Help</span></span>
-                    </label>
-                  	<select class="select medium-field" id="match-game">
-                      	<option>8 ball</option>
-                      	<option>9 ball</option>
-                      	<option>Rotation</option>
-                      	<option>Straight pool</option>
-                      	<option>Straight points</option>
-                      	<option>One pocket</option>
-                      	<option>Other</option>
-                  	</select>
-                    &nbsp;
-                  	<select class="select medium-field" id="match-format">
-                      	<option>1 frame</option>
-                      	<option>Best of 3</option>
-                      	<option>Best of 5</option>
-                      	<option>Best of 7</option>
-                      	<option>Other</option>
-                  	</select>
-              	</div>
-              	<div class="field-group">
-                  	<label>
-                      Perfects
-                      &nbsp;
-                      <span id="tooltip-perfects" class="aui-icon icon-inline-help" title="A <b>perfect</b> is when you win the frame in 1 visit.<br><br>Yep, you pocket all the balls in one go!"><span>Help</span></span>
-                    </label>
-                  	<select class="select medium-field" id="match-perfects-me">
-                      	<option>none for me</option>
-                      	<option>1 for me</option>
-                      	<option>2 for me</option>
-                      	<option>3 for me</option>                      	
-                  	</select>
-                  	&nbsp;
-                  	<select class="select medium-field" id="match-perfects-opponent">
-                      	<option>none for my opponent</option>
-                      	<option>1 for my opponent</option>
-                      	<option>2 for my opponent</option>
-                      	<option>3 for my opponent</option>
-                  	</select>
-              	</div>
-          	</fieldset>
+          <fieldset>
+
+            <div class="sentence">
+              Today, I
+              <select class="select xs-field" id="match-outcome">
+                <option value=""></option>
+                <option value="1">won</option>
+                <option value="0">lost</option>
+              </select>
+              against
+              <select class="select l-field" id="match-opponent">
+                <option value=""></option>
+                <option value="rwa">Richard (aka "Le Roi Mystère")</option>
+                <option value="mav">Maxime (aka "El Fuego")</option>
+              </select>
+            </div>
+
+            <div class="sentence">
+              We played
+              <select class="select s-field" id="match-game">
+                <option>8 ball</option>
+                <option>9 ball</option>
+                <option>rotation</option>
+                <option>straight pool</option>
+                <option>counting points</option>
+                <option>one pocket</option>
+                <option>something else</option>
+              </select>
+              in a
+              <select class="select s-field" id="match-format">
+                <option value="1">single game</option>
+                <option value="3">best of 3 games</option>
+                <option value="5">best of 5 games</option>
+                <option value="7">best of 7 games</option>
+                <option value="9">best of 9 games</option>
+              </select>
+              match
+            </div>
+
+            <div class="sentence">
+              I made
+              <select class="select xxs-field" id="match-perfects-me">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+              perfect(s) and my opponent
+              <select class="select xxs-field" id="match-perfects-him">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+
+          </fieldset>
         </form>
     </div>
     

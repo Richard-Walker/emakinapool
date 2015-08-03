@@ -1,7 +1,7 @@
 /* 
 
 Common elements
-
+ 
 */
 
 .wiki-content h1 {
@@ -23,6 +23,10 @@ Confluence elements
 
 .wiki-content .cell {
     display: block;
+}
+
+div.columnLayout.single {
+  position: relative;
 }
 
 /*
@@ -127,22 +131,35 @@ Profile section
 
 */
 
-
-.profile-title ~ .table-wrap {
-  display:inline-block;
+.profile-title ~ .table-wrap:first-of-type {
   vertical-align: middle;
+  background-color: #f7f7f7;
+}
+
+.profile-title ~ .table-wrap:last-of-type {
+  position: absolute;
+  vertical-align: middle;
+  top: 20px;
+  right: 70px;
+  border: 1px dotted #AAA;
+  border-radius: 8px;
+  background-color: #FFF;
 }
 
 .profile-summary {
-  margin-right: 250px;
+  width:100%;
+  margin-top:75px!important;
+  margin-bottom:40px!important;
 }
 .profile-summary td {
   padding: 0px;
   border: none;
+  text-align: center;
 }
 
 .profile-summary h4 {
   margin-top: 0px;
+  font-size: 32px;
 }
 
 .profile-summary img {
@@ -161,32 +178,33 @@ Profile section
 }
 
 .profile-stats {
-  border-bottom: 3px solid #FD9C41;
+/*  border-bottom: 3px solid #FD9C41;
   background-color: #f7f7f7;
+*/
 }
+
 .profile-stats th {
   font-weight: normal!important;
   background-color: transparent!important;
   text-align: right!important;
   color: #333!important;
-  padding-left: 50px;
+  padding-left: 30px;
 }
 .profile-stats td {
   color: #777;
-  padding-right: 50px;
+  padding-right: 30px;
 }
 .profile-stats tr:last-child > * {
-  padding-bottom: 20px;
+  padding-bottom: 15px;
 }
 .profile-stats tr:first-child > * {
-  padding-top: 20px;
+  padding-top: 15px;
 }
-
 
 .profile-stats td, .profile-stats th {
   border: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 
@@ -198,7 +216,8 @@ Achievements section
 
 
 .achievements-title {
-  margin-top: 50px!important;
+  margin-top: 40px!important;
+  margin-bottom: 30px!important;
 }
 
 /* Achievement gauge */
@@ -209,7 +228,7 @@ Achievements section
   z-index: 0;
 }
 
-.achievements-title + p::before  {
+#achievements-gauge {
   z-index: -1;
   content: " ";
   height: 100%;
@@ -218,6 +237,7 @@ Achievements section
   display: block;
   position: absolute;
 }
+
 .achievements-title + p .aui-lozenge {
   background-color: transparent;
   color: #333;
@@ -234,7 +254,6 @@ Achievements section
   width: 250px;
   margin-right: 35px;
 }
-
 
 .achievements-title ~ div.table-wrap:last-of-type {
   width: 500px;
@@ -258,7 +277,6 @@ Achievements section
   margin: 0px!important;
 }
 
-
 .achievements-title ~ .table-wrap td p:nth-child(1) {
   font-weight: bold;
 }
@@ -272,11 +290,18 @@ Achievements section
   font-size: smaller;
   color: #444;
 }
-.achievements-title ~ .table-wrap td p:nth-child(3)::before {
-  content: url('./Gift-12.png');
-  padding-right: 3px;
-}
 
+.achievements-title ~ .table-wrap td p:nth-child(3)::before {
+  content: ' ';
+  background-image: url('./Gift-50.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+  width: 12px;
+  height: 12px;
+  margin-right: 3px;
+  display: inline-block;
+}
 
 .achievements-title ~ .table-wrap th{
   border: none;
@@ -409,11 +434,51 @@ Forms
 
 */
 
-
-form.aui fieldset {
-  margin: 30px 0px;
+form.aui .xxs-field {
+    max-width: 40px;
+}
+form.aui .xs-field {
+    max-width: 75px;
+}
+form.aui .s-field {
+    max-width: 130px;
+}
+form.aui .m-field {
+    max-width: 165px;
+}
+form.aui .l-field {
+    max-width: 250px;
+}
+form.aui .xl-field {
+    max-width: 350px;
+}
+form.aui .xxl-field {
+    max-width: 500px;
 }
 
+#add-match-dialog {
+}
+
+#add-match-dialog select {
+  background-color: #fBfBfB;
+}
+
+#match-games-lost {
+    width: 36px;
+    display: inline-block;
+    text-align: left;
+}
+
+.aui-dialog2-content .sentence {
+  font-size: larger;
+  padding: 20px 5px;
+  text-align: center;
+}
+
+form.aui .select {
+  margin: 0px 5px;
+  font-size: smaller;
+}
 
 
 /* Toolbar */

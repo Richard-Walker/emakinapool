@@ -1,11 +1,14 @@
 /*
 
+EP.Profile
+
 Fills the profile section with information from the players table
 
 */
 
+var EP = EP || {};
 
-$(function() {
+EP.Profile = function() {
 
 	// Only available if user is registered
 	
@@ -27,8 +30,10 @@ $(function() {
 		rank: $cells.eq(6).text(),
 		level: $cells.eq(7).find('p').eq(0).text(),
 		achievements: EP.Helpers.TooltipFormater.decodeToArray( $cells.eq(7).find('p').eq(1).find('a').attr('href') ),
+		totalNumberOfAchievements: EP.Dom.Sections.$profileAchievements.find('table').slice(0,-1).find('tr:has(td)').length,
 		perfects: $cells.eq(8).text()
 	}
+	
 	EP.Profile.summary = EP.Profile.level.toUpperCase() + ' &nbsp;-&nbsp; Ranked #' + EP.Profile.rank;
 	if (EP.Profile.ownsBelt) {
 		EP.Profile.summary += ' &nbsp;-&nbsp; Belt owner';
@@ -48,12 +53,19 @@ $(function() {
 	});
 	$matches.closest('tr').addClass('completed');
 
+	// Set gauge
+
+	var percentage = Math.floor($matches.length / EP.Profile.totalNumberOfAchievements * 100);
+
+	EP.Dom.Achievements.$gauge.before('<span id="achievements-gauge"> </span>');
+	$('#achievements-gauge').css('width', percentage + '%');
+	EP.Dom.Achievements.$gauge.text(percentage + '% completed');
+
 	// Mark level related achievements
 
-	var $match = EP.Dom.Sections.$profileAchievements.find('table:last-of-type td p:first-child').filter(function () { 
+	var $match = EP.Dom.Sections.$profileAchievements.find('table').last().find('td>p:first-child').filter(function () { 
 		return EP.Profile.level.toUpperCase() === $(this).text().trim().toUpperCase();
 	});
 	$match.closest('tr').addClass('completed').prevAll(':has(td)').addClass('completed');
 
-
-});
+};

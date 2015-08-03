@@ -11,12 +11,16 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= pkg.license %> */\n\n',
     pagePath: 'display/activities/Pool+Championship+-+V2',
-    attachmentsPageId: '102665363',
+    assetsPageId: '102665363',
+    scriptsPageId: '104693790',
 
     // Tasks config
     shell: {
-      getdist: {
+      refreshDist: {
         command: './getdist.sh <%= pagePath %>'
+      },
+      rebuildDist: {
+        command: './getdist.sh -r <%= pagePath %>'
       }
     },
     clean: {
@@ -25,11 +29,11 @@ module.exports = function(grunt) {
     concat: {
       options: {
         banner: '<%= banner %>',
-        stripBanners: true
+        stripBanners: false
       },
       js: {
-        src: 'src/js/*.js',
-        dest: 'dist/download/attachments/<%= attachmentsPageId %>/<%= pkg.name %>.js'
+        src: ['src/js/*.js', '!src/js/main.js', 'src/js/main.js'],
+        dest: 'dist/download/attachments/<%= scriptsPageId %>/<%= pkg.name %>.js'
       },
     },
     jst: {
@@ -41,7 +45,7 @@ module.exports = function(grunt) {
       },
       compile: {
         src: 'src/jst/*.html',
-        dest: 'dist/download/attachments/<%= attachmentsPageId %>/templates.js'
+        dest: 'dist/download/attachments/<%= scriptsPageId %>/templates.js'
       }
     },
     copy: {
@@ -49,20 +53,20 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'src/img/',
         src: '*.{png,jpeg,jpg,gif,svg}',
-        dest: 'dist/download/attachments/<%= attachmentsPageId %>/'
+        dest: 'dist/download/attachments/<%= assetsPageId %>/'
       },
       css: {
         expand: true,
         cwd: 'src/css/',
-        src: '*.css',
-        dest: 'dist/download/attachments/<%= attachmentsPageId %>/'
+        src: '*',
+        dest: 'dist/download/attachments/<%= scriptsPageId %>/'
       }
     },
     jshint: {
       options: {
         asi: true, curly: true, eqeqeq: true, immed: true, latedef: true, newcap: true,
-        noarg: true, sub: true, undef: true, unused: true, boss: true, eqnull: true, jquery: true,
-        globals: { EP: true, _: true, AJS: true }
+        noarg: true, sub: true, undef: true, unused: true, boss: true, eqnull: true, jquery: true, node: true,
+        globals: { EP: true, _: true, AJS: true, JST: true }
       },
       gruntfile: {
         src: 'Gruntfile.js'
@@ -71,28 +75,22 @@ module.exports = function(grunt) {
         src: 'src/js/*.js'
       }
     },
-    http_upload: {
-      test: {
-        options: {
-          url: 'https://rwa:Trustevery1@share.emakina.net/rest/api/content/<%= attachmentsPageId %>/child/attachment/att102665367/data',
-          method: 'POST',
-          rejectUnauthorized: false,
-          headers: {
-            //'Authorization': 'Token <%= your_token_here %>',
-            'X-Atlassian-Token': 'nocheck'
-          },
-          data: {
-            comment: 'some other comment',
-            minorEdit: false
-          },
-          onComplete: function(data) {
-              console.log('Response: ' + data);
-          }
-        },
-        // src: 'dist/download/attachments/<%= attachmentsPageId %>/badge_Apprentice.png',
-        src: 'badge_Test.png',
-        dest: 'file'
+    confluence_attachments: {
+      options: {
+        baseUrl: 'https://share.emakina.net',
       },
+      assets: {
+        options: {
+          pageId: '<%= assetsPageId %>'
+        },
+        src: ['dist/download/attachments/<%= assetsPageId %>/*', '!*.orig']
+      },
+      scripts: {
+        options: {
+          pageId: '<%= scriptsPageId %>'
+        },
+        src: ['dist/download/attachments/<%= scriptsPageId %>/*', '!*.orig'],
+      }
     },
     watch: {
       gruntfile: {
@@ -108,13 +106,24 @@ module.exports = function(grunt) {
         tasks: ['jst']
       },
       css: {
-        files: 'src/css/*.css',
+        files: 'src/css/*',
         tasks: ['newer:copy:css']
       },
       img: {
         files: 'src/img/*.{png,jpeg,jpg,gif,svg}',
         tasks: ['newer:copy:img']
+      },
+      dist: {
+        files: ['dist/download/attachments/{<%= assetsPageId %>,<%= scriptsPageId %>}/*','!*.orig'],
+        tasks: ['newer:confluence_attachments']
       }
+    },
+    concurrent: {
+      options: {
+        limit: 10,
+        logConcurrentOutput: true
+      },
+      watch_src: ['watch:gruntfile', 'watch:js', 'watch:jst', 'watch:css', 'watch:img']
     }
   });
 
@@ -128,11 +137,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jst');
   grunt.loadNpmTasks('grunt-http-upload');
-  
+  grunt.loadNpmTasks('grunt-confluence-attachments');
+  grunt.loadNpmTasks('grunt-concurrent');
+
   // Project tasks
-  grunt.registerTask('default', ['newer:jshint','concat','jst','newer:copy','watch']);
-  grunt.registerTask('build', ['newer','concat','jst','copy']);
-  grunt.registerTask('get', ['shell:getdist']);
-  grunt.registerTask('publish', []);
+  grunt.registerTask('build', ['newer:jshint','newer:concat','newer:jst','newer:copy']);  // Build light (skip unchanged files)
+  grunt.registerTask('build!', ['jshint','concat','jst','copy']);         // Build all
+  grunt.registerTask('publish', ['newer:confluence_attachments']);        // Upload to Share (skip unchanged files) 
+  grunt.registerTask('get', ['shell:refreshDist']);                       // Refresh dist folder from Share (html and dependencies) 
+  grunt.registerTask('get!', ['shell:rebuildDist']);                      // Rebuild the entire dist folder from Share
+
+  // 'Deamon' tasks
+  grunt.registerTask('default', ['build','concurrent:watch_src']);        // Work locally
+  grunt.registerTask('remote', ['build','publish','watch']);              // Work locally and automatically upload changes to Share
 
 };

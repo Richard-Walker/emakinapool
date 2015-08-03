@@ -1,17 +1,18 @@
 /*
 
-Common settings and data used by other modules (EP.Settings)
+EP.Dom
+
+Dom accessors for the confluence page
+
+IMPORTANT:
+	Modules should always use EP.Dom to access elements in the confluence page. 
+	The use of "$(selector)" is not recommended.
 
 */
 
 var EP = EP || {};
 
-$(function() {
-
-	EP.Settings = {
-
-
-	}
+EP.Dom = function() {
 
 	var $navLinks = $('.client-side-toc-macro span.toc-item-body a');
 	var $sections = $('.contentLayout2 .columnLayout');
@@ -48,12 +49,9 @@ $(function() {
 
 	};
 
-	var username = EP.Dom.$currentUser.attr('data-username');
-
-	EP.CurrentUser = {
-		username : username,
-		isRegistered : EP.Dom.$players.find('td:first-child a').is('[data-username="' + username + '"]'),
-		picture:  EP.Dom.$currentUser.find('.aui-avatar img').attr('src')
+	EP.Dom.Achievements = {
+		$gauge : EP.Dom.Sections.$profileAchievements.find('.aui-lozenge').eq(0)
 	};
 
-});
+
+};
