@@ -28,3 +28,6 @@ node_modules
 
 # Cookies
 confluenceCookies.txt
+
+# Mac files
+.DS_Store

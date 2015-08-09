@@ -10,6 +10,7 @@ $(function () {
 	EP.Dom();
 	EP.CurrentUser();
 	EP.Enhancements();
+	EP.Data();
 	EP.Profile();
 	EP.SubmitMatch();
 });

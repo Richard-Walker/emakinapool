@@ -13,7 +13,20 @@ var EP = EP || {};
 
 EP.Enhancements = function() {
 
-	// SECTION AND TOOLBAR ----------------------------------
+	// MESSAGING DIV -----------------------------
+
+	// Add messaging div
+	$('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
+
+	// Display confirmation message if query string parameter set
+	var confirmation = Helpers.getQueryStringParam('confirmation');
+	if (confirmation != '') {
+		AJS.messages.success({title: confirmation});
+		history.replaceState(null, null, location.href.split("?")[0]);
+	}
+
+
+	// ADDITIONAL SECTIONS AND TOOLBAR ------------------------
 
 	EP.Dom.NavLinks.$gallery.show();
 	EP.Dom.Sections.$gallery.show();
