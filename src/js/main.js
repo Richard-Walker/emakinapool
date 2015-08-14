@@ -5,12 +5,29 @@ Entry point
 */
 
 $(function () {
+	
+	// Global stuff
 	EP.Settings();
 	EP.Helpers();
 	EP.Dom();
-	EP.CurrentUser();
-	EP.Enhancements();
+	
+	// Models
 	EP.Data();
-	EP.Profile();
-	EP.SubmitMatch();
+	EP.Player();
+	EP.Match();
+	EP.Achievements();
+	EP.Players();
+	EP.Matches();
+	EP.CurrentUser();
+
+	// Views
+	EP.Page();
+	EP.ProfileSection();
+	//EP.PlayersTable();
+	//EP.MatchesTable();
+
+	// Dialogs
+	EP.SubmitMatchDialog();
+	//EP.RegisterDialog();
+
 });

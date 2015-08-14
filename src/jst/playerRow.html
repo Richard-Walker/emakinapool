@@ -1,0 +1,43 @@
+<tr>
+  <td>
+    <p>
+      <%= firstName %> <%= lastName %> (<%= username %>)
+    </p>
+    <% if (hasBelt) { %>
+      <p>Belt owner</p>
+    <% } %>
+  </td>
+  <td><%= stageName %></td>
+  <td><%= matches %></td>
+  <td><%= won %></td>
+  <td><%= lost %></td>
+  <td><%= rating %></td>
+  <td><%= rank %></td>
+  <td>
+    <p><%= level %></p>
+    <p>
+      <a href="<%= EP.Helpers.tipLink(achievements) %>">
+        <%= achievements.length %> achievement(s)
+      </a>
+    </p>
+  </td>
+  <td><%= perfects %></td>
+  <td>
+    <a href="<%= EP.Helpers.tipLink(invitations) %>">
+      <%= invitations.length %> invite(s) sent
+    </a>
+  </td>
+  <td>
+    <a href="<%= EP.Helpers.tipLink(opponents) %>">
+      <%= opponents.length %> opponents(s)
+    </a>
+  </td>
+  <td><%= streak %></td>
+  <td><%= beltPossession %></td>
+  <td><%= weekPoints %></td>
+  <td>
+    <a href="<%= EP.Helpers.tipLink(games) %>">
+      <%= games.length %> game(s)
+    </a>
+  </td>
+</tr>

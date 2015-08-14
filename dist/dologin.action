@@ -18,7 +18,7 @@
 <meta id="confluence-context-path" name="confluence-context-path" content="">
 <meta id="confluence-base-url" name="confluence-base-url" content="https://share.emakina.net">
 
-<meta id="atlassian-token" name="atlassian-token" content="0f8634294d55ebdcad5f076ac40672dacd8edb72">
+<meta id="atlassian-token" name="atlassian-token" content="f9a9ae32006174301d920272934ec13817ebf29a">
 
 
 <script type="text/javascript">
@@ -29,14 +29,14 @@
 
     <meta name="robots" content="noindex,nofollow">
     <meta name="robots" content="noarchive">
-    <meta name="confluence-request-time" content="1438620855729">
+    <meta name="confluence-request-time" content="1439469352130">
         
     
         
             <meta name="ajs-is-space-admin" content=""> <meta name="ajs-has-space-config" content="">
             <meta name="ajs-use-keyboard-shortcuts" content="true">
             <meta name="ajs-discovered-plugin-features" content="{&quot;com.atlassian.confluence.plugins.confluence-previews&quot;:[&quot;add-annotations&quot;,&quot;view-annotations&quot;],&quot;com.atlassian.confluence.plugins.confluence-jira-metadata&quot;:[&quot;linked-issues-dropdown&quot;],&quot;com.atlassian.confluence.plugins.confluence-hipchat-integration-plugin&quot;:[&quot;hipChatSpaceIntegration&quot;,&quot;hipChatServerIntegration&quot;]}">
-            <meta name="ajs-keyboardshortcut-hash" content="fd394bcb2a847c8a7f6805639fbdb825">
+            <meta name="ajs-keyboardshortcut-hash" content="1a9e0b4046785a01e74ece1abb155475">
             <meta id="team-calendars-has-jira-link" content="true">
             <meta name="ajs-team-calendars-display-time-format" content="displayTimeFormat24">
             <meta id="team-calendars-user-timezone" content="Europe/Paris">
@@ -54,11 +54,11 @@
             <meta name="ajs-remote-user-key" content="2c90e5f840ba6c740140ba6d8c3401ab">
             <meta name="ajs-current-user-fullname" content="Richard Walker">
             <meta name="ajs-current-user-avatar-url" content="/download/attachments/1540690/rwa-97993-pp-sherlock.gif?version=1&amp;modificationDate=1425475703247&amp;api=v2">
-            <meta name="ajs-static-resource-url-prefix" content="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_">
+            <meta name="ajs-static-resource-url-prefix" content="/s/fr_FR/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_">
             <meta name="ajs-global-settings-attachment-max-size" content="1073741824">
             <meta name="ajs-user-locale" content="en_GB">
             <meta name="ajs-enabled-dark-features" content="confluence-inline-comments-resolved,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareContentEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.mentions.api.ConfluenceMentionEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.security.ForgotPasswordEvent,pdf-preview,notification.plugin.api.enabled.com.atlassian.confluence.plugins.tasklist.event.SendTaskEmailEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageMovedEvent,previews.sharing,previews.versions,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentUpdateEvent,file-annotations,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.attachment.AttachmentBatchUploadCompletedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingLessUsersEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentRemoveEvent,atlassian.aui.raphael.disabled,previews.conversion-service,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.follow.FollowEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageEditedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostCreateEvent,previews.trigger-all-file-types,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentResolveEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.like.LikeCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentCreateEvent,previews.sharing.pushstate,confluence-inline-comments-rich-editor,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostUpdateEvent,file-annotations.likes,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentMentionUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingNoSpaceCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.hipchat.api.events.HipChatUserMapped,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareAttachmentEvent,confluence-inline-comments,confluence-inline-comments-dangling-comment,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostMovedEvent">
-            <meta name="ajs-atl-token" content="0f8634294d55ebdcad5f076ac40672dacd8edb72">
+            <meta name="ajs-atl-token" content="f9a9ae32006174301d920272934ec13817ebf29a">
             <meta name="ajs-confluence-flavour" content="VANILLA">
             <meta name="ajs-user-date-pattern" content="dd MMM yyyy">
             <meta name="ajs-date.format" content="MMM dd, yyyy">
@@ -70,36 +70,36 @@
 
 <script>
 window.WRM=window.WRM||{};window.WRM._unparsedData=window.WRM._unparsedData||{};
-WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path.context-path"]="\"\"";
 WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-rest:web-resource-manager.resource-base-url-pattern"]="\"(?:(?:/s/.*?/_)?/download)\"";
-WRM._unparsedData["com.atlassian.confluence.plugins.confluence-feature-discovery-plugin:confluence-feature-discovery-plugin-resources.test-mode"]="false";
 WRM._unparsedData["com.atlassian.confluence.plugins.confluence-license-banner:confluence-license-banner-resources.license-details"]="{\"daysBeforeLicenseExpiry\":0,\"daysBeforeMaintenanceExpiry\":0,\"showLicenseExpiryBanner\":false,\"showMaintenanceExpiryBanner\":false,\"renewUrl\":null,\"salesEmail\":null}";
-WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:atlassian-nps-plugin-resources.is-server-instance-data-provider"]="true";
+WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path.context-path"]="\"\"";
 WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:nps-acknowledgement-resources.analytics-enabled-data-provider"]="\"true\"";
 WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:nps-acknowledgement-resources.sen-data-provider"]="\"SEN-5485876\"";
+WRM._unparsedData["com.atlassian.confluence.plugins.confluence-feature-discovery-plugin:confluence-feature-discovery-plugin-resources.test-mode"]="false";
+WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:atlassian-nps-plugin-resources.is-server-instance-data-provider"]="true";
 WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:browser-metrics.feature-data-provider-legacy"]="true";
 </script>
-<link type="text/css" rel="stylesheet" href="/s/41163f685791ffe5c7b4e86c1b9b485a-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/213/_/download/superbatch/css/batch.css?build-number=5983" media="all">
+<link type="text/css" rel="stylesheet" href="/s/6f8d8e1a554d13898ec95ca70d3e6f5c-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/css/batch.css?build-number=5983" media="all">
 <!--[if lt IE 9]>
-<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/213/_/download/superbatch/css/batch.css?conditionalComment=lt+IE+9" media="all">
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/css/batch.css?conditionalComment=lt+IE+9" media="all">
 <![endif]-->
 <!--[if lte IE 9]>
-<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/213/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
 <![endif]-->
-<link type="text/css" rel="stylesheet" href="/s/d1fc35d4e6c6de557b06007d19b67cde-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/fada4defec12029cbaf0c37d3c100eb7/_/download/contextbatch/css/main,atl.general/batch.css?flavour=VANILLA" media="all">
+<link type="text/css" rel="stylesheet" href="/s/311848cd10e7b8c2b3470311d306375f-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/07265e6683060117d82869a8f82fc36b/_/download/contextbatch/css/main,atl.general/batch.css?flavour=VANILLA" media="all">
 <link type="text/css" rel="stylesheet" href="/s/9469bd02b5026e2a62844d59952960c5-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/97dc6390d588612f887919b07575c554/_/download/contextbatch/css/login/batch.css" media="all">
 <!--[if lte IE 9]>
 <link type="text/css" rel="stylesheet" href="/s/9469bd02b5026e2a62844d59952960c5-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/97dc6390d588612f887919b07575c554/_/download/contextbatch/css/login/batch.css?conditionalComment=lte+IE+9" media="all">
 <![endif]-->
-<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:batch/com.refinedwiki.confluence.plugins.theme.original:batch.css" media="all">
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.14/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:batch/com.refinedwiki.confluence.plugins.theme.original:batch.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/103/_/styles/colors.css" media="all">
-<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/resources/com.refinedwiki.confluence.plugins.theme.original:RefinedWikiTheme50/default-theme.css" media="all">
+<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.14/_/download/resources/com.refinedwiki.confluence.plugins.theme.original:RefinedWikiTheme50/default-theme.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/103/_/styles/theme-colors.css?completeModuleKey=com.refinedwiki.confluence.plugins.theme.original%3ARefinedWikiTheme50&amp;stylesheetName=color-scheme.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/103/_/styles/custom.css" media="all">
-<script type="text/javascript" src="/s/60e123c7220e4e4a51de7627a76016d9-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/213/_/download/superbatch/js/batch.js?atlassian.aui.raphael.disabled=true&amp;locale=en-GB&amp;build-number=5983" ></script>
-<script type="text/javascript" src="/s/3375fd96a8777a0b6cdc80b4965f3c30-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/fada4defec12029cbaf0c37d3c100eb7/_/download/contextbatch/js/main,atl.general/batch.js?analytics-uploadable=true&amp;flavour=VANILLA&amp;nps-acknowledged=true&amp;analytics-enabled=true&amp;locale=en-GB&amp;user-logged-in=true&amp;is-server-instance=true&amp;hostenabled=true" ></script>
+<script type="text/javascript" src="/s/60e123c7220e4e4a51de7627a76016d9-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/js/batch.js?atlassian.aui.raphael.disabled=true&amp;locale=en-GB&amp;build-number=5983" ></script>
+<script type="text/javascript" src="/s/3375fd96a8777a0b6cdc80b4965f3c30-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/07265e6683060117d82869a8f82fc36b/_/download/contextbatch/js/main,atl.general/batch.js?analytics-uploadable=true&amp;flavour=VANILLA&amp;nps-acknowledged=true&amp;analytics-enabled=true&amp;locale=en-GB&amp;user-logged-in=true&amp;is-server-instance=true&amp;hostenabled=true" ></script>
 <script type="text/javascript" src="/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/1.0/_/download/batch/confluence.web.resources:login/confluence.web.resources:login.js?locale=en-GB" ></script>
-<script type="text/javascript" src="/s/2f827b242ab1e78368a4837542922e31-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:batch/com.refinedwiki.confluence.plugins.theme.original:batch.js?locale=en-GB" ></script>
+<script type="text/javascript" src="/s/2f827b242ab1e78368a4837542922e31-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.14/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:batch/com.refinedwiki.confluence.plugins.theme.original:batch.js?locale=en-GB" ></script>
 
 
         
@@ -150,10 +150,10 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
     	    		RW.cacheSettings.params['usercategory'] = false;
     	    		RW.cacheSettings.params['category'] = true;
     	    		RW.cacheSettings.params['docache'] = true;
-    	            			RW.cacheSettings.lastChange['footer'] = 1438576274527;
-        			RW.cacheSettings.lastChange['globalmenu'] = 1438430673830;
-        			RW.cacheSettings.lastChange['usercategory'] = 1438607359371;
-        			RW.cacheSettings.lastChange['category'] = 1438614788631;
+    	            			RW.cacheSettings.lastChange['footer'] = 1439442909238;
+        			RW.cacheSettings.lastChange['globalmenu'] = 1439442909238;
+        			RW.cacheSettings.lastChange['usercategory'] = 1439455127576;
+        			RW.cacheSettings.lastChange['category'] = 1439455127577;
     </script>
 
 
@@ -195,7 +195,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 
         	
     	    	    			
-    	    				<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.13/_/download/resources/com.refinedwiki.confluence.plugins.theme.original:batch/designs/point/css/style.css" media="all"/>
+    	    				<link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.14/_/download/resources/com.refinedwiki.confluence.plugins.theme.original:batch/designs/point/css/style.css" media="all"/>
 			
 				
 				        					

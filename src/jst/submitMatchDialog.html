@@ -23,8 +23,9 @@
               against
               <select class="select l-field" id="match-opponent">
                 <option value=""></option>
-                <option value="rwa">Richard (aka "Le Roi Mystère")</option>
-                <option value="mav">Maxime (aka "El Fuego")</option>
+                <% _(players).each(function (p) { %>
+                <option value="<%= p.username %>"><%= p.firstName %> (aka "<%= p.stageName %>")</option>
+                <% }); %>
               </select>
             </div>
 
@@ -35,7 +36,7 @@
                 <option>9 ball</option>
                 <option>rotation</option>
                 <option>straight pool</option>
-                <option>counting points</option>
+                <option>points</option>
                 <option>one pocket</option>
                 <option>something else</option>
               </select>

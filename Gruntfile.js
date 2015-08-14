@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         stripBanners: false
       },
       js: {
-        src: ['src/js/*.js', '!src/js/main.js', 'src/js/main.js'],
+        src: ['src/js/**/*.js', '!src/js/main.js', 'src/js/main.js'],
         dest: 'dist/download/attachments/<%= scriptsPageId %>/<%= pkg.name %>.js'
       },
     },
@@ -66,13 +66,13 @@ module.exports = function(grunt) {
       options: {
         asi: true, curly: true, eqeqeq: true, immed: true, latedef: true, newcap: true,
         noarg: true, sub: true, undef: true, unused: true, boss: true, eqnull: true, jquery: true, node: true,
-        globals: { EP: true, _: true, AJS: true, JST: true }
+        globals: { EP: true, _: true, AJS: true, JST: true, location: true, history: true }
       },
       gruntfile: {
         src: 'Gruntfile.js'
       },
       js: {
-        src: 'src/js/*.js'
+        src: 'src/js/**/*.js'
       }
     },
     confluence_attachments: {
@@ -98,7 +98,7 @@ module.exports = function(grunt) {
         tasks: ['jshint:gruntfile']
       },
       js: {
-        files: 'src/js/*.js',
+        files: 'src/js/**/*.js',
         tasks: ['newer:jshint:js','concat:js']
       },
       jst: {

@@ -115,8 +115,8 @@ Hidding everything that should not be in the mobile view
 }
 
 /* hide matches */
-.matches-table tr:nth-child(n+4) {
-  display: none;
+.matches-table tr:nth-child(n+6) {
+  /*display: none;*/
 }
 
 /* hide tooltips */
@@ -133,20 +133,23 @@ Profile section
 
 .profile-title ~ .table-wrap:first-of-type {
   vertical-align: middle;
+  background-color: #f7f7f7;
 }
 
 .profile-title ~ .table-wrap:last-of-type {
   position: absolute;
   vertical-align: middle;
-  top: -10px;
-  right: 80px;
+  top: 20px;
+  right: 70px;
   border: 1px dotted #AAA;
   border-radius: 8px;
+  background-color: #FFF;
 }
 
 .profile-summary {
   width:100%;
   margin-top:75px!important;
+  margin-bottom:40px!important;
 }
 .profile-summary td {
   padding: 0px;
@@ -290,7 +293,7 @@ Achievements section
 
 .achievements-title ~ .table-wrap td p:nth-child(3)::before {
   content: ' ';
-  background-image: url('./Gift-50.png');
+  background-image: url('Gift-50.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 12px;
@@ -345,12 +348,14 @@ Players sections
 .players-table th:nth-last-child(3),
 .players-table th:nth-last-child(4),
 .players-table th:nth-last-child(5),
+.players-table th:nth-last-child(6),
 .players-table td:nth-last-child(1),
 .players-table td:nth-last-child(2),
 .players-table td:nth-last-child(3),
 .players-table td:nth-last-child(4),
-.players-table td:nth-last-child(5) {
-  display: none;
+.players-table td:nth-last-child(5),
+.players-table td:nth-last-child(6) {
+  /*display: none;*/
 }
 
 .players-table td p:not(:first-child) {

@@ -1,0 +1,50 @@
+
+<%
+
+  if (players[0] !== winner) { players.reverse(); playersUpdates.reverse(); }
+  var signed = function(n) { return (n >= 0 ? '+' : '') + n }
+
+%>
+
+<tr>
+  <td colspan="1">
+    <time datetime="<%= EP.Helpers.formatDate(date, 'ISO') %>"/>
+  </td>
+  <td colspan="1"><%= game %> - <%= bestOf === 1 ? '1 game' : 'best of ' + bestOf %></td>
+
+  <% _(players).each(function (player, i) { %>
+
+    <td colspan="1"><%= player.username %></td>
+
+    <td colspan="1">
+      <p><%= signed(playersUpdates[i].rating) %> pts</p>
+      
+      <% if (playersUpdates[i].rank !== 0) { %>
+        <p><%= signed(playersUpdates[i].rank) %> place(s)</p>
+      <% } %>
+
+      <% if (playersUpdates[i].belt) { %>
+        <p><%= signed(playersUpdates[i].belt).charAt(0) %>Belt</p>
+      <% } %>
+
+      <% if (playersUpdates[i].perfects !== 0) { %>
+        <p>+<%= playersUpdates[i].perfects %> perfect(s)</p>
+      <% } %>
+
+      <% if (playersUpdates[i].achievements.length > 0) { %>
+        <p>
+          <a href="<%= EP.Helpers.tipLink(playersUpdates[i].achievements) %>">
+            +<%= playersUpdates[i].achievements.length %> achievement(s)
+          </a>
+        </p>
+      <% } %>
+
+      <% if (playersUpdates[i].level) { %>
+        <p>+Level: <%= playersUpdates[i].level %></p>
+      <% } %>
+
+    </td>
+
+  <% }); %>
+
+</tr>
