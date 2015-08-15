@@ -28,6 +28,6 @@ $(function () {
 
 	// Dialogs
 	EP.SubmitMatchDialog();
-	//EP.RegisterDialog();
+	EP.RegisterDialog();
 
 });

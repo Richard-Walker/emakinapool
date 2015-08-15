@@ -120,7 +120,7 @@ Hidding everything that should not be in the mobile view
 }
 
 /* hide tooltips */
-a[href $= "-tooltip"] + * {
+a[href $= "tip://"] + * {
   display: none;
 }
 
@@ -293,7 +293,7 @@ Achievements section
 
 .achievements-title ~ .table-wrap td p:nth-child(3)::before {
   content: ' ';
-  background-image: url('Gift-50.png');
+  background-image: url('./Gift-50.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 12px;
@@ -452,19 +452,21 @@ form.aui .l-field {
     max-width: 250px;
 }
 form.aui .xl-field {
-    max-width: 350px;
+    max-width: 300px;
 }
 form.aui .xxl-field {
-    max-width: 500px;
+    max-width: 400px;
 }
 
 #add-match-dialog {
 }
 
-#add-match-dialog select {
+/*
+#add-match-dialog select,
+#add-match-dialog input {
   background-color: #fBfBfB;
 }
-
+*/
 #match-games-lost {
     width: 36px;
     display: inline-block;
@@ -479,8 +481,14 @@ form.aui .xxl-field {
 
 form.aui .select {
   margin: 0px 5px;
-  font-size: smaller;
+  /*font-size: smaller;*/
+  background-color: #f9f9f9;
 }
+
+form.aui .text {
+  margin: 0px 5px;
+}
+
 
 
 /* Toolbar */
@@ -499,9 +507,11 @@ form.aui .select {
   height: 85px;
 }
 
-form.aui .field-group .error {
+form.aui .error {
   background: none;
   margin-top: 7px;
+  text-align: center;
+  color: #ff0033;
 }
 
 .user-mention img {

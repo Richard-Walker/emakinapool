@@ -102,21 +102,23 @@ EP.Players = function() {
 	}
 
 
-	/* TODO: implement add
 	EP.Players.add = function (playerData) {
 		EP.Data.get(function () {
 
 			EP.Players.readData();
 
-			// Add current user in players table
-			// ...
-			
+			var player = new EP.Player(playerData);
+			players.unshift(player);
+			EP.Players.updateRanking();
+			players = _(players).sortBy('stageName');
 
-			// TODO: adapt message if added player is not current user
-			EP.Data.saveAndReload("You are now registered, welcome onboard!");
+			EP.Players.writeData();
+
+			var message = EP.CurrentUser.username === player.username ? "You are now registered, welcome onboard!" : "Player has been registered!";
+			EP.Data.saveAndReload(message);
+		
 		})
 	}
-	*/
 
 	EP.Players.readView();
 

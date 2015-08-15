@@ -24,6 +24,7 @@ EP.Dom = function() {
 		$players: $('.players-table'),
 		$matches: $('.matches-table'),
 		$submitMatchButton: $('#add-match-button'),
+		$registerButton: $('#subscribe-button'),
 
 		NavLinks: {
 			$join: 		$navLinks.eq(0),

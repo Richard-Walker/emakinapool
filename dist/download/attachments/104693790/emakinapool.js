@@ -15,6 +15,8 @@ EP.Helpers = function() {
 
 	EP.Helpers = {}
 
+	EP.Helpers.upperCase = function(s) { return s.toUpperCase() };
+
 	EP.Helpers.getTip = function($e) {
 		var $a = $e.is('a') ? $e : $e.find('a');
 		var href = $a.attr('href') || 'tip://list';
@@ -80,6 +82,8 @@ EP.Helpers = function() {
 
 	EP.Helpers.resetDialog = function(dialog) {
 		var $e = $(dialog);
+		$e.find('.error').css('visibility', 'hidden');
+		$e.find('input').val('');
 		$e.find("select option").removeAttr('selected');
 		$e.find("select option:first-child").attr('selected','selected');
 		$e.find("input[type=radio]").prop("checked", false);
@@ -135,8 +139,155 @@ EP.Helpers = function() {
 		return Math.round((this.getTime() - d.getTime()) / (1000 * 3600 * 24));
 	}
 
+	Number.prototype.ordinal = function() {
+   		var s = ["th","st","nd","rd"];
+   		var v = this % 100;
+   		return this + ( s[(v - 20) % 10] || s[v] || s[0] );
+	}
+
 };
 
+/*
+
+
+EP.Mail
+
+Send emails using Mandrill REST api 
+
+*/
+
+
+var EP = EP || {};
+
+EP.Mail = function() {
+
+	EP.Mail = {}
+
+	var subjects = {
+		test: "Emakina pool test email"
+	}
+
+	EP.Mail.send = function (recipients, template, templateData, callback) {
+
+		recipients = recipients.constructor === Array ? recipients : [recipients];
+
+		var url = 'https://mandrillapp.com/api/1.0/messages/send.json'
+		var apiKey = 'c2nNjdQl1L3LaDd12rfZnQ'
+		var subject = subjects[template] || "Emakina Pool";
+		var html = JST[template + 'Mail'](templateData);
+		
+		var to = _(recipients).map(function (p) {
+			return {
+				email: p.username + '@emakina.com',
+				name: p.stageName,
+				type: 'to'
+			};
+		});
+
+		var data = {
+		    "key": apiKey,
+		    "message": {
+		        "html": html,
+		        // "text": "Example text content",
+		        "subject": subject,
+		        "from_email": EP.Settings.supportEmail,
+		        "from_name": EP.Settings.supportName,
+		        "to": to,
+		        "headers": {
+		            //"Reply-To": "message.reply@example.com"
+		        },
+		        "important": false,
+		        "track_opens": null,
+		        "track_clicks": null,
+		        "auto_text": null,
+		        "auto_html": null,
+		        "inline_css": null,
+		        "url_strip_qs": null,
+		        "preserve_recipients": null,
+		        "view_content_link": null,
+		        //"bcc_address": "message.bcc_address@example.com",
+		        "tracking_domain": null,
+		        "signing_domain": null,
+		        "return_path_domain": null,
+		        // "merge": true,
+		        // "merge_language": "mailchimp",
+		        // "global_merge_vars": [
+		        //     {
+		        //         "name": "merge1",
+		        //         "content": "merge1 content"
+		        //     }
+		        // ],
+		        // "merge_vars": [
+		        //     {
+		        //         "rcpt": "recipient.email@example.com",
+		        //         "vars": [
+		        //             {
+		        //                 "name": "merge2",
+		        //                 "content": "merge2 content"
+		        //             }
+		        //         ]
+		        //     }
+		        // ],
+		        "tags": [
+		            EP.Settings.environment,
+		            template
+		        ]
+		        // "subaccount": "customer-123",
+		        // "google_analytics_domains": [
+		        //     "example.com"
+		        // ],
+		        // "google_analytics_campaign": "message.from_email@example.com",
+		        // "metadata": {
+		        //     "website": "www.example.com"
+		        // },
+		        // "recipient_metadata": [
+		        //     {
+		        //         "rcpt": "recipient.email@example.com",
+		        //         "values": {
+		        //             "user_id": 123456
+		        //         }
+		        //     }
+		        // ],
+		        // "attachments": [
+		        //     {
+		        //         "type": "text/plain",
+		        //         "name": "myfile.txt",
+		        //         "content": "ZXhhbXBsZSBmaWxl"
+		        //     }
+		        // ],
+		        // "images": [
+		        //     {
+		        //         "type": "image/png",
+		        //         "name": "IMAGECID",
+		        //         "content": "ZXhhbXBsZSBmaWxl"
+		        //     }
+		        // ]
+		    },
+		    "async": true,
+		    // "ip_pool": "Main Pool"
+		    // "send_at": "example send_at"
+		}
+
+		$.ajax({
+
+			url: url,
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: callback
+
+		}).fail(function() {
+
+			AJS.messages.error('Error! Could not send email.');
+
+		});
+
+	}
+
+
+
+
+}
 /*
 
 EP.Achievements
@@ -328,8 +479,16 @@ EP.CurrentUser = function() {
 	var username = EP.Dom.$currentUser.attr('data-username');
 	var player = EP.Players.get(username);
 
-	EP.CurrentUser = player || {username: username}; 
+	EP.CurrentUser = player || { username: username, } ; 
 	EP.CurrentUser.isRegistered = player !== undefined;
+
+	if (!EP.CurrentUser.isRegistered) {
+		var fullName = EP.Dom.$currentUser.attr('title');
+		var nameParts = fullName.match(/(\w+) ([\w ]*)/i) || [fullName, fullName, ''];
+		EP.CurrentUser.firstName = nameParts[1];
+		EP.CurrentUser.lastName =  nameParts[2];
+	}
+
 	EP.CurrentUser.picture = EP.Dom.$currentUser.find('.aui-avatar img').attr('src');
 
 };
@@ -696,6 +855,7 @@ EP.Player = function() {
 			stageName: 'bar',					// Required  
 			firstName: '',
 			lastName: '',
+			hasBelt: false,
 			matches: 0,
 			won: 0,
 			lost: 0,
@@ -707,7 +867,7 @@ EP.Player = function() {
 			invitations: [],
 			opponents: [],
 			streak: 0,
-			beltPossession: 0,
+			beltPossession: null,
 			weekPoints: 0,
 			//inTopSince: null,
 			games: []
@@ -715,6 +875,10 @@ EP.Player = function() {
 
 		_(this).extend(data);
 
+	}
+
+	EP.Player.prototype.fullName = function() {
+		return this.firstName + ' ' + this.lastName;
 	}
 
 	EP.Player.prototype.clone = function() {
@@ -853,21 +1017,23 @@ EP.Players = function() {
 	}
 
 
-	/* TODO: implement add
 	EP.Players.add = function (playerData) {
 		EP.Data.get(function () {
 
 			EP.Players.readData();
 
-			// Add current user in players table
-			// ...
-			
+			var player = new EP.Player(playerData);
+			players.unshift(player);
+			EP.Players.updateRanking();
+			players = _(players).sortBy('stageName');
 
-			// TODO: adapt message if added player is not current user
-			EP.Data.saveAndReload("You are now registered, welcome onboard!");
+			EP.Players.writeData();
+
+			var message = EP.CurrentUser.username === player.username ? "You are now registered, welcome onboard!" : "Player has been registered!";
+			EP.Data.saveAndReload(message);
+		
 		})
 	}
-	*/
 
 	EP.Players.readView();
 
@@ -886,6 +1052,9 @@ var EP = EP || {};
 EP.Settings = function() {
 
 	EP.Settings = {
+		environment: 'test',
+		supportEmail: 'rwa@emakina.com',
+		supportName: 'Emakina Pool Test',
 		pageId: '102662893',
 		kFactor: 32,
 		initialRating: 1500
@@ -919,6 +1088,7 @@ EP.Dom = function() {
 		$players: $('.players-table'),
 		$matches: $('.matches-table'),
 		$submitMatchButton: $('#add-match-button'),
+		$registerButton: $('#subscribe-button'),
 
 		NavLinks: {
 			$join: 		$navLinks.eq(0),
@@ -1128,6 +1298,96 @@ EP.ProfileSection = function() {
 /*
 
 
+EP.RegisterDialog
+
+Flow:
+	1. Reset & Show dialog
+	2. Handle user input (validation rules and dynamics)
+	3. Submit and save player 
+
+*/
+
+var EP = EP || {};
+
+EP.RegisterDialog = function() {
+
+	// Create dialog from template
+	
+	var html = JST.registerDialog({number: EP.Players.list().length + 1});
+	$('body').append(html);
+	var dialog = AJS.dialog2('#register-dialog');
+	dialog.on('show', function (e) {EP.Helpers.resetDialog(e.target);});
+
+	// Triggers
+
+	EP.Dom.$registerButton.click(function() {dialog.show();});
+
+	// Validation rules
+
+	var Validations = {	
+	 	mandatoryFields: function() {
+	 		Validations.State.mandatoryFields = $('#player-stage-name').val() !== '';
+	 	},
+		nameNotTaken: function() {
+			
+			var stageName = $.trim($('#player-stage-name').val()).toUpperCase();
+			var playerWithSameName = _(EP.Players.list()).find(function (p) { return p.stageName.toUpperCase() === stageName });
+			
+			Validations.State.nameNotTaken = playerWithSameName === undefined;
+
+			if (Validations.State.nameNotTaken) {
+				$('#player-stage-name-error')
+					.css('visibility', 'hidden');
+			} else {
+				$('#player-stage-name-error')
+					.text('"' + playerWithSameName.stageName + '" is already taken! (by ' + playerWithSameName.fullName() + ')')
+					.css('visibility', 'visible');
+			}
+		},
+
+
+	}
+
+	// Update the save button active state (added to every validation function)
+	
+	_(Validations).each(function(func, name) {
+		Validations[name] = function() {
+	     func();
+	     var cannotSubmit = _.chain(Validations.State).values().contains(false).value();
+			$('#player-save-button').attr('aria-disabled', cannotSubmit ? 'true' : 'false');
+		}
+	})
+
+	// Wiring
+	Validations.State = {};
+	$('#player-stage-name').on('input propertychange paste', Validations.mandatoryFields);
+	$('#player-stage-name').on('input propertychange paste', Validations.nameNotTaken);
+	dialog.on('show', Validations.mandatoryFields);
+
+	// Cancel action
+	$('#player-cancel-button').click( function() { dialog.hide() });
+
+	// Save action
+	$('#player-save-button').click( function() {
+
+		//TODO: spinner needed?
+
+		EP.Players.add( {
+			username: EP.CurrentUser.username,
+			firstName: EP.CurrentUser.firstName,
+			lastName: EP.CurrentUser.lastName,
+			stageName: $.trim($('#player-stage-name').val())
+		});
+		
+		dialog.hide();
+	});
+
+
+};
+
+/*
+
+
 EP.SubmitMatchDialog
 
 Flow:
@@ -1283,6 +1543,6 @@ $(function () {
 
 	// Dialogs
 	EP.SubmitMatchDialog();
-	//EP.RegisterDialog();
+	EP.RegisterDialog();
 
 });

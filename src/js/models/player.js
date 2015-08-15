@@ -18,6 +18,7 @@ EP.Player = function() {
 			stageName: 'bar',					// Required  
 			firstName: '',
 			lastName: '',
+			hasBelt: false,
 			matches: 0,
 			won: 0,
 			lost: 0,
@@ -29,7 +30,7 @@ EP.Player = function() {
 			invitations: [],
 			opponents: [],
 			streak: 0,
-			beltPossession: 0,
+			beltPossession: null,
 			weekPoints: 0,
 			//inTopSince: null,
 			games: []
@@ -37,6 +38,10 @@ EP.Player = function() {
 
 		_(this).extend(data);
 
+	}
+
+	EP.Player.prototype.fullName = function() {
+		return this.firstName + ' ' + this.lastName;
 	}
 
 	EP.Player.prototype.clone = function() {

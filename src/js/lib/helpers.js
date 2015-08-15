@@ -12,6 +12,8 @@ EP.Helpers = function() {
 
 	EP.Helpers = {}
 
+	EP.Helpers.upperCase = function(s) { return s.toUpperCase() };
+
 	EP.Helpers.getTip = function($e) {
 		var $a = $e.is('a') ? $e : $e.find('a');
 		var href = $a.attr('href') || 'tip://list';
@@ -77,6 +79,8 @@ EP.Helpers = function() {
 
 	EP.Helpers.resetDialog = function(dialog) {
 		var $e = $(dialog);
+		$e.find('.error').css('visibility', 'hidden');
+		$e.find('input').val('');
 		$e.find("select option").removeAttr('selected');
 		$e.find("select option:first-child").attr('selected','selected');
 		$e.find("input[type=radio]").prop("checked", false);
@@ -130,6 +134,12 @@ EP.Helpers = function() {
 
 	Date.prototype.daysSince = function(d) {
 		return Math.round((this.getTime() - d.getTime()) / (1000 * 3600 * 24));
+	}
+
+	Number.prototype.ordinal = function() {
+   		var s = ["th","st","nd","rd"];
+   		var v = this % 100;
+   		return this + ( s[(v - 20) % 10] || s[v] || s[0] );
 	}
 
 };
