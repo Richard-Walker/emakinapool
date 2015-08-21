@@ -16,6 +16,7 @@ EP.Player = function() {
 		var data = _(playerData).defaults({
 			username: 'foo', 					// Required
 			stageName: 'bar',					// Required  
+			email: 'no-reply@emakina.com',
 			firstName: '',
 			lastName: '',
 			hasBelt: false,

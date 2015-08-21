@@ -1,0 +1,12 @@
+<%
+	var size = size || 'm';
+
+%>
+<form class="aui">
+	<select class="select <%= size %>-field" id="<%= id %>">
+    	<option value=""><%= firstOption %></option>
+    	<% _(players).each(function (p) { %>
+    	<option value="<%= p.username %>"><%= p.firstName %> "<%= p.stageName %>" <%= p.lastName %></option>
+	    <% }); %>
+	</select>
+</form>

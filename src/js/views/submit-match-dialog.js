@@ -47,7 +47,7 @@ EP.SubmitMatchDialog = function() {
 		Validations[name] = function() {
 	     func();
 	     var cannotSubmit = _.chain(Validations.State).values().contains(false).value();
-			$('#match-save-button').attr('aria-disabled', cannotSubmit ? 'true' : 'false');
+			$('#match-save-button').prop('disabled', cannotSubmit);
 		}
 	})
 

@@ -28,6 +28,8 @@ EP.Players = function() {
 			
 			var data = {
 
+				row: row,
+
 				username: nameMatch[3],
 				stageName: $cells.eq(1).text(),
 				firstName: nameMatch[1],
@@ -110,7 +112,7 @@ EP.Players = function() {
 			var player = new EP.Player(playerData);
 			players.unshift(player);
 			EP.Players.updateRanking();
-			players = _(players).sortBy('stageName');
+			players = _(players).sortBy('firstName');
 
 			EP.Players.writeData();
 
@@ -121,5 +123,25 @@ EP.Players = function() {
 	}
 
 	EP.Players.readView();
+
+	// Load players data from REST service, then fire the onready event.
+
+	EP.Players.onready = $.Callbacks('memory');
+
+	var count = 0;
+
+	_(players).each(function (p) {
+
+		EP.Confluence.getUser(p.username, function(data) {
+
+			p.avatarUrl = data.avatarUrl;
+			p.email = data.displayableEmail || null;
+
+			count++;
+			if (count === players.length) { EP.Players.onready.fire(); }
+
+		});
+	})
+
 
 }

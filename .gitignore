@@ -31,3 +31,6 @@ confluenceCookies.txt
 
 # Mac files
 .DS_Store
+
+# Sensitive information
+settings.js

@@ -1,0 +1,35 @@
+<section role="dialog" id="invite-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" data-aui-modal="true" aria-hidden="true">
+  <!-- Dialog header -->
+  <header class="aui-dialog2-header">
+    <!-- The dialog's title -->
+    <h2 class="aui-dialog2-header-main">Invitation</h2>
+    <!-- Close icon -->
+    <a class="aui-dialog2-header-close">
+      <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+    </a>
+  </header>
+
+  <!-- Main dialog content -->
+  <div class="aui-dialog2-content">
+    <form class="aui" onsubmit="return false;">
+      <fieldset>
+          <input placeholder="Select a user" class="text autocomplete-user full-width-field" data-none-message="No user found" data-template="{username}" id="invite-player"></input>
+          <p id="invite-player-error" class="error">Error</p>
+          <textarea class="textarea full-width-field" rows="5" id="invite-message" placeholder="Add an optional message..."></textarea>
+          <input type="hidden" id="invite-selected-player" value="">
+          <input type="hidden" id="invite-email" value="">
+        </fieldset>
+    </form>
+  </div>
+  <!-- Dialog footer -->
+  <footer class="aui-dialog2-footer">
+    <!-- Actions to render on the right of the footer -->
+    <div class="aui-dialog2-footer-actions">
+      <button id="invite-send-button" class="aui-button aui-button-primary" disabled>Send invitation</button>
+      <button id="invite-cancel-button" class="aui-button aui-button-link">Cancel</button>
+    </div>
+    <!-- Hint text is rendered on the left of the footer -->
+    <div class="aui-dialog2-footer-hint">
+    </div>
+  </footer>
+</section>

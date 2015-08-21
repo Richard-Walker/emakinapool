@@ -21,7 +21,7 @@
 <meta id="confluence-context-path" name="confluence-context-path" content="">
 <meta id="confluence-base-url" name="confluence-base-url" content="https://share.emakina.net">
 
-<meta id="atlassian-token" name="atlassian-token" content="188f6ef14439239e8ad71bab15e65fd58d32c405">
+<meta id="atlassian-token" name="atlassian-token" content="2aaecf791aabbcc5dbab9fb7d7de72edee9bfe21">
 
 
 <meta id="confluence-space-key" name="confluence-space-key" content="activities">
@@ -31,7 +31,7 @@
 
     
 
-    <meta name="confluence-request-time" content="1439590139717">
+    <meta name="confluence-request-time" content="1440099479805">
         
     
         
@@ -39,13 +39,13 @@
             <style>.ia-fixed-sidebar, .ia-splitter-left {width: 285px;}.theme-default .ia-splitter #main {margin-left: 285px;}.ia-fixed-sidebar {visibility: hidden;}</style>
             <meta name="ajs-use-keyboard-shortcuts" content="true">
             <meta name="ajs-discovered-plugin-features" content="{&quot;com.atlassian.confluence.plugins.confluence-previews&quot;:[&quot;add-annotations&quot;,&quot;view-annotations&quot;],&quot;com.atlassian.confluence.plugins.confluence-jira-metadata&quot;:[&quot;linked-issues-dropdown&quot;],&quot;com.atlassian.confluence.plugins.confluence-hipchat-integration-plugin&quot;:[&quot;hipChatSpaceIntegration&quot;,&quot;hipChatServerIntegration&quot;]}">
-            <meta name="ajs-keyboardshortcut-hash" content="1a9e0b4046785a01e74ece1abb155475">
-            <meta name="ajs-is-confluence-admin" content="false">
-            <meta name="ajs-connection-timeout" content="10000">
+            <meta name="ajs-keyboardshortcut-hash" content="405b32ef68e8d1891f3e9f0cfaa6d09b">
             <meta id="team-calendars-has-jira-link" content="true">
             <meta name="ajs-team-calendars-display-time-format" content="displayTimeFormat24">
-            
+            <meta id="team-calendars-user-timezone" content="Europe/Paris">
             <script type="text/x-template" id="team-calendars-messages" title="team-calendars-messages"><fieldset class="i18n hidden"><input type="hidden" name="calendar3.month.long.july" value="July"><input type="hidden" name="calendar3.day.short.wednesday" value="Wed"><input type="hidden" name="calendar3.day.short.thursday" value="Thu"><input type="hidden" name="calendar3.month.short.march" value="Mar"><input type="hidden" name="calendar3.month.long.april" value="April"><input type="hidden" name="calendar3.month.long.october" value="October"><input type="hidden" name="calendar3.month.long.august" value="August"><input type="hidden" name="calendar3.month.short.july" value="Jul"><input type="hidden" name="calendar3.month.short.may" value="May"><input type="hidden" name="calendar3.month.short.november" value="Nov"><input type="hidden" name="calendar3.day.long.friday" value="Friday"><input type="hidden" name="calendar3.day.long.sunday" value="Sunday"><input type="hidden" name="calendar3.day.long.saturday" value="Saturday"><input type="hidden" name="calendar3.month.short.april" value="Apr"><input type="hidden" name="calendar3.day.long.wednesday" value="Wednesday"><input type="hidden" name="calendar3.month.long.december" value="December"><input type="hidden" name="calendar3.month.short.october" value="Oct"><input type="hidden" name="calendar3.day.long.monday" value="Monday"><input type="hidden" name="calendar3.month.short.june" value="Jun"><input type="hidden" name="calendar3.day.short.monday" value="Mon"><input type="hidden" name="calendar3.day.short.tuesday" value="Tue"><input type="hidden" name="calendar3.day.short.saturday" value="Sat"><input type="hidden" name="calendar3.month.long.march" value="March"><input type="hidden" name="calendar3.month.long.june" value="June"><input type="hidden" name="calendar3.month.short.february" value="Feb"><input type="hidden" name="calendar3.month.short.august" value="Aug"><input type="hidden" name="calendar3.month.short.december" value="Dec"><input type="hidden" name="calendar3.day.short.sunday" value="Sun"><input type="hidden" name="calendar3.month.long.february" value="February"><input type="hidden" name="calendar3.day.long.tuesday" value="Tuesday"><input type="hidden" name="calendar3.month.long.may" value="May"><input type="hidden" name="calendar3.month.long.september" value="September"><input type="hidden" name="calendar3.month.long.november" value="November"><input type="hidden" name="calendar3.month.short.january" value="Jan"><input type="hidden" name="calendar3.month.short.september" value="Sep"><input type="hidden" name="calendar3.day.long.thursday" value="Thursday"><input type="hidden" name="calendar3.month.long.january" value="January"><input type="hidden" name="calendar3.day.short.friday" value="Fri"></fieldset></script>
+            <meta name="ajs-is-confluence-admin" content="false">
+            <meta name="ajs-connection-timeout" content="10000">
             
     
     
@@ -74,11 +74,11 @@
             <meta name="ajs-remote-user-key" content="2c90e5f840ba6c740140ba6d8c3401ab">
             <meta name="ajs-current-user-fullname" content="Richard Walker">
             <meta name="ajs-current-user-avatar-url" content="/download/attachments/1540690/rwa-97993-pp-sherlock.gif?version=1&amp;modificationDate=1425475703247&amp;api=v2">
-            <meta name="ajs-static-resource-url-prefix" content="/s/fr_FR/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_">
+            <meta name="ajs-static-resource-url-prefix" content="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_">
             <meta name="ajs-global-settings-attachment-max-size" content="1073741824">
             <meta name="ajs-user-locale" content="en_GB">
             <meta name="ajs-enabled-dark-features" content="confluence-inline-comments-resolved,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareContentEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.mentions.api.ConfluenceMentionEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.security.ForgotPasswordEvent,pdf-preview,notification.plugin.api.enabled.com.atlassian.confluence.plugins.tasklist.event.SendTaskEmailEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageMovedEvent,previews.sharing,previews.versions,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentUpdateEvent,file-annotations,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.attachment.AttachmentBatchUploadCompletedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingLessUsersEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentRemoveEvent,atlassian.aui.raphael.disabled,previews.conversion-service,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.follow.FollowEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageEditedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostCreateEvent,previews.trigger-all-file-types,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentResolveEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.like.LikeCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentCreateEvent,previews.sharing.pushstate,confluence-inline-comments-rich-editor,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostUpdateEvent,file-annotations.likes,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentMentionUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingNoSpaceCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.hipchat.api.events.HipChatUserMapped,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareAttachmentEvent,confluence-inline-comments,confluence-inline-comments-dangling-comment,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostMovedEvent">
-            <meta name="ajs-atl-token" content="188f6ef14439239e8ad71bab15e65fd58d32c405">
+            <meta name="ajs-atl-token" content="2aaecf791aabbcc5dbab9fb7d7de72edee9bfe21">
             <meta name="ajs-confluence-flavour" content="VANILLA">
             <meta name="ajs-user-date-pattern" content="dd MMM yyyy">
             <meta name="ajs-date.format" content="MMM dd, yyyy">
@@ -101,33 +101,33 @@ WRM._unparsedData["com.atlassian.plugins.atlassian-nps-plugin:nps-acknowledgemen
 WRM._unparsedData["com.atlassian.confluence.plugins.confluence-feature-discovery-plugin:confluence-feature-discovery-plugin-resources.test-mode"]="false";
 WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:api.feature-data-provider"]="true";
 </script>
-<link type="text/css" rel="stylesheet" href="/s/6f8d8e1a554d13898ec95ca70d3e6f5c-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/css/batch.css?build-number=5983" media="all">
+<link type="text/css" rel="stylesheet" href="/s/b692b537ee868ac838893e38d8f0e97d-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/217/_/download/superbatch/css/batch.css?build-number=5983" media="all">
 <!--[if lt IE 9]>
-<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/css/batch.css?conditionalComment=lt+IE+9" media="all">
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/217/_/download/superbatch/css/batch.css?conditionalComment=lt+IE+9" media="all">
 <![endif]-->
 <!--[if lte IE 9]>
-<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
+<link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/217/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
 <![endif]-->
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-T/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/aa7e22db8103c686fc2b97bbc39fc4b1/_/download/contextbatch/css/atl.confluence.macros.expand.desktop/batch.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-T/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/aa7e22db8103c686fc2b97bbc39fc4b1/_/download/contextbatch/css/atl.confluence.macros.expand.desktop/batch.css?media=%28-webkit-min-device-pixel-ratio%3A+1.5%29%2C+%28min-resolution%3A+148dpi%29" media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 148dpi)">
-<link type="text/css" rel="stylesheet" href="/s/76979c6541ac8dbf7cde4d080968b3f8-T/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/30c0a1e78ffb4cd0aafe1a17bfccce53/_/download/contextbatch/css/page,viewcontent,plugin.quick.comment.pre,atl.general,main,pagebanner,atl.comments/batch.css?highlightactions=true&amp;locale=en-GB&amp;flavour=VANILLA&amp;user-logged-in=true" media="all">
+<link type="text/css" rel="stylesheet" href="/s/e684c6343b84d3f79ac3674d8a0d58f7-T/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/79ef5c62149a62a44d6391cc91f65ca3/_/download/contextbatch/css/page,viewcontent,plugin.quick.comment.pre,atl.general,main,pagebanner,atl.comments/batch.css?highlightactions=true&amp;locale=en-GB&amp;flavour=VANILLA&amp;user-logged-in=true" media="all">
 <!--[if lt IE 9]>
-<link type="text/css" rel="stylesheet" href="/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/30c0a1e78ffb4cd0aafe1a17bfccce53/_/download/contextbatch/css/page,viewcontent,plugin.quick.comment.pre,atl.general,main,pagebanner,atl.comments/batch.css?conditionalComment=lt+IE+9&amp;locale=en-GB" media="all">
+<link type="text/css" rel="stylesheet" href="/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/79ef5c62149a62a44d6391cc91f65ca3/_/download/contextbatch/css/page,viewcontent,plugin.quick.comment.pre,atl.general,main,pagebanner,atl.comments/batch.css?conditionalComment=lt+IE+9&amp;locale=en-GB" media="all">
 <![endif]-->
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/2.8.6/_/download/batch/org.randombits.confluence.toc:toc-plugin-styles/org.randombits.confluence.toc:toc-plugin-styles.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/3.6.0/_/download/batch/confluence.macros.advanced:gallery-resources/confluence.macros.advanced:gallery-resources.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/1.0/_/download/batch/confluence.web.resources:attachments/confluence.web.resources:attachments.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/3.3.23/_/download/batch/com.atlassian.confluence.extra.officeconnector:slide-viewer-resources/com.atlassian.confluence.extra.officeconnector:slide-viewer-resources.css" media="all">
-<link type="text/css" rel="stylesheet" href="/s/2635fd1fa82e07d4c5a0c433cede5673-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/3.6.16/_/download/batch/confluence.extra.attachments:attachments-css/confluence.extra.attachments:attachments-css.css" media="all">
+<link type="text/css" rel="stylesheet" href="/s/259dc01cd5c214e8d2454eda17460e8a-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/3.6.16/_/download/batch/confluence.extra.attachments:attachments-css/confluence.extra.attachments:attachments-css.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.14/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:batch/com.refinedwiki.confluence.plugins.theme.original:batch.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.14/_/download/batch/com.refinedwiki.confluence.plugins.theme.original:print-style/com.refinedwiki.confluence.plugins.theme.original:print-style.css?content-type=text%2Fcss&amp;media=print" media="print">
 <link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/5/_/styles/colors.css?spaceKey=activities" media="all">
 <link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/4.2.14/_/download/resources/com.refinedwiki.confluence.plugins.theme.original:RefinedWikiTheme50/default-theme.css" media="all">
 <link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/5/_/styles/theme-colors.css?completeModuleKey=com.refinedwiki.confluence.plugins.theme.original%3ARefinedWikiTheme50&amp;stylesheetName=color-scheme.css&amp;spaceKey=activities" media="all">
 <link type="text/css" rel="stylesheet" href="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/5/_/styles/custom.css?spaceKey=activities" media="all">
-<script type="text/javascript" src="/s/60e123c7220e4e4a51de7627a76016d9-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/215/_/download/superbatch/js/batch.js?atlassian.aui.raphael.disabled=true&amp;locale=en-GB&amp;build-number=5983" ></script>
+<script type="text/javascript" src="/s/60e123c7220e4e4a51de7627a76016d9-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/217/_/download/superbatch/js/batch.js?atlassian.aui.raphael.disabled=true&amp;locale=en-GB&amp;build-number=5983" ></script>
 <script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/aa7e22db8103c686fc2b97bbc39fc4b1/_/download/contextbatch/js/atl.confluence.macros.expand.desktop/batch.js" ></script>
-<script type="text/javascript" src="/s/f8499f5ef30599ecc443a65b71be2d47-T/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/30c0a1e78ffb4cd0aafe1a17bfccce53/_/download/contextbatch/js/page,viewcontent,plugin.quick.comment.pre,atl.general,main,pagebanner,atl.comments/batch.js?highlightactions=true&amp;analytics-uploadable=true&amp;flavour=VANILLA&amp;nps-acknowledged=true&amp;analytics-enabled=true&amp;locale=en-GB&amp;user-logged-in=true&amp;is-server-instance=true&amp;hostenabled=true" ></script>
+<script type="text/javascript" src="/s/f8499f5ef30599ecc443a65b71be2d47-T/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/79ef5c62149a62a44d6391cc91f65ca3/_/download/contextbatch/js/page,viewcontent,plugin.quick.comment.pre,atl.general,main,pagebanner,atl.comments/batch.js?highlightactions=true&amp;analytics-uploadable=true&amp;flavour=VANILLA&amp;nps-acknowledged=true&amp;analytics-enabled=true&amp;locale=en-GB&amp;user-logged-in=true&amp;is-server-instance=true&amp;hostenabled=true" ></script>
 <script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/2.8.6/_/download/batch/org.randombits.confluence.toc:client-side-toc-resources/org.randombits.confluence.toc:client-side-toc-resources.js" ></script>
 <script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/2.8.6/_/download/batch/org.randombits.confluence.toc:toc-plugin-analytics/org.randombits.confluence.toc:toc-plugin-analytics.js" ></script>
 <script type="text/javascript" src="/s/a30359aba514835ad2dadef1b26117c8-CDN/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/1.0/_/download/batch/confluence.web.resources:attachments/confluence.web.resources:attachments.js?locale=en-GB" ></script>
@@ -181,10 +181,10 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
     	    		RW.cacheSettings.params['usercategory'] = false;
     	    		RW.cacheSettings.params['category'] = true;
     	    		RW.cacheSettings.params['docache'] = true;
-    	            			RW.cacheSettings.lastChange['footer'] = 1439563175498;
-        			RW.cacheSettings.lastChange['globalmenu'] = 1439563175498;
-        			RW.cacheSettings.lastChange['usercategory'] = 1439563175498;
-        			RW.cacheSettings.lastChange['category'] = 1439563175498;
+    	            			RW.cacheSettings.lastChange['footer'] = 1440047923658;
+        			RW.cacheSettings.lastChange['globalmenu'] = 1439974361991;
+        			RW.cacheSettings.lastChange['usercategory'] = 1440085128595;
+        			RW.cacheSettings.lastChange['category'] = 1440085128595;
     </script>
 
 
@@ -364,7 +364,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                 <link rel="canonical" href="https://share.emakina.net/display/activities/Pool+Championship+-+V2">
         <link rel="shortlink" href="https://share.emakina.net/x/7YIeBg">
     <meta name="wikilink" content="[activities:Pool Championship - V2]">
-    <meta name="page-version" content="191">
+    <meta name="page-version" content="205">
 
     
         
@@ -480,7 +480,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
     		<a id="user-menu-link" class="rw_has_dd rw_tooltip" data-username="rwa" href="#" title="Richard Walker" data-dd="user-menu-link-dd" data-tooltip="Richard Walker">
                             <div class="aui-avatar aui-avatar-small">
                     <div class="aui-avatar-inner">
-                        <img src="/s/fr_FR/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_/download/attachments/1540690/rwa-97993-pp-sherlock.gif?version=1&amp;modificationDate=1425475703247&amp;api=v2"/>
+                        <img src="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_/download/attachments/1540690/rwa-97993-pp-sherlock.gif?version=1&amp;modificationDate=1425475703247&amp;api=v2"/>
                     </div>
                 </div>
                             </a>
@@ -999,7 +999,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                                             
     
     
-    <a  id="page-favourite" href="/labels/addfavourite.action?entityId=102662893&amp;atl_token=188f6ef14439239e8ad71bab15e65fd58d32c405" rel="nofollow" class="action-page-favourite"   title="">
+    <a  id="page-favourite" href="/labels/addfavourite.action?entityId=102662893&amp;atl_token=2aaecf791aabbcc5dbab9fb7d7de72edee9bfe21" rel="nofollow" class="action-page-favourite"   title="">
                 <span>
                         Favourite
         </span>    </a>
@@ -1148,18 +1148,6 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
     <a  id="import-word-doc" href="/pages/worddav/uploadimport.action?pageId=102662893" rel="nofollow" class=""   title="">
                 <span>
                         Import Word Document
-        </span>    </a>
-</li>
-                                        <li>
-
-    
-        
-                                            
-    
-    
-    <a  id="evict_survey_feedback" href="/knowledgebase/evictsurveyresults.action?pageId=102662893" rel="nofollow" class=""   title="">
-                <span>
-                        Evict Survey Feedback
         </span>    </a>
 </li>
                                 </ul>
@@ -1726,7 +1714,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
             Created by <span class='author'>     <a href="    /display/~rwa
 "
                        class="url fn confluence-userlink" data-username="rwa"
-                            >Richard Walker</a></span>, last modified <a class='last-modified' title='Show changes' href='/pages/diffpagesbyversion.action?pageId=102662893&amp;selectedPageVersions=190&amp;selectedPageVersions=191'>less than a minute ago</a>
+                            >Richard Walker</a></span>, last modified <a class='last-modified' title='Show changes' href='/pages/diffpagesbyversion.action?pageId=102662893&amp;selectedPageVersions=204&amp;selectedPageVersions=205'>about an hour ago</a>
                 </li>
         </ul>
     </div>
@@ -1764,8 +1752,10 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
 <link type="text/css" rel="stylesheet" href="/download/attachments/104693790/emakinapool.css" media="all"/>
+<script src="/download/attachments/104693790/templates.js"></script>
 <script src="/download/attachments/104693790/emakinapool.js"></script>
-<script src="/download/attachments/104693790/templates.js"></script>     <div id="page-toolbar" class="aui-toolbar2">
+ 
+<div id="page-toolbar" class="aui-toolbar2">
         <div class="aui-toolbar2-inner">
             <div class="aui-toolbar2-primary">
                 <div id="button-set" class="aui-buttons">
@@ -1780,8 +1770,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                 </div>
             </div>
         </div>
-    </div>
- <p> </p><p><div class="toc-macro client-side-toc-macro " data-headerelements="H1" data-structure="flat"></div></p></div>
+</div><p><div class="toc-macro client-side-toc-macro " data-headerelements="H1" data-structure="flat"></div></p></div>
 </div>
 </div>
 <div class="columnLayout single" data-layout="single">
@@ -1801,7 +1790,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 class="profile-title" id="PoolChampionship-V2-Myprofile">My profile</h1><div class="table-wrap"><table class="profile-summary confluenceTable"><tbody><tr><td class="confluenceTd"><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="50" src="/download/thumbnails/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-image-src="/download/attachments/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-unresolved-comment-count="0" data-linked-resource-id="102663750" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="avatar.png" data-base-url="https://share.emakina.net" data-linked-resource-content-type="image/png" data-linked-resource-container-id="102662893" data-linked-resource-container-version="191"></span></p><h4 id="PoolChampionship-V2-$stageName">$stageName</h4><p>$summary</p><p><span class="status-macro aui-lozenge aui-lozenge-success aui-lozenge-subtle">AVAILABLE FOR A GAME</span></p></td></tr></tbody></table></div><div class="table-wrap"><table class="profile-stats confluenceTable"><tbody><tr><th class="confluenceTh">Matches</th><td class="confluenceTd">$matches</td></tr><tr><th class="confluenceTh">Won</th><td class="confluenceTd">$won</td></tr><tr><th class="confluenceTh">Lost</th><td class="confluenceTd">$lost</td></tr><tr><th colspan="1" class="confluenceTh">Perfects</th><td colspan="1" class="confluenceTd">$perfects</td></tr><tr><th colspan="1" class="confluenceTh">Rating</th><td colspan="1" class="confluenceTd">$rating</td></tr></tbody></table></div></div>
+<h1 class="profile-title" id="PoolChampionship-V2-Myprofile">My profile</h1><div class="table-wrap"><table class="profile-summary confluenceTable"><tbody><tr><td class="confluenceTd"><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="50" src="/download/thumbnails/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-image-src="/download/attachments/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-unresolved-comment-count="0" data-linked-resource-id="102663750" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="avatar.png" data-base-url="https://share.emakina.net" data-linked-resource-content-type="image/png" data-linked-resource-container-id="102662893" data-linked-resource-container-version="205"></span></p><h4 id="PoolChampionship-V2-$stageName">$stageName</h4><p>$summary</p><p><span class="status-macro aui-lozenge aui-lozenge-success aui-lozenge-subtle">AVAILABLE FOR A GAME</span></p></td></tr></tbody></table></div><div class="table-wrap"><table class="profile-stats confluenceTable"><tbody><tr><th class="confluenceTh">Matches</th><td class="confluenceTd">$matches</td></tr><tr><th class="confluenceTh">Won</th><td class="confluenceTd">$won</td></tr><tr><th class="confluenceTh">Lost</th><td class="confluenceTd">$lost</td></tr><tr><th colspan="1" class="confluenceTh">Perfects</th><td colspan="1" class="confluenceTd">$perfects</td></tr><tr><th colspan="1" class="confluenceTh">Rating</th><td colspan="1" class="confluenceTd">$rating</td></tr></tbody></table></div></div>
 </div>
 </div>
 <div class="columnLayout single" data-layout="single">
@@ -1813,13 +1802,603 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 id="PoolChampionship-V2-Players">Players</h1><div class="table-wrap"><table class="players-table confluenceTable"><tbody><tr><th class="confluenceTh">Name</th><th class="confluenceTh">Stage name</th><th colspan="1" class="confluenceTh">M</th><th class="confluenceTh">W</th><th colspan="1" class="confluenceTh">L</th><th colspan="1" class="confluenceTh">Rating</th><th colspan="1" class="confluenceTh">Rank</th><th colspan="1" class="confluenceTh">Achievements</th><th colspan="1" class="confluenceTh">Perfects</th><th colspan="1" class="confluenceTh">Invitations</th><th colspan="1" class="confluenceTh">Opponents</th><th colspan="1" class="confluenceTh">Cur. streak</th><th colspan="1" class="confluenceTh">Cur. belt poss.</th><th colspan="1" class="confluenceTh">Week points</th><th colspan="1" class="confluenceTh">Games played</th></tr><tr><td class="confluenceTd"><p>Richard Walker (rwa)</p></td><td class="confluenceTd">Le Testeur Mystère</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">1500</td><td class="confluenceTd">1</td><td class="confluenceTd"><p><span>Novice</span></p><p><span><a href="tip://list" rel="nofollow">tooltip</a> </span></p></td><td class="confluenceTd">0</td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd">0</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td></tr><tr><td class="confluenceTd"><p>Maxime Verleye (mav)</p></td><td class="confluenceTd">Le Testeur Fou</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">1500</td><td class="confluenceTd">2</td><td class="confluenceTd"><p><span>Novice</span></p><p><a href="tip://list" rel="nofollow">tooltip</a> <span> </span> <span> </span></p></td><td class="confluenceTd">0</td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd">0</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td></tr><tr><td class="confluenceTd"><p>Meryem Lahouel (mll)</p><p>Belt owner</p></td><td class="confluenceTd">La Testeuse d'Ivoire</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">1500</td><td class="confluenceTd">3</td><td class="confluenceTd"><p>Novice</p><p><a href="tip://list" rel="nofollow">tooltip</a> <span> </span> <span> </span></p></td><td class="confluenceTd">0</td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd">0</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td></tr><tr><td class="confluenceTd"><p>Alexis de Bontrider (adb)</p></td><td class="confluenceTd">Le Testeur De Tridder</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">0</td><td class="confluenceTd">1500</td><td class="confluenceTd">4</td><td class="confluenceTd"><p>Novice</p><p><span><a href="tip://list" rel="nofollow">tooltip</a> </span> <span> </span></p></td><td class="confluenceTd">0</td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td><td class="confluenceTd">0</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td><td class="confluenceTd"><a href="tip://list" rel="nofollow">tooltip</a></td></tr></tbody></table></div></div>
+<h1 id="PoolChampionship-V2-Players">Players</h1><div class="table-wrap"><table class="players-table confluenceTable"><tbody><tr><th class="confluenceTh">Name</th><th class="confluenceTh">Stage name</th><th colspan="1" class="confluenceTh">M</th><th class="confluenceTh">W</th><th colspan="1" class="confluenceTh">L</th><th colspan="1" class="confluenceTh">Rating</th><th colspan="1" class="confluenceTh">Rank</th><th colspan="1" class="confluenceTh">Achievements</th><th colspan="1" class="confluenceTh">Perfects</th><th colspan="1" class="confluenceTh">Invitations</th><th colspan="1" class="confluenceTh">Opponents</th><th colspan="1" class="confluenceTh">Cur. streak</th><th colspan="1" class="confluenceTh">Cur. belt poss.</th><th colspan="1" class="confluenceTh">Week points</th><th colspan="1" class="confluenceTh">Games played</th></tr><tr>
+  <td class="confluenceTd">
+    <p>
+      Richard Walker (rwa)
+    </p>
+    
+  </td>
+  <td class="confluenceTd">El Testador Mysterioso</td>
+  <td class="confluenceTd">6</td>
+  <td class="confluenceTd">4</td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd">1530</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">
+    <p>Apprentice</p>
+    <p>
+      <a href="tip://list?First%20Time++1%20Pocket++Kid%20Wrestler++Perfect++Perfection++Perfectness++8%20Ball++Rotation++Cool%20Guy++Start%20of%20a%20Career++Dragonfly" rel="nofollow">
+        11 achievement(s)
+      </a>
+    </p>
+  </td>
+  <td class="confluenceTd">6</td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 invite(s) sent
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?mll++adb++mav" rel="nofollow">
+      3 opponents(s)
+    </a>
+  </td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">30</td>
+  <td class="confluenceTd">
+    <a href="tip://list?one%20pocket++8%20ball++rotation" rel="nofollow">
+      3 game(s)
+    </a>
+  </td>
+</tr><tr>
+  <td class="confluenceTd">
+    <p>
+      Meryem Lahouel (mll)
+    </p>
+    
+  </td>
+  <td class="confluenceTd">La Testeuse d'Ivoire</td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd">1470</td>
+  <td class="confluenceTd">4</td>
+  <td class="confluenceTd">
+    <p>Novice</p>
+    <p>
+      <a href="tip://list?First%20Time++1%20Pocket++Perfect++Perfection++Perfectness++8%20Ball" rel="nofollow">
+        6 achievement(s)
+      </a>
+    </p>
+  </td>
+  <td class="confluenceTd">4</td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 invite(s) sent
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?rwa" rel="nofollow">
+      1 opponents(s)
+    </a>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">-30</td>
+  <td class="confluenceTd">
+    <a href="tip://list?one%20pocket++8%20ball" rel="nofollow">
+      2 game(s)
+    </a>
+  </td>
+</tr><tr>
+  <td class="confluenceTd">
+    <p>
+      Alexis de Bontrider (adb)
+    </p>
+    
+  </td>
+  <td class="confluenceTd">Le Testeur De Tridder</td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">1500</td>
+  <td class="confluenceTd">3</td>
+  <td class="confluenceTd">
+    <p>Novice</p>
+    <p>
+      <a href="tip://list?First%20Time++8%20Ball" rel="nofollow">
+        2 achievement(s)
+      </a>
+    </p>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 invite(s) sent
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?rwa" rel="nofollow">
+      1 opponents(s)
+    </a>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">
+    <a href="tip://list?8%20ball" rel="nofollow">
+      1 game(s)
+    </a>
+  </td>
+</tr><tr>
+  <td class="confluenceTd">
+    <p>
+      Maxime Verleye (mav)
+    </p>
+    
+      <p>Belt owner</p>
+    
+  </td>
+  <td class="confluenceTd">Le Testeur Fou</td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">1500</td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd">
+    <p>Novice</p>
+    <p>
+      <a href="tip://list?First%20Time++Rotation++Kid%20Wrestler++8%20Ball" rel="nofollow">
+        4 achievement(s)
+      </a>
+    </p>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 invite(s) sent
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?rwa" rel="nofollow">
+      1 opponents(s)
+    </a>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">
+    <a href="tip://list?rotation++8%20ball" rel="nofollow">
+      2 game(s)
+    </a>
+  </td>
+</tr></tbody></table></div></div>
 </div>
 </div>
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 id="PoolChampionship-V2-Matches"><span>Matches</span></h1><div class="table-wrap"><table class="matches-table confluenceTable"><tbody><tr><th colspan="1" class="confluenceTh">Date</th><th colspan="1" class="confluenceTh">Game</th><th class="confluenceTh">Winner</th><th colspan="1" class="confluenceTh">Updates</th><th class="confluenceTh">Opponent</th><th colspan="1" class="confluenceTh">Updates</th></tr></tbody></table></div></div>
+<h1 id="PoolChampionship-V2-Matches"><span>Matches</span></h1><div class="table-wrap"><table class="matches-table confluenceTable"><tbody><tr><th colspan="1" class="confluenceTh">Date</th><th colspan="1" class="confluenceTh">Game</th><th class="confluenceTh">Winner</th><th colspan="1" class="confluenceTh">Updates</th><th class="confluenceTh">Opponent</th><th colspan="1" class="confluenceTh">Updates</th></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr>
+  <td colspan="1" class="confluenceTd">
+    <time datetime="2015-08-20" class="date-upcoming">20 Aug 2015</time>
+  </td>
+  <td colspan="1" class="confluenceTd">8 ball - 1 game</td>
+
+  
+
+    <td colspan="1" class="confluenceTd">rwa</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>+14 pts</p>
+      
+      
+
+      
+
+      
+
+      
+        <p>
+          <a href="tip://list?Dragonfly" rel="nofollow">
+            +1 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+    <td colspan="1" class="confluenceTd">mll</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>-14 pts</p>
+      
+      
+
+      
+
+      
+
+      
+        <p>
+          <a href="tip://list?8%20Ball" rel="nofollow">
+            +1 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+</tr>
+
+
+<tr>
+  <td colspan="1" class="confluenceTd">
+    <time datetime="2015-08-20" class="date-upcoming">20 Aug 2015</time>
+  </td>
+  <td colspan="1" class="confluenceTd">8 ball - 1 game</td>
+
+  
+
+    <td colspan="1" class="confluenceTd">rwa</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>+16 pts</p>
+      
+      
+        <p>+2 place(s)</p>
+      
+
+      
+
+      
+        <p>+1 perfect(s)</p>
+      
+
+      
+        <p>
+          <a href="tip://list?Start%20of%20a%20Career" rel="nofollow">
+            +1 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+    <td colspan="1" class="confluenceTd">mav</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>-16 pts</p>
+      
+      
+        <p>-1 place(s)</p>
+      
+
+      
+
+      
+
+      
+        <p>
+          <a href="tip://list?8%20Ball" rel="nofollow">
+            +1 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+</tr>
+
+
+<tr>
+  <td colspan="1" class="confluenceTd">
+    <time datetime="2015-08-20" class="date-upcoming">20 Aug 2015</time>
+  </td>
+  <td colspan="1" class="confluenceTd">rotation - best of 5</td>
+
+  
+
+    <td colspan="1" class="confluenceTd">mav</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>+16 pts</p>
+      
+      
+        <p>+1 place(s)</p>
+      
+
+      
+        <p>+Belt</p>
+      
+
+      
+
+      
+        <p>
+          <a href="tip://list?First%20Time++Rotation++Kid%20Wrestler" rel="nofollow">
+            +3 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+    <td colspan="1" class="confluenceTd">rwa</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>-16 pts</p>
+      
+      
+        <p>-2 place(s)</p>
+      
+
+      
+        <p>-Belt</p>
+      
+
+      
+
+      
+        <p>
+          <a href="tip://list?Rotation++Cool%20Guy" rel="nofollow">
+            +2 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+</tr>
+
+
+<tr>
+  <td colspan="1" class="confluenceTd">
+    <time datetime="2015-08-20" class="date-upcoming">20 Aug 2015</time>
+  </td>
+  <td colspan="1" class="confluenceTd">8 ball - 1 game</td>
+
+  
+
+    <td colspan="1" class="confluenceTd">rwa</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>+16 pts</p>
+      
+      
+        <p>+2 place(s)</p>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </td>
+
+  
+
+    <td colspan="1" class="confluenceTd">adb</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>-16 pts</p>
+      
+      
+        <p>-2 place(s)</p>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </td>
+
+  
+
+</tr>
+
+
+<tr>
+  <td colspan="1" class="confluenceTd">
+    <time datetime="2015-08-15" class="date-past">15 Aug 2015</time>
+  </td>
+  <td colspan="1" class="confluenceTd">8 ball - 1 game</td>
+
+  
+
+    <td colspan="1" class="confluenceTd">adb</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>+16 pts</p>
+      
+      
+        <p>+2 place(s)</p>
+      
+
+      
+
+      
+
+      
+        <p>
+          <a href="tip://list?First%20Time++8%20Ball" rel="nofollow">
+            +2 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+    <td colspan="1" class="confluenceTd">rwa</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>-16 pts</p>
+      
+      
+        <p>-2 place(s)</p>
+      
+
+      
+
+      
+
+      
+        <p>
+          <a href="tip://list?8%20Ball" rel="nofollow">
+            +1 achievement(s)
+          </a>
+        </p>
+      
+
+      
+        <p>+Level: Apprentice</p>
+      
+
+    </td>
+
+  
+
+</tr>
+
+
+<tr>
+  <td colspan="1" class="confluenceTd">
+    <time datetime="2015-08-15" class="date-past">15 Aug 2015</time>
+  </td>
+  <td colspan="1" class="confluenceTd">one pocket - best of 9</td>
+
+  
+
+    <td colspan="1" class="confluenceTd">rwa</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>+16 pts</p>
+      
+      
+        <p>+3 place(s)</p>
+      
+
+      
+        <p>+Belt</p>
+      
+
+      
+        <p>+5 perfect(s)</p>
+      
+
+      
+        <p>
+          <a href="tip://list?First%20Time++1%20Pocket++Kid%20Wrestler++Perfect++Perfection++Perfectness" rel="nofollow">
+            +6 achievement(s)
+          </a>
+        </p>
+      
+
+      
+        <p>+Level: Novice</p>
+      
+
+    </td>
+
+  
+
+    <td colspan="1" class="confluenceTd">mll</td>
+
+    <td colspan="1" class="confluenceTd">
+      <p>-16 pts</p>
+      
+      
+        <p>-2 place(s)</p>
+      
+
+      
+        <p>-Belt</p>
+      
+
+      
+        <p>+4 perfect(s)</p>
+      
+
+      
+        <p>
+          <a href="tip://list?First%20Time++1%20Pocket++Perfect++Perfection++Perfectness" rel="nofollow">
+            +5 achievement(s)
+          </a>
+        </p>
+      
+
+      
+
+    </td>
+
+  
+
+</tr></tbody></table></div></div>
 </div>
 </div>
 <div class="columnLayout single" data-layout="single">
@@ -1927,7 +2506,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                     <img src="/images/icons/wait.gif" class='plugin_attachments_dropzone_uploadwaiticon'/>
                 </li>
                 <form method="POST" class="plugin_attachments_uploadform aui hidden" action="/pages/plugins/attachments/doattachfile.action?pageId=102662893" enctype="multipart/form-data">
-                        <input type="hidden" name="atl_token" value="188f6ef14439239e8ad71bab15e65fd58d32c405">
+                        <input type="hidden" name="atl_token" value="2aaecf791aabbcc5dbab9fb7d7de72edee9bfe21">
                     <div class="field-group">
                         <label>Upload file</label>
                         <input type="file" name="file_0" size="30">
@@ -1940,7 +2519,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                     <div class="field-group">
                         <input type="submit" class="submit aui-button" name="confirm" value="Upload">
                     </div>
-                    <iframe class="plugin_attachments_uploadiframe hidden" name="1LoIPocwh9Psv3YXZzNFw4O7386aVpbAuPL9CbWPTLnFYKAUVxJ43HAkZ7IAGsaI" src=""></iframe>
+                    <iframe class="plugin_attachments_uploadiframe hidden" name="M4ijc0JhNqx29i85zpXAojWn61pBiRNW1pFoPlbg6c0W3OWCnufQ0MjY7o44pZFq" src=""></iframe>
                 </form>
             </div>
             </div>
@@ -1955,7 +2534,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 id="PoolChampionship-V2-Help">Help</h1><h2 id="PoolChampionship-V2-Rules">Rules</h2><div id="expander-1308827971" class="expand-container"><div id="expander-control-1308827971" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">General rules</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-394069797" class="expand-container"><div id="expander-control-394069797" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">8 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-967052967" class="expand-container"><div id="expander-control-967052967" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">9 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><h2 id="PoolChampionship-V2-FAQ">FAQ</h2><div id="expander-1093006158" class="expand-container"><div id="expander-control-1093006158" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How can I get that golden belt?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">It is acquired by defeating the current owner in at least a best of 3 games match.</span></p><p>For one pocket, the game being significantly longer, only a single game is required to win the belt.</p><p>The champion has to defend his title and is encouraged to accept challenges. At least he shouldn't refuse them for more than a week.</p></div></div><div id="expander-1491291168" class="expand-container"><div id="expander-control-1491291168" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How is my rating computed?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">Each participant starts with a rating of 1500 points.</span></p><p>Ratings are updated after each match using the Elo rating system with a k factor of 32.</p><p>Check <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">wikipedia</a> for more information about this clever guy named <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">Arpad Elo</a>.</p></div></div><h2 id="PoolChampionship-V2-Contacts">Contacts</h2><p><a class="confluence-userlink user-mention current-user-mention" data-username="rwa" href="/display/~rwa" data-linked-resource-id="1540690" data-linked-resource-version="2" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Richard Walker</a> &amp; <a class="confluence-userlink user-mention" data-username="mav" href="/display/~mav" data-linked-resource-id="13303932" data-linked-resource-version="1" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Maxime Verleye</a></p><p> </p></div>
+<h1 id="PoolChampionship-V2-Help">Help</h1><h2 id="PoolChampionship-V2-Rules">Rules</h2><div id="expander-499205383" class="expand-container"><div id="expander-control-499205383" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">General rules</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-1906471375" class="expand-container"><div id="expander-control-1906471375" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">8 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-1194997729" class="expand-container"><div id="expander-control-1194997729" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">9 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><h2 id="PoolChampionship-V2-FAQ">FAQ</h2><div id="expander-1884475464" class="expand-container"><div id="expander-control-1884475464" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How can I get that golden belt?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">It is acquired by defeating the current owner in at least a best of 3 games match.</span></p><p>For one pocket, the game being significantly longer, only a single game is required to win the belt.</p><p>The champion has to defend his title and is encouraged to accept challenges. At least he shouldn't refuse them for more than a week.</p></div></div><div id="expander-693006621" class="expand-container"><div id="expander-control-693006621" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How is my rating computed?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">Each participant starts with a rating of 1500 points.</span></p><p>Ratings are updated after each match using the Elo rating system with a k factor of 32.</p><p>Check <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">wikipedia</a> for more information about this clever guy named <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">Arpad Elo</a>.</p></div></div><h2 id="PoolChampionship-V2-Contacts">Contacts</h2><p><a class="confluence-userlink user-mention current-user-mention" data-username="rwa" href="/display/~rwa" data-linked-resource-id="1540690" data-linked-resource-version="2" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Richard Walker</a> &amp; <a class="confluence-userlink user-mention" data-username="mav" href="/display/~mav" data-linked-resource-id="13303932" data-linked-resource-version="1" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Maxime Verleye</a></p><p> </p></div>
 </div>
 </div>
 </div>
@@ -2048,7 +2627,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
         
         
     
-    <div class="quick-comment-container comment add"><p class="comment-user-logo"><a class="userLogoLink" data-username="rwa" href="/display/~rwa"><img class="userLogo logo" src="/s/fr_FR/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_//download/attachments/1540690/rwa-97993-pp-sherlock.gif?version=1&amp;amp;modificationDate=1425475703247&amp;amp;api=v2" alt="User icon: rwa" title="rwa"></a></p><div class="quick-comment-body"><div class="quick-comment-loading-container" style="display:none;"></div><div id="editor-messages"></div><div id="all-messages"></div><form style="display:block;" class="quick-comment-form aui" method="post" name="inlinecommentform" action="/pages/doaddcomment.action?pageId=102662893" ><div title="Add a Comment" class="quick-comment-prompt"><span>Write a comment…</span></div></form></div></div>
+    <div class="quick-comment-container comment add"><p class="comment-user-logo"><a class="userLogoLink" data-username="rwa" href="/display/~rwa"><img class="userLogo logo" src="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_//download/attachments/1540690/rwa-97993-pp-sherlock.gif?version=1&amp;amp;modificationDate=1425475703247&amp;amp;api=v2" alt="User icon: rwa" title="rwa"></a></p><div class="quick-comment-body"><div class="quick-comment-loading-container" style="display:none;"></div><div id="editor-messages"></div><div id="all-messages"></div><form style="display:block;" class="quick-comment-form aui" method="post" name="inlinecommentform" action="/pages/doaddcomment.action?pageId=102662893" ><div title="Add a Comment" class="quick-comment-prompt"><span>Write a comment…</span></div></form></div></div>
 
             </div>
 

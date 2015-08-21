@@ -29,6 +29,27 @@ div.columnLayout.single {
   position: relative;
 }
 
+.aui-message-error {
+    background-color: #F6DAD7!important;
+}
+.aui-message-success {
+    background-color: #E8EFD3!important;
+}
+
+.aui-message {
+  padding-top: 13px;
+  padding-bottom: 10px;
+}
+
+#aui-message-bar {
+  position: static;
+  max-width: none;
+}
+
+.aui-message.closeable .icon-close {
+  top: 13px;
+}
+
 /*
 
 Navigation header
@@ -44,10 +65,11 @@ Navigation header
 }
 
 #page-toolbar {
-  margin-top: -28px;
+  margin-top: -10px;
+  margin-bottom: 40px;
 }
 #page-toolbar .aui-toolbar2-primary {
-  float:right;
+  float:left;
 }
 #button-set1 {
   margin: 0px;
@@ -116,7 +138,7 @@ Hidding everything that should not be in the mobile view
 
 /* hide matches */
 .matches-table tr:nth-child(n+6) {
-  /*display: none;*/
+  display: none;
 }
 
 /* hide tooltips */
@@ -133,13 +155,13 @@ Profile section
 
 .profile-title ~ .table-wrap:first-of-type {
   vertical-align: middle;
-  background-color: #f7f7f7;
+  background-color: #eee;
 }
 
 .profile-title ~ .table-wrap:last-of-type {
   position: absolute;
   vertical-align: middle;
-  top: 20px;
+  top: 40px;
   right: 70px;
   border: 1px dotted #AAA;
   border-radius: 8px;
@@ -148,8 +170,8 @@ Profile section
 
 .profile-summary {
   width:100%;
-  margin-top:75px!important;
-  margin-bottom:40px!important;
+  margin-top:100px!important;
+  margin-bottom:60px!important;
 }
 .profile-summary td {
   padding: 0px;
@@ -164,6 +186,7 @@ Profile section
 
 .profile-summary img {
   border-radius: 50%;
+  background-color: #fff;
 }
 
 .profile-summary .aui-lozenge {
@@ -175,12 +198,6 @@ Profile section
 
 .profile-summary ul {
   padding-left: 0px!important;
-}
-
-.profile-stats {
-/*  border-bottom: 3px solid #FD9C41;
-  background-color: #f7f7f7;
-*/
 }
 
 .profile-stats th {
@@ -223,7 +240,7 @@ Achievements section
 /* Achievement gauge */
 
 .achievements-title + p  {
-  background-color: #f7f7f7;
+  background-color: #eee;
   position: relative;
   z-index: 0;
 }
@@ -355,11 +372,17 @@ Players sections
 .players-table td:nth-last-child(4),
 .players-table td:nth-last-child(5),
 .players-table td:nth-last-child(6) {
-  /*display: none;*/
+  display: none;
 }
 
 .players-table td p:not(:first-child) {
   margin-top: 3px;
+}
+
+
+.players-table .aui-avatar {
+  float: left;
+  margin-right: 10px;
 }
 
 /*
@@ -375,6 +398,15 @@ Matches section
 
 .matches-table td p:not(:first-child) {
   margin-top: 1px;
+}
+
+#matches-filter {
+  margin-bottom: 15px;
+}
+
+.matches-table .aui-avatar {
+  /*float: left;*/
+  margin-right: 10px;
 }
 
 
@@ -437,19 +469,19 @@ Forms
 */
 
 form.aui .xxs-field {
-    max-width: 40px;
+    max-width: 50px;
 }
 form.aui .xs-field {
-    max-width: 75px;
+    max-width: 100px;
 }
 form.aui .s-field {
-    max-width: 130px;
+    max-width: 150px;
 }
 form.aui .m-field {
-    max-width: 165px;
+    max-width: 200px;
 }
 form.aui .l-field {
-    max-width: 250px;
+    max-width: 270px;
 }
 form.aui .xl-field {
     max-width: 300px;
@@ -458,38 +490,24 @@ form.aui .xxl-field {
     max-width: 400px;
 }
 
-#add-match-dialog {
-}
-
-/*
-#add-match-dialog select,
-#add-match-dialog input {
-  background-color: #fBfBfB;
-}
-*/
-#match-games-lost {
-    width: 36px;
-    display: inline-block;
-    text-align: left;
-}
-
 .aui-dialog2-content .sentence {
-  font-size: larger;
   padding: 20px 5px;
   text-align: center;
 }
 
+.aui-dialog2-content form.aui {
+  font-size: 16px;
+}
+
 form.aui .select {
-  margin: 0px 5px;
-  /*font-size: smaller;*/
   background-color: #f9f9f9;
 }
 
-form.aui .text {
+.aui-dialog2-content form.aui .text,
+.aui-dialog2-content form.aui .textarea,
+.aui-dialog2-content form.aui .select {
   margin: 0px 5px;
 }
-
-
 
 /* Toolbar */
 
@@ -507,10 +525,16 @@ form.aui .text {
   height: 85px;
 }
 
+.full-width-field {
+  margin: 0px!important;
+}
+
+
 form.aui .error {
   background: none;
-  margin-top: 7px;
-  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: inherit;
   color: #ff0033;
 }
 
@@ -519,6 +543,16 @@ form.aui .error {
   height:30px;
   vertical-align: text-bottom;
 }
+
+
+#invite-dialog fieldset {
+  margin: 30px 50px;
+}
+
+#invite-dialog .autocomplete .aui-dropdown {
+  width: 100%;
+}
+
 
 /* Message zone */
 

@@ -57,7 +57,7 @@ EP.RegisterDialog = function() {
 		Validations[name] = function() {
 	     func();
 	     var cannotSubmit = _.chain(Validations.State).values().contains(false).value();
-			$('#player-save-button').attr('aria-disabled', cannotSubmit ? 'true' : 'false');
+			$('#player-save-button').prop('disabled', cannotSubmit);
 		}
 	})
 

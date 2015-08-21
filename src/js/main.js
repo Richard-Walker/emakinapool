@@ -4,12 +4,17 @@ Entry point
 
 */
 
+
+var EP = EP || {};
+
 $(function () {
 	
 	// Global stuff
 	EP.Settings();
 	EP.Helpers();
+	EP.Confluence();
 	EP.Dom();
+	EP.Mail();
 	
 	// Models
 	EP.Data();
@@ -23,11 +28,12 @@ $(function () {
 	// Views
 	EP.Page();
 	EP.ProfileSection();
-	//EP.PlayersTable();
-	//EP.MatchesTable();
+	EP.PlayersTable();
+	EP.MatchesTable();
 
 	// Dialogs
 	EP.SubmitMatchDialog();
 	EP.RegisterDialog();
+	EP.InviteDialog();
 
 });

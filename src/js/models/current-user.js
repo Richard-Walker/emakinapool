@@ -17,10 +17,9 @@ EP.CurrentUser = function() {
 	EP.CurrentUser.isRegistered = player !== undefined;
 
 	if (!EP.CurrentUser.isRegistered) {
-		var fullName = EP.Dom.$currentUser.attr('title');
-		var nameParts = fullName.match(/(\w+) ([\w ]*)/i) || [fullName, fullName, ''];
-		EP.CurrentUser.firstName = nameParts[1];
-		EP.CurrentUser.lastName =  nameParts[2];
+		var name = EP.Helpers.parseName(EP.Dom.$currentUser.attr('title'));
+		EP.CurrentUser.firstName = name.firstName;
+		EP.CurrentUser.lastName =  name.lastName;
 	}
 
 	EP.CurrentUser.picture = EP.Dom.$currentUser.find('.aui-avatar img').attr('src');

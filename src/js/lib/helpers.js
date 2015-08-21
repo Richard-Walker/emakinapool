@@ -14,6 +14,16 @@ EP.Helpers = function() {
 
 	EP.Helpers.upperCase = function(s) { return s.toUpperCase() };
 
+	EP.Helpers.parseName = function(fullName) {
+		var nameParts = fullName.match(/(\w+) ([\w ]*)/i) || [fullName, fullName, ''];
+		return { firstName: nameParts[1], lastName: nameParts[2] }
+	}
+
+	EP.Helpers.parseEmail = function(email) {
+		var emailParts = email.match(/(.*) <(.*)>/i) || [null, null, email];
+		return { name: emailParts[1], email: emailParts[2] }
+	}
+
 	EP.Helpers.getTip = function($e) {
 		var $a = $e.is('a') ? $e : $e.find('a');
 		var href = $a.attr('href') || 'tip://list';
@@ -81,6 +91,7 @@ EP.Helpers = function() {
 		var $e = $(dialog);
 		$e.find('.error').css('visibility', 'hidden');
 		$e.find('input').val('');
+		$e.find('textarea').val('');
 		$e.find("select option").removeAttr('selected');
 		$e.find("select option:first-child").attr('selected','selected');
 		$e.find("input[type=radio]").prop("checked", false);

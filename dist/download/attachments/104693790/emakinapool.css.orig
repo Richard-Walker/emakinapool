@@ -29,6 +29,27 @@ div.columnLayout.single {
   position: relative;
 }
 
+.aui-message-error {
+    background-color: #F6DAD7!important;
+}
+.aui-message-success {
+    background-color: #E8EFD3!important;
+}
+
+.aui-message {
+  padding-top: 13px;
+  padding-bottom: 10px;
+}
+
+#aui-message-bar {
+  position: static;
+  max-width: none;
+}
+
+.aui-message.closeable .icon-close {
+  top: 13px;
+}
+
 /*
 
 Navigation header
@@ -44,10 +65,11 @@ Navigation header
 }
 
 #page-toolbar {
-  margin-top: -28px;
+  margin-top: -10px;
+  margin-bottom: 40px;
 }
 #page-toolbar .aui-toolbar2-primary {
-  float:right;
+  float:left;
 }
 #button-set1 {
   margin: 0px;
@@ -116,11 +138,11 @@ Hidding everything that should not be in the mobile view
 
 /* hide matches */
 .matches-table tr:nth-child(n+6) {
-  /*display: none;*/
+  display: none;
 }
 
 /* hide tooltips */
-a[href $= "-tooltip"] + * {
+a[href $= "tip://"] + * {
   display: none;
 }
 
@@ -293,7 +315,7 @@ Achievements section
 
 .achievements-title ~ .table-wrap td p:nth-child(3)::before {
   content: ' ';
-  background-image: url('Gift-50.png');
+  background-image: url('./Gift-50.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 12px;
@@ -437,51 +459,45 @@ Forms
 */
 
 form.aui .xxs-field {
-    max-width: 40px;
+    max-width: 50px;
 }
 form.aui .xs-field {
-    max-width: 75px;
+    max-width: 100px;
 }
 form.aui .s-field {
-    max-width: 130px;
+    max-width: 150px;
 }
 form.aui .m-field {
-    max-width: 165px;
+    max-width: 200px;
 }
 form.aui .l-field {
-    max-width: 250px;
+    max-width: 270px;
 }
 form.aui .xl-field {
-    max-width: 350px;
+    max-width: 300px;
 }
 form.aui .xxl-field {
-    max-width: 500px;
-}
-
-#add-match-dialog {
-}
-
-#add-match-dialog select {
-  background-color: #fBfBfB;
-}
-
-#match-games-lost {
-    width: 36px;
-    display: inline-block;
-    text-align: left;
+    max-width: 400px;
 }
 
 .aui-dialog2-content .sentence {
-  font-size: larger;
   padding: 20px 5px;
   text-align: center;
 }
 
-form.aui .select {
-  margin: 0px 5px;
-  font-size: smaller;
+form.aui {
+  font-size: 16px;
 }
 
+form.aui .select {
+  background-color: #f9f9f9;
+}
+
+form.aui .text,
+form.aui .textarea,
+form.aui .select {
+  margin: 0px 5px;
+}
 
 /* Toolbar */
 
@@ -499,9 +515,17 @@ form.aui .select {
   height: 85px;
 }
 
-form.aui .field-group .error {
+.full-width-field {
+  margin: 0px!important;
+}
+
+
+form.aui .error {
   background: none;
-  margin-top: 7px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: inherit;
+  color: #ff0033;
 }
 
 .user-mention img {
@@ -509,6 +533,16 @@ form.aui .field-group .error {
   height:30px;
   vertical-align: text-bottom;
 }
+
+
+#invite-dialog fieldset {
+  margin: 30px 50px;
+}
+
+#invite-dialog .autocomplete .aui-dropdown {
+  width: 100%;
+}
+
 
 /* Message zone */
 

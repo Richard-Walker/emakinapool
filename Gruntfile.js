@@ -40,14 +40,23 @@ module.exports = function(grunt) {
       options: { 
         prettify: true,
         processName: function(path) {
-          return path.split('/').pop().replace('.html','');
+          return path.split('/').pop().replace('.html','').replace('.inlined','');
         }
       },
       compile: {
-        src: 'src/jst/*.html',
+        src: ['src/jst/*.html', '!src/js/*Mail.html', 'src/jst/inlined/*.html'],
         dest: 'dist/download/attachments/<%= scriptsPageId %>/templates.js'
       }
     },
+    inlinecss: {
+      options: {
+
+      },
+      emails: {
+        src: ['src/js/*Mail.html'],
+        dest: 'src/jst/inlined/'
+      }
+    }
     copy: {
       img: {
         expand: true,
@@ -66,7 +75,7 @@ module.exports = function(grunt) {
       options: {
         asi: true, curly: true, eqeqeq: true, immed: true, latedef: true, newcap: true,
         noarg: true, sub: true, undef: true, unused: true, boss: true, eqnull: true, jquery: true, node: true,
-        globals: { EP: true, _: true, AJS: true, JST: true, location: true, history: true }
+        globals: { EP: true, _: true, Confluence: true, AJS: true, JST: true, location: true, history: true, window: true }
       },
       gruntfile: {
         src: 'Gruntfile.js'
@@ -102,8 +111,12 @@ module.exports = function(grunt) {
         tasks: ['newer:jshint:js','concat:js']
       },
       jst: {
-        files: 'src/jst/*.html',
+        files: 'src/jst/*.html', '!src/js/*Mail.html', 'src/jst/inlined/*.html',
         tasks: ['jst']
+      },
+      inlinecss: {
+        files: 'src/jst/*Mail.html',
+        tasks: ['inlinecss']
       },
       css: {
         files: 'src/css/*',
@@ -123,7 +136,7 @@ module.exports = function(grunt) {
         limit: 10,
         logConcurrentOutput: true
       },
-      watch_src: ['watch:gruntfile', 'watch:js', 'watch:jst', 'watch:css', 'watch:img']
+      watch_src: ['watch:gruntfile', 'watch:js', 'watch:jst', 'watch:inlinecss', 'watch:css', 'watch:img']
     }
   });
 
@@ -139,10 +152,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-http-upload');
   grunt.loadNpmTasks('grunt-confluence-attachments');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-inline-css');
 
   // Project tasks
-  grunt.registerTask('build', ['newer:jshint','newer:concat','newer:jst','newer:copy']);  // Build light (skip unchanged files)
-  grunt.registerTask('build!', ['jshint','concat','jst','copy']);         // Build all
+  grunt.registerTask('build', ['newer:jshint','newer:concat','newer:inlinecss','newer:jst','newer:copy']);  // Build light (skip unchanged files)
+  grunt.registerTask('build!', ['jshint','concat','inlinecss','jst','copy']);         // Build all
   grunt.registerTask('publish', ['newer:confluence_attachments']);        // Upload to Share (skip unchanged files) 
   grunt.registerTask('get', ['shell:refreshDist']);                       // Refresh dist folder from Share (html and dependencies) 
   grunt.registerTask('get!', ['shell:rebuildDist']);                      // Rebuild the entire dist folder from Share

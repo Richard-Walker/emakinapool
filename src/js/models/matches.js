@@ -26,11 +26,13 @@ EP.Matches = function() {
 
 			var data = {
 
+				row: row,
+
 				winner : $cells.eq(2).text(),
 				looser : $cells.eq(4).text(),
 				date: new Date($cells.eq(0).find("time").attr("datetime")),
 				game: $cells.eq(1).text().split(' - ')[0],
-				bestOf: parseInt($cells.eq(1).text().split(' - ')[1].match(/\d+/)[0]),
+				bestOf: parseInt($cells.eq(1).text().split(' - ')[1].match(/\d+/)[0])
 
 			};
 

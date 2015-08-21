@@ -1,5 +1,51 @@
-/*! emakinapool - v0.1.0 - 2015-08-15
+/*! emakinapool - v0.1.0 - 2015-08-21
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
+
+/*
+
+
+EP.Confluence
+
+Helpers functions to wrap confluence feature, mainly REST api calls
+
+*/
+
+
+EP = EP || {}
+
+EP.Confluence = function() {
+
+	EP.Confluence = {}
+
+	EP.Confluence.getUser = function(username, callback) {
+
+		var url = AJS.REST.getBaseUrl() + 'user/non-system/' + username + '.json';
+		$.get(url, function(data) {
+			callback(data);
+		}).fail(function() {			
+			AJS.messages.error({title: 'Error! Cannot get user data from REST service.'});
+		});		
+	}
+
+	AJS.messages.origError = AJS.messages.error;
+	AJS.messages.error = function(opts) {
+		opts = _(opts).defaults({
+			fadeout: true,
+			closeable: false
+		});
+		return AJS.messages.origError(opts);
+	}
+	AJS.messages.origSuccess = AJS.messages.success;
+	AJS.messages.success = function(opts) {
+		opts = _(opts).defaults({
+			fadeout: true,
+			closeable: false
+		});
+		return AJS.messages.origSuccess(opts);
+	}
+
+}
+
 
 /*
 
@@ -16,6 +62,16 @@ EP.Helpers = function() {
 	EP.Helpers = {}
 
 	EP.Helpers.upperCase = function(s) { return s.toUpperCase() };
+
+	EP.Helpers.parseName = function(fullName) {
+		var nameParts = fullName.match(/(\w+) ([\w ]*)/i) || [fullName, fullName, ''];
+		return { firstName: nameParts[1], lastName: nameParts[2] }
+	}
+
+	EP.Helpers.parseEmail = function(email) {
+		var emailParts = email.match(/(.*) <(.*)>/i) || [null, null, email];
+		return { name: emailParts[1], email: emailParts[2] }
+	}
 
 	EP.Helpers.getTip = function($e) {
 		var $a = $e.is('a') ? $e : $e.find('a');
@@ -84,6 +140,7 @@ EP.Helpers = function() {
 		var $e = $(dialog);
 		$e.find('.error').css('visibility', 'hidden');
 		$e.find('input').val('');
+		$e.find('textarea').val('');
 		$e.find("select option").removeAttr('selected');
 		$e.find("select option:first-child").attr('selected','selected');
 		$e.find("input[type=radio]").prop("checked", false);
@@ -152,10 +209,9 @@ EP.Helpers = function() {
 
 EP.Mail
 
-Send emails using Mandrill REST api 
+Send emails using REST api 
 
 */
-
 
 var EP = EP || {};
 
@@ -163,129 +219,50 @@ EP.Mail = function() {
 
 	EP.Mail = {}
 
-	var subjects = {
-		test: "Emakina pool test email"
-	}
+	EP.Mail.send = function (to, template, templateData, images, callback) {
 
-	EP.Mail.send = function (recipients, template, templateData, callback) {
+		function parseRecipient(r) {
+			switch (r.constructor) {
+				case String: 		return EP.Helpers.parseEmail(r);
+				case EP.Player: 	return { name: r.stageName, email: r.email };
+				default: 			return r;
+			}
+		}
+		to = EP.Settings.forceEmailTo || to;
+		to = to.constructor === Array ? to : [to];
+		to = _(to).map(parseRecipient);
 
-		recipients = recipients.constructor === Array ? recipients : [recipients];
+		var from = EP.Helpers.parseEmail(EP.Settings.emailFrom);
 
-		var url = 'https://mandrillapp.com/api/1.0/messages/send.json'
-		var apiKey = 'c2nNjdQl1L3LaDd12rfZnQ'
-		var subject = subjects[template] || "Emakina Pool";
-		var html = JST[template + 'Mail'](templateData);
-		
-		var to = _(recipients).map(function (p) {
-			return {
-				email: p.username + '@emakina.com',
-				name: p.stageName,
-				type: 'to'
-			};
-		});
+		var $html = $(JST[template + 'Mail'](templateData));
 
 		var data = {
-		    "key": apiKey,
-		    "message": {
-		        "html": html,
-		        // "text": "Example text content",
-		        "subject": subject,
-		        "from_email": EP.Settings.supportEmail,
-		        "from_name": EP.Settings.supportName,
-		        "to": to,
-		        "headers": {
-		            //"Reply-To": "message.reply@example.com"
-		        },
-		        "important": false,
-		        "track_opens": null,
-		        "track_clicks": null,
-		        "auto_text": null,
-		        "auto_html": null,
-		        "inline_css": null,
-		        "url_strip_qs": null,
-		        "preserve_recipients": null,
-		        "view_content_link": null,
-		        //"bcc_address": "message.bcc_address@example.com",
-		        "tracking_domain": null,
-		        "signing_domain": null,
-		        "return_path_domain": null,
-		        // "merge": true,
-		        // "merge_language": "mailchimp",
-		        // "global_merge_vars": [
-		        //     {
-		        //         "name": "merge1",
-		        //         "content": "merge1 content"
-		        //     }
-		        // ],
-		        // "merge_vars": [
-		        //     {
-		        //         "rcpt": "recipient.email@example.com",
-		        //         "vars": [
-		        //             {
-		        //                 "name": "merge2",
-		        //                 "content": "merge2 content"
-		        //             }
-		        //         ]
-		        //     }
-		        // ],
-		        "tags": [
-		            EP.Settings.environment,
-		            template
-		        ]
-		        // "subaccount": "customer-123",
-		        // "google_analytics_domains": [
-		        //     "example.com"
-		        // ],
-		        // "google_analytics_campaign": "message.from_email@example.com",
-		        // "metadata": {
-		        //     "website": "www.example.com"
-		        // },
-		        // "recipient_metadata": [
-		        //     {
-		        //         "rcpt": "recipient.email@example.com",
-		        //         "values": {
-		        //             "user_id": 123456
-		        //         }
-		        //     }
-		        // ],
-		        // "attachments": [
-		        //     {
-		        //         "type": "text/plain",
-		        //         "name": "myfile.txt",
-		        //         "content": "ZXhhbXBsZSBmaWxl"
-		        //     }
-		        // ],
-		        // "images": [
-		        //     {
-		        //         "type": "image/png",
-		        //         "name": "IMAGECID",
-		        //         "content": "ZXhhbXBsZSBmaWxl"
-		        //     }
-		        // ]
-		    },
-		    "async": true,
-		    // "ip_pool": "Main Pool"
-		    // "send_at": "example send_at"
+			from: from.email,
+			fromname: from.name,
+			to: _(to).pluck('email'),
+			toname: _(to).pluck('name'),
+			subject: $.trim($html.find('subject').text()),
+			html: $html.find('message').html()
 		}
 
 		$.ajax({
 
-			url: url,
+			url: 'https://emakinapool-brightmoods.rhcloud.com/email',
 			type: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify(data),
+			headers: {
+				"Authorization": "Basic " + window.btoa(EP.Settings.serverAuthUsername + ':' + EP.Settings.serverAuthPassword)
+			},
 			success: callback
 
 		}).fail(function() {
 
-			AJS.messages.error('Error! Could not send email.');
+			AJS.messages.error({title: 'Error! Could not send email.'});
 
 		});
 
 	}
-
-
-
 
 }
 /*
@@ -483,10 +460,9 @@ EP.CurrentUser = function() {
 	EP.CurrentUser.isRegistered = player !== undefined;
 
 	if (!EP.CurrentUser.isRegistered) {
-		var fullName = EP.Dom.$currentUser.attr('title');
-		var nameParts = fullName.match(/(\w+) ([\w ]*)/i) || [fullName, fullName, ''];
-		EP.CurrentUser.firstName = nameParts[1];
-		EP.CurrentUser.lastName =  nameParts[2];
+		var name = EP.Helpers.parseName(EP.Dom.$currentUser.attr('title'));
+		EP.CurrentUser.firstName = name.firstName;
+		EP.CurrentUser.lastName =  name.lastName;
 	}
 
 	EP.CurrentUser.picture = EP.Dom.$currentUser.find('.aui-avatar img').attr('src');
@@ -744,11 +720,13 @@ EP.Matches = function() {
 
 			var data = {
 
+				row: row,
+
 				winner : $cells.eq(2).text(),
 				looser : $cells.eq(4).text(),
 				date: new Date($cells.eq(0).find("time").attr("datetime")),
 				game: $cells.eq(1).text().split(' - ')[0],
-				bestOf: parseInt($cells.eq(1).text().split(' - ')[1].match(/\d+/)[0]),
+				bestOf: parseInt($cells.eq(1).text().split(' - ')[1].match(/\d+/)[0])
 
 			};
 
@@ -853,6 +831,7 @@ EP.Player = function() {
 		var data = _(playerData).defaults({
 			username: 'foo', 					// Required
 			stageName: 'bar',					// Required  
+			email: 'no-reply@emakina.com',
 			firstName: '',
 			lastName: '',
 			hasBelt: false,
@@ -943,6 +922,8 @@ EP.Players = function() {
 			
 			var data = {
 
+				row: row,
+
 				username: nameMatch[3],
 				stageName: $cells.eq(1).text(),
 				firstName: nameMatch[1],
@@ -1025,7 +1006,7 @@ EP.Players = function() {
 			var player = new EP.Player(playerData);
 			players.unshift(player);
 			EP.Players.updateRanking();
-			players = _(players).sortBy('stageName');
+			players = _(players).sortBy('firstName');
 
 			EP.Players.writeData();
 
@@ -1037,6 +1018,26 @@ EP.Players = function() {
 
 	EP.Players.readView();
 
+	// Load players data from REST service, then fire the onready event.
+
+	EP.Players.onready = $.Callbacks('memory');
+
+	var count = 0;
+
+	_(players).each(function (p) {
+
+		EP.Confluence.getUser(p.username, function(data) {
+
+			p.avatarUrl = data.avatarUrl;
+			p.email = data.displayableEmail || null;
+
+			count++;
+			if (count === players.length) { EP.Players.onready.fire(); }
+
+		});
+	})
+
+
 }
 
 /*
@@ -1045,6 +1046,12 @@ EP.Settings
 
 Common settings used by other modules
 
+Important!
+
+	There should be 1 file per environment.
+	This example file is the only one commited.
+	Sensitive inforamtion has been removed.
+
 */
 
 var EP = EP || {};
@@ -1052,12 +1059,30 @@ var EP = EP || {};
 EP.Settings = function() {
 
 	EP.Settings = {
+
+		// Environement name ('dev', 'test' or 'prod'), influence the publication
 		environment: 'test',
-		supportEmail: 'rwa@emakina.com',
-		supportName: 'Emakina Pool Test',
+
+		// Server credentials.
+		serverAuthUsername: 'emakinapoolapp',
+		serverAuthPassword: 'no1shouldbetrustEd',
+
+		// Value of 'from' field when sending emails
+		emailFrom: 'Emakinapool test app <info@league.emakinapool.xyz>',
+
+		// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
+		forceEmailTo: 'Emakinapool tester <rwa@emakina.com>',
+
+		// Confluence Page that holds all the league data. DO NOT USE PRODUCTION PAGE IN TEST! 
 		pageId: '102662893',
+		pageUrl: 'https://share.emakina.net/display/activities/Pool+Championship+-+V2',
+
+		// Elo config
 		kFactor: 32,
-		initialRating: 1500
+		initialRating: 1500,
+
+		// Number of row initially shown in matches table
+		matchesRows: 5
 	}
 
 };
@@ -1089,6 +1114,7 @@ EP.Dom = function() {
 		$matches: $('.matches-table'),
 		$submitMatchButton: $('#add-match-button'),
 		$registerButton: $('#subscribe-button'),
+		$inviteButton: $('#invite-button'),
 
 		NavLinks: {
 			$join: 		$navLinks.eq(0),
@@ -1122,6 +1148,274 @@ EP.Dom = function() {
 
 };
 
+/*
+
+
+EP.InviteDialog
+
+
+*/
+
+var EP = EP || {};
+
+// $('body').append(JST.inviteDialog({}));
+// EP.inviteDialog = AJS.dialog2('#invite-dialog');
+
+EP.InviteDialog = function() {
+
+	// Create dialog from template
+	
+	var html = JST.inviteDialog({});
+	$('body').append(html);
+	Confluence.Binder.autocompleteUserOrGroup('#invite-dialog'); 
+	var dialog = AJS.dialog2('#invite-dialog');
+	
+	// var dialog = EP.inviteDialog;
+	
+	dialog.on('show', function (e) {EP.Helpers.resetDialog(e.target);});
+
+	// Triggers
+
+	EP.Dom.$inviteButton.click(function() {dialog.show();});
+
+	// Validation rules
+
+	function setSubmitState() {
+	    var cannotSubmit = _.chain(Validations.State).values().contains(false).value();
+		$('#invite-send-button').prop('disabled', cannotSubmit);		
+	}
+
+	var Validations = {	
+	 	mandatoryFields: function() {
+	 		Validations.State.mandatoryFields = $('#invite-selected-player').val() !== '';
+	 	},
+		notAlreadyRegistered: function() {
+			
+			var player = EP.Players.get($('#invite-selected-player').val());
+
+			Validations.State.notAlreadyRegistered = player === undefined;
+
+			if (Validations.State.notAlreadyRegistered) {
+				$('#invite-player-error')
+					.css('visibility', 'hidden');
+			} else {
+				$('#invite-player-error')
+					.text('User already registered! (as "' + player.stageName + '")')
+					.css('visibility', 'visible');
+			}
+		},
+		emailAvailable: function() {
+
+			Validations.State.emailAvailable = false; // Set to false until proven otherwise
+
+			if (Validations.State.notAlreadyRegistered === false || $('#invite-selected-player').val() === '') { return }
+
+			EP.Confluence.getUser($('#invite-selected-player').val(), function(userData) {
+
+				Validations.State.emailAvailable = userData.displayableEmail !== undefined;
+
+				if (Validations.State.emailAvailable) {
+					$('#invite-email').val(userData.displayableEmail);
+					$('#invite-player-error').css('visibility', 'hidden');
+				} else {
+					$('#invite-player-error')
+						.text('This user\'s email is not public, we can\'t send an invitation, sorry.')
+						.css('visibility', 'visible');
+				}
+				setSubmitState(); // We have to do it manually because it is an async call
+
+			});
+		}
+	}
+
+	// Update the submit button state on every validation function
+	_(Validations).each(function(func, name) {
+		Validations[name] = function() {
+	    	func();
+	    	setSubmitState();
+		}
+	})
+
+	Validations.State = {};
+	$('#invite-selected-player').on('change', Validations.mandatoryFields);
+	$('#invite-selected-player').on('change', Validations.notAlreadyRegistered);
+	$('#invite-selected-player').on('change', Validations.emailAvailable);
+	dialog.on('show', Validations.mandatoryFields);
+
+
+	// Dynamics
+
+	var Dynamics = {
+		selectUser: function (context, user) {
+			$('#invite-player').val(user.content.title);
+			$('#invite-selected-player').val(user.content.username).change();
+		},
+		unselectUser: function() {
+			if ($('#invite-selected-player').val() !== '') {
+				$('#invite-selected-player').val('').change();
+			}
+		}
+
+
+
+	}
+
+	$('#invite-player').on('selected.autocomplete-user', Dynamics.selectUser);
+	$('#invite-player').on('input propertychange paste', Dynamics.unselectUser);
+
+
+	// Cancel
+	
+	$('#invite-cancel-button').click( function() { dialog.hide() });
+
+
+	// Submit
+
+	$('#invite-send-button').click( function() {
+
+		//TODO: spinner needed?
+
+		var invitee = $('#invite-player').val();
+		var inviteeEmail = $('#invite-email').val();
+		var to = invitee + ' <' + inviteeEmail + '>';
+
+		var data = {
+			invitee: EP.Helpers.parseName(invitee).firstName,
+			referer: EP.CurrentUser,
+			message: $('#invite-message').val(),
+			url: EP.Settings.pageUrl
+		}
+
+		EP.Mail.send(to, 'invitation', data, null, function() {
+			AJS.messages.success({title: 'Invitation sent! Thanks for spreading the word :)'});
+		}, $('#invite-mailer').val())
+		
+		dialog.hide();
+
+	});
+
+};
+
+/*
+
+EP.MatchesTable
+
+*/
+
+var EP = EP || {};
+
+EP.MatchesTable = function() {
+
+	EP.MatchesTable = {}
+
+	// Disable sorting
+
+	$(window).load(function () {
+		EP.Dom.$matches.removeClass('tablesorter');
+		EP.Dom.$matches.find('th').unbind();
+	});
+
+	// Filters
+
+	var expandCollapseLabels = {
+		collapse: function() {return 'Show less';}, 
+		expand: function(n) {return 'Show all (' + n + ')';}
+	}
+	
+	function applyFilters() {
+
+		var $allRows = EP.Dom.$matches.find('tr:has(td)');
+		var rows = $allRows.toArray(); // Rows to be displayed at the end
+
+		// Player filter
+
+		var selectedUser = $('#matches-filter').val();
+		if (selectedUser && selectedUser !== '') {
+
+			rows = _.chain(EP.Matches.list())
+				.filter(function(m) {
+					return m.winner.username === selectedUser || m.looser.username === selectedUser
+				})
+				.pluck('row')
+				.value();
+
+		}
+
+		// Expand collapse
+		
+		if (rows.length < EP.Settings.matchesRows) { 
+			$('#matches-more-button').hide(); 
+		} else {
+			$('#matches-more-button').show();			
+		}
+		
+		if ( EP.Dom.$matches.hasClass('expanded') ) {
+			$('#matches-more-button').text(expandCollapseLabels.collapse());
+		} else {
+			$('#matches-more-button').text(expandCollapseLabels.expand(rows.length));
+			rows = rows.slice(0, EP.Settings.matchesRows);
+		}
+
+		// Show/hide rows
+
+		$allRows.hide();
+		_(rows).each(function(r) {$(r).show()});
+
+	}
+
+	EP.Dom.$matches.after('<p><a href="#" id="matches-more-button"></a></p>');
+
+	var htmlSelect = JST.playersSelect({
+		players: EP.Players.list(),
+		firstOption: 'All matches',
+		id: 'matches-filter',
+		size: 'xxl'
+	});
+	EP.Dom.$matches.before('<p>' + htmlSelect + '</p>');
+	if (EP.CurrentUser.isRegistered) {
+		$('#matches-filter').find('option').eq(0).after('<option value="' + EP.CurrentUser.username + '">My matches</option>');
+	}
+
+	$('#matches-filter').change(function() {
+		EP.Dom.$matches.removeClass('expanded');
+		applyFilters();
+		return false;
+	});
+
+	$('#matches-more-button').click(function() {
+		EP.Dom.$matches.toggleClass('expanded');
+		applyFilters();
+		return false;
+	});
+
+	applyFilters();
+
+
+	EP.Players.onready.add(function() {
+
+		// Display avatars and names
+
+		_(EP.Matches.list()).each(function (m) {
+
+			var avatars = [JST.playerAvatar(m.winner), JST.playerAvatar(m.looser)];
+			var stageNames = [m.winner.stageName, m.looser.stageName];
+			var $cells = $(m.row).find('td');
+
+			_([$cells.eq(2), $cells.eq(4)]).each(function ($cell, i) {
+				$cell.html(avatars[i] + stageNames[i]);
+			})
+
+		})
+
+		// Enable tooltips
+		$('.matches-table span[title]').tooltip();
+
+	});
+
+
+
+
+}
 /*
 
 EP.Page
@@ -1241,6 +1535,39 @@ EP.Page = function() {
 
 /*
 
+EP.PlayersTable
+
+*/
+
+var EP = EP || {};
+
+EP.PlayersTable = function() {
+
+	EP.PlayersTable = {}
+
+	// Remove usernames
+
+	EP.Dom.$players.find('td:first-child').each(function () {
+		var newHtml = $(this).html().replace(/ \(.*\)/,'');
+		$(this).html(newHtml);
+	})
+
+	EP.Players.onready.add(function() {
+	
+		// Display players avatars
+		_(EP.Players.list()).each(function (p) {
+			var htmlAvatar = JST.playerAvatar(p);
+			$(p.row).find('td').eq(0).prepend(htmlAvatar);
+		})
+	
+		// Enable tooltips
+		$('.players-table span[title]').tooltip();
+
+	});
+
+}
+/*
+
 EP.ProfileSection
 
 Fills the profile section with information about the current user
@@ -1354,7 +1681,7 @@ EP.RegisterDialog = function() {
 		Validations[name] = function() {
 	     func();
 	     var cannotSubmit = _.chain(Validations.State).values().contains(false).value();
-			$('#player-save-button').attr('aria-disabled', cannotSubmit ? 'true' : 'false');
+			$('#player-save-button').prop('disabled', cannotSubmit);
 		}
 	})
 
@@ -1434,7 +1761,7 @@ EP.SubmitMatchDialog = function() {
 		Validations[name] = function() {
 	     func();
 	     var cannotSubmit = _.chain(Validations.State).values().contains(false).value();
-			$('#match-save-button').attr('aria-disabled', cannotSubmit ? 'true' : 'false');
+			$('#match-save-button').prop('disabled', cannotSubmit);
 		}
 	})
 
@@ -1519,12 +1846,17 @@ Entry point
 
 */
 
+
+var EP = EP || {};
+
 $(function () {
 	
 	// Global stuff
 	EP.Settings();
 	EP.Helpers();
+	EP.Confluence();
 	EP.Dom();
+	EP.Mail();
 	
 	// Models
 	EP.Data();
@@ -1538,11 +1870,12 @@ $(function () {
 	// Views
 	EP.Page();
 	EP.ProfileSection();
-	//EP.PlayersTable();
-	//EP.MatchesTable();
+	EP.PlayersTable();
+	EP.MatchesTable();
 
 	// Dialogs
 	EP.SubmitMatchDialog();
 	EP.RegisterDialog();
+	EP.InviteDialog();
 
 });
