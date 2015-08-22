@@ -1,0 +1,39 @@
+<link href="../../../dist/emails/emails.css" rel="stylesheet" />
+<email>
+	<subject>
+		Emakina Pool Invitation
+	</subject>
+	<message>
+		<table class="body"><tbody><tr><td valign="top">
+			<table class="main" align="center"><tbody>
+				<tr>
+					<td>
+						<img width="580" height="290" src="https://dl.dropboxusercontent.com/u/14573395/emakinapool/invite-banner.jpeg">
+					</td>
+				</tr>
+				<tr>
+					<td class="content">
+						<h1>A friendly invitation</h1>
+						<p>
+							Hi {{ invitee }},
+						</p>
+						<p>
+							{{ referer.fullName() }} -- also known as <strong>{{ referer.stageName }}</strong> -- thinks you might be intereseted in joining <a href="{{ url }}">the EMAKINA POOL LEAGUE</a>.
+						</p>
+		 				{{! if (message !== '') { }}
+						<p>
+							He/she says:
+							<blockquote>
+								<span class="quotes">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes">&nbsp;&rdquo;</span>
+							</blockquote>
+						</p>
+		 				{{! } }}
+						<p>
+							<a class="button" href="{{ url }}">Check it out!</a>
+						</p>
+					</td>
+				</tr>
+			</tbody></table>
+		</td></tr></tbody></table>
+	</message>
+</email>

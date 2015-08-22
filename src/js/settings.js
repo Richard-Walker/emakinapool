@@ -29,11 +29,11 @@ EP.Settings = function() {
 		emailFrom: 'Emakinapool test app <info@league.emakinapool.xyz>',
 
 		// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
-		forceEmailTo: 'Emakinapool tester <rwa@emakina.com>',
+		forceEmailTo: 'Emakinapool tester <r.p.walker@gmail.com>',
 
 		// Confluence Page that holds all the league data. DO NOT USE PRODUCTION PAGE IN TEST! 
 		pageId: '102662893',
-		pageUrl: 'https://share.emakina.net/display/activities/Pool+Championship+-+V2',
+		pageUrl: 'https://share.emakina.net/display/activities/Pool+League',
 
 		// Elo config
 		kFactor: 32,

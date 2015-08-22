@@ -4,17 +4,19 @@ module.exports = function(grunt) {
   grunt.initConfig({
     
     // Metadata
+
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= pkg.license %> */\n\n',
-    pagePath: 'display/activities/Pool+Championship+-+V2',
+    pagePath: 'display/activities/Pool+League',
     assetsPageId: '102665363',
     scriptsPageId: '104693790',
 
     // Tasks config
+
     shell: {
       refreshDist: {
         command: './getdist.sh <%= pagePath %>'
@@ -23,9 +25,11 @@ module.exports = function(grunt) {
         command: './getdist.sh -r <%= pagePath %>'
       }
     },
+    
     clean: {
       dist: ['dist']
     },
+    
     concat: {
       options: {
         banner: '<%= banner %>',
@@ -36,41 +40,64 @@ module.exports = function(grunt) {
         dest: 'dist/download/attachments/<%= scriptsPageId %>/<%= pkg.name %>.js'
       },
     },
+    
     jst: {
       options: { 
         prettify: true,
         processName: function(path) {
-          return path.split('/').pop().replace('.html','').replace('.inlined','');
-        }
+          return path.split('/').pop().replace('.html','');
+        },
       },
-      compile: {
-        src: ['src/jst/*.html', '!src/js/*Mail.html', 'src/jst/inlined/*.html'],
+      views: {
+        src: ['src/jst/*.html'],
         dest: 'dist/download/attachments/<%= scriptsPageId %>/templates.js'
-      }
-    },
-    inlinecss: {
-      options: {
-
       },
       emails: {
-        src: ['src/js/*Mail.html'],
-        dest: 'src/jst/inlined/'
+        options: {
+          templateSettings: {
+            interpolate: /\{\{ (.+?) \}\}/g,
+            evaluate: /\{\{\! (.+?) \}\}/g,
+            escape: /\{\{\- (.+?) \}\}/g
+          }
+        },
+        src: ['dist/emails/*.html'],
+        dest: 'dist/download/attachments/<%= scriptsPageId %>/email-templates.js'
       }
-    }
+    },
+
+    inlinecss: {
+      options: {
+        applyStyleTags: true,
+        removeStyleTags: true
+      },
+      emails: {  
+        expand: true,
+        cwd: 'src/jst/emails/',
+        src: '*.html',
+        dest: 'dist/emails/'
+      }
+    },
+
     copy: {
       img: {
         expand: true,
         cwd: 'src/img/',
         src: '*.{png,jpeg,jpg,gif,svg}',
         dest: 'dist/download/attachments/<%= assetsPageId %>/'
-      },
-      css: {
-        expand: true,
-        cwd: 'src/css/',
-        src: '*',
-        dest: 'dist/download/attachments/<%= scriptsPageId %>/'
       }
     },
+
+    less: {
+      main: {
+        src: 'src/css/emakinapool.less',
+        dest: 'dist/download/attachments/<%= scriptsPageId %>/emakinapool.css'
+      },
+      emails: {
+        src: 'src/css/emails.less',
+        dest: 'dist/emails/emails.css'
+      }
+    },
+
     jshint: {
       options: {
         asi: true, curly: true, eqeqeq: true, immed: true, latedef: true, newcap: true,
@@ -84,6 +111,7 @@ module.exports = function(grunt) {
         src: 'src/js/**/*.js'
       }
     },
+
     confluence_attachments: {
       options: {
         baseUrl: 'https://share.emakina.net',
@@ -101,6 +129,9 @@ module.exports = function(grunt) {
         src: ['dist/download/attachments/<%= scriptsPageId %>/*', '!*.orig'],
       }
     },
+
+    // WATHCERS
+
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -110,17 +141,21 @@ module.exports = function(grunt) {
         files: 'src/js/**/*.js',
         tasks: ['newer:jshint:js','concat:js']
       },
-      jst: {
-        files: 'src/jst/*.html', '!src/js/*Mail.html', 'src/jst/inlined/*.html',
-        tasks: ['jst']
+      less_main: {
+        files: ['src/css/emakinapool.less', 'src/css/palette.less'],
+        tasks: ['less:main']
       },
-      inlinecss: {
-        files: 'src/jst/*Mail.html',
-        tasks: ['inlinecss']
+      less_emails: {
+        files: ['src/css/emails.less', 'src/css/palette.less'],
+        tasks: ['less:emails','inlinecss:emails','jst:emails']
       },
-      css: {
-        files: 'src/css/*',
-        tasks: ['newer:copy:css']
+      jst_views: {
+        files: ['src/jst/*.html'],
+        tasks: ['jst:views']
+      },
+      jst_emails: {
+        files: ['src/jst/emails/*.html'],
+        tasks: ['less:emails','newer:inlinecss:emails','jst:emails']
       },
       img: {
         files: 'src/img/*.{png,jpeg,jpg,gif,svg}',
@@ -131,12 +166,13 @@ module.exports = function(grunt) {
         tasks: ['newer:confluence_attachments']
       }
     },
+
     concurrent: {
       options: {
         limit: 10,
         logConcurrentOutput: true
       },
-      watch_src: ['watch:gruntfile', 'watch:js', 'watch:jst', 'watch:inlinecss', 'watch:css', 'watch:img']
+      watch_src: ['watch:gruntfile', 'watch:js', 'watch:less_main', 'watch:less_emails', 'watch:jst_views', 'watch:jst_emails', 'watch:img']
     }
   });
 
@@ -153,10 +189,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-confluence-attachments');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-inline-css');
+  //grunt.loadNpmTasks('grunt-inline');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   // Project tasks
-  grunt.registerTask('build', ['newer:jshint','newer:concat','newer:inlinecss','newer:jst','newer:copy']);  // Build light (skip unchanged files)
-  grunt.registerTask('build!', ['jshint','concat','inlinecss','jst','copy']);         // Build all
+  grunt.registerTask('build', ['newer:jshint','newer:concat','newer:less','newer:inlinecss','newer:jst','newer:copy']);  // Build light (skip unchanged files)
+  grunt.registerTask('build!', ['jshint','concat','less','inlinecss','inline','jst','copy']);         // Build all
   grunt.registerTask('publish', ['newer:confluence_attachments']);        // Upload to Share (skip unchanged files) 
   grunt.registerTask('get', ['shell:refreshDist']);                       // Refresh dist folder from Share (html and dependencies) 
   grunt.registerTask('get!', ['shell:rebuildDist']);                      // Rebuild the entire dist folder from Share

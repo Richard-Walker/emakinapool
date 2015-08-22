@@ -36,7 +36,7 @@ EP.Mail = function() {
 			to: _(to).pluck('email'),
 			toname: _(to).pluck('name'),
 			subject: $.trim($html.find('subject').text()),
-			html: $html.find('message').html()
+			html: JST.mailHeader() + $html.find('message').html()
 		}
 
 		$.ajax({
