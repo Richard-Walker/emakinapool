@@ -84,6 +84,12 @@ module.exports = function(grunt) {
         cwd: 'src/img/',
         src: '*.{png,jpeg,jpg,gif,svg}',
         dest: 'dist/download/attachments/<%= assetsPageId %>/'
+      },
+      img_css: {
+        expand: true,
+        cwd: 'src/css/',
+        src: '*.{png,jpeg,jpg,gif,svg}',
+        dest: 'dist/download/attachments/<%= scriptsPageId %>/'        
       }
     },
 
@@ -158,8 +164,8 @@ module.exports = function(grunt) {
         tasks: ['less:emails','newer:inlinecss:emails','jst:emails']
       },
       img: {
-        files: 'src/img/*.{png,jpeg,jpg,gif,svg}',
-        tasks: ['newer:copy:img']
+        files: ['src/img/*.{png,jpeg,jpg,gif,svg}', 'src/css/*.{png,jpeg,jpg,gif,svg}'],
+        tasks: ['newer:copy']
       },
       dist: {
         files: ['dist/download/attachments/{<%= assetsPageId %>,<%= scriptsPageId %>}/*','!*.orig'],

@@ -23,14 +23,14 @@ Confluence elements
 
 */
 
-.confluenceTh, .confluenceTd {
+/*.confluenceTh, .confluenceTd {
   border-color: @color-bw-4;
 }
 
 .confluenceTh {
   background-color: @color-secondary-2-1!important;
 }
-
+*/
 .wiki-content .cell {
     display: block;
 }
@@ -159,13 +159,53 @@ a[href $= "tip://"] + * {
 
 /*
 
+Join section
+
+*/
+
+.contentLayout2 .columnLayout:nth-child(2) div.innerCell {
+  background-image: url('./join-background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 60px;
+}
+
+.join-title ~ h2 {
+  color: #000;
+  font-size: 40px;
+}
+
+.join-title ~ ul {
+  list-style-type: none;
+  margin: 85px 0px;
+  color: #000;
+  font-size: 20px;
+  padding: 0px;
+}  
+
+.join-title ~ ul li {
+  margin: 25px 0px;
+}
+
+.join-title ~ .aui-button {
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*
+
 Profile section
 
 */
 
 .profile-title ~ .table-wrap:first-of-type {
   vertical-align: middle;
-  background-color: @color-secondary-2-1;
+  padding: 50px;
+  line-height: 25px;
+  /*background-color: @color-secondary-2-1;*/
 }
 
 .profile-title ~ .table-wrap:last-of-type {
@@ -180,8 +220,8 @@ Profile section
 
 .profile-summary {
   width:100%;
-  margin-top:100px!important;
-  margin-bottom:60px!important;
+  margin-top:70px!important;
+  margin-bottom:30px!important;
 }
 .profile-summary td {
   padding: 0px;
@@ -197,13 +237,15 @@ Profile section
 .profile-summary img {
   border-radius: 50%;
   background-color: @color-bw-w;
+  border: 1px solid @color-bw-4;
+  width: 80px;
 }
 
 .profile-summary .aui-lozenge {
   padding: 8px 15px;
-  color: @color-bw-1!important;
+  color: @color-primary-0!important;
   border-width: 1px;
-  border-color: @color-bw-1!important;
+  border-color: @color-primary-0!important;
 }
 
 .profile-summary ul {
