@@ -164,14 +164,15 @@ Join section
   padding: 60px;
 }
 .join-title ~ h2 {
-  color: #000;
-  font-size: 40px;
+  color: #333333;
+  font-size: 45px;
 }
 .join-title ~ ul {
   list-style-type: none;
   margin: 85px 0px;
-  color: #000;
-  font-size: 20px;
+  color: #333333;
+  font-size: 25px;
+  text-shadow: 1px 1px #aaaaaa;
   padding: 0px;
 }
 .join-title ~ ul li {
