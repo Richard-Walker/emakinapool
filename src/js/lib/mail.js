@@ -13,7 +13,7 @@ EP.Mail = function() {
 
 	EP.Mail = {}
 
-	EP.Mail.send = function (to, template, templateData, images, callback) {
+	EP.Mail.send = function (to, template, templateData, callback) {
 
 		function parseRecipient(r) {
 			switch (r.constructor) {

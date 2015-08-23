@@ -1,0 +1,40 @@
+<section role="dialog" id="achievement-notification" class="aui-layer aui-dialog2 aui-dialog2-medium" data-aui-modal="true" aria-hidden="true">
+  
+  <!-- Dialog header -->
+  <header class="aui-dialog2-header">
+    <!-- The dialog's title -->
+    <h2 class="aui-dialog2-header-main"><%= achievements.length === 1 ? 'New achievement !' : achievements.length + ' new achievements !'  %></h2>
+    <!-- Close icon -->
+    <a class="aui-dialog2-header-close">
+      <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+    </a>
+  </header>
+
+  <!-- Main dialog content -->
+  <div class="aui-dialog2-content">
+    <% _(achievements).each(function(a) { %>
+      <div class="achievement">
+          <img class="badge" src="<%= a.imgUrl %>">
+          <h3><%= a.title %></h3>
+          <p class="reason"><%= a.objective.pastTense('You') %></p>
+          <% if (a.gift) { %>
+            <p class="gift">Reward: you get <%= a.gift.lowerFirst() %>!</p>
+          <% } %>
+        </div>
+    <% }) %>
+  </div>
+
+  <!-- Dialog footer -->
+  <footer class="aui-dialog2-footer">
+    <!-- Actions to render on the right of the footer -->
+    <div class="aui-dialog2-footer-actions">
+      <button id="achievement-close-button" class="aui-button aui-button-primary">Close</button>
+    </div>
+    <!-- Hint text is rendered on the left of the footer -->
+    <div class="aui-dialog2-footer-hint">
+      <% if (nextLevel) { %>
+        You are <strong>"<%= currentLevel %>"</strong>, get <%= nextLevel.remaining %> more to become "<strong><%= nextLevel.title %></strong>"...
+      <% } %>
+    </div>
+  </footer>
+</section>

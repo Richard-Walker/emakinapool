@@ -36,4 +36,7 @@ $(function () {
 	EP.RegisterDialog();
 	EP.InviteDialog();
 
+	// Notifs
+	EP.Notifications();
+
 });

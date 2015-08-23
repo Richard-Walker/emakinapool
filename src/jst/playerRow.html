@@ -29,7 +29,7 @@
   </td>
   <td>
     <a href="<%= EP.Helpers.tipLink(opponents) %>">
-      <%= opponents.length %> opponents(s)
+      <%= opponents.length %> opponent(s)
     </a>
   </td>
   <td><%= streak %></td>
@@ -38,6 +38,11 @@
   <td>
     <a href="<%= EP.Helpers.tipLink(games) %>">
       <%= games.length %> game(s)
+    </a>
+  </td>
+  <td>
+    <a href="<%= EP.Helpers.tipLink( _(notifications).map(function(n) { return n.type + ':' + n.value; }) ) %>">
+      <%= notifications.length %> notification(s)
     </a>
   </td>
 </tr>

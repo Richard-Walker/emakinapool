@@ -127,6 +127,7 @@ EP.InviteDialog = function() {
 
 		var invitee = $('#invite-player').val();
 		var inviteeEmail = $('#invite-email').val();
+		var inviteeUsername = $('#invite-selected-player').val();
 		var to = invitee + ' <' + inviteeEmail + '>';
 
 		var data = {
@@ -136,9 +137,19 @@ EP.InviteDialog = function() {
 			url: EP.Settings.pageUrl
 		}
 
-		EP.Mail.send(to, 'invitation', data, null, function() {
-			AJS.messages.success({title: 'Invitation sent! Thanks for spreading the word :)'});
-		}, $('#invite-mailer').val())
+		EP.Mail.send(to, 'invitation', data, function() {
+			
+			// Update player profile upon success
+			EP.Data.get(function () {			
+				EP.Players.readData();
+				var currentUser = EP.Players.get(EP.CurrentUser.username);
+				currentUser.invitations = _(currentUser.invitations).union([inviteeUsername]);
+				EP.Achievements.evaluate(currentUser);
+				EP.Players.writeData();
+				EP.Data.saveAndReload('Invitation sent! Thanks for spreading the word :)');
+			});
+
+		})
 		
 		dialog.hide();
 

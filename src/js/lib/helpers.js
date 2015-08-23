@@ -143,6 +143,35 @@ EP.Helpers = function() {
     	});
 	}
 
+	String.prototype.lowerFirst = function() {
+    	return this.charAt(0).toLowerCase() + this.slice(1);
+	}
+
+	// This works only if 1st word is the verb
+	String.prototype.pastTense = function(pronoun) {
+
+		var irregularities = {
+			'win': 'won',
+			'loose': 'lost',
+			'get': 'got',
+			'keep': 'kept',
+			'make': 'made' 
+		}
+
+    	return pronoun + ' ' + this.replace(/^\w*/, function(verb) {
+    		verb = verb.toLowerCase();
+    		return irregularities[verb] || verb.replace(/e$/,'') + 'ed';
+    	});
+
+	}
+
+	// This works only if 1st word is the verb
+	String.prototype.futureTense = function(pronoun) {
+    	return this.replace(/^\w*/g, function(verb) {
+        	return pronoun + ' will ' + verb.toLowerCase();
+    	});
+	}
+
 	Date.prototype.daysSince = function(d) {
 		return Math.round((this.getTime() - d.getTime()) / (1000 * 3600 * 24));
 	}

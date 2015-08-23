@@ -8,7 +8,7 @@ var EP = EP || {};
 
 EP.Achievements = function() {
 	
-	var achievements = {
+	var Evaluators = {
 
 		// Experience
 
@@ -127,48 +127,81 @@ EP.Achievements = function() {
 
 	EP.Achievements = {};
 
+	var achievements = [];
+
+	EP.Achievements.readView = function() {
+		achievements = EP.Dom.Sections.$profileAchievements.find('tr:has(td)').map(function() {
+			var $cells = $(this).find('td');
+			var a = {
+				title:  $cells.eq(1).find('p').eq(0).text(),
+				objective: $cells.eq(1).find('p').eq(1).text(),
+				gift:   $cells.eq(1).find('p').eq(2).text(),
+				imgUrl: $cells.eq(0).find('img').attr('src'),
+				isLevel: $(this).closest('div.table-wrap').is(':last-of-type'),
+			}
+			if (a.gift === '') { a.gift = null }
+			if (!a.isLevel) { a.evaluate = Evaluators[a.title] }
+			return a;
+		})
+	}
+
+	EP.Achievements.list = function(sortAttribute) {
+		return sortAttribute == null ? achievements : _(achievements).sortBy(sortAttribute);
+	}
+
+	EP.Achievements.get = function(title) {
+		return _(achievements).findWhere({'title': title});
+	}
+
+
 	EP.Achievements.percentage = function(player) {
-		return Math.floor(player.achievements.length / _(achievements).keys().length * 100);
+		return Math.floor(player.achievements.length / _(achievements).where({isLevel: false}).length * 100);
 	}	
+
+
+	var levels = ['Novice', 'Apprentice', 'Expert', 'Master', 'Grand Master', 'Hall of Famer'];
+
+	function level(percentage) {
+		var percentile = Math.floor(percentage / 20);
+		return levels[percentile];
+	}
+
 
 	EP.Achievements.evaluate = function(player) {
 		
 		// Check for new achievements
-		_.chain(achievements).keys().difference(player.achievements).each(function (a) {
-			if (achievements[a](player)) { player.achievements.push(a) }
+		var notYetAchieved = _.chain(achievements).where({'isLevel': false}).reject(function(a) { return _(player.achievements).contains(a.title) });
+		notYetAchieved.each(function (a) {
+			if (a.evaluate(player)) {
+				player.achievements.push(a.title);
+				player.notifications.push({type: 'achievement', value: a.title});
+			}
 		});
 		
 		// Update level
-		var percentageTens = Math.floor(EP.Achievements.percentage(player) / 10);
-		switch (percentageTens) {
-			case 0:
-			case 1:
-				player.level = 'Novice';
-		    	break;
-			case 2:
-			case 3:
-				player.level = 'Apprentice';
-		    	break;
-			case 4:
-			case 5:
-				player.level = 'Expert';
-		    	break;
-			case 6:
-			case 7:
-				player.level = 'Master';
-		    	break;
-			case 8:
-			case 9:
-				player.level = 'Grand Master';
-		    	break;
-			case 10:
-				player.level = 'Hall of Famer';
-		    	break;
-			default:
-				player.level = 'Novice';
-		}
+		var levelBefore = player.level;
+		player.level = level(EP.Achievements.percentage(player));
+		if (player.level !== levelBefore) {
+			player.notifications.push({type: 'achievement', value: player.level});			
+		} 
+	}
 
-	}	
+	EP.Achievements.nextLevel = function(player) {
+		var percentage = EP.Achievements.percentage(player);
+		var nextPercentile = Math.floor(percentage / 20) + 1;
+		
+		if (nextPercentile >= levels.length) { 
+			return null;
+		} else {
+			return {
+				title: levels[nextPercentile],
+				remaining: Math.ceil((_(achievements).where({isLevel: false}).length * nextPercentile * 20 / 100)) - player.achievements.length
+			}
+		}   
+	}
+
+
+	EP.Achievements.readView();
 
 }
 

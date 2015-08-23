@@ -50,12 +50,18 @@ EP.Players = function() {
 				invitations: EP.Helpers.getTip($cells.eq(9)),
 				opponents: EP.Helpers.getTip($cells.eq(10)),
 				streak: parseInt($cells.eq(11).text()) || 0,
-				beltPossession: parseInt($cells.eq(12).text()) || null,
+				beltPossession: parseInt($cells.eq(12).text()),
 				weekPoints : parseInt($cells.eq(13).text()) || 0,
 				// inTopSince: inTopSinceString ? EP.Helpers.dateFromString(inTopSinceString, 'ISO') : null,
-				games: EP.Helpers.getTip($cells.eq(14))
+				games: EP.Helpers.getTip($cells.eq(14)),
 
+				notifications: _(EP.Helpers.getTip($cells.eq(15))).map(function (n) {
+					n = n.split(':');
+					return { type: n[0], value: n[1] }
+				})
 			}
+
+			if (isNaN(data.beltPossession)) { data.beltPossession = null; }
 
 			return new EP.Player(data);
 
@@ -118,6 +124,22 @@ EP.Players = function() {
 
 			var message = EP.CurrentUser.username === player.username ? "You are now registered, welcome onboard!" : "Player has been registered!";
 			EP.Data.saveAndReload(message);
+		
+		})
+	}
+
+	EP.Players.removeNotifications = function (username, callback) {
+		EP.Data.get(function () {
+
+			var backup = players;
+			
+			EP.Players.readData();
+			var player = EP.Players.get(username);
+			player.notifications = [];
+			EP.Players.writeData();
+			EP.Data.save(callback);
+
+			players = backup;
 		
 		})
 	}

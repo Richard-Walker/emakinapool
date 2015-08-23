@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-08-21
+/*! emakinapool - v0.1.0 - 2015-08-23
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -192,6 +192,35 @@ EP.Helpers = function() {
     	});
 	}
 
+	String.prototype.lowerFirst = function() {
+    	return this.charAt(0).toLowerCase() + this.slice(1);
+	}
+
+	// This works only if 1st word is the verb
+	String.prototype.pastTense = function(pronoun) {
+
+		var irregularities = {
+			'win': 'won',
+			'loose': 'lost',
+			'get': 'got',
+			'keep': 'kept',
+			'make': 'made' 
+		}
+
+    	return pronoun + ' ' + this.replace(/^\w*/, function(verb) {
+    		verb = verb.toLowerCase();
+    		return irregularities[verb] || verb.replace(/e$/,'') + 'ed';
+    	});
+
+	}
+
+	// This works only if 1st word is the verb
+	String.prototype.futureTense = function(pronoun) {
+    	return this.replace(/^\w*/g, function(verb) {
+        	return pronoun + ' will ' + verb.toLowerCase();
+    	});
+	}
+
 	Date.prototype.daysSince = function(d) {
 		return Math.round((this.getTime() - d.getTime()) / (1000 * 3600 * 24));
 	}
@@ -219,7 +248,7 @@ EP.Mail = function() {
 
 	EP.Mail = {}
 
-	EP.Mail.send = function (to, template, templateData, images, callback) {
+	EP.Mail.send = function (to, template, templateData, callback) {
 
 		function parseRecipient(r) {
 			switch (r.constructor) {
@@ -275,7 +304,7 @@ var EP = EP || {};
 
 EP.Achievements = function() {
 	
-	var achievements = {
+	var Evaluators = {
 
 		// Experience
 
@@ -394,48 +423,81 @@ EP.Achievements = function() {
 
 	EP.Achievements = {};
 
+	var achievements = [];
+
+	EP.Achievements.readView = function() {
+		achievements = EP.Dom.Sections.$profileAchievements.find('tr:has(td)').map(function() {
+			var $cells = $(this).find('td');
+			var a = {
+				title:  $cells.eq(1).find('p').eq(0).text(),
+				objective: $cells.eq(1).find('p').eq(1).text(),
+				gift:   $cells.eq(1).find('p').eq(2).text(),
+				imgUrl: $cells.eq(0).find('img').attr('src'),
+				isLevel: $(this).closest('div.table-wrap').is(':last-of-type'),
+			}
+			if (a.gift === '') { a.gift = null }
+			if (!a.isLevel) { a.evaluate = Evaluators[a.title] }
+			return a;
+		})
+	}
+
+	EP.Achievements.list = function(sortAttribute) {
+		return sortAttribute == null ? achievements : _(achievements).sortBy(sortAttribute);
+	}
+
+	EP.Achievements.get = function(title) {
+		return _(achievements).findWhere({'title': title});
+	}
+
+
 	EP.Achievements.percentage = function(player) {
-		return Math.floor(player.achievements.length / _(achievements).keys().length * 100);
+		return Math.floor(player.achievements.length / _(achievements).where({isLevel: false}).length * 100);
 	}	
+
+
+	var levels = ['Novice', 'Apprentice', 'Expert', 'Master', 'Grand Master', 'Hall of Famer'];
+
+	function level(percentage) {
+		var percentile = Math.floor(percentage / 20);
+		return levels[percentile];
+	}
+
 
 	EP.Achievements.evaluate = function(player) {
 		
 		// Check for new achievements
-		_.chain(achievements).keys().difference(player.achievements).each(function (a) {
-			if (achievements[a](player)) { player.achievements.push(a) }
+		var notYetAchieved = _.chain(achievements).where({'isLevel': false}).reject(function(a) { return _(player.achievements).contains(a.title) });
+		notYetAchieved.each(function (a) {
+			if (a.evaluate(player)) {
+				player.achievements.push(a.title);
+				player.notifications.push({type: 'achievement', value: a.title});
+			}
 		});
 		
 		// Update level
-		var percentageTens = Math.floor(EP.Achievements.percentage(player) / 10);
-		switch (percentageTens) {
-			case 0:
-			case 1:
-				player.level = 'Novice';
-		    	break;
-			case 2:
-			case 3:
-				player.level = 'Apprentice';
-		    	break;
-			case 4:
-			case 5:
-				player.level = 'Expert';
-		    	break;
-			case 6:
-			case 7:
-				player.level = 'Master';
-		    	break;
-			case 8:
-			case 9:
-				player.level = 'Grand Master';
-		    	break;
-			case 10:
-				player.level = 'Hall of Famer';
-		    	break;
-			default:
-				player.level = 'Novice';
-		}
+		var levelBefore = player.level;
+		player.level = level(EP.Achievements.percentage(player));
+		if (player.level !== levelBefore) {
+			player.notifications.push({type: 'achievement', value: player.level});			
+		} 
+	}
 
-	}	
+	EP.Achievements.nextLevel = function(player) {
+		var percentage = EP.Achievements.percentage(player);
+		var nextPercentile = Math.floor(percentage / 20) + 1;
+		
+		if (nextPercentile >= levels.length) { 
+			return null;
+		} else {
+			return {
+				title: levels[nextPercentile],
+				remaining: Math.ceil((_(achievements).where({isLevel: false}).length * nextPercentile * 20 / 100)) - player.achievements.length
+			}
+		}   
+	}
+
+
+	EP.Achievements.readView();
 
 }
 
@@ -944,12 +1006,18 @@ EP.Players = function() {
 				invitations: EP.Helpers.getTip($cells.eq(9)),
 				opponents: EP.Helpers.getTip($cells.eq(10)),
 				streak: parseInt($cells.eq(11).text()) || 0,
-				beltPossession: parseInt($cells.eq(12).text()) || null,
+				beltPossession: parseInt($cells.eq(12).text()),
 				weekPoints : parseInt($cells.eq(13).text()) || 0,
 				// inTopSince: inTopSinceString ? EP.Helpers.dateFromString(inTopSinceString, 'ISO') : null,
-				games: EP.Helpers.getTip($cells.eq(14))
+				games: EP.Helpers.getTip($cells.eq(14)),
 
+				notifications: _(EP.Helpers.getTip($cells.eq(15))).map(function (n) {
+					n = n.split(':');
+					return { type: n[0], value: n[1] }
+				})
 			}
+
+			if (isNaN(data.beltPossession)) { data.beltPossession = null; }
 
 			return new EP.Player(data);
 
@@ -1012,6 +1080,22 @@ EP.Players = function() {
 
 			var message = EP.CurrentUser.username === player.username ? "You are now registered, welcome onboard!" : "Player has been registered!";
 			EP.Data.saveAndReload(message);
+		
+		})
+	}
+
+	EP.Players.removeNotifications = function (username, callback) {
+		EP.Data.get(function () {
+
+			var backup = players;
+			
+			EP.Players.readData();
+			var player = EP.Players.get(username);
+			player.notifications = [];
+			EP.Players.writeData();
+			EP.Data.save(callback);
+
+			players = backup;
 		
 		})
 	}
@@ -1277,6 +1361,7 @@ EP.InviteDialog = function() {
 
 		var invitee = $('#invite-player').val();
 		var inviteeEmail = $('#invite-email').val();
+		var inviteeUsername = $('#invite-selected-player').val();
 		var to = invitee + ' <' + inviteeEmail + '>';
 
 		var data = {
@@ -1286,9 +1371,19 @@ EP.InviteDialog = function() {
 			url: EP.Settings.pageUrl
 		}
 
-		EP.Mail.send(to, 'invitation', data, null, function() {
-			AJS.messages.success({title: 'Invitation sent! Thanks for spreading the word :)'});
-		}, $('#invite-mailer').val())
+		EP.Mail.send(to, 'invitation', data, function() {
+			
+			// Update player profile upon success
+			EP.Data.get(function () {			
+				EP.Players.readData();
+				var currentUser = EP.Players.get(EP.CurrentUser.username);
+				currentUser.invitations = _(currentUser.invitations).union([inviteeUsername]);
+				EP.Achievements.evaluate(currentUser);
+				EP.Players.writeData();
+				EP.Data.saveAndReload('Invitation sent! Thanks for spreading the word :)');
+			});
+
+		})
 		
 		dialog.hide();
 
@@ -1414,6 +1509,42 @@ EP.MatchesTable = function() {
 
 
 
+
+}
+/*
+
+EP.Notifications
+
+*/
+
+var EP = EP || {};
+
+EP.Notifications = function() {
+
+	EP.Notifications = {};
+
+	var achievements = _(EP.CurrentUser.notifications).where({type: 'achievement'});
+	
+	if (achievements.length > 0) {
+
+		var data = {
+			achievements: _.chain(achievements).pluck('value').map(EP.Achievements.get).value(),
+			currentLevel: EP.CurrentUser.level,
+			nextLevel: EP.Achievements.nextLevel(EP.CurrentUser)
+		}
+
+		$('body').append(JST.achievementNotification(data));
+
+		var dialog = AJS.dialog2('#achievement-notification');
+
+		$('#achievement-close-button').click(function() {
+			dialog.hide();
+			EP.Players.removeNotifications(EP.CurrentUser.username);
+		});
+
+		dialog.show();
+
+	}
 
 }
 /*
@@ -1877,5 +2008,8 @@ $(function () {
 	EP.SubmitMatchDialog();
 	EP.RegisterDialog();
 	EP.InviteDialog();
+
+	// Notifs
+	EP.Notifications();
 
 });
