@@ -13,15 +13,16 @@ var EP = EP || {};
 
 EP.InviteDialog = function() {
 
+	EP.InviteDialog = {};
+
 	// Create dialog from template
 	
 	var html = JST.inviteDialog({});
 	$('body').append(html);
 	Confluence.Binder.autocompleteUserOrGroup('#invite-dialog'); 
 	var dialog = AJS.dialog2('#invite-dialog');
-	
-	// var dialog = EP.inviteDialog;
-	
+	EP.InviteDialog.dialog = dialog;
+		
 	dialog.on('show', function (e) {EP.Helpers.resetDialog(e.target);});
 
 	// Triggers

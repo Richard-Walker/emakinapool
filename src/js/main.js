@@ -10,7 +10,6 @@ var EP = EP || {};
 $(function () {
 	
 	// Global stuff
-	EP.Settings();
 	EP.Helpers();
 	EP.Confluence();
 	EP.Dom();

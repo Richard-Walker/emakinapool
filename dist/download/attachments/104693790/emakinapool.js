@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-08-23
+/*! emakinapool - v0.1.0 - 2015-08-27
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -139,11 +139,11 @@ EP.Helpers = function() {
 	EP.Helpers.resetDialog = function(dialog) {
 		var $e = $(dialog);
 		$e.find('.error').css('visibility', 'hidden');
-		$e.find('input').val('');
+		$e.find('input:not([type=hidden])').val('');
 		$e.find('textarea').val('');
-		$e.find("select option").removeAttr('selected');
-		$e.find("select option:first-child").attr('selected','selected');
-		$e.find("input[type=radio]").prop("checked", false);
+		$e.find('select option').removeAttr('selected');
+		$e.find('select option:first-child').attr('selected','selected');
+		$e.find('input[type=radio]').prop('checked', false);
 	}
 
 	EP.Helpers.filterSelect = function($select, filter) {
@@ -201,7 +201,7 @@ EP.Helpers = function() {
 
 		var irregularities = {
 			'win': 'won',
-			'loose': 'lost',
+			'lose': 'lost',
 			'get': 'got',
 			'keep': 'kept',
 			'make': 'made' 
@@ -1126,53 +1126,6 @@ EP.Players = function() {
 
 /*
 
-EP.Settings
-
-Common settings used by other modules
-
-Important!
-
-	There should be 1 file per environment.
-	This example file is the only one commited.
-	Sensitive inforamtion has been removed.
-
-*/
-
-var EP = EP || {};
-
-EP.Settings = function() {
-
-	EP.Settings = {
-
-		// Environement name ('dev', 'test' or 'prod'), influence the publication
-		environment: 'test',
-
-		// Server credentials.
-		serverAuthUsername: 'emakinapoolapp',
-		serverAuthPassword: 'no1shouldbetrustEd',
-
-		// Value of 'from' field when sending emails
-		emailFrom: 'Emakinapool test app <info@league.emakinapool.xyz>',
-
-		// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
-		forceEmailTo: 'Emakinapool tester <r.p.walker@gmail.com>',
-
-		// Confluence Page that holds all the league data. DO NOT USE PRODUCTION PAGE IN TEST! 
-		pageId: '102662893',
-		pageUrl: 'https://share.emakina.net/display/activities/Pool+League',
-
-		// Elo config
-		kFactor: 32,
-		initialRating: 1500,
-
-		// Number of row initially shown in matches table
-		matchesRows: 5
-	}
-
-};
-
-/*
-
 EP.Dom
 
 Dom accessors for the confluence page
@@ -1197,8 +1150,11 @@ EP.Dom = function() {
 		$players: $('.players-table'),
 		$matches: $('.matches-table'),
 		$submitMatchButton: $('#add-match-button'),
-		$registerButton: $('#subscribe-button'),
+		$registerButton: $('#register-button'),
+		$playButton: $('#play-button'),
 		$inviteButton: $('#invite-button'),
+
+		$joinButton: $('#subscribe-button'),
 
 		NavLinks: {
 			$join: 		$navLinks.eq(0),
@@ -1247,15 +1203,16 @@ var EP = EP || {};
 
 EP.InviteDialog = function() {
 
+	EP.InviteDialog = {};
+
 	// Create dialog from template
 	
 	var html = JST.inviteDialog({});
 	$('body').append(html);
 	Confluence.Binder.autocompleteUserOrGroup('#invite-dialog'); 
 	var dialog = AJS.dialog2('#invite-dialog');
-	
-	// var dialog = EP.inviteDialog;
-	
+	EP.InviteDialog.dialog = dialog;
+		
 	dialog.on('show', function (e) {EP.Helpers.resetDialog(e.target);});
 
 	// Triggers
@@ -1579,14 +1536,16 @@ EP.Page = function() {
 
 	EP.Dom.NavLinks.$gallery.show();
 	EP.Dom.Sections.$gallery.show();
+	EP.Dom.$toolbar.show();
 
 	if (EP.CurrentUser.isRegistered) {
-		$('#page-toolbar').show();
+		EP.Dom.$registerButton.hide();
 		EP.Dom.NavLinks.$profile.show();
 		EP.Dom.Sections.$profile.show();
-	}
-
-	if (!EP.CurrentUser.isRegistered) {
+	} else {
+		EP.Dom.$submitMatchButton.hide();
+		EP.Dom.$playButton.hide();
+		EP.Dom.$inviteButton.hide();
 		EP.Dom.NavLinks.$join.show();
 		EP.Dom.Sections.$join.show();
 	}
@@ -1778,6 +1737,7 @@ EP.RegisterDialog = function() {
 
 	// Triggers
 
+	EP.Dom.$joinButton.click(function() {dialog.show();});
 	EP.Dom.$registerButton.click(function() {dialog.show();});
 
 	// Validation rules
@@ -1945,7 +1905,6 @@ EP.SubmitMatchDialog = function() {
 	// Cancel action
 	$('#match-cancel-button').click( function() { dialog.hide() });
 
-
 	// Save action
 	$('#match-save-button').click( function() {
 		//TODO: spinner needed?
@@ -1968,8 +1927,73 @@ EP.SubmitMatchDialog = function() {
 		dialog.hide();
 	});
 
+	// Invite link
+	$('#match-invite-link').click( function() {
+		dialog.hide();
+		EP.InviteDialog.dialog.show();
+		return false;
+	});
+
 
 };
+
+/*
+
+EP.Settings
+
+Common settings used by other modules
+
+Important:
+
+	There should be 1 file per environment.
+	This is the settings for the TEST environment.
+	This file must not be committed because it contains sentistive information.
+
+*/
+
+var EP = EP || {};
+
+EP.Settings = {
+
+	// Environement ('dev', 'test' or 'prod'), influence the publication
+	environment: 'test',
+
+	// Openshift server credentials.
+	serverAuthUsername: 'ABC',
+	serverAuthPassword: 'XYZ',
+
+	// Value of 'from' field when sending emails
+	emailFrom: 'Emakinapool test app <info@xyz.com>',
+
+	// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
+	forceEmailTo: 'Emakinapool tester <abc@xyz.com>',
+
+	// Confluence Page that holds all the league data.
+	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  
+	pageId: '102662893',
+	pageUrl: 'https://share.emakina.net/display/activities/Pool+League',
+
+	// Elo config
+	kFactor: 32,
+	initialRating: 1500,
+
+	// Number of row initially shown in matches table
+	matchesRows: 10,
+
+	// Wether to allow loser to encode a match
+	allowLoserToEncode: false,
+
+	// List of admin users with advanced priviledges (edit the page)
+	admins: ['rwa']
+
+}
+
+try {
+	module.exports = EP.Settings;
+}
+catch(e) {
+	console.log('Module loaded ouside nodejs');
+}
 
 /*
 
@@ -1983,7 +2007,6 @@ var EP = EP || {};
 $(function () {
 	
 	// Global stuff
-	EP.Settings();
 	EP.Helpers();
 	EP.Confluence();
 	EP.Dom();

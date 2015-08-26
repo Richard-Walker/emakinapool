@@ -23,6 +23,7 @@ EP.RegisterDialog = function() {
 
 	// Triggers
 
+	EP.Dom.$joinButton.click(function() {dialog.show();});
 	EP.Dom.$registerButton.click(function() {dialog.show();});
 
 	// Validation rules

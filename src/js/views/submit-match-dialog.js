@@ -100,7 +100,6 @@ EP.SubmitMatchDialog = function() {
 	// Cancel action
 	$('#match-cancel-button').click( function() { dialog.hide() });
 
-
 	// Save action
 	$('#match-save-button').click( function() {
 		//TODO: spinner needed?
@@ -121,6 +120,13 @@ EP.SubmitMatchDialog = function() {
 
 		EP.Matches.add(matchData);
 		dialog.hide();
+	});
+
+	// Invite link
+	$('#match-invite-link').click( function() {
+		dialog.hide();
+		EP.InviteDialog.dialog.show();
+		return false;
 	});
 
 

@@ -30,14 +30,16 @@ EP.Page = function() {
 
 	EP.Dom.NavLinks.$gallery.show();
 	EP.Dom.Sections.$gallery.show();
+	EP.Dom.$toolbar.show();
 
 	if (EP.CurrentUser.isRegistered) {
-		$('#page-toolbar').show();
+		EP.Dom.$registerButton.hide();
 		EP.Dom.NavLinks.$profile.show();
 		EP.Dom.Sections.$profile.show();
-	}
-
-	if (!EP.CurrentUser.isRegistered) {
+	} else {
+		EP.Dom.$submitMatchButton.hide();
+		EP.Dom.$playButton.hide();
+		EP.Dom.$inviteButton.hide();
 		EP.Dom.NavLinks.$join.show();
 		EP.Dom.Sections.$join.show();
 	}

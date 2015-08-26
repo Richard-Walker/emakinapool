@@ -90,11 +90,11 @@ EP.Helpers = function() {
 	EP.Helpers.resetDialog = function(dialog) {
 		var $e = $(dialog);
 		$e.find('.error').css('visibility', 'hidden');
-		$e.find('input').val('');
+		$e.find('input:not([type=hidden])').val('');
 		$e.find('textarea').val('');
-		$e.find("select option").removeAttr('selected');
-		$e.find("select option:first-child").attr('selected','selected');
-		$e.find("input[type=radio]").prop("checked", false);
+		$e.find('select option').removeAttr('selected');
+		$e.find('select option:first-child').attr('selected','selected');
+		$e.find('input[type=radio]').prop('checked', false);
 	}
 
 	EP.Helpers.filterSelect = function($select, filter) {
@@ -152,7 +152,7 @@ EP.Helpers = function() {
 
 		var irregularities = {
 			'win': 'won',
-			'loose': 'lost',
+			'lose': 'lost',
 			'get': 'got',
 			'keep': 'kept',
 			'make': 'made' 

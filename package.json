@@ -16,7 +16,6 @@
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-http-upload": "^0.1.8",
-    "grunt-inline": "^0.3.6",
     "grunt-inline-css": "^0.1.5",
     "grunt-newer": "^1.1.1",
     "grunt-shell": "^1.1.2",

@@ -1,9 +1,13 @@
 @import "palette.less";
 
-/* 
 
-Common elements
- 
+
+/* 
+---------------------------------------------------------------------------------------------------
+
+General elements
+
+---------------------------------------------------------------------------------------------------
 */
 
 .wiki-content h1 {
@@ -17,13 +21,22 @@ Common elements
 }
 
 
-/*
+
+/* 
+---------------------------------------------------------------------------------------------------
 
 Confluence elements
 
+---------------------------------------------------------------------------------------------------
 */
 
-/*.confluenceTh, .confluenceTd {
+/*
+img {
+  pointer-events: none;
+  cursor: default;
+}
+
+.confluenceTh, .confluenceTd {
   border-color: @color-bw-4;
 }
 
@@ -31,8 +44,13 @@ Confluence elements
   background-color: @color-secondary-2-1!important;
 }
 */
+
+.page-metadata-wrapper {
+  display:none
+}
+
 .wiki-content .cell {
-    display: block;
+  display: block;
 }
 
 div.columnLayout.single {
@@ -54,20 +72,28 @@ div.columnLayout.single {
 #aui-message-bar {
   position: static;
   max-width: none;
+  padding-bottom: 20px;
 }
 
 .aui-message.closeable .icon-close {
   top: 13px;
 }
 
-/*
 
-Navigation header
 
+/* 
+---------------------------------------------------------------------------------------------------
+
+Navigation / Header
+
+---------------------------------------------------------------------------------------------------
 */
-
-
+ 
 /* Toolbar */
+
+.wiki-content a.aui-button {
+  color: inherit;
+}
 
 .wiki-content .contentLayout2 .columnLayout .cell {
   padding-left: 10px;
@@ -119,12 +145,16 @@ Navigation header
 }
 
 
+
 /* 
+---------------------------------------------------------------------------------------------------
 
-Mobile display (=default)
-Hidding everything that should not be in the mobile view 
-
+Static display
+Hidding everything that is not relevent if scripts are disabled 
+ 
+---------------------------------------------------------------------------------------------------
 */
+   
 
 /* hide toolbar */
 #page-toolbar {
@@ -157,19 +187,22 @@ a[href $= "tip://"] + * {
 }
 
 
-/*
 
-Join section
+/* 
+---------------------------------------------------------------------------------------------------
 
+Section 'Join the action'
+
+---------------------------------------------------------------------------------------------------
 */
-
+ 
 .contentLayout2 .columnLayout:nth-child(2) div.innerCell {
   background-image: url('./join-background.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   text-align: center;
-  padding: 60px;
+  padding: 80px;
 }
 
 .join-title ~ h2 {
@@ -179,7 +212,7 @@ Join section
 
 .join-title ~ ul {
   list-style-type: none;
-  margin: 85px 0px;
+  margin: 60px 0px;
   color: @color-bw-1;
   font-size: 25px;
   text-shadow: 1px 1px @color-bw-4;
@@ -196,15 +229,22 @@ Join section
     padding-right: 20px;
 }
 
-/*
 
-Profile section
 
+/* 
+---------------------------------------------------------------------------------------------------
+
+Section 'Profile'
+
+---------------------------------------------------------------------------------------------------
 */
+
+.profile-title ~ .table-wrap {
+  margin:0px;
+}
 
 .profile-title ~ .table-wrap:first-of-type {
   vertical-align: middle;
-  padding: 50px;
   line-height: 25px;
   /*background-color: @color-secondary-2-1;*/
 }
@@ -212,7 +252,7 @@ Profile section
 .profile-title ~ .table-wrap:last-of-type {
   position: absolute;
   vertical-align: middle;
-  top: 40px;
+  top: 0px;
   right: 70px;
   border: 1px solid @color-bw-4;
   border-radius: 8px;
@@ -244,9 +284,9 @@ Profile section
 
 .profile-summary .aui-lozenge {
   padding: 8px 15px;
-  color: @color-primary-0!important;
+  color: @color-secondary-1-0!important;
   border-width: 1px;
-  border-color: @color-primary-0!important;
+  border-color: @color-secondary-1-0!important;
 }
 
 .profile-summary ul {
@@ -255,13 +295,14 @@ Profile section
 
 .profile-stats th {
   font-weight: normal!important;
-  background-color: transparent!important;
+  background-color: @color-bw-6!important;
   text-align: right!important;
   color: @color-bw-1!important;
   padding-left: 30px;
 }
 .profile-stats td {
   color: @color-bw-3;
+  background-color: @color-bw-6!important;
   padding-right: 30px;
 }
 .profile-stats tr:last-child > * {
@@ -278,12 +319,14 @@ Profile section
 }
 
 
-/*
 
-Achievements section
+/* 
+---------------------------------------------------------------------------------------------------
 
+Sub-section 'Achievements'
+
+---------------------------------------------------------------------------------------------------
 */
-
 
 .achievements-title {
   margin-top: 40px!important;
@@ -303,7 +346,7 @@ Achievements section
   content: " ";
   height: 100%;
   width: 32%;
-  background-color: @color-primary-2 ;
+  background-color: @color-primary-1 ;
   display: block;
   position: absolute;
 }
@@ -388,7 +431,7 @@ Achievements section
 }
 
 
-/* Achievements completion */
+/* Achievements completion  */
 
 .achievements-title ~ .table-wrap tr:not(.completed) td p {
   color: @color-bw-4;
@@ -402,12 +445,14 @@ Achievements section
 
 
 
-/*
+/* 
+---------------------------------------------------------------------------------------------------
 
-Players sections
+Sections 'Players'
 
+---------------------------------------------------------------------------------------------------
 */
-
+ 
 .players-table {
   width:100%;
   white-space: nowrap; 
@@ -440,12 +485,16 @@ Players sections
   margin-right: 10px;
 }
 
-/*
 
-Matches section
 
+/* 
+---------------------------------------------------------------------------------------------------
+
+Section 'Matches'
+
+---------------------------------------------------------------------------------------------------
 */
-
+ 
 .matches-table {
   width:100%;
   white-space: nowrap;   
@@ -465,12 +514,15 @@ Matches section
 }
 
 
-/*
 
-Gallery section
+/* 
+---------------------------------------------------------------------------------------------------
 
+Section 'Gallery'
+
+---------------------------------------------------------------------------------------------------
 */
-
+ 
 .gallery table {
   width:100%;
 }
@@ -478,6 +530,7 @@ Gallery section
 .gallery-image {
   vertical-align: middle!important;
 }
+
 .gallery-caption {
   padding-top: 5px;
   padding-bottom: 100px;
@@ -485,7 +538,6 @@ Gallery section
 
 .gallery-image img {
 }
-
 
 .plugin_attachments_table_container {
   display: none;
@@ -495,10 +547,13 @@ Gallery section
 }
 
 
-/*
 
-FAQ section
+/* 
+---------------------------------------------------------------------------------------------------
 
+Section 'FAQ'
+
+---------------------------------------------------------------------------------------------------
 */
 
 .expand-control {
@@ -515,13 +570,15 @@ FAQ section
 }
 
 
-/*
 
-Achievement notification
+/* 
+---------------------------------------------------------------------------------------------------
 
+Achievements notifications
+
+---------------------------------------------------------------------------------------------------
 */
-
-
+ 
 #achievement-notification .achievement {
   text-align: center;
   padding-top: 30px;
@@ -546,11 +603,21 @@ Achievement notification
   font-weight: bold;
 }
 
-/*
+
+/* 
+---------------------------------------------------------------------------------------------------
 
 Forms
 
+---------------------------------------------------------------------------------------------------
 */
+
+.large-field-group {
+  height: 110px;
+}
+.medium-large-field-group {
+  height: 85px;
+}
 
 form.aui .xxs-field {
     max-width: 50px;
@@ -573,6 +640,9 @@ form.aui .xl-field {
 form.aui .xxl-field {
     max-width: 400px;
 }
+form.full-width-field {
+  margin: 0px!important;
+}
 
 .aui-dialog2-content .sentence {
   padding: 20px 5px;
@@ -593,39 +663,12 @@ form.aui .select {
   margin: 0px 5px;
 }
 
-/* Toolbar */
-
-.wiki-content a.aui-button {
-  color: inherit;
-}
-
-/* Forms */
-
-.large-field-group {
-  height: 110px;
-}
-
-.medium-large-field-group {
-  height: 85px;
-}
-
-.full-width-field {
-  margin: 0px!important;
-}
-
-
 form.aui .error {
   background: none;
   margin-top: 5px;
   margin-bottom: 10px;
   text-align: inherit;
   color: @color-error-dark;
-}
-
-.user-mention img {
-  margin-right:7px;
-  height:30px;
-  vertical-align: text-bottom;
 }
 
 
@@ -637,60 +680,7 @@ form.aui .error {
   width: 100%;
 }
 
-
-/* Message zone */
-
-#aui-message-bar {
-  padding-bottom: 20px;
-}
-
-/* Hide meta data display at top of page */
-
-.page-metadata-wrapper {
-display:none
-}
-
-/* Disable click on visuals */
-
-#main-content > p:first-of-type img,
-#main-content > div > p:first-of-type img,
-.rw_news_item img {
-pointer-events: none;
-cursor: default;
-}
-
-/* Match information styles */
-
-p.match-rankings, p.match-titles {
-  font-size:75%; 
-  margin-top:4px;
-}
-
-/* Icons */
-
-img.pool-icon {
-  vertical-align: middle;
-  width: 25px; height: 25px;
-}
-
 /*
-
-.user-mention:before {
-  content:none!important;
-}
-
-
-.wiki-content .current-user-mention {
-  background: @color-bw-6;
-  border: 1px solid @color-bw-4;
-  color: @color-secondary-1-3!important;
-  font-weight: bold;
-}
-*/
-/****************/
-/* Forms        */
-/****************/
-
 .aui-inline-dialog {
   z-index: 10000!important;
 }
@@ -699,52 +689,10 @@ img.pool-icon {
   z-index: 10001!important;
 }
 
-
-/****************/
-/* Fancy titles */
-/****************/
-/*
-#rw_page_toolbar,
-#rw_blogpost_toolbar {
-margin-bottom: 20px
-}
-
-#rw_wrapper h1.rw_page_title,
-#rw_wrapper h1.rw_page_title::before,
-#rw_wrapper h1.rw_page_title::after {
-  position: absolute;
-  background: rgba(255, 132, 0,0.8);
-  color: @color-bw-w;
-}
-
-#rw_wrapper h1.rw_page_title {
-  top: 180px;
-  padding: 20px;
-  background: rgba(255, 132, 0,0.8);
-  color: @color-bw-w;
-  font-weight: bold;
-  font-size: 24pt;
-  max-width: 30%;
-  z-index: 10;
-}
-
-#rw_wrapper h1.rw_page_title::before,
-#rw_wrapper h1.rw_page_title::after {
-  content: "";
-  position: absolute;
-  height: 33%;
-}
-
-#rw_wrapper h1.rw_page_title::before {
-  width: 15px;
-  right: -15px;
-  top: 0px;
-}
-
-h1#rw_page_title::after {
-  bottom: 34%;
-  width: 40px;
-  right: -40px;
+.user-mention img {
+  margin-right:7px;
+  height:30px;
+  vertical-align: text-bottom;
 }
 
 */

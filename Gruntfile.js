@@ -1,18 +1,24 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  var Settings = require('./src/js/settings.' + (grunt.option('env') || 'test') + '.js');
+
   grunt.initConfig({
     
     // Metadata
 
     pkg: grunt.file.readJSON('package.json'),
+    
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= pkg.license %> */\n\n',
+    
     pagePath: 'display/activities/Pool+League',
+    
     assetsPageId: '102665363',
+    
     scriptsPageId: '104693790',
 
     // Tasks config
@@ -36,7 +42,11 @@ module.exports = function(grunt) {
         stripBanners: false
       },
       js: {
-        src: ['src/js/**/*.js', '!src/js/main.js', 'src/js/main.js'],
+        src: [
+          'src/js/**/*.js',
+          '!src/js/settings.js', '!src/js/settings.*.js', 'src/js/settings.' + Settings.environment + '.js',
+          '!src/js/main.js', 'src/js/main.js'
+        ],
         dest: 'dist/download/attachments/<%= scriptsPageId %>/<%= pkg.name %>.js'
       },
     },

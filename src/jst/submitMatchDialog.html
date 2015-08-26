@@ -15,11 +15,16 @@
 
             <div class="sentence">
               Today, I
-              <select class="select xs-field" id="match-outcome">
-                <option value=""></option>
-                <option value="1">won</option>
-                <option value="0">lost</option>
-              </select>
+              <% if(EP.Settings.allowLoserToEncode) { %>
+                <select class="select xs-field" id="match-outcome">
+                  <option value=""></option>
+                  <option value="1">won</option>
+                  <option value="0">lost</option>
+                </select>
+              <% } else { %>
+                <strong>won</strong>
+                <input type="hidden" id="match-outcome" value="1">
+              <% } %>
               against
               <select class="select l-field" id="match-opponent">
                 <option value=""></option>
@@ -93,7 +98,7 @@
         </div>
       <!-- Hint text is rendered on the left of the footer -->
       <div class="aui-dialog2-footer-hint" id="match-hint">
-            Your opponent is not in the championship? <a id="match-register-link" href="https://share.emakina.net/display/activities/Pool+Championship+-+V2#">Invite him!</a>
+            Your opponent is not in the league? <a id="match-invite-link" href="#">Invite him!</a>
       </div>
     </footer>
 </section>

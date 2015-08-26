@@ -32,5 +32,8 @@ confluenceCookies.txt
 # Mac files
 .DS_Store
 
-# Sensitive information
-settings.js
+# Sources with sensitive information
+settings.*.js
+
+# Buit files with sensitive information
+dist/**/emakinapool.js 
