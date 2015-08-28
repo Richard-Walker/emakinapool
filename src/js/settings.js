@@ -46,7 +46,7 @@ EP.Settings = {
 	// Wether to allow loser to encode a match
 	allowLoserToEncode: false,
 
-	// List of admin users with advanced priviledges (edit the page)
+	// List of admin users with advanced priviledges (they can edit the page)
 	admins: ['rwa']
 
 }

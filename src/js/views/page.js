@@ -13,6 +13,12 @@ var EP = EP || {};
 
 EP.Page = function() {
 
+
+	// Disable the edit shortcut ("e") for non admins
+	if (!_(EP.Settings.admins).contains(EP.CurrentUser.username)) {
+		window.document.onkeydown = function (e) { return e.which !== 69 };
+	}
+
 	// MESSAGING DIV -----------------------------
 
 	// Add messaging div

@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-08-27
+/*! emakinapool - v0.1.0 - 2015-08-28
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -29,19 +29,40 @@ EP.Confluence = function() {
 
 	AJS.messages.origError = AJS.messages.error;
 	AJS.messages.error = function(opts) {
+		EP.Confluence.closeDialogs();
 		opts = _(opts).defaults({
 			fadeout: true,
 			closeable: false
 		});
 		return AJS.messages.origError(opts);
 	}
+
 	AJS.messages.origSuccess = AJS.messages.success;
 	AJS.messages.success = function(opts) {
+		EP.Confluence.closeDialogs();
 		opts = _(opts).defaults({
 			fadeout: true,
 			closeable: false
 		});
 		return AJS.messages.origSuccess(opts);
+	}
+
+
+	EP.Confluence.freezeDialogs = function() {
+		$('.aui-dialog2').find('button, input, textarea, select, a').prop('disabled', true);
+		$('.aui-dialog2').find('a').css('pointer-events', 'none');
+		$('.aui-dialog2').find('.button-spinner').spin();
+	}
+	EP.Confluence.unFreezeDialogs = function() {
+		$('.aui-dialog2').find('button, input, textarea, select, a').prop('disabled', false);
+		$('.aui-dialog2').find('a').css('pointer-events', '');
+		$('.aui-dialog2').find('.button-spinner').spinStop();
+	}
+	EP.Confluence.closeDialogs = function() {
+		if ($('.aui-dialog2').length > 0) {
+			EP.Confluence.unFreezeDialogs();
+			AJS.dialog2('.aui-dialog2').hide();
+		}
 	}
 
 }
@@ -1314,7 +1335,7 @@ EP.InviteDialog = function() {
 
 	$('#invite-send-button').click( function() {
 
-		//TODO: spinner needed?
+		EP.Confluence.freezeDialogs();
 
 		var invitee = $('#invite-player').val();
 		var inviteeEmail = $('#invite-email').val();
@@ -1342,8 +1363,6 @@ EP.InviteDialog = function() {
 
 		})
 		
-		dialog.hide();
-
 	});
 
 };
@@ -1518,6 +1537,12 @@ Gloabl page enhancement such as:
 var EP = EP || {};
 
 EP.Page = function() {
+
+
+	// Disable the edit shortcut ("e") for non admins
+	if (!_(EP.Settings.admins).contains(EP.CurrentUser.username)) {
+		window.document.onkeydown = function (e) { return e.which !== 69 };
+	}
 
 	// MESSAGING DIV -----------------------------
 
@@ -1788,7 +1813,7 @@ EP.RegisterDialog = function() {
 	// Save action
 	$('#player-save-button').click( function() {
 
-		//TODO: spinner needed?
+		EP.Confluence.freezeDialogs();
 
 		EP.Players.add( {
 			username: EP.CurrentUser.username,
@@ -1797,7 +1822,6 @@ EP.RegisterDialog = function() {
 			stageName: $.trim($('#player-stage-name').val())
 		});
 		
-		dialog.hide();
 	});
 
 
@@ -1907,8 +1931,9 @@ EP.SubmitMatchDialog = function() {
 
 	// Save action
 	$('#match-save-button').click( function() {
-		//TODO: spinner needed?
-		
+
+		EP.Confluence.freezeDialogs();
+
 		var matchData = {
 			players: [
 				EP.CurrentUser.username, 
@@ -1924,7 +1949,7 @@ EP.SubmitMatchDialog = function() {
 		matchData.winner = $('#match-outcome').val() === '1' ? matchData.players[0] : matchData.players[1];
 
 		EP.Matches.add(matchData);
-		dialog.hide();
+
 	});
 
 	// Invite link
@@ -1983,7 +2008,7 @@ EP.Settings = {
 	// Wether to allow loser to encode a match
 	allowLoserToEncode: false,
 
-	// List of admin users with advanced priviledges (edit the page)
+	// List of admin users with advanced priviledges (they can edit the page)
 	admins: ['rwa']
 
 }

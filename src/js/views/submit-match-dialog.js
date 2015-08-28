@@ -102,8 +102,9 @@ EP.SubmitMatchDialog = function() {
 
 	// Save action
 	$('#match-save-button').click( function() {
-		//TODO: spinner needed?
-		
+
+		EP.Confluence.freezeDialogs();
+
 		var matchData = {
 			players: [
 				EP.CurrentUser.username, 
@@ -119,7 +120,7 @@ EP.SubmitMatchDialog = function() {
 		matchData.winner = $('#match-outcome').val() === '1' ? matchData.players[0] : matchData.players[1];
 
 		EP.Matches.add(matchData);
-		dialog.hide();
+
 	});
 
 	// Invite link

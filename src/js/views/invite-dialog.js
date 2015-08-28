@@ -124,7 +124,7 @@ EP.InviteDialog = function() {
 
 	$('#invite-send-button').click( function() {
 
-		//TODO: spinner needed?
+		EP.Confluence.freezeDialogs();
 
 		var invitee = $('#invite-player').val();
 		var inviteeEmail = $('#invite-email').val();
@@ -152,8 +152,6 @@ EP.InviteDialog = function() {
 
 		})
 		
-		dialog.hide();
-
 	});
 
 };

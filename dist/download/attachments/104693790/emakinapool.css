@@ -50,15 +50,11 @@ img {
   pointer-events: none;
   cursor: default;
 }
-
-.confluenceTh, .confluenceTd {
-  border-color: @color-bw-4;
-}
-
-.confluenceTh {
-  background-color: @color-secondary-2-1!important;
-}
 */
+/* Hide edit button */
+#editPageLink {
+  display: none;
+}
 .page-metadata-wrapper {
   display: none;
 }
@@ -179,12 +175,24 @@ Section 'Join the action'
 ---------------------------------------------------------------------------------------------------
 */
 .contentLayout2 .columnLayout:nth-child(2) div.innerCell {
+  text-align: center;
+  padding: 80px;
+  position: relative;
+  z-index: 0;
+}
+.contentLayout2 .columnLayout:nth-child(2) div.innerCell::before {
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
   background-image: url('join-background.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  text-align: center;
-  padding: 80px;
+  opacity: 0.65;
 }
 .join-title ~ h2 {
   color: #333333;
@@ -195,7 +203,7 @@ Section 'Join the action'
   margin: 60px 0px;
   color: #333333;
   font-size: 25px;
-  text-shadow: 1px 1px #aaaaaa;
+  /* text-shadow: 1px 1px @color-bw-4; */
   padding: 0px;
 }
 .join-title ~ ul li {
@@ -540,8 +548,13 @@ form.aui .xl-field {
 form.aui .xxl-field {
   max-width: 400px;
 }
-form.full-width-field {
+form.aui .full-width-field {
   margin: 0px!important;
+}
+.aui-dialog2 .button-spinner {
+  height: 10px;
+  width: 30px;
+  display: inline-block;
 }
 .aui-dialog2-content .sentence {
   padding: 20px 5px;

@@ -74,7 +74,7 @@ EP.RegisterDialog = function() {
 	// Save action
 	$('#player-save-button').click( function() {
 
-		//TODO: spinner needed?
+		EP.Confluence.freezeDialogs();
 
 		EP.Players.add( {
 			username: EP.CurrentUser.username,
@@ -83,7 +83,6 @@ EP.RegisterDialog = function() {
 			stageName: $.trim($('#player-stage-name').val())
 		});
 		
-		dialog.hide();
 	});
 
 
