@@ -74,7 +74,7 @@ EP.RegisterDialog = function() {
 	// Save action
 	$('#player-save-button').click( function() {
 
-		EP.Confluence.freezeDialogs();
+		EP.Confluence.freezeDialog();
 
 		EP.Players.add( {
 			username: EP.CurrentUser.username,

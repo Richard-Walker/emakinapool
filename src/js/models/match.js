@@ -59,9 +59,6 @@ EP.Match = function() {
 			this.winner.rating = EP.Helpers.EloRank.updateRating(winnerExpectedScore, 1, this.winner.rating);	
 			this.looser.rating -= (this.winner.rating - winnerRatingBeforeMatch);
 
-			// Update ranking
-			EP.Players.updateRanking();
-
 			// Update belt ownership
 			var isBeltChallenge = (this.winner.hasBelt || this.looser.hasBelt) && (this.game === '1 pocket' || this.game === 'one pocket' || this.bestOf > 1);
 			if (this.looser.hasBelt && isBeltChallenge) {
@@ -86,12 +83,14 @@ EP.Match = function() {
 
 			}, this);
 
+			// Update ranking
+			EP.Players.updateRanking();
+
 			// Update achievements & level
 			_(this.players).each(EP.Achievements.evaluate);
 
 			// Set players updates
 			this.playersUpdates = _(this.players).map(function (p, i) { return p.compare(playersBefore[i]); });
-
 
 	}
 

@@ -35,14 +35,14 @@ EP.Players = function() {
 				firstName: nameMatch[1],
 				lastName: nameMatch[2],
 
-				hasBelt: $cells.eq(0).text().search(/belt owner/i) !== -1,
+				hasBelt: $cells.eq(0).text().search(/belt\sowner/i) !== -1,
 
 				matches: parseInt($cells.eq(2).text()),
 				won: parseInt($cells.eq(3).text()),
 				lost: parseInt($cells.eq(4).text()),
 				perfects: parseInt($cells.eq(8).text()) || 0,
 				rating: parseInt($cells.eq(5).text()),
-				rank: parseInt($cells.eq(6).text()),
+				rank: parseInt($cells.eq(6).text()) || null,
 
 				achievements: EP.Helpers.getTip($cells.eq(7).find('p').eq(1)),
 				level: $cells.eq(7).find('p').eq(0).text(),
@@ -104,14 +104,16 @@ EP.Players = function() {
 	}
 
 	EP.Players.updateRanking = function() {
-		_.chain(players).sortBy('rating').reverse().each(function (p, i) { 
-			p.rank = i + 1;
-		});
+		_(players).each(function(p) {p.rank = null});
+		_.chain(players)
+			.filter(function(p) {return p.matches >= EP.Settings.matchesRequired})
+			.sortBy('rating')
+			.reverse()
+			.each(function(p, i) { p.rank = i + 1; });
 	}
 
-
 	EP.Players.add = function (playerData) {
-		EP.Data.get(function () {
+		EP.Data.update(function () {
 
 			EP.Players.readData();
 
@@ -129,7 +131,7 @@ EP.Players = function() {
 	}
 
 	EP.Players.removeNotifications = function (username, callback) {
-		EP.Data.get(function () {
+		EP.Data.update(function () {
 
 			var backup = players;
 			

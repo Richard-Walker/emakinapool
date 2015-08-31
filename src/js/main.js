@@ -17,6 +17,7 @@ $(function () {
 	
 	// Models
 	EP.Data();
+	EP.Properties();
 	EP.Player();
 	EP.Match();
 	EP.Achievements();
@@ -31,8 +32,9 @@ $(function () {
 	EP.MatchesTable();
 
 	// Dialogs
-	EP.SubmitMatchDialog();
 	EP.RegisterDialog();
+	EP.SubmitMatchDialog();
+	EP.PlayDialogs();
 	EP.InviteDialog();
 
 	// Notifs

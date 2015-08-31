@@ -103,7 +103,7 @@ EP.SubmitMatchDialog = function() {
 	// Save action
 	$('#match-save-button').click( function() {
 
-		EP.Confluence.freezeDialogs();
+		EP.Confluence.freezeDialog();
 
 		var matchData = {
 			players: [
@@ -123,12 +123,18 @@ EP.SubmitMatchDialog = function() {
 
 	});
 
-	// Invite link
-	$('#match-invite-link').click( function() {
+	// Glossary link
+	$('#match-glossary-link').click( function() {
 		dialog.hide();
-		EP.InviteDialog.dialog.show();
+		EP.Dom.NavLinks.$faq.click();
 		return false;
 	});
 
+	// Invite link
+	// $('#match-invite-link').click( function() {
+	// 	dialog.hide();
+	// 	EP.InviteDialog.dialog.show();
+	// 	return false;
+	// });
 
 };

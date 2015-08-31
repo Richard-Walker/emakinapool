@@ -24,41 +24,53 @@ EP.Confluence = function() {
 		});		
 	}
 
-	AJS.messages.origError = AJS.messages.error;
+	EP.Confluence._origError = AJS.messages.error;
 	AJS.messages.error = function(opts) {
-		EP.Confluence.closeDialogs();
+		EP.Confluence.closeDialog();
 		opts = _(opts).defaults({
 			fadeout: true,
 			closeable: false
 		});
-		return AJS.messages.origError(opts);
+		return EP.Confluence._origError.call(this, opts);
 	}
 
-	AJS.messages.origSuccess = AJS.messages.success;
+	EP.Confluence._origSuccess = AJS.messages.success;
 	AJS.messages.success = function(opts) {
-		EP.Confluence.closeDialogs();
+		EP.Confluence.closeDialog();
 		opts = _(opts).defaults({
 			fadeout: true,
 			closeable: false
 		});
-		return AJS.messages.origSuccess(opts);
+		return EP.Confluence._origSuccess.call(this, opts);
+	}
+
+	EP.Confluence._origGeneric = AJS.messages.generic;
+	AJS.messages.generic = function(opts) {
+		EP.Confluence.closeDialog();
+		opts = _(opts).defaults({
+			fadeout: true,
+			closeable: false
+		});
+		return EP.Confluence._origGeneric.call(this, opts);
 	}
 
 
-	EP.Confluence.freezeDialogs = function() {
+	EP.Confluence.freezeDialog = function() {
 		$('.aui-dialog2').find('button, input, textarea, select, a').prop('disabled', true);
 		$('.aui-dialog2').find('a').css('pointer-events', 'none');
 		$('.aui-dialog2').find('.button-spinner').spin();
 	}
-	EP.Confluence.unFreezeDialogs = function() {
+	EP.Confluence.unFreezeDialog = function() {
 		$('.aui-dialog2').find('button, input, textarea, select, a').prop('disabled', false);
 		$('.aui-dialog2').find('a').css('pointer-events', '');
 		$('.aui-dialog2').find('.button-spinner').spinStop();
 	}
-	EP.Confluence.closeDialogs = function() {
+	EP.Confluence.closeDialog = function() {
 		if ($('.aui-dialog2').length > 0) {
-			EP.Confluence.unFreezeDialogs();
-			AJS.dialog2('.aui-dialog2').hide();
+			EP.Confluence.unFreezeDialog();
+			if ($('.aui-dialog2[aria-hidden="false"]').length > 0) {
+				AJS.dialog2('.aui-dialog2[aria-hidden="false"]').hide()
+			}
 		}
 	}
 

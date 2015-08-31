@@ -45,6 +45,7 @@ EP.Page = function() {
 	} else {
 		EP.Dom.$submitMatchButton.hide();
 		EP.Dom.$playButton.hide();
+		EP.Dom.$cancelPlayButton.hide();
 		EP.Dom.$inviteButton.hide();
 		EP.Dom.NavLinks.$join.show();
 		EP.Dom.Sections.$join.show();

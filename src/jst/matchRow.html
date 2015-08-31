@@ -10,17 +10,17 @@
   <td colspan="1">
     <time datetime="<%= EP.Helpers.formatDate(date, 'ISO') %>"/>
   </td>
-  <td colspan="1"><%= game %> - <%= bestOf === 1 ? '1 game' : 'best of ' + bestOf %></td>
+  <td colspan="1"><%= game %> - <%= bestOf === 1 ? '1&nbsp;game' : 'best&nbsp;of&nbsp;' + bestOf %></td>
 
   <% _(players).each(function (player, i) { %>
 
     <td colspan="1"><%= player.username %></td>
 
     <td colspan="1">
-      <p><%= signed(playersUpdates[i].rating) %> pts</p>
+      <p><%= signed(playersUpdates[i].rating) %>&nbsp;pts</p>
       
       <% if (playersUpdates[i].rank !== 0) { %>
-        <p><%= signed(playersUpdates[i].rank) %> place(s)</p>
+        <p><%= signed(playersUpdates[i].rank) %>&nbsp;place(s)</p>
       <% } %>
 
       <% if (playersUpdates[i].belt) { %>
@@ -28,13 +28,13 @@
       <% } %>
 
       <% if (playersUpdates[i].perfects !== 0) { %>
-        <p>+<%= playersUpdates[i].perfects %> perfect(s)</p>
+        <p>+<%= playersUpdates[i].perfects %>&nbsp;perfect(s)</p>
       <% } %>
 
       <% if (playersUpdates[i].achievements.length > 0) { %>
         <p>
           <a href="<%= EP.Helpers.tipLink(playersUpdates[i].achievements) %>">
-            +<%= playersUpdates[i].achievements.length %> achievement(s)
+            +<%= playersUpdates[i].achievements.length %>&nbsp;achievement(s)
           </a>
         </p>
       <% } %>

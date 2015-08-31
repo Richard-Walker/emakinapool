@@ -40,12 +40,12 @@ EP.Matches = function() {
 
 
 			data.playersUpdates = _([$cells.eq(3), $cells.eq(5)]).map(function ($e) {
-				var html = $e.html();
-				var perfectsMatch = html.match(/\+(\d+) perfect/i);
-				var ratingMatch = html.match(/([\+\-]\d+) pts/i);
-				var rankMatch = html.match(/([\+\-]\d+) place/i);
-				var levelMatch = html.match(/\+Level\:? ([\w ]*\w)/i);
-				var beltMatch = html.match(/([\+\-])Belt/i);
+				var text = $e.text();
+				var perfectsMatch = text.match(/\+(\d+)\sperfect/i);
+				var ratingMatch = text.match(/([\+\-]\d+)\spts/i);
+				var rankMatch = text.match(/([\+\-]\d+)\splace/i);
+				var levelMatch = text.match(/\+Level\:?\s([\w ]*\w)/i);
+				var beltMatch = text.match(/([\+\-])belt/i);
 				return {
 					perfects: perfectsMatch ? parseInt(perfectsMatch[1]) : 0,
 					rating: ratingMatch ? parseInt(ratingMatch[1]) : 0,
@@ -100,7 +100,7 @@ EP.Matches = function() {
 	// Add and persist a match
 	// Side effect: update players profiles
 	EP.Matches.add = function(matchData) {
-		EP.Data.get(function () {
+		EP.Data.update(function () {
 
 			EP.Players.readData();
 			EP.Matches.readData();

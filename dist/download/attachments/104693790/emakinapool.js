@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-08-28
+/*! emakinapool - v0.1.0 - 2015-08-31
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -27,41 +27,53 @@ EP.Confluence = function() {
 		});		
 	}
 
-	AJS.messages.origError = AJS.messages.error;
+	EP.Confluence._origError = AJS.messages.error;
 	AJS.messages.error = function(opts) {
-		EP.Confluence.closeDialogs();
+		EP.Confluence.closeDialog();
 		opts = _(opts).defaults({
 			fadeout: true,
 			closeable: false
 		});
-		return AJS.messages.origError(opts);
+		return EP.Confluence._origError.call(this, opts);
 	}
 
-	AJS.messages.origSuccess = AJS.messages.success;
+	EP.Confluence._origSuccess = AJS.messages.success;
 	AJS.messages.success = function(opts) {
-		EP.Confluence.closeDialogs();
+		EP.Confluence.closeDialog();
 		opts = _(opts).defaults({
 			fadeout: true,
 			closeable: false
 		});
-		return AJS.messages.origSuccess(opts);
+		return EP.Confluence._origSuccess.call(this, opts);
+	}
+
+	EP.Confluence._origGeneric = AJS.messages.generic;
+	AJS.messages.generic = function(opts) {
+		EP.Confluence.closeDialog();
+		opts = _(opts).defaults({
+			fadeout: true,
+			closeable: false
+		});
+		return EP.Confluence._origGeneric.call(this, opts);
 	}
 
 
-	EP.Confluence.freezeDialogs = function() {
+	EP.Confluence.freezeDialog = function() {
 		$('.aui-dialog2').find('button, input, textarea, select, a').prop('disabled', true);
 		$('.aui-dialog2').find('a').css('pointer-events', 'none');
 		$('.aui-dialog2').find('.button-spinner').spin();
 	}
-	EP.Confluence.unFreezeDialogs = function() {
+	EP.Confluence.unFreezeDialog = function() {
 		$('.aui-dialog2').find('button, input, textarea, select, a').prop('disabled', false);
 		$('.aui-dialog2').find('a').css('pointer-events', '');
 		$('.aui-dialog2').find('.button-spinner').spinStop();
 	}
-	EP.Confluence.closeDialogs = function() {
+	EP.Confluence.closeDialog = function() {
 		if ($('.aui-dialog2').length > 0) {
-			EP.Confluence.unFreezeDialogs();
-			AJS.dialog2('.aui-dialog2').hide();
+			EP.Confluence.unFreezeDialog();
+			if ($('.aui-dialog2[aria-hidden="false"]').length > 0) {
+				AJS.dialog2('.aui-dialog2[aria-hidden="false"]').hide()
+			}
 		}
 	}
 
@@ -558,15 +570,26 @@ EP.Data
 
 The persistence layer
 
-Usage:
+USAGE:
 
+	
 	EP.Data.Get(function () {
-		
-		// Some updates
+		// Read some data
+		var foo = EP.Data.$(selector).text();
+	});
+
+	or
+
+	EP.Data.Update(function () {
+		// Make some updates
 		EP.Data.$.add('Hello World');
-		
+		// Save
 		EP.Data.Save();
 	});
+
+
+IMPORTANT:
+	Save() MUST always be called inside Update(), else page lock will not be released
 
 */
 
@@ -578,7 +601,7 @@ EP.Data = function() {
 	EP.Data = {};
 	EP.Data.$ = null;
 
-	var url = 'https://share.emakina.net/rest/api/content/' + EP.Settings.pageId;
+	var url = AJS.Confluence.getBaseUrl() + '/rest/api/content/' + EP.Settings.pageId;
 	var version = null;
 	var title = null;
 	var cdatas = [];
@@ -612,26 +635,76 @@ EP.Data = function() {
 		return xml;	
 	}
 
+	EP.Data.isLocked = false;
+	EP.Data._origError = AJS.messages.error;
+
+	// Release lock on error
+	AJS.messages.error = function(opts) {
+		if (EP.Data.isLocked) {
+			EP.Data.releaseLock(function () { EP.Data._origError.call(this, opts) })
+		} else {
+			EP.Data._origError.call(this, opts);
+		}
+	}
+
+	EP.Data.getLock = function(callback, numAttempts) {
+		numAttempts = numAttempts || 1;
+
+		$.ajax({
+		
+			url: url + '/property',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({key: 'lockedby', value: EP.CurrentUser.username}),
+			success: function() { EP.Data.isLocked = true; callback(); }
+		
+		}).fail(function(xhr) {
+		
+			if (xhr.status === 409) {
+				if (numAttempts <= 1) {
+					window.setTimeout(function() { EP.Data.getLock(callback, numAttempts + 1); }, 1000)
+				} else {
+					AJS.messages.error({title: 'Error! The page is currently locked, try again later.' });					
+				}
+			} else {
+				AJS.messages.error({title: 'Error! Could not lock the page for edition.' });			
+			}
+		
+		});
+	}
+
+	EP.Data.releaseLock = function(callback) {
+		$.ajax({
+			url: url + '/property/lockedby',
+			type: 'DELETE',
+			contentType: 'application/json',
+			success: function() { EP.Data.isLocked = false; callback(); }
+		}).fail(function() {
+			EP.Data._origError.call(AJS.messages, {title: 'Error! Could not release page lock.' });
+		});		
+	}
+
 	EP.Data.get = function(callback) {
 
-		// Load content from REST service
+			$.get(url + '?expand=body.storage,version', function(data) {
+				
+				version = data.version.number;
+				title = data.title;
+				
+				var html = xml2Html(data.body.storage.value);
+				EP.Data.$ = $('<div>' + html + '</div>');
 
-		$.get(url + '?expand=body.storage,version', function(data) {
-			
-			version = data.version.number;
-			title = data.title;
-			
-			var html = xml2Html(data.body.storage.value);
-			EP.Data.$ = $('<div>' + html + '</div>');
+				callback();
 
-			callback();
+			}).fail(function() {
 
-		}).fail(function() {
-			
-			AJS.messages.error({title: 'Error! Cannot get page content from REST service.' });
+				AJS.messages.error({title: 'Error! Cannot get page content.'});
 
-		});		
+			});
+	}
 
+	EP.Data.update = function(callback) {
+		EP.Data.getLock(function() { EP.Data.get(callback) })
 	}
 
 	EP.Data.save = function(callback) {
@@ -658,12 +731,12 @@ EP.Data = function() {
 			type: 'PUT',
 			contentType: 'application/json',
 			data: JSON.stringify(data),
-			success: callback,
+			success: function() { EP.Data.releaseLock(callback); }
 
 		}).fail(function() {
 
 			AJS.messages.error({title: 'Error! Could not save page data with REST service.'});
-
+		
 		});
 
 	}
@@ -737,9 +810,6 @@ EP.Match = function() {
 			this.winner.rating = EP.Helpers.EloRank.updateRating(winnerExpectedScore, 1, this.winner.rating);	
 			this.looser.rating -= (this.winner.rating - winnerRatingBeforeMatch);
 
-			// Update ranking
-			EP.Players.updateRanking();
-
 			// Update belt ownership
 			var isBeltChallenge = (this.winner.hasBelt || this.looser.hasBelt) && (this.game === '1 pocket' || this.game === 'one pocket' || this.bestOf > 1);
 			if (this.looser.hasBelt && isBeltChallenge) {
@@ -764,12 +834,14 @@ EP.Match = function() {
 
 			}, this);
 
+			// Update ranking
+			EP.Players.updateRanking();
+
 			// Update achievements & level
 			_(this.players).each(EP.Achievements.evaluate);
 
 			// Set players updates
 			this.playersUpdates = _(this.players).map(function (p, i) { return p.compare(playersBefore[i]); });
-
 
 	}
 
@@ -817,12 +889,12 @@ EP.Matches = function() {
 
 
 			data.playersUpdates = _([$cells.eq(3), $cells.eq(5)]).map(function ($e) {
-				var html = $e.html();
-				var perfectsMatch = html.match(/\+(\d+) perfect/i);
-				var ratingMatch = html.match(/([\+\-]\d+) pts/i);
-				var rankMatch = html.match(/([\+\-]\d+) place/i);
-				var levelMatch = html.match(/\+Level\:? ([\w ]*\w)/i);
-				var beltMatch = html.match(/([\+\-])Belt/i);
+				var text = $e.text();
+				var perfectsMatch = text.match(/\+(\d+)\sperfect/i);
+				var ratingMatch = text.match(/([\+\-]\d+)\spts/i);
+				var rankMatch = text.match(/([\+\-]\d+)\splace/i);
+				var levelMatch = text.match(/\+Level\:?\s([\w ]*\w)/i);
+				var beltMatch = text.match(/([\+\-])belt/i);
 				return {
 					perfects: perfectsMatch ? parseInt(perfectsMatch[1]) : 0,
 					rating: ratingMatch ? parseInt(ratingMatch[1]) : 0,
@@ -877,7 +949,7 @@ EP.Matches = function() {
 	// Add and persist a match
 	// Side effect: update players profiles
 	EP.Matches.add = function(matchData) {
-		EP.Data.get(function () {
+		EP.Data.update(function () {
 
 			EP.Players.readData();
 			EP.Matches.readData();
@@ -1012,14 +1084,14 @@ EP.Players = function() {
 				firstName: nameMatch[1],
 				lastName: nameMatch[2],
 
-				hasBelt: $cells.eq(0).text().search(/belt owner/i) !== -1,
+				hasBelt: $cells.eq(0).text().search(/belt\sowner/i) !== -1,
 
 				matches: parseInt($cells.eq(2).text()),
 				won: parseInt($cells.eq(3).text()),
 				lost: parseInt($cells.eq(4).text()),
 				perfects: parseInt($cells.eq(8).text()) || 0,
 				rating: parseInt($cells.eq(5).text()),
-				rank: parseInt($cells.eq(6).text()),
+				rank: parseInt($cells.eq(6).text()) || null,
 
 				achievements: EP.Helpers.getTip($cells.eq(7).find('p').eq(1)),
 				level: $cells.eq(7).find('p').eq(0).text(),
@@ -1081,14 +1153,16 @@ EP.Players = function() {
 	}
 
 	EP.Players.updateRanking = function() {
-		_.chain(players).sortBy('rating').reverse().each(function (p, i) { 
-			p.rank = i + 1;
-		});
+		_(players).each(function(p) {p.rank = null});
+		_.chain(players)
+			.filter(function(p) {return p.matches >= EP.Settings.matchesRequired})
+			.sortBy('rating')
+			.reverse()
+			.each(function(p, i) { p.rank = i + 1; });
 	}
 
-
 	EP.Players.add = function (playerData) {
-		EP.Data.get(function () {
+		EP.Data.update(function () {
 
 			EP.Players.readData();
 
@@ -1106,7 +1180,7 @@ EP.Players = function() {
 	}
 
 	EP.Players.removeNotifications = function (username, callback) {
-		EP.Data.get(function () {
+		EP.Data.update(function () {
 
 			var backup = players;
 			
@@ -1145,6 +1219,79 @@ EP.Players = function() {
 
 }
 
+/* 
+---------------------------------------------------------------------------------------------------
+
+EP.Properties
+
+---------------------------------------------------------------------------------------------------
+*/
+
+
+EP = EP || {}
+
+EP.Properties = function() {
+	
+	EP.Properties = {}
+
+	var url = AJS.Confluence.getBaseUrl() + '/rest/api/content/' + EP.Settings.pageId + '/property';
+
+	EP.Properties.get = function(key, callbacks) {
+
+		$.ajax({
+		
+			url: url + '/' + key,
+			type: 'GET',
+			contentType: 'application/json',
+			success: callbacks.found ? function(data) { callbacks.found(data.value); } : null
+		
+		}).fail(function(xhr) {
+		
+			if (xhr.status === 404 && callbacks.notFound) {
+				callbacks.notFound()
+			} else {
+				AJS.messages.error({title: 'Error! Could not get page property "' + key + '".' });			
+			}
+		});
+
+	}
+
+	EP.Properties.set = function(key, value, callback) {
+
+		$.ajax({
+		
+			url: url,
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({key: key, value: value}),
+			success: callback
+		
+		}).fail(function() {
+		
+			AJS.messages.error({title: 'Error! Could not set page property "' + key + '".' });			
+		
+		});
+		
+	}
+
+	EP.Properties.delete = function(key, callback) {
+
+		$.ajax({
+		
+			url: url + '/' + key,
+			type: 'DELETE',
+			contentType: 'application/json',
+			success: callback
+		
+		}).fail(function() {
+		
+			AJS.messages.error({title: 'Error! Could not delete page property "' + key + '".' });			
+		
+		});
+		
+	}
+
+}
 /*
 
 EP.Dom
@@ -1173,6 +1320,7 @@ EP.Dom = function() {
 		$submitMatchButton: $('#add-match-button'),
 		$registerButton: $('#register-button'),
 		$playButton: $('#play-button'),
+		$cancelPlayButton: $('#cancel-play-button'),
 		$inviteButton: $('#invite-button'),
 
 		$joinButton: $('#subscribe-button'),
@@ -1335,7 +1483,7 @@ EP.InviteDialog = function() {
 
 	$('#invite-send-button').click( function() {
 
-		EP.Confluence.freezeDialogs();
+		EP.Confluence.freezeDialog();
 
 		var invitee = $('#invite-player').val();
 		var inviteeEmail = $('#invite-email').val();
@@ -1352,7 +1500,7 @@ EP.InviteDialog = function() {
 		EP.Mail.send(to, 'invitation', data, function() {
 			
 			// Update player profile upon success
-			EP.Data.get(function () {			
+			EP.Data.update(function () {			
 				EP.Players.readData();
 				var currentUser = EP.Players.get(EP.CurrentUser.username);
 				currentUser.invitations = _(currentUser.invitations).union([inviteeUsername]);
@@ -1570,6 +1718,7 @@ EP.Page = function() {
 	} else {
 		EP.Dom.$submitMatchButton.hide();
 		EP.Dom.$playButton.hide();
+		EP.Dom.$cancelPlayButton.hide();
 		EP.Dom.$inviteButton.hide();
 		EP.Dom.NavLinks.$join.show();
 		EP.Dom.Sections.$join.show();
@@ -1645,6 +1794,159 @@ EP.Page = function() {
 	// STAGE NAMES --------------------------------------------------
 
 	//TODO: implement
+
+};
+
+/*
+
+EP.PlayDialog
+
+*/
+
+
+var EP = EP || {};
+
+EP.PlayDialogs = function() {
+
+	// Only available to registered players
+	if (EP.CurrentUser.isRegistered === false) { return; }
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	Toolbar 
+	---------------------------------------------------------------------------------------------------
+	*/
+
+	function setToolbar(isAvailable, hasJustBeenHookedUp) {
+		if (isAvailable) {
+			EP.Dom.$submitMatchButton.hide();
+			EP.Dom.$playButton.hide();
+			EP.Dom.$cancelPlayButton.show();
+		} else {
+			EP.Dom.$submitMatchButton.show();
+			EP.Dom.$playButton.show();
+			EP.Dom.$cancelPlayButton.hide();
+		}
+		if(hasJustBeenHookedUp) {
+			EP.Dom.$playButton.hide();
+		}
+	}
+
+	EP.Dom.$playButton.hide();
+	EP.Dom.$cancelPlayButton.hide();
+	EP.Dom.$submitMatchButton.hide();
+	EP.Properties.get('availablePlayer', {
+		found: function (playerData) {
+			setToolbar(playerData.userName === EP.CurrentUser.userName)
+		},
+		notFound: function () {
+			setToolbar(false)
+		}
+	});
+
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	Game request dialog
+	---------------------------------------------------------------------------------------------------
+	*/
+ 
+	// Create dialog from template
+	
+	$('body').append(JST.playDialog({}));
+	var dialog = AJS.dialog2("#play-dialog");
+	dialog.on('show', function (e) {EP.Helpers.resetDialog(e.target);});
+
+	// Triggers
+
+	EP.Dom.$playButton.click(function() {dialog.show();});
+
+	// Cancel action
+	$('#play-cancel-button').click( function() { dialog.hide() });
+
+	// Submit action
+	$('#play-submit-button').click( function() {
+
+		EP.Confluence.freezeDialog();
+
+		EP.Data.getLock(function() {
+
+			EP.Properties.get('availablePlayer', {
+				
+				found: function(playerData) {
+					EP.Mail.send(EP.CurrentUser, 'hookedup', playerData, function() {
+						EP.Mail.send(new EP.Player(playerData), 'hookedup', EP.CurrentUser, function() {
+							EP.Properties.delete('availablePlayer', function() {
+								EP.Data.releaseLock(function() {
+									AJS.messages.success({
+										title: playerData.stageName + ' is available, have a nice game! (Details have been sent by email)',
+										closeable: true,
+										delay: 10000
+									})
+									setToolbar(false, true);
+								})
+							})
+						})
+					});
+				},
+				
+				notFound: function() {
+					EP.Properties.set('availablePlayer', EP.CurrentUser, function() {
+						EP.Data.releaseLock(function() {
+							AJS.messages.success({
+								title: 'Request submitted, you will get an email as soon as someone becomes available.',
+								closeable: true,
+								delay: 10000
+							});
+							setToolbar(true);
+						})
+					});					
+				}
+			}) 
+		});
+	});
+
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	Cancel request dialog
+	---------------------------------------------------------------------------------------------------
+	*/
+ 
+	// Create dialog from template
+	$('body').append(JST.cancelPlayDialog());
+	var cancelDialog = AJS.dialog2("#cancel-play-dialog");
+	cancelDialog.on('show', function (e) {EP.Helpers.resetDialog(e.target);});
+
+	// Triggers
+	EP.Dom.$cancelPlayButton.click(function() {cancelDialog.show();});
+
+	// Cancel action
+	$('#cancel-play-cancel-button').click( function() { cancelDialog.hide() });
+
+	// Submit action
+	$('#cancel-play-ok-button').click( function() {
+
+		EP.Confluence.freezeDialog();
+
+		EP.Properties.get('availablePlayer', {
+			found: function (playerData) {
+				if (playerData.userName === EP.CurrentUser.userName) {
+					EP.Properties.delete('availablePlayer', function() {
+						AJS.messages.success({title: 'Game request cancelled.'});
+						setToolbar(false);
+					});
+				} else {
+					AJS.messages.generic({title: 'You don\'t have any pending request.'});
+					setToolbar(false);
+				}
+			},
+			notFound: function () {
+				AJS.messages.generic({title: 'You don\'t have any pending request.'});
+				setToolbar(false);
+			}
+		});
+	});
 
 };
 
@@ -1813,7 +2115,7 @@ EP.RegisterDialog = function() {
 	// Save action
 	$('#player-save-button').click( function() {
 
-		EP.Confluence.freezeDialogs();
+		EP.Confluence.freezeDialog();
 
 		EP.Players.add( {
 			username: EP.CurrentUser.username,
@@ -1932,7 +2234,7 @@ EP.SubmitMatchDialog = function() {
 	// Save action
 	$('#match-save-button').click( function() {
 
-		EP.Confluence.freezeDialogs();
+		EP.Confluence.freezeDialog();
 
 		var matchData = {
 			players: [
@@ -1952,13 +2254,19 @@ EP.SubmitMatchDialog = function() {
 
 	});
 
-	// Invite link
-	$('#match-invite-link').click( function() {
+	// Glossary link
+	$('#match-glossary-link').click( function() {
 		dialog.hide();
-		EP.InviteDialog.dialog.show();
+		EP.Dom.NavLinks.$faq.click();
 		return false;
 	});
 
+	// Invite link
+	// $('#match-invite-link').click( function() {
+	// 	dialog.hide();
+	// 	EP.InviteDialog.dialog.show();
+	// 	return false;
+	// });
 
 };
 
@@ -1984,14 +2292,14 @@ EP.Settings = {
 	environment: 'test',
 
 	// Openshift server credentials.
-	serverAuthUsername: 'ABC',
-	serverAuthPassword: 'XYZ',
+	serverAuthUsername: 'emakinapoolapp',
+	serverAuthPassword: 'no1shallbeTrusted',
 
 	// Value of 'from' field when sending emails
-	emailFrom: 'Emakinapool test app <info@xyz.com>',
+	emailFrom: 'Emakinapool test app <info@emakinapool.xyz>',
 
 	// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
-	forceEmailTo: 'Emakinapool tester <abc@xyz.com>',
+	forceEmailTo: 'Emakinapool tester <r.p.walker@gmail.com>',
 
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  
@@ -2001,6 +2309,9 @@ EP.Settings = {
 	// Elo config
 	kFactor: 32,
 	initialRating: 1500,
+
+	// Number of matches required before being officially ranked
+	matchesRequired: 10,
 
 	// Number of row initially shown in matches table
 	matchesRows: 10,
@@ -2039,6 +2350,7 @@ $(function () {
 	
 	// Models
 	EP.Data();
+	EP.Properties();
 	EP.Player();
 	EP.Match();
 	EP.Achievements();
@@ -2053,8 +2365,9 @@ $(function () {
 	EP.MatchesTable();
 
 	// Dialogs
-	EP.SubmitMatchDialog();
 	EP.RegisterDialog();
+	EP.SubmitMatchDialog();
+	EP.PlayDialogs();
 	EP.InviteDialog();
 
 	// Notifs

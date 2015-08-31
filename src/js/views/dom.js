@@ -26,6 +26,7 @@ EP.Dom = function() {
 		$submitMatchButton: $('#add-match-button'),
 		$registerButton: $('#register-button'),
 		$playButton: $('#play-button'),
+		$cancelPlayButton: $('#cancel-play-button'),
 		$inviteButton: $('#invite-button'),
 
 		$joinButton: $('#subscribe-button'),

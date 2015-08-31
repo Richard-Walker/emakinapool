@@ -124,7 +124,7 @@ EP.InviteDialog = function() {
 
 	$('#invite-send-button').click( function() {
 
-		EP.Confluence.freezeDialogs();
+		EP.Confluence.freezeDialog();
 
 		var invitee = $('#invite-player').val();
 		var inviteeEmail = $('#invite-email').val();
@@ -141,7 +141,7 @@ EP.InviteDialog = function() {
 		EP.Mail.send(to, 'invitation', data, function() {
 			
 			// Update player profile upon success
-			EP.Data.get(function () {			
+			EP.Data.update(function () {			
 				EP.Players.readData();
 				var currentUser = EP.Players.get(EP.CurrentUser.username);
 				currentUser.invitations = _(currentUser.invitations).union([inviteeUsername]);

@@ -70,6 +70,9 @@ div.columnLayout.single {
 .aui-message-success {
   background-color: #e8efd3 !important;
 }
+.aui-message-generic {
+  background-color: #ebf1f7 !important;
+}
 .aui-message {
   padding-top: 13px;
   padding-bottom: 10px;
@@ -400,7 +403,7 @@ Sections 'Players'
 */
 .players-table {
   width: 100%;
-  white-space: nowrap;
+  /*white-space: nowrap; */
 }
 .players-table th:nth-last-child(1),
 .players-table th:nth-last-child(2),
@@ -434,7 +437,7 @@ Section 'Matches'
 */
 .matches-table {
   width: 100%;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 .matches-table td p:not(:first-child) {
   margin-top: 1px;
@@ -443,7 +446,7 @@ Section 'Matches'
   margin-bottom: 15px;
 }
 .matches-table .aui-avatar {
-  /*float: left;*/
+  float: left;
   margin-right: 10px;
 }
 /* 

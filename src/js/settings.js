@@ -40,6 +40,9 @@ EP.Settings = {
 	kFactor: 32,
 	initialRating: 1500,
 
+	// Number of matches required before being officially ranked
+	matchesRequired: 10,
+
 	// Number of row initially shown in matches table
 	matchesRows: 10,
 

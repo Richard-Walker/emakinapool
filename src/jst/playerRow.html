@@ -17,19 +17,19 @@
     <p><%= level %></p>
     <p>
       <a href="<%= EP.Helpers.tipLink(achievements) %>">
-        <%= achievements.length %> achievement(s)
+        <%= achievements.length %>&nbsp;achievement(s)
       </a>
     </p>
   </td>
   <td><%= perfects %></td>
   <td>
     <a href="<%= EP.Helpers.tipLink(invitations) %>">
-      <%= invitations.length %> invite(s) sent
+      <%= invitations.length %>&nbsp;invite(s) sent
     </a>
   </td>
   <td>
     <a href="<%= EP.Helpers.tipLink(opponents) %>">
-      <%= opponents.length %> opponent(s)
+      <%= opponents.length %>&nbsp;opponent(s)
     </a>
   </td>
   <td><%= streak %></td>
@@ -37,12 +37,12 @@
   <td><%= weekPoints %></td>
   <td>
     <a href="<%= EP.Helpers.tipLink(games) %>">
-      <%= games.length %> game(s)
+      <%= games.length %>&nbsp;game(s)
     </a>
   </td>
   <td>
     <a href="<%= EP.Helpers.tipLink( _(notifications).map(function(n) { return n.type + ':' + n.value; }) ) %>">
-      <%= notifications.length %> notification(s)
+      <%= notifications.length %>&nbsp;notification(s)
     </a>
   </td>
 </tr>
