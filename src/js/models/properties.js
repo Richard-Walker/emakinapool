@@ -22,11 +22,11 @@ EP.Properties = function() {
 			url: url + '/' + key,
 			type: 'GET',
 			contentType: 'application/json',
-			success: callbacks.found ? function(data) { callbacks.found(data.value); } : null
+			success: callbacks && callbacks.found ? function(data) { callbacks.found(data); } : null
 		
 		}).fail(function(xhr) {
 		
-			if (xhr.status === 404 && callbacks.notFound) {
+			if (xhr.status === 404 && callbacks && callbacks.notFound) {
 				callbacks.notFound()
 			} else {
 				AJS.messages.error({title: 'Error! Could not get page property "' + key + '".' });			

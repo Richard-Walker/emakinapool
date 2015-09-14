@@ -36,7 +36,7 @@ EP.MatchesTable = function() {
 
 			rows = _.chain(EP.Matches.list())
 				.filter(function(m) {
-					return m.winner.username === selectedUser || m.looser.username === selectedUser
+					return m.winner.username === selectedUser || m.loser.username === selectedUser
 				})
 				.pluck('row')
 				.value();
@@ -99,8 +99,8 @@ EP.MatchesTable = function() {
 
 		_(EP.Matches.list()).each(function (m) {
 
-			var avatars = [JST.playerAvatar(m.winner), JST.playerAvatar(m.looser)];
-			var stageNames = [m.winner.stageName, m.looser.stageName];
+			var avatars = [JST.playerAvatar(m.winner), JST.playerAvatar(m.loser)];
+			var stageNames = [m.winner.stageName, m.loser.stageName];
 			var $cells = $(m.row).find('td');
 
 			_([$cells.eq(2), $cells.eq(4)]).each(function ($cell, i) {

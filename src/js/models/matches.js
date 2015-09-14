@@ -29,14 +29,14 @@ EP.Matches = function() {
 				row: row,
 
 				winner : $cells.eq(2).text(),
-				looser : $cells.eq(4).text(),
+				loser : $cells.eq(4).text(),
 				date: new Date($cells.eq(0).find("time").attr("datetime")),
 				game: $cells.eq(1).text().split(' - ')[0],
 				bestOf: parseInt($cells.eq(1).text().split(' - ')[1].match(/\d+/)[0])
 
 			};
 
-			data.players = [data.winner, data.looser];
+			data.players = [data.winner, data.loser];
 
 
 			data.playersUpdates = _([$cells.eq(3), $cells.eq(5)]).map(function ($e) {

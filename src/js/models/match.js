@@ -17,8 +17,8 @@ EP.Match = function() {
 	EP.Match = function(matchData) {
 		var data = _(matchData).defaults({
 			players: ['foo','bar'], 	// Required
-			winner: 'foo',				// Only one of winner or looser is required  
-			looser: null, 
+			winner: 'foo',				// Only one of winner or loser is required  
+			loser: null, 
 			perfects: [0,0],
 			date: EP.Helpers.today(),
 			game: '8 ball',
@@ -28,15 +28,15 @@ EP.Match = function() {
 
 		_(this).extend(data);
 
-		// Deduce looser from winner or vice versa
-		if (this.winner === null) { this.winner = _(this.players).find(function(p) {return p !== this.looser}, this) }
-		if (this.looser === null) { this.looser = _(this.players).find(function(p) {return p !== this.winner}, this) }
+		// Deduce loser from winner or vice versa
+		if (this.winner === null) { this.winner = _(this.players).find(function(p) {return p !== this.loser}, this) }
+		if (this.loser === null) { this.loser = _(this.players).find(function(p) {return p !== this.winner}, this) }
 
 		// Get players objects from ids
 		if (typeof this.players[0] === 'string') { this.players[0] = EP.Players.get(this.players[0]); }
 		if (typeof this.players[1] === 'string') { this.players[1] = EP.Players.get(this.players[1]); }
 		if (typeof this.winner === 'string') { this.winner = EP.Players.get(this.winner); }
-		if (typeof this.looser === 'string') { this.looser = EP.Players.get(this.looser); }
+		if (typeof this.loser === 'string') { this.loser = EP.Players.get(this.loser); }
 
 	}
 
@@ -50,19 +50,23 @@ EP.Match = function() {
 
 	EP.Match.prototype.play = function() {
 
+			var raceTo = Math.ceil(this.bestOf / 2);
+			// 1 game of 1 pocket is equivalent to a race to 2 of another game
+			if (this.game === '1 pocket' || this.game === 'one pocket') { raceTo += 1; }
+
 			// Save players states before match
 			var playersBefore = _(this.players).map(function(p) {return p.clone()});
 			
-			// Update rating
-			var winnerRatingBeforeMatch = this.winner.rating;
-			var winnerExpectedScore = EP.Helpers.EloRank.getExpected(this.winner.rating, this.looser.rating);
-			this.winner.rating = EP.Helpers.EloRank.updateRating(winnerExpectedScore, 1, this.winner.rating);	
-			this.looser.rating -= (this.winner.rating - winnerRatingBeforeMatch);
+			// Update ratings
+
+			var newRatings = EP.Rating.ratingUpdates(this.winner.rating, this.loser.rating, Math.floor(this.bestOf / 2));
+			this.winner.rating = newRatings.winner;
+			this.loser.rating = newRatings.loser;
 
 			// Update belt ownership
-			var isBeltChallenge = (this.winner.hasBelt || this.looser.hasBelt) && (this.game === '1 pocket' || this.game === 'one pocket' || this.bestOf > 1);
-			if (this.looser.hasBelt && isBeltChallenge) {
-				this.looser.hasBelt = false;
+			var isBeltChallenge = (this.winner.hasBelt || this.loser.hasBelt) && raceTo > 1;
+			if (this.loser.hasBelt && isBeltChallenge) {
+				this.loser.hasBelt = false;
 				this.winner.hasBelt = true;
 			}
 
@@ -72,7 +76,7 @@ EP.Match = function() {
 				
 				p.matches++;
 				p.won += p === this.winner ? 1 : 0;
-				p.lost += p === this.looser ? 1 : 0;
+				p.lost += p === this.loser ? 1 : 0;
 				p.perfects += this.perfects[i];
 				p.opponents = _.union(p.opponents, [this.players[1-i].username]);
 				p.streak = p === this.winner ? p.streak + 1 : 0; 

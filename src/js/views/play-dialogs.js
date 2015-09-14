@@ -33,12 +33,18 @@ EP.PlayDialogs = function() {
 		}
 	}
 
-	EP.Dom.$playButton.hide();
-	EP.Dom.$cancelPlayButton.hide();
-	EP.Dom.$submitMatchButton.hide();
+	setToolbar(false);
+
 	EP.Properties.get('availablePlayer', {
-		found: function (playerData) {
-			setToolbar(playerData.userName === EP.CurrentUser.userName)
+		found: function(property) {
+			var propertyDate = new Date(property.version.when);
+			if (EP.Helpers.today() > propertyDate) {
+				// We remove the property if it is expired (not from today)
+				EP.Properties.delete('availablePlayer');
+				setToolbar(false);
+			} else {
+				setToolbar(property.value.username === EP.CurrentUser.username);
+			}
 		},
 		notFound: function () {
 			setToolbar(false)
@@ -74,14 +80,13 @@ EP.PlayDialogs = function() {
 
 			EP.Properties.get('availablePlayer', {
 				
-				found: function(playerData) {
-					EP.Mail.send(EP.CurrentUser, 'hookedup', playerData, function() {
-						EP.Mail.send(new EP.Player(playerData), 'hookedup', EP.CurrentUser, function() {
+				found: function(data) {
+					EP.Mail.send(EP.CurrentUser, 'hookedup', data.value, function() {
+						EP.Mail.send(new EP.Player(data.value), 'hookedup', EP.CurrentUser, function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
 									AJS.messages.success({
-										title: playerData.stageName + ' is available, have a nice game! (Details have been sent by email)',
-										closeable: true,
+										title: data.value.stageName + ' is available, have a nice game! (Details have been sent by email)',
 										delay: 10000
 									})
 									setToolbar(false, true);
@@ -92,11 +97,17 @@ EP.PlayDialogs = function() {
 				},
 				
 				notFound: function() {
-					EP.Properties.set('availablePlayer', EP.CurrentUser, function() {
+					var data = {
+						username:  EP.CurrentUser.username,
+						firstName: EP.CurrentUser.firstName,
+						lastName:  EP.CurrentUser.lastName,
+						stageName: EP.CurrentUser.stageName,
+						email:     EP.CurrentUser.email
+					}
+					EP.Properties.set('availablePlayer', data, function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
-								title: 'Request submitted, you will get an email as soon as someone becomes available.',
-								closeable: true,
+								title: 'Request submitted, you will get an email as soon as someone becomes available.<br>Don\'t forget to cancel if need be...',
 								delay: 10000
 							});
 							setToolbar(true);
@@ -131,8 +142,8 @@ EP.PlayDialogs = function() {
 		EP.Confluence.freezeDialog();
 
 		EP.Properties.get('availablePlayer', {
-			found: function (playerData) {
-				if (playerData.userName === EP.CurrentUser.userName) {
+			found: function (data) {
+				if (data.value.username === EP.CurrentUser.username) {
 					EP.Properties.delete('availablePlayer', function() {
 						AJS.messages.success({title: 'Game request cancelled.'});
 						setToolbar(false);

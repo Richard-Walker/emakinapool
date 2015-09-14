@@ -52,11 +52,12 @@ EP.Helpers = function() {
 
 	EP.Helpers.formatDate = function(d, format) {
 		format = format || 'FR';
-		var isoDate = d.toISOString().slice(0,10);
-		if (format === 'ISO') { return isoDate; }
 
-		var parts = isoDate.split('-');
-		return parts[2] + '/' + parts[1] + '/' + parts[0];
+		var yyyy = d.getFullYear(),
+			dd = d.getDate(),
+			mm = d.getMonth() + 1
+
+		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
 	}
 
 	EP.Helpers.dateFromString = function(d, format) {
@@ -107,28 +108,6 @@ EP.Helpers = function() {
 			$select.find("option:first-child").attr('selected','selected');
 		}
 	}
-
-	EP.Helpers.EloRank = {
-		k: EP.Settings.kFactor,
-		getExpected : function(a, b) {
-			return 1 / (1 + Math.pow(10, ((b - a) / 400)));
-		},
-		updateRating : function(expected, actual, current) {
-			return parseInt(current + this.k * (actual - expected), 10);
-		}
-	}
-	// Usage
-	//
-	// var playerA = 1200;
-	// var playerB = 1400;
-	//
-	// //Gets expected score for first parameter 
-	// var expectedScoreA = EloRank.getExpected(playerA,playerB);
-	// var expectedScoreB = EloRank.getExpected(playerB,playerA);
-	//
-	// playerA = EloRank.updateRating(expectedScoreA,1,playerA);
-	// playerB = EloRank.updateRating(expectedScoreB,0,playerB);
-
 
 	EP.Helpers.getQueryStringParam = function(name) {
 	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

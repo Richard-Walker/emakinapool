@@ -11,6 +11,7 @@ $(function () {
 	
 	// Global stuff
 	EP.Helpers();
+	EP.Rating();
 	EP.Confluence();
 	EP.Dom();
 	EP.Mail();

@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-08-31
+/*! emakinapool - v0.1.0 - 2015-09-14
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -134,11 +134,12 @@ EP.Helpers = function() {
 
 	EP.Helpers.formatDate = function(d, format) {
 		format = format || 'FR';
-		var isoDate = d.toISOString().slice(0,10);
-		if (format === 'ISO') { return isoDate; }
 
-		var parts = isoDate.split('-');
-		return parts[2] + '/' + parts[1] + '/' + parts[0];
+		var yyyy = d.getFullYear(),
+			dd = d.getDate(),
+			mm = d.getMonth() + 1
+
+		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
 	}
 
 	EP.Helpers.dateFromString = function(d, format) {
@@ -189,28 +190,6 @@ EP.Helpers = function() {
 			$select.find("option:first-child").attr('selected','selected');
 		}
 	}
-
-	EP.Helpers.EloRank = {
-		k: EP.Settings.kFactor,
-		getExpected : function(a, b) {
-			return 1 / (1 + Math.pow(10, ((b - a) / 400)));
-		},
-		updateRating : function(expected, actual, current) {
-			return parseInt(current + this.k * (actual - expected), 10);
-		}
-	}
-	// Usage
-	//
-	// var playerA = 1200;
-	// var playerB = 1400;
-	//
-	// //Gets expected score for first parameter 
-	// var expectedScoreA = EloRank.getExpected(playerA,playerB);
-	// var expectedScoreB = EloRank.getExpected(playerB,playerA);
-	//
-	// playerA = EloRank.updateRating(expectedScoreA,1,playerA);
-	// playerB = EloRank.updateRating(expectedScoreB,0,playerB);
-
 
 	EP.Helpers.getQueryStringParam = function(name) {
 	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -325,6 +304,101 @@ EP.Mail = function() {
 		});
 
 	}
+
+}
+/* 
+---------------------------------------------------------------------------------------------------
+
+EP.Rating
+
+---------------------------------------------------------------------------------------------------
+*/
+ 
+
+var EP = EP || {};
+
+
+
+
+EP.Rating = function() {
+
+	EP.Rating = {}
+
+	EP.Rating.Elo = {
+		k: EP.Settings.kFactor,
+		getExpected : function(a, b) {
+			return 1 / (1 + Math.pow(10, ((b - a) / 400)));
+		},
+		updateRating : function(expected, actual, current) {
+			return parseInt(current + this.k * (actual - expected), 10);
+		}
+	}
+
+	// Usage
+	//
+	// var playerA = 1200;
+	// var playerB = 1400;
+	//
+	// //Gets expected score for first parameter 
+	// var expectedScoreA = EloRank.getExpected(playerA,playerB);
+	// var expectedScoreB = EloRank.getExpected(playerB,playerA);
+	//
+	// playerA = EloRank.updateRating(expectedScoreA,1,playerA);
+	// playerB = EloRank.updateRating(expectedScoreB,0,playerB);
+
+
+	Math.combinations = function(n, k) {
+		var max = Math.max(k, n - k);
+  		var result = 1;
+  		for (var i = 1; i <= n - max; i++) {
+    		result *= (max + i) / i;
+  		}
+  		return result;
+	}
+
+	/*
+	 	p:      chances of winning a single game
+	 	n:      number of games required to win the match 
+		return: chances of winning a race to n games match
+	*/
+	EP.Rating.chances = function(p, n) {
+
+		var result = 0;
+		var maxGames = 2 * n - 1;
+		
+		for (var i = n; i <= maxGames; i++) {
+			result += Math.pow(p, i) * Math.pow(1 - p, maxGames - i) * Math.combinations(maxGames, i);
+		}
+
+		return result;
+	}
+
+
+	/*
+		winnerRating:  winner's rating before match
+		loserRating:   loser's rating before match
+		n:             number of games required to win the match
+		return:        new ratings
+	*/
+	EP.Rating.ratingUpdates = function(winnerRating, loserRating, n) {
+
+		if (EP.Settings.biggerKFactorForLongerMatches) {
+			EP.Rating.Elo.k = EP.Settings.kFactor * n;
+		}
+
+		var expected = EP.Rating.chances(EP.Rating.Elo.getExpected(winnerRating, loserRating), n);
+		
+		var newWinnerRating = EP.Rating.Elo.updateRating(expected, 1, winnerRating);
+		var newLoserRating = loserRating - (newWinnerRating - winnerRating);
+
+		return {
+			winner: newWinnerRating,
+			loser: newLoserRating
+		}
+
+	}
+
+
 
 }
 /*
@@ -768,8 +842,8 @@ EP.Match = function() {
 	EP.Match = function(matchData) {
 		var data = _(matchData).defaults({
 			players: ['foo','bar'], 	// Required
-			winner: 'foo',				// Only one of winner or looser is required  
-			looser: null, 
+			winner: 'foo',				// Only one of winner or loser is required  
+			loser: null, 
 			perfects: [0,0],
 			date: EP.Helpers.today(),
 			game: '8 ball',
@@ -779,15 +853,15 @@ EP.Match = function() {
 
 		_(this).extend(data);
 
-		// Deduce looser from winner or vice versa
-		if (this.winner === null) { this.winner = _(this.players).find(function(p) {return p !== this.looser}, this) }
-		if (this.looser === null) { this.looser = _(this.players).find(function(p) {return p !== this.winner}, this) }
+		// Deduce loser from winner or vice versa
+		if (this.winner === null) { this.winner = _(this.players).find(function(p) {return p !== this.loser}, this) }
+		if (this.loser === null) { this.loser = _(this.players).find(function(p) {return p !== this.winner}, this) }
 
 		// Get players objects from ids
 		if (typeof this.players[0] === 'string') { this.players[0] = EP.Players.get(this.players[0]); }
 		if (typeof this.players[1] === 'string') { this.players[1] = EP.Players.get(this.players[1]); }
 		if (typeof this.winner === 'string') { this.winner = EP.Players.get(this.winner); }
-		if (typeof this.looser === 'string') { this.looser = EP.Players.get(this.looser); }
+		if (typeof this.loser === 'string') { this.loser = EP.Players.get(this.loser); }
 
 	}
 
@@ -801,19 +875,23 @@ EP.Match = function() {
 
 	EP.Match.prototype.play = function() {
 
+			var raceTo = Math.ceil(this.bestOf / 2);
+			// 1 game of 1 pocket is equivalent to a race to 2 of another game
+			if (this.game === '1 pocket' || this.game === 'one pocket') { raceTo += 1; }
+
 			// Save players states before match
 			var playersBefore = _(this.players).map(function(p) {return p.clone()});
 			
-			// Update rating
-			var winnerRatingBeforeMatch = this.winner.rating;
-			var winnerExpectedScore = EP.Helpers.EloRank.getExpected(this.winner.rating, this.looser.rating);
-			this.winner.rating = EP.Helpers.EloRank.updateRating(winnerExpectedScore, 1, this.winner.rating);	
-			this.looser.rating -= (this.winner.rating - winnerRatingBeforeMatch);
+			// Update ratings
+
+			var newRatings = EP.Rating.ratingUpdates(this.winner.rating, this.loser.rating, Math.floor(this.bestOf / 2));
+			this.winner.rating = newRatings.winner;
+			this.loser.rating = newRatings.loser;
 
 			// Update belt ownership
-			var isBeltChallenge = (this.winner.hasBelt || this.looser.hasBelt) && (this.game === '1 pocket' || this.game === 'one pocket' || this.bestOf > 1);
-			if (this.looser.hasBelt && isBeltChallenge) {
-				this.looser.hasBelt = false;
+			var isBeltChallenge = (this.winner.hasBelt || this.loser.hasBelt) && raceTo > 1;
+			if (this.loser.hasBelt && isBeltChallenge) {
+				this.loser.hasBelt = false;
 				this.winner.hasBelt = true;
 			}
 
@@ -823,7 +901,7 @@ EP.Match = function() {
 				
 				p.matches++;
 				p.won += p === this.winner ? 1 : 0;
-				p.lost += p === this.looser ? 1 : 0;
+				p.lost += p === this.loser ? 1 : 0;
 				p.perfects += this.perfects[i];
 				p.opponents = _.union(p.opponents, [this.players[1-i].username]);
 				p.streak = p === this.winner ? p.streak + 1 : 0; 
@@ -878,14 +956,14 @@ EP.Matches = function() {
 				row: row,
 
 				winner : $cells.eq(2).text(),
-				looser : $cells.eq(4).text(),
+				loser : $cells.eq(4).text(),
 				date: new Date($cells.eq(0).find("time").attr("datetime")),
 				game: $cells.eq(1).text().split(' - ')[0],
 				bestOf: parseInt($cells.eq(1).text().split(' - ')[1].match(/\d+/)[0])
 
 			};
 
-			data.players = [data.winner, data.looser];
+			data.players = [data.winner, data.loser];
 
 
 			data.playersUpdates = _([$cells.eq(3), $cells.eq(5)]).map(function ($e) {
@@ -1243,11 +1321,11 @@ EP.Properties = function() {
 			url: url + '/' + key,
 			type: 'GET',
 			contentType: 'application/json',
-			success: callbacks.found ? function(data) { callbacks.found(data.value); } : null
+			success: callbacks && callbacks.found ? function(data) { callbacks.found(data); } : null
 		
 		}).fail(function(xhr) {
 		
-			if (xhr.status === 404 && callbacks.notFound) {
+			if (xhr.status === 404 && callbacks && callbacks.notFound) {
 				callbacks.notFound()
 			} else {
 				AJS.messages.error({title: 'Error! Could not get page property "' + key + '".' });			
@@ -1553,7 +1631,7 @@ EP.MatchesTable = function() {
 
 			rows = _.chain(EP.Matches.list())
 				.filter(function(m) {
-					return m.winner.username === selectedUser || m.looser.username === selectedUser
+					return m.winner.username === selectedUser || m.loser.username === selectedUser
 				})
 				.pluck('row')
 				.value();
@@ -1616,8 +1694,8 @@ EP.MatchesTable = function() {
 
 		_(EP.Matches.list()).each(function (m) {
 
-			var avatars = [JST.playerAvatar(m.winner), JST.playerAvatar(m.looser)];
-			var stageNames = [m.winner.stageName, m.looser.stageName];
+			var avatars = [JST.playerAvatar(m.winner), JST.playerAvatar(m.loser)];
+			var stageNames = [m.winner.stageName, m.loser.stageName];
 			var $cells = $(m.row).find('td');
 
 			_([$cells.eq(2), $cells.eq(4)]).each(function ($cell, i) {
@@ -1832,12 +1910,18 @@ EP.PlayDialogs = function() {
 		}
 	}
 
-	EP.Dom.$playButton.hide();
-	EP.Dom.$cancelPlayButton.hide();
-	EP.Dom.$submitMatchButton.hide();
+	setToolbar(false);
+
 	EP.Properties.get('availablePlayer', {
-		found: function (playerData) {
-			setToolbar(playerData.userName === EP.CurrentUser.userName)
+		found: function(property) {
+			var propertyDate = new Date(property.version.when);
+			if (EP.Helpers.today() > propertyDate) {
+				// We remove the property if it is expired (not from today)
+				EP.Properties.delete('availablePlayer');
+				setToolbar(false);
+			} else {
+				setToolbar(property.value.username === EP.CurrentUser.username);
+			}
 		},
 		notFound: function () {
 			setToolbar(false)
@@ -1873,14 +1957,13 @@ EP.PlayDialogs = function() {
 
 			EP.Properties.get('availablePlayer', {
 				
-				found: function(playerData) {
-					EP.Mail.send(EP.CurrentUser, 'hookedup', playerData, function() {
-						EP.Mail.send(new EP.Player(playerData), 'hookedup', EP.CurrentUser, function() {
+				found: function(data) {
+					EP.Mail.send(EP.CurrentUser, 'hookedup', data.value, function() {
+						EP.Mail.send(new EP.Player(data.value), 'hookedup', EP.CurrentUser, function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
 									AJS.messages.success({
-										title: playerData.stageName + ' is available, have a nice game! (Details have been sent by email)',
-										closeable: true,
+										title: data.value.stageName + ' is available, have a nice game! (Details have been sent by email)',
 										delay: 10000
 									})
 									setToolbar(false, true);
@@ -1891,11 +1974,17 @@ EP.PlayDialogs = function() {
 				},
 				
 				notFound: function() {
-					EP.Properties.set('availablePlayer', EP.CurrentUser, function() {
+					var data = {
+						username:  EP.CurrentUser.username,
+						firstName: EP.CurrentUser.firstName,
+						lastName:  EP.CurrentUser.lastName,
+						stageName: EP.CurrentUser.stageName,
+						email:     EP.CurrentUser.email
+					}
+					EP.Properties.set('availablePlayer', data, function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
-								title: 'Request submitted, you will get an email as soon as someone becomes available.',
-								closeable: true,
+								title: 'Request submitted, you will get an email as soon as someone becomes available.<br>Don\'t forget to cancel if need be...',
 								delay: 10000
 							});
 							setToolbar(true);
@@ -1930,8 +2019,8 @@ EP.PlayDialogs = function() {
 		EP.Confluence.freezeDialog();
 
 		EP.Properties.get('availablePlayer', {
-			found: function (playerData) {
-				if (playerData.userName === EP.CurrentUser.userName) {
+			found: function (data) {
+				if (data.value.username === EP.CurrentUser.username) {
 					EP.Properties.delete('availablePlayer', function() {
 						AJS.messages.success({title: 'Game request cancelled.'});
 						setToolbar(false);
@@ -2310,6 +2399,9 @@ EP.Settings = {
 	kFactor: 32,
 	initialRating: 1500,
 
+	// If set to true, the k factor is multiplied when matches involve multiple games
+	biggerKFactorForLongerMatches: true,
+
 	// Number of matches required before being officially ranked
 	matchesRequired: 10,
 
@@ -2344,6 +2436,7 @@ $(function () {
 	
 	// Global stuff
 	EP.Helpers();
+	EP.Rating();
 	EP.Confluence();
 	EP.Dom();
 	EP.Mail();

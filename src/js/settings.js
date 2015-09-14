@@ -40,6 +40,9 @@ EP.Settings = {
 	kFactor: 32,
 	initialRating: 1500,
 
+	// If set to true, the k factor is multiplied when matches involve multiple games
+	biggerKFactorForLongerMatches: true,
+
 	// Number of matches required before being officially ranked
 	matchesRequired: 10,
 
