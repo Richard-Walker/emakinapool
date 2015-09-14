@@ -52,8 +52,18 @@ EP.Settings = {
 	// Wether to allow loser to encode a match
 	allowLoserToEncode: false,
 
-	// List of admin users with advanced priviledges (they can edit the page)
-	admins: ['rwa']
+	// List of admin users with advanced priviledges:
+	// * can edit the page
+	// * recieve errors by email
+	// * the first admin is the contact for edit requests
+	admins: [{
+		username: 'rwa',
+		email: 'rwa@emakina.com',
+		name: 'Richard Walker'
+	}],
+
+	// Send error notifications by email to the admins.
+	sendErrors : false
 
 }
 

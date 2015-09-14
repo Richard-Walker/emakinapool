@@ -14,9 +14,29 @@ var EP = EP || {};
 EP.Page = function() {
 
 
-	// Disable the edit shortcut ("e") for non admins
-	if (!_(EP.Settings.admins).contains(EP.CurrentUser.username)) {
+	// DISABLE EDITION -------------------------------
+
+	$('#editPageLink').show();
+
+	if (!_.chain(EP.Settings.admins).pluck('username').contains(EP.CurrentUser.username).value()) {
+
+		// disable keyboard shortcut ("e")
+
 		window.document.onkeydown = function (e) { return e.which !== 69 };
+		
+		// add warning dialog when edit button is clicked
+		
+		$('body').append(JST.editInfoDialog(EP.Settings.admins[0]));
+		var editInfoDialog = AJS.dialog2('#edit-info-dialog');
+
+		$('#editPageLink').click(function(e) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			editInfoDialog.show();
+		});
+
+		$('#edit-info-ok-button').click(function() { editInfoDialog.hide()})
+
 	}
 
 	// MESSAGING DIV -----------------------------

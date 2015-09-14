@@ -29,8 +29,20 @@ EP.Confluence = function() {
 		EP.Confluence.closeDialog();
 		opts = _(opts).defaults({
 			fadeout: true,
-			closeable: false
+			closeable: false,
+			sendByEmail: true
 		});
+
+
+		// Send error report
+		if (EP.Settings.sendErrors && opts.sendByEmail) {
+			EP.Mail.send(EP.Settings.admins, 'errorNotification', {
+				environment: EP.Settings.environment,
+				user: EP.Dom.$currentUser.attr('data-username'),
+				error: opts.title
+			});
+		}
+
 		return EP.Confluence._origError.call(this, opts);
 	}
 

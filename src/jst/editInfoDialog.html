@@ -1,0 +1,30 @@
+<section role="dialog" id="edit-info-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" data-aui-modal="true" aria-hidden="true">
+    <!-- Dialog header -->
+
+    <header class="aui-dialog2-header">
+        <!-- The dialog's title -->
+        <h2 class="aui-dialog2-header-main">Disabled</h2>
+        <!-- Close icon -->
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+
+    <div class="aui-dialog2-content">
+      <div class="sentence">
+      <strong>
+        Edition is disabled for this page.
+      </strong>
+      </div>
+      <div class="sentence">
+        If you think something is wrong or want to suggest an improvement,<br>
+        please send an email to <a href="mailto:<%= email %>"><%= name %></a>.
+      </div>
+    </div>
+    
+    <footer class="aui-dialog2-footer">
+      <div class="aui-dialog2-footer-actions">
+        <button id="edit-info-ok-button" class="aui-button aui-button-primary">Ok</button>
+      </div>
+    </footer>
+</section>

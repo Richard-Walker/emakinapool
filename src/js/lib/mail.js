@@ -52,7 +52,10 @@ EP.Mail = function() {
 
 		}).fail(function() {
 
-			AJS.messages.error({title: 'Error! Could not send email.'});
+			AJS.messages.error({
+				title: 'Error! Could not send email.',
+				sendByEmail: false
+			});
 
 		});
 

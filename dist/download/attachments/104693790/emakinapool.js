@@ -32,8 +32,20 @@ EP.Confluence = function() {
 		EP.Confluence.closeDialog();
 		opts = _(opts).defaults({
 			fadeout: true,
-			closeable: false
+			closeable: false,
+			sendByEmail: true
 		});
+
+
+		// Send error report
+		if (EP.Settings.sendErrors && opts.sendByEmail) {
+			EP.Mail.send(EP.Settings.admins, 'errorNotification', {
+				environment: EP.Settings.environment,
+				user: EP.Dom.$currentUser.attr('data-username'),
+				error: opts.title
+			});
+		}
+
 		return EP.Confluence._origError.call(this, opts);
 	}
 
@@ -299,7 +311,10 @@ EP.Mail = function() {
 
 		}).fail(function() {
 
-			AJS.messages.error({title: 'Error! Could not send email.'});
+			AJS.messages.error({
+				title: 'Error! Could not send email.',
+				sendByEmail: false
+			});
 
 		});
 
@@ -1765,9 +1780,29 @@ var EP = EP || {};
 EP.Page = function() {
 
 
-	// Disable the edit shortcut ("e") for non admins
-	if (!_(EP.Settings.admins).contains(EP.CurrentUser.username)) {
+	// DISABLE EDITION -------------------------------
+
+	$('#editPageLink').show();
+
+	if (!_.chain(EP.Settings.admins).pluck('username').contains(EP.CurrentUser.username).value()) {
+
+		// disable keyboard shortcut ("e")
+
 		window.document.onkeydown = function (e) { return e.which !== 69 };
+		
+		// add warning dialog when edit button is clicked
+		
+		$('body').append(JST.editInfoDialog(EP.Settings.admins[0]));
+		var editInfoDialog = AJS.dialog2('#edit-info-dialog');
+
+		$('#editPageLink').click(function(e) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			editInfoDialog.show();
+		});
+
+		$('#edit-info-ok-button').click(function() { editInfoDialog.hide()})
+
 	}
 
 	// MESSAGING DIV -----------------------------
@@ -2411,9 +2446,18 @@ EP.Settings = {
 	// Wether to allow loser to encode a match
 	allowLoserToEncode: false,
 
-	// List of admin users with advanced priviledges (they can edit the page)
-	admins: ['rwa']
+	// List of admin users with advanced priviledges
+	// * can edit the page
+	// * recieve errors by email
+	// * the first admin is the contact for edit request
+	admins: [{
+		username: 'rwa',
+		email: 'r.p.walker@gmail.com',
+		name: 'Richard Walker'
+	}],
 
+	// Send error notifications by email to the admins.
+	sendErrors : true
 }
 
 try {
