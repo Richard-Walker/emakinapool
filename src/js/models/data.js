@@ -155,7 +155,8 @@ EP.Data = function() {
 				}
 			},
 			"version": {
-				"number": version + 1
+				"number": version + 1,
+				"message": 'Updated from app'
 			}
 		};
 

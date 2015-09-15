@@ -31,6 +31,9 @@ EP.Settings = {
 	// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
 	forceEmailTo: 'Emakinapool tester <abc@xyz.com>',
 
+	// To use incombination with forceEmailTo. If set, only emails using the specified templates are forced.
+	// forceEmailTemplates: ['invitation'],
+
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  
 	pageId: '102662893',

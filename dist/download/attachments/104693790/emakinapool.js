@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-09-15
+/*! emakinapool - v0.1.0 - 2015-09-16
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -281,7 +281,13 @@ EP.Mail = function() {
 				default: 			return r;
 			}
 		}
-		to = EP.Settings.forceEmailTo || to;
+
+		if (EP.Settings.forceEmailTo) {
+			if (!EP.Settings.forceEmailTemplates || _(EP.Settings.forceEmailTemplates).contains(template)) {
+				to = EP.Settings.forceEmailTo;
+			}
+		}
+
 		to = to.constructor === Array ? to : [to];
 		to = _(to).map(parseRecipient);
 
@@ -532,13 +538,13 @@ EP.Achievements = function() {
 		// Rating
 		
 		'Dragonfly': function(p) {
-			return p.weekPoints >= 20;
+			return p.weekPoints >= 25;
 		},
 		'Bird': function(p) {
-			return p.weekPoints >= 35;
+			return p.weekPoints >= 50;
 		},
 		'Eagle': function(p) {
-			return p.weekPoints >= 50;
+			return p.weekPoints >= 75;
 		}
 	}
 
@@ -807,7 +813,8 @@ EP.Data = function() {
 				}
 			},
 			"version": {
-				"number": version + 1
+				"number": version + 1,
+				"message": 'Updated from app'
 			}
 		};
 
@@ -1916,7 +1923,7 @@ EP.Page = function() {
 	// MESSAGING DIV -----------------------------
 
 	// Add messaging div
-	$('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
+	// $('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
 
 	// Display confirmation message if query string parameter set
 	var confirmation = EP.Helpers.getQueryStringParam('confirmation');
@@ -1962,7 +1969,15 @@ EP.Page = function() {
 	$('.wiki-content h1').hide();
 
 	// Show first tab hide others
-	var visibleTabs = _.filter(_.keys(EP.Dom.NavLinks), function(k) { return EP.Dom.NavLinks[k].is(':visible') });
+
+
+	var visibleTabs = _.chain(EP.Dom.NavLinks)
+		.keys()
+		.filter(function(k) { 
+			return EP.Dom.NavLinks[k].css('display') !== 'none' }
+		)
+		.value();
+	
 	showTab(visibleTabs[0]);
 	visibleTabs.shift();
 	_.each(visibleTabs, function(tab) { hideTab(tab) });
@@ -1981,6 +1996,7 @@ EP.Page = function() {
 		})
 
 	});
+
 
 
 	// TOOLTIPS --------------------------------------------------
@@ -2561,10 +2577,13 @@ EP.Settings = {
 	serverAuthPassword: 'no1shallbeTrusted',
 
 	// Value of 'from' field when sending emails
-	emailFrom: 'Emakinapool test app <info@emakinapool.xyz>',
+	emailFrom: 'Emakina Pool Test  <info@emakinapool.xyz>',
 
 	// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
-	forceEmailTo: 'Emakinapool tester <r.p.walker@gmail.com>',
+	forceEmailTo: 'Tester <r.p.walker@gmail.com>',
+
+	// To use incombination with forceEmailTo. If set, only emails using the specified templates are forced.
+	// forceEmailTemplates: ['invitation'],
 
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  

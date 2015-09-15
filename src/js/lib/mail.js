@@ -22,7 +22,13 @@ EP.Mail = function() {
 				default: 			return r;
 			}
 		}
-		to = EP.Settings.forceEmailTo || to;
+
+		if (EP.Settings.forceEmailTo) {
+			if (!EP.Settings.forceEmailTemplates || _(EP.Settings.forceEmailTemplates).contains(template)) {
+				to = EP.Settings.forceEmailTo;
+			}
+		}
+
 		to = to.constructor === Array ? to : [to];
 		to = _(to).map(parseRecipient);
 

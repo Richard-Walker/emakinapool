@@ -42,7 +42,7 @@ EP.Page = function() {
 	// MESSAGING DIV -----------------------------
 
 	// Add messaging div
-	$('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
+	// $('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
 
 	// Display confirmation message if query string parameter set
 	var confirmation = EP.Helpers.getQueryStringParam('confirmation');
@@ -88,7 +88,15 @@ EP.Page = function() {
 	$('.wiki-content h1').hide();
 
 	// Show first tab hide others
-	var visibleTabs = _.filter(_.keys(EP.Dom.NavLinks), function(k) { return EP.Dom.NavLinks[k].is(':visible') });
+
+
+	var visibleTabs = _.chain(EP.Dom.NavLinks)
+		.keys()
+		.filter(function(k) { 
+			return EP.Dom.NavLinks[k].css('display') !== 'none' }
+		)
+		.value();
+	
 	showTab(visibleTabs[0]);
 	visibleTabs.shift();
 	_.each(visibleTabs, function(tab) { hideTab(tab) });
@@ -107,6 +115,7 @@ EP.Page = function() {
 		})
 
 	});
+
 
 
 	// TOOLTIPS --------------------------------------------------
