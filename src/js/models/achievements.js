@@ -75,7 +75,7 @@ EP.Achievements = function() {
 
 		// Belt
 		'Kid Wrestler': function(p) {
-			return p.hasBelt;
+			return p.beltPossession === 0 || p.beltPossession > 0;
 		},
 		'Pro Wrestler': function(p) {
 			return p.beltPossession >= 1;
@@ -153,11 +153,9 @@ EP.Achievements = function() {
 		return _(achievements).findWhere({'title': title});
 	}
 
-
 	EP.Achievements.percentage = function(player) {
 		return Math.floor(player.achievements.length / _(achievements).where({isLevel: false}).length * 100);
 	}	
-
 
 	var levels = ['Novice', 'Apprentice', 'Expert', 'Master', 'Grand Master', 'Hall of Famer'];
 
@@ -165,7 +163,6 @@ EP.Achievements = function() {
 		var percentile = Math.floor(percentage / 20);
 		return levels[percentile];
 	}
-
 
 	EP.Achievements.evaluate = function(player) {
 		

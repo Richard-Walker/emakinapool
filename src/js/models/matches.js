@@ -38,7 +38,6 @@ EP.Matches = function() {
 
 			data.players = [data.winner, data.loser];
 
-
 			data.playersUpdates = _([$cells.eq(3), $cells.eq(5)]).map(function ($e) {
 				var text = $e.text();
 				var perfectsMatch = text.match(/\+(\d+)\sperfect/i);
@@ -55,6 +54,8 @@ EP.Matches = function() {
 					achievements: EP.Helpers.getTip($e)
 				}
 			});
+
+			data.perfects = [data.playersUpdates[0].perfects, data.playersUpdates[1].perfects];
 
 			return new EP.Match(data);
 		}).get();
@@ -89,6 +90,10 @@ EP.Matches = function() {
 		return sortAttribute == null ? matches : _(matches).sortBy(sortAttribute);
 	}
 
+	EP.Matches.set = function(newList) {
+		matches = newList;
+	}
+
 	EP.Matches.playedThisWeek = function(p) {
 		var today = EP.Helpers.today();
 		var weekMatches = _(matches).filter(function (m) {
@@ -114,6 +119,12 @@ EP.Matches = function() {
 			EP.Data.saveAndReload("Your match has been recorded!");
 
 		});
+	}
+
+	EP.Matches.playAll = function() {
+		matches.reverse();
+		_(matches).each(function (m) { m.play(); });
+		matches.reverse();		
 	}
 
 	EP.Matches.readView();

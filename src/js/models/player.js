@@ -14,6 +14,7 @@ EP.Player = function() {
 	EP.Player = function(playerData) {
 
 		var data = _(playerData).defaults({
+			row: null,
 			username: 'foo', 					// Required
 			stageName: 'bar',					// Required  
 			email: 'no-reply@emakina.com',
@@ -34,7 +35,8 @@ EP.Player = function() {
 			beltPossession: null,
 			weekPoints: 0,
 			//inTopSince: null,
-			games: []
+			games: [],
+			notifications: []
 		});
 
 		_(this).extend(data);

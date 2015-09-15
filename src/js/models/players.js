@@ -89,13 +89,15 @@ EP.Players = function() {
 	}
 
 	EP.Players.writeView = function() {
-
 		// Not needed for the moment because we reload page when a change is made
 	}
 
 	EP.Players.get = function(username) {
-
 		return _(players).findWhere({'username': username});
+	}
+
+	EP.Players.set = function(newList) {
+		players = newList;
 	}
 
 	EP.Players.list = function(sortAttribute) {
@@ -144,6 +146,102 @@ EP.Players = function() {
 			players = backup;
 		
 		})
+	}
+
+	EP.Players.verify = function() {
+		console.log('Starting data verification...');
+
+		var result = true;
+
+		// Backup players and matches
+		var playersNow = EP.Players.list();
+		var matchesNow = EP.Matches.list();
+
+		// Reset players
+		var resetPlayers = _(playersNow).map(function(p) {
+			return new EP.Player({
+				username: p.username,
+				stageName: p.stageName
+			})
+		});
+		EP.Players.set(resetPlayers);
+		EP.Players.get(EP.Settings.initialBeltOwner).hasBelt = true;
+
+		// Reset matches
+		var resetMatches = _(matchesNow).map(function(m) {
+			return new EP.Match({
+				players: [m.players[0].username, m.players[1].username],
+				winner: m.winner.username, 
+				loser: m.loser.username,
+				perfects: [m.perfects[0], m.perfects[1]],
+				date: m.date,
+				game: m.game,
+				bestOf : m.bestOf
+			});
+		});
+		EP.Matches.set(resetMatches);
+
+		// Replay all matches
+		EP.Matches.playAll();
+
+
+		// Compare matches
+
+		matchesNow.reverse();
+		_(matchesNow).each(function(mNow, i) {
+
+			var mCheck = (EP.Matches.list())[matchesNow.length - i - 1];
+
+			if (_(mNow.playersUpdates).isEqual(mCheck.playersUpdates)) {
+			
+				console.log('Match ' + i + ' is ok.');
+			
+			} else {
+
+				result = false;
+				console.warn('Match ' + i + ' (' + mNow.date.toDateString() +  ') is corrupted!');
+				console.warn('Is:      ', mNow.playersUpdates);
+				console.warn('Expected: ', mCheck.playersUpdates);
+			
+			}
+		});
+		matchesNow.reverse();
+
+
+		// Compare players
+		var propertiesToOmit = [
+			'clone', 'compare', 'invitations', 'fullName', 'weekMatches',
+			'row', 'isRegistered', 'weekPoints',
+			'email', 'firstName', 'lastName', 'notifications', 'picture',
+			'achievements', 'level'
+		];
+
+		_(playersNow).each(function(p) {
+			
+			var pNow = _(p).omit(propertiesToOmit);
+			var pCheck = _(EP.Players.get(p.username)).omit(propertiesToOmit);
+
+			if (_(pNow).isEqual(pCheck)) {
+
+				console.log('Player ' + p.username + ' is ok.');
+
+			} else {
+
+				result = false;
+				console.warn('Player ' + p.username + ' is corrupted!');
+				console.warn('Is:      ', pNow);
+				console.warn('Expected: ', pCheck);
+
+			}
+		})
+
+		// Restore
+		EP.Players.set(playersNow);
+		EP.Matches.set(matchesNow);
+
+		console.log('Data verification finished.');
+
+		return result;
 	}
 
 	EP.Players.readView();

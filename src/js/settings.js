@@ -62,10 +62,16 @@ EP.Settings = {
 		name: 'Richard Walker'
 	}],
 
-	// Send error notifications by email to the admins.
-	sendErrors : false
+	// Set to true to send error notifications by email to the admins.
+	sendErrors: false,
+
+	// Initial belt owner's username (used for data verification)
+	initialBeltOwner: 'rwa'
 
 }
+
+
+
 
 try {
 	module.exports = EP.Settings;

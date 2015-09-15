@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-09-14
+/*! emakinapool - v0.1.0 - 2015-09-15
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -493,7 +493,7 @@ EP.Achievements = function() {
 
 		// Belt
 		'Kid Wrestler': function(p) {
-			return p.hasBelt;
+			return p.beltPossession === 0 || p.beltPossession > 0;
 		},
 		'Pro Wrestler': function(p) {
 			return p.beltPossession >= 1;
@@ -571,11 +571,9 @@ EP.Achievements = function() {
 		return _(achievements).findWhere({'title': title});
 	}
 
-
 	EP.Achievements.percentage = function(player) {
 		return Math.floor(player.achievements.length / _(achievements).where({isLevel: false}).length * 100);
 	}	
-
 
 	var levels = ['Novice', 'Apprentice', 'Expert', 'Master', 'Grand Master', 'Hall of Famer'];
 
@@ -583,7 +581,6 @@ EP.Achievements = function() {
 		var percentile = Math.floor(percentage / 20);
 		return levels[percentile];
 	}
-
 
 	EP.Achievements.evaluate = function(player) {
 		
@@ -899,7 +896,7 @@ EP.Match = function() {
 			
 			// Update ratings
 
-			var newRatings = EP.Rating.ratingUpdates(this.winner.rating, this.loser.rating, Math.floor(this.bestOf / 2));
+			var newRatings = EP.Rating.ratingUpdates(this.winner.rating, this.loser.rating, raceTo);
 			this.winner.rating = newRatings.winner;
 			this.loser.rating = newRatings.loser;
 
@@ -980,7 +977,6 @@ EP.Matches = function() {
 
 			data.players = [data.winner, data.loser];
 
-
 			data.playersUpdates = _([$cells.eq(3), $cells.eq(5)]).map(function ($e) {
 				var text = $e.text();
 				var perfectsMatch = text.match(/\+(\d+)\sperfect/i);
@@ -997,6 +993,8 @@ EP.Matches = function() {
 					achievements: EP.Helpers.getTip($e)
 				}
 			});
+
+			data.perfects = [data.playersUpdates[0].perfects, data.playersUpdates[1].perfects];
 
 			return new EP.Match(data);
 		}).get();
@@ -1031,6 +1029,10 @@ EP.Matches = function() {
 		return sortAttribute == null ? matches : _(matches).sortBy(sortAttribute);
 	}
 
+	EP.Matches.set = function(newList) {
+		matches = newList;
+	}
+
 	EP.Matches.playedThisWeek = function(p) {
 		var today = EP.Helpers.today();
 		var weekMatches = _(matches).filter(function (m) {
@@ -1058,6 +1060,12 @@ EP.Matches = function() {
 		});
 	}
 
+	EP.Matches.playAll = function() {
+		matches.reverse();
+		_(matches).each(function (m) { m.play(); });
+		matches.reverse();		
+	}
+
 	EP.Matches.readView();
 
 }
@@ -1077,6 +1085,7 @@ EP.Player = function() {
 	EP.Player = function(playerData) {
 
 		var data = _(playerData).defaults({
+			row: null,
 			username: 'foo', 					// Required
 			stageName: 'bar',					// Required  
 			email: 'no-reply@emakina.com',
@@ -1097,7 +1106,8 @@ EP.Player = function() {
 			beltPossession: null,
 			weekPoints: 0,
 			//inTopSince: null,
-			games: []
+			games: [],
+			notifications: []
 		});
 
 		_(this).extend(data);
@@ -1231,13 +1241,15 @@ EP.Players = function() {
 	}
 
 	EP.Players.writeView = function() {
-
 		// Not needed for the moment because we reload page when a change is made
 	}
 
 	EP.Players.get = function(username) {
-
 		return _(players).findWhere({'username': username});
+	}
+
+	EP.Players.set = function(newList) {
+		players = newList;
 	}
 
 	EP.Players.list = function(sortAttribute) {
@@ -1286,6 +1298,102 @@ EP.Players = function() {
 			players = backup;
 		
 		})
+	}
+
+	EP.Players.verify = function() {
+		console.log('Starting data verification...');
+
+		var result = true;
+
+		// Backup players and matches
+		var playersNow = EP.Players.list();
+		var matchesNow = EP.Matches.list();
+
+		// Reset players
+		var resetPlayers = _(playersNow).map(function(p) {
+			return new EP.Player({
+				username: p.username,
+				stageName: p.stageName
+			})
+		});
+		EP.Players.set(resetPlayers);
+		EP.Players.get(EP.Settings.initialBeltOwner).hasBelt = true;
+
+		// Reset matches
+		var resetMatches = _(matchesNow).map(function(m) {
+			return new EP.Match({
+				players: [m.players[0].username, m.players[1].username],
+				winner: m.winner.username, 
+				loser: m.loser.username,
+				perfects: [m.perfects[0], m.perfects[1]],
+				date: m.date,
+				game: m.game,
+				bestOf : m.bestOf
+			});
+		});
+		EP.Matches.set(resetMatches);
+
+		// Replay all matches
+		EP.Matches.playAll();
+
+
+		// Compare matches
+
+		matchesNow.reverse();
+		_(matchesNow).each(function(mNow, i) {
+
+			var mCheck = (EP.Matches.list())[matchesNow.length - i - 1];
+
+			if (_(mNow.playersUpdates).isEqual(mCheck.playersUpdates)) {
+			
+				console.log('Match ' + i + ' is ok.');
+			
+			} else {
+
+				result = false;
+				console.warn('Match ' + i + ' (' + mNow.date.toDateString() +  ') is corrupted!');
+				console.warn('Is:      ', mNow.playersUpdates);
+				console.warn('Expected: ', mCheck.playersUpdates);
+			
+			}
+		});
+		matchesNow.reverse();
+
+
+		// Compare players
+		var propertiesToOmit = [
+			'clone', 'compare', 'invitations', 'fullName', 'weekMatches',
+			'row', 'isRegistered', 'weekPoints',
+			'email', 'firstName', 'lastName', 'notifications', 'picture',
+			'achievements', 'level'
+		];
+
+		_(playersNow).each(function(p) {
+			
+			var pNow = _(p).omit(propertiesToOmit);
+			var pCheck = _(EP.Players.get(p.username)).omit(propertiesToOmit);
+
+			if (_(pNow).isEqual(pCheck)) {
+
+				console.log('Player ' + p.username + ' is ok.');
+
+			} else {
+
+				result = false;
+				console.warn('Player ' + p.username + ' is corrupted!');
+				console.warn('Is:      ', pNow);
+				console.warn('Expected: ', pCheck);
+
+			}
+		})
+
+		// Restore
+		EP.Players.set(playersNow);
+		EP.Matches.set(matchesNow);
+
+		console.log('Data verification finished.');
+
+		return result;
 	}
 
 	EP.Players.readView();
@@ -2394,6 +2502,39 @@ EP.SubmitMatchDialog = function() {
 
 };
 
+/* 
+---------------------------------------------------------------------------------------------------
+
+EP.VerifyDataResults
+
+---------------------------------------------------------------------------------------------------
+*/
+ 
+
+var EP = EP || {};
+
+EP.VerifyDataResults = function() {
+
+	$('#verify-data-button').hide();
+
+	// Only for admins
+	if (_.chain(EP.Settings.admins).pluck('username').contains(EP.CurrentUser.username).value()) {
+		
+		$('#verify-data-button').show();
+
+		$('#verify-data-button').click(function() {
+
+			if (EP.Players.verify()) {
+				window.alert('Verification succesful. Everything is correct.');
+			} else {
+				window.alert('Verification failed. Check console for details...');
+			}
+
+		});
+
+	}
+
+}
 /*
 
 EP.Settings
@@ -2457,7 +2598,11 @@ EP.Settings = {
 	}],
 
 	// Send error notifications by email to the admins.
-	sendErrors : true
+	sendErrors : true,
+
+	// Initial belt owner's username (used for data verification)
+	initialBeltOwner: 'rwa'
+
 }
 
 try {
@@ -2500,6 +2645,7 @@ $(function () {
 	EP.ProfileSection();
 	EP.PlayersTable();
 	EP.MatchesTable();
+	EP.VerifyDataResults();
 
 	// Dialogs
 	EP.RegisterDialog();

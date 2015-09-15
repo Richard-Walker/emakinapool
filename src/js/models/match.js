@@ -59,7 +59,7 @@ EP.Match = function() {
 			
 			// Update ratings
 
-			var newRatings = EP.Rating.ratingUpdates(this.winner.rating, this.loser.rating, Math.floor(this.bestOf / 2));
+			var newRatings = EP.Rating.ratingUpdates(this.winner.rating, this.loser.rating, raceTo);
 			this.winner.rating = newRatings.winner;
 			this.loser.rating = newRatings.loser;
 

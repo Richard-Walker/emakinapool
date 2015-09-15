@@ -464,9 +464,30 @@ Section 'Gallery'
 .gallery-image {
   vertical-align: middle!important;
 }
+.gallery tr:not(:first-child) .gallery-image {
+  padding-top: 60px;
+}
 .gallery-caption {
-  padding-top: 5px;
-  padding-bottom: 100px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: normal;
+  color: #888888;
+}
+.gallery-caption::before {
+  content: "“ ";
+}
+.gallery-caption::after {
+  content: " ”";
+}
+.gallery-caption::before,
+.gallery-caption::after {
+  font-weight: bold;
+  color: #3571b0;
+}
+.gallery-image img {
+  border: 1px solid #aaaaaa;
 }
 .plugin_attachments_table_container {
   display: none;

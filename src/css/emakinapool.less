@@ -553,12 +553,33 @@ Section 'Gallery'
   vertical-align: middle!important;
 }
 
+.gallery tr:not(:first-child) .gallery-image {
+  padding-top: 60px;
+}
+
 .gallery-caption {
-  padding-top: 5px;
-  padding-bottom: 100px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: normal;
+  color: @color-bw-3;
+}
+
+.gallery-caption::before {
+  content:"“ ";
+}
+.gallery-caption::after {
+  content: " ”";
+}
+.gallery-caption::before,
+.gallery-caption::after {
+  font-weight: bold;
+  color: @color-secondary-1-0;
 }
 
 .gallery-image img {
+  border: 1px solid @color-bw-4;
 }
 
 .plugin_attachments_table_container {

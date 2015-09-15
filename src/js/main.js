@@ -31,6 +31,7 @@ $(function () {
 	EP.ProfileSection();
 	EP.PlayersTable();
 	EP.MatchesTable();
+	EP.VerifyDataResults();
 
 	// Dialogs
 	EP.RegisterDialog();
