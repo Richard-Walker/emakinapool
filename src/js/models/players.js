@@ -24,16 +24,18 @@ EP.Players = function() {
 
 			var $cells = $(row).find('td');
 
-			var nameMatch = $cells.eq(0).text().match(/(\w+) ([\w ]*) \((.*)\)/i);
-			
+			var regexMatch = $cells.eq(0).text().match(/(.*) \((.*)\)/i);
+			var nameParts = EP.Helpers.parseName(regexMatch[1]);
+			var username = regexMatch[2];
+
 			var data = {
 
 				row: row,
 
-				username: nameMatch[3],
+				username: username,
 				stageName: $cells.eq(1).text(),
-				firstName: nameMatch[1],
-				lastName: nameMatch[2],
+				firstName: nameParts.firstName,
+				lastName: nameParts.lastName,
 
 				hasBelt: $cells.eq(0).text().search(/belt\sowner/i) !== -1,
 

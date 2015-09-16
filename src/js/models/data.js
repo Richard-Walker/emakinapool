@@ -112,7 +112,7 @@ EP.Data = function() {
 			url: url + '/property/lockedby',
 			type: 'DELETE',
 			contentType: 'application/json',
-			success: function() { EP.Data.isLocked = false; callback(); }
+			success: function() { EP.Data.isLocked = false; if (callback) { callback(); } }
 		}).fail(function() {
 			EP.Data._origError.call(AJS.messages, {title: 'Error! Could not release page lock.' });
 		});		

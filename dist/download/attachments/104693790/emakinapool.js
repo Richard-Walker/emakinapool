@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-09-16
+/*! emakinapool - v0.1.0 - 2015-09-17
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -804,7 +804,7 @@ EP.Data = function() {
 			url: url + '/property/lockedby',
 			type: 'DELETE',
 			contentType: 'application/json',
-			success: function() { EP.Data.isLocked = false; callback(); }
+			success: function() { EP.Data.isLocked = false; if (callback) { callback(); } }
 		}).fail(function() {
 			EP.Data._origError.call(AJS.messages, {title: 'Error! Could not release page lock.' });
 		});		
@@ -1217,16 +1217,18 @@ EP.Players = function() {
 
 			var $cells = $(row).find('td');
 
-			var nameMatch = $cells.eq(0).text().match(/(\w+) ([\w ]*) \((.*)\)/i);
-			
+			var regexMatch = $cells.eq(0).text().match(/(.*) \((.*)\)/i);
+			var nameParts = EP.Helpers.parseName(regexMatch[1]);
+			var username = regexMatch[2];
+
 			var data = {
 
 				row: row,
 
-				username: nameMatch[3],
+				username: username,
 				stageName: $cells.eq(1).text(),
-				firstName: nameMatch[1],
-				lastName: nameMatch[2],
+				firstName: nameParts.firstName,
+				lastName: nameParts.lastName,
 
 				hasBelt: $cells.eq(0).text().search(/belt\sowner/i) !== -1,
 
@@ -1962,7 +1964,7 @@ EP.Page = function() {
 	// MESSAGING DIV -----------------------------
 
 	// Add messaging div
-	// $('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
+	$('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
 
 	// Display confirmation message if query string parameter set
 	var confirmation = EP.Helpers.getQueryStringParam('confirmation');
@@ -2625,13 +2627,13 @@ EP.Settings = {
 	serverAuthPassword: 'no1shallbeTrusted',
 
 	// Value of 'from' field when sending emails
-	emailFrom: 'Emakina Pool Test  <info@emakinapool.xyz>',
+	emailFrom: 'Emakina Pool Test  <info@league.emakinapool.xyz>',
 
 	// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
-	forceEmailTo: 'Tester <r.p.walker@gmail.com>',
+	forceEmailTo: 'Tester <rwa@emakina.com>',
 
 	// To use incombination with forceEmailTo. If set, only emails using the specified templates are forced.
-	// forceEmailTemplates: ['invitation'],
+	//forceEmailTemplates: ['invitation'],
 
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  

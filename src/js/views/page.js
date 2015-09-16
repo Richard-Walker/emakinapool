@@ -42,7 +42,7 @@ EP.Page = function() {
 	// MESSAGING DIV -----------------------------
 
 	// Add messaging div
-	// $('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
+	$('#rw_page_toolbar').before('<div id="aui-message-bar"></div>');
 
 	// Display confirmation message if query string parameter set
 	var confirmation = EP.Helpers.getQueryStringParam('confirmation');

@@ -75,8 +75,9 @@ div.columnLayout.single {
 #aui-message-bar {
     right: 152px;
     left: inherit;
-    top: 20px;
+    top: 45px;
     max-width: 600px;
+    position: fixed;
     width: 600px;
 }
 
@@ -167,9 +168,9 @@ Hidding everything that is not relevent if scripts are disabled
 }
 
 /* hide nav items */
+.client-side-toc-macro span.toc-item-body:nth-of-type(1) a,
 .client-side-toc-macro span.toc-item-body:nth-of-type(2) a,
-.client-side-toc-macro span.toc-item-body:nth-of-type(4) a,
-.client-side-toc-macro span.toc-item-body:nth-of-type(10) a {
+.client-side-toc-macro span.toc-item-body:nth-of-type(5) a {
   display: none;  
 }
 
