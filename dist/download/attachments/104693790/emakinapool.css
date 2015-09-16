@@ -66,15 +66,16 @@ img {
 div.columnLayout.single {
   position: relative;
 }
-.aui-message-error {
-  background-color: #f6dad7 !important;
+/*.aui-message-error {
+    background-color: @color-error-light!important;
 }
 .aui-message-success {
-  background-color: #e8efd3 !important;
+    background-color: @color-success-light!important;
 }
 .aui-message-generic {
-  background-color: #ebf1f7 !important;
+    background-color: @color-generic-light!important;
 }
+*/
 .aui-message {
   padding-top: 13px;
   padding-bottom: 10px;

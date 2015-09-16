@@ -135,7 +135,7 @@ EP.InviteDialog = function() {
 			invitee: EP.Helpers.parseName(invitee).firstName,
 			referer: EP.CurrentUser,
 			message: $('#invite-message').val(),
-			url: EP.Settings.pageUrl
+			url: AJS.Confluence.getBaseUrl() + EP.Settings.pagePath
 		}
 
 		EP.Mail.send(to, 'invitation', data, function() {

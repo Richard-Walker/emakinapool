@@ -870,7 +870,7 @@ EP.Data = function() {
 
 	EP.Data.saveAndReload = function(message) {
 		EP.Data.save(function() {
-			location.search = '?confirmation=' + encodeURIComponent(message);
+			location.href = AJS.Confluence.getBaseUrl() + EP.Settings.pagePath + '?confirmation=' + encodeURIComponent(message);
 		});
 	}
 
@@ -1742,7 +1742,7 @@ EP.InviteDialog = function() {
 			invitee: EP.Helpers.parseName(invitee).firstName,
 			referer: EP.CurrentUser,
 			message: $('#invite-message').val(),
-			url: EP.Settings.pageUrl
+			url: AJS.Confluence.getBaseUrl() + EP.Settings.pagePath
 		}
 
 		EP.Mail.send(to, 'invitation', data, function() {
@@ -1915,7 +1915,7 @@ EP.Notifications = function() {
 		});
 
 		// Let's delay the notification for a better user experience
-		window.setTimeout(function() { dialog.show(); }, 3000);
+		window.setTimeout(function() { dialog.show(); }, 2000);
 
 	}
 
@@ -2638,7 +2638,7 @@ EP.Settings = {
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  
 	pageId: '102662893',
-	pageUrl: 'https://share.emakina.net/display/activities/Pool+League',
+	pagePath: '/display/activities/Pool+League',
 
 	// Elo config
 	kFactor: 32,

@@ -30,7 +30,7 @@ EP.Notifications = function() {
 		});
 
 		// Let's delay the notification for a better user experience
-		window.setTimeout(function() { dialog.show(); }, 3000);
+		window.setTimeout(function() { dialog.show(); }, 2000);
 
 	}
 

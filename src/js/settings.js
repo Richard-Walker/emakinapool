@@ -37,7 +37,7 @@ EP.Settings = {
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  
 	pageId: '102662893',
-	pageUrl: 'https://share.emakina.net/display/activities/Pool+League',
+	pagePath: '/display/activities/Pool+League',
 
 	// Elo config
 	kFactor: 32,
