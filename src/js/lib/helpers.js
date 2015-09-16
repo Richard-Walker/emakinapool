@@ -12,10 +12,20 @@ EP.Helpers = function() {
 
 	EP.Helpers = {}
 
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	Functions
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
 	EP.Helpers.upperCase = function(s) { return s.toUpperCase() };
 
 	EP.Helpers.parseName = function(fullName) {
-		var nameParts = fullName.match(/(\w+) ([\w ]*)/i) || [fullName, fullName, ''];
+		var nameParts = fullName.match(/([^ ]+) (.*[^ ])/i) || [fullName, fullName, ''];
 		return { firstName: nameParts[1], lastName: nameParts[2] }
 	}
 
@@ -54,8 +64,8 @@ EP.Helpers = function() {
 		format = format || 'FR';
 
 		var yyyy = d.getFullYear(),
-			dd = d.getDate(),
-			mm = d.getMonth() + 1
+			dd = d.getDate().pad(),
+			mm = (d.getMonth() + 1).pad()
 
 		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
 	}
@@ -116,6 +126,15 @@ EP.Helpers = function() {
 	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
 
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	STRING extensions
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
 	String.prototype.capitalize = function() {
     	return this.replace(/\w\S*/g, function(txt) {
         	return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -155,10 +174,25 @@ EP.Helpers = function() {
 		return Math.round((this.getTime() - d.getTime()) / (1000 * 3600 * 24));
 	}
 
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	NUMBER extensions
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
 	Number.prototype.ordinal = function() {
    		var s = ["th","st","nd","rd"];
    		var v = this % 100;
    		return this + ( s[(v - 20) % 10] || s[v] || s[0] );
 	}
+
+	Number.prototype.pad = function(size) {
+      var s = String(this);
+      while (s.length < (size || 2)) {s = "0" + s;}
+      return s;
+    }
 
 };

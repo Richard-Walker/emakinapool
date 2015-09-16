@@ -186,13 +186,17 @@ EP.Players = function() {
 
 
 		// Compare matches
+		var matchPropertiesToOmit = ['level'];
 
 		matchesNow.reverse();
 		_(matchesNow).each(function(mNow, i) {
 
 			var mCheck = (EP.Matches.list())[matchesNow.length - i - 1];
 
-			if (_(mNow.playersUpdates).isEqual(mCheck.playersUpdates)) {
+			var mUpdtNow =   _(mNow.playersUpdates  ).map(function (m) { return _(m).omit(matchPropertiesToOmit) });
+			var mUpdtCheck = _(mCheck.playersUpdates).map(function (m) { return _(m).omit(matchPropertiesToOmit) });
+
+			if (_(mUpdtNow).isEqual(mUpdtCheck)) {
 			
 				console.log('Match ' + i + ' is ok.');
 			
@@ -200,8 +204,8 @@ EP.Players = function() {
 
 				result = false;
 				console.warn('Match ' + i + ' (' + mNow.date.toDateString() +  ') is corrupted!');
-				console.warn('Is:      ', mNow.playersUpdates);
-				console.warn('Expected: ', mCheck.playersUpdates);
+				console.warn('Is:      ', mUpdtNow);
+				console.warn('Expected: ', mUpdtCheck);
 			
 			}
 		});
@@ -212,7 +216,7 @@ EP.Players = function() {
 		var propertiesToOmit = [
 			'clone', 'compare', 'invitations', 'fullName', 'weekMatches',
 			'row', 'isRegistered', 'weekPoints',
-			'email', 'firstName', 'lastName', 'notifications', 'picture',
+			'email', 'firstName', 'lastName', 'notifications', 'picture', 'avatarUrl',
 			'achievements', 'level'
 		];
 

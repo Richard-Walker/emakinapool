@@ -28,7 +28,7 @@ EP.Player = function() {
 			rating: EP.Settings.initialRating,
 			rank: null,
 			achievements: [],
-			level: 'novice',
+			level: 'Novice',
 			invitations: [],
 			opponents: [],
 			streak: 0,
@@ -60,7 +60,7 @@ EP.Player = function() {
 		return {
 			perfects : this.perfects - p.perfects,
 			rating: this.rating - p.rating,
-			rank: this.rank !== null && p.rank !== null ? -(this.rank - p.rank) : null,
+			rank: this.rank !== null && p.rank !== null ? -(this.rank - p.rank) || null : null,
 			achievements: _(this.achievements).difference(p.achievements),
 			level: this.level !== p.level ? this.level : null,
 			belt: this.hasBelt - p.hasBelt

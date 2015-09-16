@@ -19,7 +19,7 @@
     <td colspan="1">
       <p><%= signed(playersUpdates[i].rating) %>&nbsp;pts</p>
       
-      <% if (playersUpdates[i].rank !== 0) { %>
+      <% if (playersUpdates[i].rank) { %>
         <p><%= signed(playersUpdates[i].rank) %>&nbsp;place(s)</p>
       <% } %>
 

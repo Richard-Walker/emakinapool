@@ -48,7 +48,7 @@ EP.Matches = function() {
 				return {
 					perfects: perfectsMatch ? parseInt(perfectsMatch[1]) : 0,
 					rating: ratingMatch ? parseInt(ratingMatch[1]) : 0,
-					rank: rankMatch ? parseInt(rankMatch[1]) : 0,
+					rank: rankMatch ? parseInt(rankMatch[1]) : null,
 					level: levelMatch ? levelMatch[1] : null,
 					belt: beltMatch ? parseInt(beltMatch[1] + '1') : 0,
 					achievements: EP.Helpers.getTip($e)

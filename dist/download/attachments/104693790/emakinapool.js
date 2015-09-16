@@ -106,10 +106,20 @@ EP.Helpers = function() {
 
 	EP.Helpers = {}
 
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	Functions
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
 	EP.Helpers.upperCase = function(s) { return s.toUpperCase() };
 
 	EP.Helpers.parseName = function(fullName) {
-		var nameParts = fullName.match(/(\w+) ([\w ]*)/i) || [fullName, fullName, ''];
+		var nameParts = fullName.match(/([^ ]+) (.*[^ ])/i) || [fullName, fullName, ''];
 		return { firstName: nameParts[1], lastName: nameParts[2] }
 	}
 
@@ -148,8 +158,8 @@ EP.Helpers = function() {
 		format = format || 'FR';
 
 		var yyyy = d.getFullYear(),
-			dd = d.getDate(),
-			mm = d.getMonth() + 1
+			dd = d.getDate().pad(),
+			mm = (d.getMonth() + 1).pad()
 
 		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
 	}
@@ -210,6 +220,15 @@ EP.Helpers = function() {
 	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
 
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	STRING extensions
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
 	String.prototype.capitalize = function() {
     	return this.replace(/\w\S*/g, function(txt) {
         	return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -249,11 +268,26 @@ EP.Helpers = function() {
 		return Math.round((this.getTime() - d.getTime()) / (1000 * 3600 * 24));
 	}
 
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	NUMBER extensions
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
 	Number.prototype.ordinal = function() {
    		var s = ["th","st","nd","rd"];
    		var v = this % 100;
    		return this + ( s[(v - 20) % 10] || s[v] || s[0] );
 	}
+
+	Number.prototype.pad = function(size) {
+      var s = String(this);
+      while (s.length < (size || 2)) {s = "0" + s;}
+      return s;
+    }
 
 };
 
@@ -994,7 +1028,7 @@ EP.Matches = function() {
 				return {
 					perfects: perfectsMatch ? parseInt(perfectsMatch[1]) : 0,
 					rating: ratingMatch ? parseInt(ratingMatch[1]) : 0,
-					rank: rankMatch ? parseInt(rankMatch[1]) : 0,
+					rank: rankMatch ? parseInt(rankMatch[1]) : null,
 					level: levelMatch ? levelMatch[1] : null,
 					belt: beltMatch ? parseInt(beltMatch[1] + '1') : 0,
 					achievements: EP.Helpers.getTip($e)
@@ -1106,7 +1140,7 @@ EP.Player = function() {
 			rating: EP.Settings.initialRating,
 			rank: null,
 			achievements: [],
-			level: 'novice',
+			level: 'Novice',
 			invitations: [],
 			opponents: [],
 			streak: 0,
@@ -1138,7 +1172,7 @@ EP.Player = function() {
 		return {
 			perfects : this.perfects - p.perfects,
 			rating: this.rating - p.rating,
-			rank: this.rank !== null && p.rank !== null ? -(this.rank - p.rank) : null,
+			rank: this.rank !== null && p.rank !== null ? -(this.rank - p.rank) || null : null,
 			achievements: _(this.achievements).difference(p.achievements),
 			level: this.level !== p.level ? this.level : null,
 			belt: this.hasBelt - p.hasBelt
@@ -1345,13 +1379,17 @@ EP.Players = function() {
 
 
 		// Compare matches
+		var matchPropertiesToOmit = ['level'];
 
 		matchesNow.reverse();
 		_(matchesNow).each(function(mNow, i) {
 
 			var mCheck = (EP.Matches.list())[matchesNow.length - i - 1];
 
-			if (_(mNow.playersUpdates).isEqual(mCheck.playersUpdates)) {
+			var mUpdtNow =   _(mNow.playersUpdates  ).map(function (m) { return _(m).omit(matchPropertiesToOmit) });
+			var mUpdtCheck = _(mCheck.playersUpdates).map(function (m) { return _(m).omit(matchPropertiesToOmit) });
+
+			if (_(mUpdtNow).isEqual(mUpdtCheck)) {
 			
 				console.log('Match ' + i + ' is ok.');
 			
@@ -1359,8 +1397,8 @@ EP.Players = function() {
 
 				result = false;
 				console.warn('Match ' + i + ' (' + mNow.date.toDateString() +  ') is corrupted!');
-				console.warn('Is:      ', mNow.playersUpdates);
-				console.warn('Expected: ', mCheck.playersUpdates);
+				console.warn('Is:      ', mUpdtNow);
+				console.warn('Expected: ', mUpdtCheck);
 			
 			}
 		});
@@ -1371,7 +1409,7 @@ EP.Players = function() {
 		var propertiesToOmit = [
 			'clone', 'compare', 'invitations', 'fullName', 'weekMatches',
 			'row', 'isRegistered', 'weekPoints',
-			'email', 'firstName', 'lastName', 'notifications', 'picture',
+			'email', 'firstName', 'lastName', 'notifications', 'picture', 'avatarUrl',
 			'achievements', 'level'
 		];
 
@@ -1874,7 +1912,8 @@ EP.Notifications = function() {
 			EP.Players.removeNotifications(EP.CurrentUser.username);
 		});
 
-		dialog.show();
+		// Let's delay the notification for a better user experience
+		window.setTimeout(function() { dialog.show(); }, 3000);
 
 	}
 
@@ -2122,8 +2161,10 @@ EP.PlayDialogs = function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
 									AJS.messages.success({
-										title: data.value.stageName + ' is available, have a nice game! (Details have been sent by email)',
-										delay: 10000
+										title: data.value.stageName + ' is available',
+										body: '<p>Have a nice game! (Details have been sent by email)</p>',
+										delay: 15000,
+										closeable: true
 									})
 									setToolbar(false, true);
 								})
@@ -2143,8 +2184,11 @@ EP.PlayDialogs = function() {
 					EP.Properties.set('availablePlayer', data, function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
-								title: 'Request submitted, you will get an email as soon as someone becomes available.<br>Don\'t forget to cancel if need be...',
-								delay: 10000
+								title: 'Request submitted',
+								body: '<p>You will get an email as soon we find someone.</p><p>Don\'t forget to cancel shall you become unavailable...</p>',
+								delay: 15000,
+								closeable: true
+
 							});
 							setToolbar(true);
 						})
@@ -2181,16 +2225,16 @@ EP.PlayDialogs = function() {
 			found: function (data) {
 				if (data.value.username === EP.CurrentUser.username) {
 					EP.Properties.delete('availablePlayer', function() {
-						AJS.messages.success({title: 'Game request cancelled.'});
+						AJS.messages.success({title: 'Game request cancelled'});
 						setToolbar(false);
 					});
 				} else {
-					AJS.messages.generic({title: 'You don\'t have any pending request.'});
+					AJS.messages.generic({title: 'You don\'t have any pending request'});
 					setToolbar(false);
 				}
 			},
 			notFound: function () {
-				AJS.messages.generic({title: 'You don\'t have any pending request.'});
+				AJS.messages.generic({title: 'You don\'t have any pending request'});
 				setToolbar(false);
 			}
 		});
@@ -2249,8 +2293,9 @@ EP.ProfileSection = function() {
 	// Variables
 
 	var variables = {
-		summary : EP.CurrentUser.level.toUpperCase() + ' &nbsp;-&nbsp; Ranked #' + EP.CurrentUser.rank	
+		summary : EP.CurrentUser.level.toUpperCase() + ' &nbsp;-&nbsp; ' + (EP.CurrentUser.rank ? 'Ranked #' + EP.CurrentUser.rank : 'Not ranked')
 	}
+
 	if (EP.CurrentUser.hasBelt) {
 		variables.summary += ' &nbsp;-&nbsp; Belt owner';
 	}
@@ -2464,11 +2509,14 @@ EP.SubmitMatchDialog = function() {
 				$perfects.find('option:first-child').attr('selected','selected');
 			}
 
-			// Limit drop down values to their maximums
-			$perfects.find('option').show();
-			_(maximums).each(function(max,i) {
-				$perfects.eq(i).find('option').filter(function() {return parseInt($(this).attr('value')) > max}).hide();
+			// Reset options
+			_(maximums).each(function(max, i) {
+				var selected = parseInt($perfects.eq(i).find('option:selected').attr('value'));
+				var html = _(_.range(max + 1)).map(function(j) {return '<option value="' + j + '">' + j + '</option>'}).join();
+				$perfects.eq(i).html(html);
+				$perfects.eq(i).find('option').eq(selected).attr('selected','selected');
 			});
+
 		}
 	}
 	// Wiring

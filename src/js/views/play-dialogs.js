@@ -86,8 +86,10 @@ EP.PlayDialogs = function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
 									AJS.messages.success({
-										title: data.value.stageName + ' is available, have a nice game! (Details have been sent by email)',
-										delay: 10000
+										title: data.value.stageName + ' is available',
+										body: '<p>Have a nice game! (Details have been sent by email)</p>',
+										delay: 15000,
+										closeable: true
 									})
 									setToolbar(false, true);
 								})
@@ -107,8 +109,11 @@ EP.PlayDialogs = function() {
 					EP.Properties.set('availablePlayer', data, function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
-								title: 'Request submitted, you will get an email as soon as someone becomes available.<br>Don\'t forget to cancel if need be...',
-								delay: 10000
+								title: 'Request submitted',
+								body: '<p>You will get an email as soon we find someone.</p><p>Don\'t forget to cancel shall you become unavailable...</p>',
+								delay: 15000,
+								closeable: true
+
 							});
 							setToolbar(true);
 						})
@@ -145,16 +150,16 @@ EP.PlayDialogs = function() {
 			found: function (data) {
 				if (data.value.username === EP.CurrentUser.username) {
 					EP.Properties.delete('availablePlayer', function() {
-						AJS.messages.success({title: 'Game request cancelled.'});
+						AJS.messages.success({title: 'Game request cancelled'});
 						setToolbar(false);
 					});
 				} else {
-					AJS.messages.generic({title: 'You don\'t have any pending request.'});
+					AJS.messages.generic({title: 'You don\'t have any pending request'});
 					setToolbar(false);
 				}
 			},
 			notFound: function () {
-				AJS.messages.generic({title: 'You don\'t have any pending request.'});
+				AJS.messages.generic({title: 'You don\'t have any pending request'});
 				setToolbar(false);
 			}
 		});

@@ -85,11 +85,14 @@ EP.SubmitMatchDialog = function() {
 				$perfects.find('option:first-child').attr('selected','selected');
 			}
 
-			// Limit drop down values to their maximums
-			$perfects.find('option').show();
-			_(maximums).each(function(max,i) {
-				$perfects.eq(i).find('option').filter(function() {return parseInt($(this).attr('value')) > max}).hide();
+			// Reset options
+			_(maximums).each(function(max, i) {
+				var selected = parseInt($perfects.eq(i).find('option:selected').attr('value'));
+				var html = _(_.range(max + 1)).map(function(j) {return '<option value="' + j + '">' + j + '</option>'}).join();
+				$perfects.eq(i).html(html);
+				$perfects.eq(i).find('option').eq(selected).attr('selected','selected');
 			});
+
 		}
 	}
 	// Wiring

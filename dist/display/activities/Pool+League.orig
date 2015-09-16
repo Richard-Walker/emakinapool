@@ -21,7 +21,7 @@
 <meta id="confluence-context-path" name="confluence-context-path" content="">
 <meta id="confluence-base-url" name="confluence-base-url" content="https://share.emakina.net">
 
-<meta id="atlassian-token" name="atlassian-token" content="cb536f18ee2c0270ff79f8f7683dc032b9e531d2">
+<meta id="atlassian-token" name="atlassian-token" content="6b9672076fba8882c861ef7211597c26b0a3264c">
 
 
 <meta id="confluence-space-key" name="confluence-space-key" content="activities">
@@ -31,7 +31,7 @@
 
     
 
-    <meta name="confluence-request-time" content="1442358846085">
+    <meta name="confluence-request-time" content="1442406901462">
         
     
         
@@ -78,7 +78,7 @@
             <meta name="ajs-global-settings-attachment-max-size" content="1073741824">
             <meta name="ajs-user-locale" content="en_GB">
             <meta name="ajs-enabled-dark-features" content="confluence-inline-comments-resolved,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareContentEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.mentions.api.ConfluenceMentionEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.security.ForgotPasswordEvent,pdf-preview,notification.plugin.api.enabled.com.atlassian.confluence.plugins.tasklist.event.SendTaskEmailEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageMovedEvent,previews.sharing,previews.versions,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentUpdateEvent,file-annotations,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.attachment.AttachmentBatchUploadCompletedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingLessUsersEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentRemoveEvent,atlassian.aui.raphael.disabled,previews.conversion-service,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.follow.FollowEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageEditedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostCreateEvent,previews.trigger-all-file-types,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentResolveEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.like.LikeCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentCreateEvent,previews.sharing.pushstate,confluence-inline-comments-rich-editor,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostUpdateEvent,file-annotations.likes,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentMentionUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingNoSpaceCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.hipchat.api.events.HipChatUserMapped,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareAttachmentEvent,confluence-inline-comments,confluence-inline-comments-dangling-comment,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostMovedEvent">
-            <meta name="ajs-atl-token" content="cb536f18ee2c0270ff79f8f7683dc032b9e531d2">
+            <meta name="ajs-atl-token" content="6b9672076fba8882c861ef7211597c26b0a3264c">
             <meta name="ajs-confluence-flavour" content="VANILLA">
             <meta name="ajs-user-date-pattern" content="dd MMM yyyy">
             <meta name="ajs-date.format" content="MMM dd, yyyy">
@@ -180,8 +180,8 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
     	    		RW.cacheSettings.params['docache'] = true;
     	            			RW.cacheSettings.lastChange['footer'] = 1442293934788;
         			RW.cacheSettings.lastChange['globalmenu'] = 1441868561587;
-        			RW.cacheSettings.lastChange['usercategory'] = 1442343774186;
-        			RW.cacheSettings.lastChange['category'] = 1442343774186;
+        			RW.cacheSettings.lastChange['usercategory'] = 1442404950473;
+        			RW.cacheSettings.lastChange['category'] = 1442404950473;
     </script>
 
 
@@ -361,7 +361,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                 <link rel="canonical" href="https://share.emakina.net/display/activities/Pool+League">
         <link rel="shortlink" href="https://share.emakina.net/x/7YIeBg">
     <meta name="wikilink" content="[activities:Pool League]">
-    <meta name="page-version" content="319">
+    <meta name="page-version" content="349">
 
     
         
@@ -1010,7 +1010,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                                             
     
     
-    <a  id="page-favourite" href="/labels/addfavourite.action?entityId=102662893&amp;atl_token=cb536f18ee2c0270ff79f8f7683dc032b9e531d2" rel="nofollow" class="action-page-favourite"   title="">
+    <a  id="page-favourite" href="/labels/addfavourite.action?entityId=102662893&amp;atl_token=6b9672076fba8882c861ef7211597c26b0a3264c" rel="nofollow" class="action-page-favourite"   title="">
                 <span>
                         Favourite
         </span>    </a>
@@ -1737,7 +1737,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
             Created by <span class='author'>     <a href="    /display/~rwa
 "
                        class="url fn confluence-userlink" data-username="rwa"
-                            >Richard Walker</a></span>, last modified <a class='last-modified' title='Show changes' href='/pages/diffpagesbyversion.action?pageId=102662893&amp;selectedPageVersions=318&amp;selectedPageVersions=319'>2 minutes ago</a>
+                            >Richard Walker</a></span>, last modified <a class='last-modified' title='Show changes' href='/pages/diffpagesbyversion.action?pageId=102662893&amp;selectedPageVersions=348&amp;selectedPageVersions=349'>a minute ago</a>
                 </li>
         </ul>
     </div>
@@ -1783,9 +1783,9 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
         <div class="aui-toolbar2-inner">
             <div class="aui-toolbar2-primary">
                     <button id="register-button" class="aui-button aui-button-primary">Register</button>
-                    <button id="add-match-button" class="aui-button aui-button-primary">Record a victory</button>
+                    <button id="add-match-button" class="aui-button aui-button-primary">Encode a victory</button>
                   	<button id="cancel-play-button" class="aui-button">Cancel your game request</button>
-                  	<button id="play-button" class="aui-button">Play a game</button>
+                  	<button id="play-button" class="aui-button">Play pool</button>
                  	<button id="invite-button" class="aui-button">Invite a friend</button>
                  	<button id="verify-data-button" class="aui-button">Verify data</button>
             </div>
@@ -1805,7 +1805,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 class="profile-title" id="PoolLeague-Profile">Profile</h1><div class="table-wrap"><table class="profile-summary confluenceTable"><tbody><tr><td class="confluenceTd"><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="50" src="/download/thumbnails/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-image-src="/download/attachments/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-unresolved-comment-count="0" data-linked-resource-id="102663750" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="avatar.png" data-base-url="https://share.emakina.net" data-linked-resource-content-type="image/png" data-linked-resource-container-id="102662893" data-linked-resource-container-version="319"></span></p><h4 id="PoolLeague-$stageName">$stageName</h4><p>$summary</p></td></tr></tbody></table></div><div class="table-wrap"><table class="profile-stats confluenceTable"><tbody><tr><th class="confluenceTh">Matches</th><td class="confluenceTd">$matches</td></tr><tr><th class="confluenceTh">Won</th><td class="confluenceTd">$won</td></tr><tr><th class="confluenceTh">Lost</th><td class="confluenceTd">$lost</td></tr><tr><th colspan="1" class="confluenceTh">Perfects</th><td colspan="1" class="confluenceTd">$perfects</td></tr><tr><th colspan="1" class="confluenceTh">Rating</th><td colspan="1" class="confluenceTd">$rating</td></tr></tbody></table></div></div>
+<h1 class="profile-title" id="PoolLeague-Profile">Profile</h1><div class="table-wrap"><table class="profile-summary confluenceTable"><tbody><tr><td class="confluenceTd"><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="50" src="/download/thumbnails/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-image-src="/download/attachments/102662893/avatar.png?version=1&amp;modificationDate=1437517553960&amp;api=v2" data-unresolved-comment-count="0" data-linked-resource-id="102663750" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="avatar.png" data-base-url="https://share.emakina.net" data-linked-resource-content-type="image/png" data-linked-resource-container-id="102662893" data-linked-resource-container-version="349"></span></p><h4 id="PoolLeague-$stageName">$stageName</h4><p>$summary</p></td></tr></tbody></table></div><div class="table-wrap"><table class="profile-stats confluenceTable"><tbody><tr><th class="confluenceTh">Matches</th><td class="confluenceTd">$matches</td></tr><tr><th class="confluenceTh">Won</th><td class="confluenceTd">$won</td></tr><tr><th class="confluenceTh">Lost</th><td class="confluenceTd">$lost</td></tr><tr><th colspan="1" class="confluenceTh">Perfects</th><td colspan="1" class="confluenceTd">$perfects</td></tr><tr><th colspan="1" class="confluenceTh">Rating</th><td colspan="1" class="confluenceTd">$rating</td></tr></tbody></table></div></div>
 </div>
 </div>
 <div class="columnLayout single" data-layout="single">
@@ -1817,13 +1817,150 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 id="PoolLeague-Players">Players</h1><div class="table-wrap"><table class="players-table confluenceTable"><tbody><tr><th class="confluenceTh">Player</th><th class="confluenceTh">Stage name</th><th colspan="1" class="confluenceTh">M</th><th class="confluenceTh">W</th><th colspan="1" class="confluenceTh">L</th><th colspan="1" class="confluenceTh">Rating</th><th colspan="1" class="confluenceTh">Rank</th><th colspan="1" class="confluenceTh">Achievements</th><th colspan="1" class="confluenceTh">Perfects</th><th colspan="1" class="confluenceTh">Invitations</th><th colspan="1" class="confluenceTh">Opponents</th><th colspan="1" class="confluenceTh">Cur. streak</th><th colspan="1" class="confluenceTh">Cur. belt poss.</th><th colspan="1" class="confluenceTh">Week points</th><th colspan="1" class="confluenceTh">Games played</th><th colspan="1" class="confluenceTh">Notifications</th></tr><tr><td class="confluenceTd"><p>Alexis de Bontrider (adb)</p><p>Belt owner</p></td><td class="confluenceTd">Le Testeur De Tridder</td><td class="confluenceTd">23</td><td class="confluenceTd">5</td><td class="confluenceTd">18</td><td class="confluenceTd">1441</td><td class="confluenceTd">2</td><td class="confluenceTd"><p>Expert</p><p><a href="tip://list?First%20Time++8%20Ball++Points++Start%20of%20a%20Career++Rotation++Perfect++1%20Pocket++9%20Ball++House%20Player++Kid%20Wrestler++Pro%20Wrestler++Hat-Trick++Tough%20Cowboy++Heavy-Weight%20Wrestler" rel="nofollow"> 14 achievement(s) </a></p></td><td class="confluenceTd">1</td><td class="confluenceTd"><a href="tip://list" rel="nofollow"> 0 invite(s) sent </a></td><td class="confluenceTd"><a href="tip://list?rwa" rel="nofollow"> 1 opponent(s) </a></td><td class="confluenceTd">0</td><td class="confluenceTd">3</td><td class="confluenceTd">-59</td><td class="confluenceTd"><a href="tip://list?8%20ball++points++rotation++one%20pocket++9%20ball" rel="nofollow"> 5 game(s) </a></td><td class="confluenceTd"><a href="tip://list?achievement%3APoints++achievement%3AStart%20of%20a%20Career++achievement%3ARotation++achievement%3APerfect++achievement%3A1%20Pocket++achievement%3AApprentice++achievement%3A9%20Ball++achievement%3AHouse%20Player++achievement%3AKid%20Wrestler++achievement%3APro%20Wrestler++achievement%3AHat-Trick++achievement%3ATough%20Cowboy++achievement%3AHeavy-Weight%20Wrestler++achievement%3AExpert" rel="nofollow"> 14 notification(s) </a></td></tr><tr><td class="confluenceTd"><p>Maxime Verleye (mav)</p></td><td class="confluenceTd">Le Testeur Fou</td><td class="confluenceTd">7</td><td class="confluenceTd">2</td><td class="confluenceTd">5</td><td class="confluenceTd">1478</td><td class="confluenceTd"> </td><td class="confluenceTd"><p>Apprentice</p><p><a href="tip://list?First%20Time++Rotation++Kid%20Wrestler++8%20Ball++Straight%20Pool++Start%20of%20a%20Career++Perfect" rel="nofollow"> 7 achievement(s) </a></p></td><td class="confluenceTd">1</td><td class="confluenceTd"><a href="tip://list" rel="nofollow"> 0 invite(s) sent </a></td><td class="confluenceTd"><a href="tip://list?rwa" rel="nofollow"> 1 opponent(s) </a></td><td class="confluenceTd">0</td><td class="confluenceTd"> </td><td class="confluenceTd">-22</td><td class="confluenceTd"><a href="tip://list?rotation++8%20ball++straight%20pool" rel="nofollow"> 3 game(s) </a></td><td class="confluenceTd"><a href="tip://list?achievement%3AFirst%20Time++achievement%3ARotation++achievement%3AStraight%20Pool++achievement%3AStart%20of%20a%20Career++achievement%3APerfect++achievement%3AApprentice" rel="nofollow"> 6 notification(s) </a></td></tr><tr><td class="confluenceTd"><p>Meryem Lahouel (mll)</p></td><td class="confluenceTd">La Testeuse d'Ivoire</td><td class="confluenceTd">4</td><td class="confluenceTd">0</td><td class="confluenceTd">4</td><td class="confluenceTd">1449</td><td class="confluenceTd"> </td><td class="confluenceTd"><p>Novice</p><p><a href="tip://list?First%20Time++1%20Pocket++Perfect++Perfection++Perfectness++8%20Ball" rel="nofollow"> 6 achievement(s) </a></p></td><td class="confluenceTd">4</td><td class="confluenceTd"><a href="tip://list" rel="nofollow"> 0 invite(s) sent </a></td><td class="confluenceTd"><a href="tip://list?rwa" rel="nofollow"> 1 opponent(s) </a></td><td class="confluenceTd">0</td><td class="confluenceTd"> </td><td class="confluenceTd">-51</td><td class="confluenceTd"><a href="tip://list?one%20pocket++8%20ball" rel="nofollow"> 2 game(s) </a></td><td class="confluenceTd"><a href="tip://list" rel="nofollow"> 0 notification(s) </a></td></tr><tr><td class="confluenceTd"><p>Richard Walker (rwa)</p></td><td class="confluenceTd">Mystère mystère</td><td class="confluenceTd">28</td><td class="confluenceTd">23</td><td class="confluenceTd">5</td><td class="confluenceTd">1602</td><td class="confluenceTd">1</td><td class="confluenceTd"><p>Grand Master</p><p><a href="tip://list?First%20Time++Points++8%20Ball++Dragonfly++Rotation++Hat-Trick++Bird++1%20Pocket++Perfect++Perfection++Perfectness++Eagle++Start%20of%20a%20Career++9%20Ball++Mexican%20Hat-Trick++Straight%20Pool++Living%20Encyclopaedia++Kid%20Wrestler++Santa%27s%20Hat-Trick++Cool%20Guy++House%20Player++Pro%20Wrestler++Heavy-Weight%20Wrestler++Intercontinental%20Wrestler++Tough%20Cowboy++Good%20Neighbour++Head%20Hunter" rel="nofollow"> 27 achievement(s) </a></p></td><td class="confluenceTd">4</td><td class="confluenceTd"><a href="tip://list?mpe++rwarson++mto++mpoelmans" rel="nofollow"> 4 invite(s) sent </a></td><td class="confluenceTd"><a href="tip://list?adb++mav++mll" rel="nofollow"> 3 opponent(s) </a></td><td class="confluenceTd">4</td><td class="confluenceTd"> </td><td class="confluenceTd">102</td><td class="confluenceTd"><a href="tip://list?points++8%20ball++rotation++one%20pocket++9%20ball++straight%20pool" rel="nofollow"> 6 game(s) </a></td><td class="confluenceTd"><a href="tip://list" rel="nofollow"> 0 notification(s) </a></td></tr></tbody></table></div></div>
+<h1 id="PoolLeague-Players">Players</h1><div class="table-wrap"><table class="players-table confluenceTable"><tbody><tr><th class="confluenceTh">Player</th><th class="confluenceTh">Stage name</th><th colspan="1" class="confluenceTh">M</th><th class="confluenceTh">W</th><th colspan="1" class="confluenceTh">L</th><th colspan="1" class="confluenceTh">Rating</th><th colspan="1" class="confluenceTh">Rank</th><th colspan="1" class="confluenceTh">Achievements</th><th colspan="1" class="confluenceTh">Perfects</th><th colspan="1" class="confluenceTh">Invitations</th><th colspan="1" class="confluenceTh">Opponents</th><th colspan="1" class="confluenceTh">Cur. streak</th><th colspan="1" class="confluenceTh">Cur. belt poss.</th><th colspan="1" class="confluenceTh">Week points</th><th colspan="1" class="confluenceTh">Games played</th><th colspan="1" class="confluenceTh">Notifications</th></tr><tr>
+  <td class="confluenceTd">
+    <p>
+      Alexis de Bontrider (adb)
+    </p>
+    
+  </td>
+  <td class="confluenceTd">Le Testeur De Tridder</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">1436</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">
+    <p>Novice</p>
+    <p>
+      <a href="tip://list?First%20Time++8%20Ball++Perfect++Perfection++Perfectness" rel="nofollow">
+        5 achievement(s)
+      </a>
+    </p>
+  </td>
+  <td class="confluenceTd">3</td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 invite(s) sent
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?rwa" rel="nofollow">
+      1 opponent(s)
+    </a>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">-64</td>
+  <td class="confluenceTd">
+    <a href="tip://list?8%20ball" rel="nofollow">
+      1 game(s)
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?achievement%3AFirst%20Time++achievement%3A8%20Ball++achievement%3APerfect++achievement%3APerfection++achievement%3APerfectness" rel="nofollow">
+      5 notification(s)
+    </a>
+  </td>
+</tr><tr>
+  <td class="confluenceTd">
+    <p>
+      Maxime Verleye (mav)
+    </p>
+    
+  </td>
+  <td class="confluenceTd">Le Testeur Fou</td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">1500</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">
+    <p>Novice</p>
+    <p>
+      <a href="tip://list?" rel="nofollow">
+        0 achievement(s)
+      </a>
+    </p>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 invite(s) sent
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 opponent(s)
+    </a>
+  </td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 game(s)
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 notification(s)
+    </a>
+  </td>
+</tr><tr>
+  <td class="confluenceTd">
+    <p>
+      Richard Walker (rwa)
+    </p>
+    
+      <p><strong>Belt owner</strong></p>
+    
+  </td>
+  <td class="confluenceTd">Mystère mystère</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">1564</td>
+  <td class="confluenceTd" />
+  <td class="confluenceTd">
+    <p>Apprentice</p>
+    <p>
+      <a href="tip://list?First%20Time++8%20Ball++Kid%20Wrestler++Perfect++Perfection++Dragonfly++Bird++Good%20Neighbour" rel="nofollow">
+        8 achievement(s)
+      </a>
+    </p>
+  </td>
+  <td class="confluenceTd">2</td>
+  <td class="confluenceTd">
+    <a href="tip://list?gel" rel="nofollow">
+      1 invite(s) sent
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?adb" rel="nofollow">
+      1 opponent(s)
+    </a>
+  </td>
+  <td class="confluenceTd">1</td>
+  <td class="confluenceTd">0</td>
+  <td class="confluenceTd">64</td>
+  <td class="confluenceTd">
+    <a href="tip://list?8%20ball" rel="nofollow">
+      1 game(s)
+    </a>
+  </td>
+  <td class="confluenceTd">
+    <a href="tip://list?" rel="nofollow">
+      0 notification(s)
+    </a>
+  </td>
+</tr></tbody></table></div></div>
 </div>
 </div>
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 id="PoolLeague-Matches"><span>Matches</span></h1><div class="table-wrap"><table class="matches-table confluenceTable"><tbody><tr><th colspan="1" class="confluenceTh">Date</th><th colspan="1" class="confluenceTh">Game</th><th class="confluenceTh">Winner</th><th colspan="1" class="confluenceTh">Updates</th><th class="confluenceTh">Loser</th><th colspan="1" class="confluenceTh">Updates</th></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-29" class="date-past">29 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+9 pts</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-9 pts</p><p>+1 place(s)</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-29" class="date-past">29 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+10 pts</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-10 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-28" class="date-past">28 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 5</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+11 pts</p></td><td colspan="1" class="confluenceTd">mll</td><td colspan="1" class="confluenceTd"><p>-11 pts</p><p>-1 place(s)</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-28" class="date-past">28 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+12 pts</p><p>+1 perfect(s)</p></td><td colspan="1" class="confluenceTd">mav</td><td colspan="1" class="confluenceTd"><p>-12 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-24" class="date-past">24 Aug 2015</time></td><td colspan="1" class="confluenceTd">rotation - best of 5</td><td colspan="1" class="confluenceTd">mav</td><td colspan="1" class="confluenceTd"><p>+20 pts</p><p>+1 perfect(s)</p><p><a href="tip://list?Perfect" rel="nofollow"> +1 achievement(s) </a></p><p>+Level: Apprentice</p></td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>-20 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-24" class="date-past">24 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+11 pts</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-11 pts</p><p>-2 place(s)</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>+22 pts</p><p>+2 place(s)</p><p><a href="tip://list?Tough%20Cowboy++Heavy-Weight%20Wrestler" rel="nofollow"> +2 achievement(s) </a></p><p>+Level: Expert</p></td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>-22 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 5</td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>+23 pts</p><p><a href="tip://list?Hat-Trick" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>-23 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>+25 pts</p><p><a href="tip://list?Pro%20Wrestler" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>-25 pts</p><p><a href="tip://list?Tough%20Cowboy" rel="nofollow"> +1 achievement(s) </a></p><p>+Level: Grand Master</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>+26 pts</p><p>+Belt</p><p><a href="tip://list?Kid%20Wrestler" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>-26 pts</p><p>-Belt</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">9 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+5 pts</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-5 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">9 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+5 pts</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-5 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+5 pts</p><p><a href="tip://list?Intercontinental%20Wrestler" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-5 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+8 pts</p></td><td colspan="1" class="confluenceTd">mav</td><td colspan="1" class="confluenceTd"><p>-8 pts</p><p><a href="tip://list?Start%20of%20a%20Career" rel="nofollow"> +1 achievement(s) </a></p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+6 pts</p><p><a href="tip://list?Heavy-Weight%20Wrestler" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-6 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+6 pts</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-6 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+7 pts</p><p><a href="tip://list?Pro%20Wrestler" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-7 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+10 pts</p></td><td colspan="1" class="confluenceTd">mav</td><td colspan="1" class="confluenceTd"><p>-10 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+8 pts</p><p><a href="tip://list?House%20Player" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-8 pts</p><p><a href="tip://list?House%20Player" rel="nofollow"> +1 achievement(s) </a></p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+8 pts</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-8 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+10 pts</p><p><a href="tip://list?Cool%20Guy" rel="nofollow"> +1 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">mll</td><td colspan="1" class="confluenceTd"><p>-10 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+9 pts</p><p><a href="tip://list?Santa%27s%20Hat-Trick" rel="nofollow"> +1 achievement(s) </a></p><p>+Level: Master</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-9 pts</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">straight pool - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+12 pts</p><p>+Belt</p><p><a href="tip://list?Straight%20Pool++Living%20Encyclopaedia++Kid%20Wrestler" rel="nofollow"> +3 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">mav</td><td colspan="1" class="confluenceTd"><p>-12 pts</p><p>-Belt</p><p><a href="tip://list?Straight%20Pool" rel="nofollow"> +1 achievement(s) </a></p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">9 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+11 pts</p><p><a href="tip://list?Start%20of%20a%20Career++9%20Ball++Mexican%20Hat-Trick" rel="nofollow"> +3 achievement(s) </a></p><p>+Level: Expert</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-11 pts</p><p><a href="tip://list?9%20Ball" rel="nofollow"> +1 achievement(s) </a></p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">one pocket - best of 5</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+12 pts</p><p>+3 perfect(s)</p><p><a href="tip://list?1%20Pocket++Perfect++Perfection++Perfectness++Eagle" rel="nofollow"> +5 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-12 pts</p><p><a href="tip://list?1%20Pocket" rel="nofollow"> +1 achievement(s) </a></p><p>+Level: Apprentice</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">rotation - best of 3</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+13 pts</p><p><a href="tip://list?Rotation++Hat-Trick++Bird" rel="nofollow"> +3 achievement(s) </a></p><p>+Level: Apprentice</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-13 pts</p><p>+1 perfect(s)</p><p><a href="tip://list?Start%20of%20a%20Career++Rotation++Perfect" rel="nofollow"> +3 achievement(s) </a></p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">8 ball - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+14 pts</p><p><a href="tip://list?8%20Ball++Dragonfly" rel="nofollow"> +2 achievement(s) </a></p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-14 pts</p><p>-1 place(s)</p></td></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-08-23" class="date-past">23 Aug 2015</time></td><td colspan="1" class="confluenceTd">points - 1 game</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+16 pts</p><p>+2 place(s)</p><p><a href="tip://list?First%20Time++Points" rel="nofollow"> +2 achievement(s) </a></p><p>+Level: Novice</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-16 pts</p><p>-1 place(s)</p><p><a href="tip://list?Points" rel="nofollow"> +1 achievement(s) </a></p></td></tr></tbody></table></div></div>
+<h1 id="PoolLeague-Matches"><span>Matches</span></h1><div class="table-wrap"><table class="matches-table confluenceTable"><tbody><tr><th colspan="1" class="confluenceTh">Date</th><th colspan="1" class="confluenceTh">Game</th><th class="confluenceTh">Winner</th><th colspan="1" class="confluenceTh">Updates</th><th class="confluenceTh">Loser</th><th colspan="1" class="confluenceTh">Updates</th></tr><tr><td colspan="1" class="confluenceTd"><time datetime="2015-09-16" class="date-upcoming">16 Sep 2015</time></td><td colspan="1" class="confluenceTd">8 ball - best of 7</td><td colspan="1" class="confluenceTd">rwa</td><td colspan="1" class="confluenceTd"><p>+64 pts</p><p>+2 perfect(s)</p><p><a href="tip://list?First%20Time++8%20Ball++Kid%20Wrestler++Perfect++Perfection++Dragonfly++Bird" rel="nofollow"> +7 achievement(s) </a></p><p>+Level: Apprentice</p></td><td colspan="1" class="confluenceTd">adb</td><td colspan="1" class="confluenceTd"><p>-64 pts</p><p>+3 perfect(s)</p><p><a href="tip://list?First%20Time++8%20Ball++Perfect++Perfection++Perfectness" rel="nofollow"> +5 achievement(s) </a></p></td></tr></tbody></table></div></div>
 </div>
 </div>
 <div class="columnLayout single" data-layout="single">
@@ -1962,7 +2099,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                     <img src="/images/icons/wait.gif" class='plugin_attachments_dropzone_uploadwaiticon'/>
                 </li>
                 <form method="POST" class="plugin_attachments_uploadform aui hidden" action="/pages/plugins/attachments/doattachfile.action?pageId=108463633" enctype="multipart/form-data">
-                        <input type="hidden" name="atl_token" value="cb536f18ee2c0270ff79f8f7683dc032b9e531d2">
+                        <input type="hidden" name="atl_token" value="6b9672076fba8882c861ef7211597c26b0a3264c">
                     <div class="field-group">
                         <label>Upload file</label>
                         <input type="file" name="file_0" size="30">
@@ -1975,7 +2112,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
                     <div class="field-group">
                         <input type="submit" class="submit aui-button" name="confirm" value="Upload">
                     </div>
-                    <iframe class="plugin_attachments_uploadiframe hidden" name="q5Qt8zKnFyL2UGywfOxuGWOORYAcsJseOvuOlxXhoaEdWzh1a2zbtwbIb0FpCyOi" src=""></iframe>
+                    <iframe class="plugin_attachments_uploadiframe hidden" name="jVCWh81FzFDOfpEM6tYGso0iVCN3Ihnp7rDHHpsrETDGMzx4J4kagSxXvMwcFt4L" src=""></iframe>
                 </form>
             </div>
             </div>
@@ -1990,7 +2127,7 @@ WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:
 <div class="columnLayout single" data-layout="single">
 <div class="cell normal" data-type="normal">
 <div class="innerCell">
-<h1 id="PoolLeague-Help">Help</h1><h2 id="PoolLeague-Glossary">Glossary</h2><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">8 ball</th><td class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">9 ball</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">Points</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">Straight pool</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">1 pocket</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">Rotation</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th class="confluenceTh">&quot;Best of X&quot; match</th><td class="confluenceTd"> </td></tr><tr><th class="confluenceTh">Perfect</th><td class="confluenceTd"> </td></tr></tbody></table></div><p> </p><h2 id="PoolLeague-Rules">Rules</h2><div id="expander-1401382375" class="expand-container"><div id="expander-control-1401382375" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">General rules</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-1514913575" class="expand-container"><div id="expander-control-1514913575" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">8 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-1471215937" class="expand-container"><div id="expander-control-1471215937" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">9 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><h2 id="PoolLeague-FAQ">FAQ</h2><div id="expander-215682278" class="expand-container"><div id="expander-control-215682278" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How can I get the golden belt?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">It is acquired by defeating the current owner in at least a best of 3 games match.</span></p><p>For one pocket, the game being significantly longer, only a single game is required to win the belt.</p><p>The champion has to defend his title and is encouraged to accept challenges. At least he shouldn't refuse them for more than a week.</p></div></div><div id="expander-239720556" class="expand-container"><div id="expander-control-239720556" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How is my rating computed?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">Each player starts with a rating of <strong>1500 points</strong>.</span></p><p>Ratings are updated after each match using the Elo rating system with a <strong>k factor of 32</strong>.</p><p>Some explanations about the Elo system:</p><ul><li>The k factor represents the maximum number of points you can win/lose in a single game.</li><li>The actual number of points depends on the difference between ratings:<ul><li><span style="line-height: 1.42857;">For a victory against a <strong>similarly rated player</strong>, the winner gets 16 points (half of the k factor).</span></li><li>For a victory against a <strong>higher rated player</strong>, the winner gets more points as the rating difference increase, 32 being the maximum.</li><li><span>For a victory against a <strong>lower rated player, </strong>the winner gets less points as the rating difference increase, 1 being the minimum.</span></li></ul></li><li><span style="line-height: 1.42857;">The points won by the winner is always equal to the points lost by his opponent.<br /></span>(Therefore, if the number of players is stable, the total number of points remains constant!)</li></ul><p><span><img class="emoticon emoticon-warning" src="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_/images/icons/emoticons/warning.png" data-emoticon-name="warning" alt="(warning)" /> In a multiple games match,<strong> the k factor is</strong> <strong>multiplied </strong>by the number of games required to win the match (e.g. k=62 a &quot;best of 3 games&quot; match).</span></p><p> </p><p>Check <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">wikipedia</a> for more information about this clever guy named <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">Arpad Elo</a>.</p></div></div><h2 id="PoolLeague-Contacts">Contacts</h2><p><a class="confluence-userlink user-mention current-user-mention" data-username="rwa" href="/display/~rwa" data-linked-resource-id="1540690" data-linked-resource-version="2" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Richard Walker</a> &amp; <a class="confluence-userlink user-mention" data-username="mav" href="/display/~mav" data-linked-resource-id="13303932" data-linked-resource-version="1" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Maxime Verleye</a></p><p> </p></div>
+<h1 id="PoolLeague-Help">Help</h1><h2 id="PoolLeague-Glossary">Glossary</h2><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">8 ball</th><td class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">9 ball</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">Points</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">Straight pool</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">1 pocket</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th colspan="1" class="confluenceTh">Rotation</th><td colspan="1" class="confluenceTd"> </td></tr><tr><th class="confluenceTh">&quot;Best of X&quot; match</th><td class="confluenceTd"> </td></tr><tr><th class="confluenceTh">Perfect</th><td class="confluenceTd"> </td></tr></tbody></table></div><p> </p><h2 id="PoolLeague-Rules">Rules</h2><div id="expander-728749195" class="expand-container"><div id="expander-control-728749195" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">General rules</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-1052086885" class="expand-container"><div id="expander-control-1052086885" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">8 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><div id="expander-656846002" class="expand-container"><div id="expander-control-656846002" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">9 ball</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><ol><li>a</li><li>z</li><li>e</li></ol></div></div><h2 id="PoolLeague-FAQ">FAQ</h2><div id="expander-1782174591" class="expand-container"><div id="expander-control-1782174591" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How can I get the golden belt?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">It is acquired by defeating the current owner in at least a best of 3 games match.</span></p><p>For one pocket, the game being significantly longer, only a single game is required to win the belt.</p><p>The champion has to defend his title and is encouraged to accept challenges. At least he shouldn't refuse them for more than a week.</p></div></div><div id="expander-399052095" class="expand-container"><div id="expander-control-399052095" class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">How is my rating computed?</span></div><div id="expander-content-$toggleId" class="expand-content expand-hidden"><p><span style="line-height: 1.4285715;">Each player starts with a rating of <strong>1500 points</strong>.</span></p><p>Ratings are updated after each match using the Elo rating system with a <strong>k factor of 32</strong>.</p><p>Some explanations about the Elo system:</p><ul><li>The k factor represents the maximum number of points you can win/lose in a single game.</li><li>The actual number of points depends on the difference between ratings:<ul><li><span style="line-height: 1.42857;">For a victory against a <strong>similarly rated player</strong>, the winner gets 16 points (half of the k factor).</span></li><li>For a victory against a <strong>higher rated player</strong>, the winner gets more points as the rating difference increase, 32 being the maximum.</li><li><span>For a victory against a <strong>lower rated player, </strong>the winner gets less points as the rating difference increase, 1 being the minimum.</span></li></ul></li><li><span style="line-height: 1.42857;">The points won by the winner is always equal to the points lost by his opponent.<br /></span>(Therefore, if the number of players is stable, the total number of points remains constant!)</li></ul><p><span><img class="emoticon emoticon-warning" src="/s/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.103/_/images/icons/emoticons/warning.png" data-emoticon-name="warning" alt="(warning)" /> In a multiple games match,<strong> the k factor is</strong> <strong>multiplied </strong>by the number of games required to win the match (e.g. k=62 a &quot;best of 3 games&quot; match).</span></p><p> </p><p>Check <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">wikipedia</a> for more information about this clever guy named <a href="https://en.wikipedia.org/wiki/Elo_rating_system" class="external-link" rel="nofollow">Arpad Elo</a>.</p></div></div><h2 id="PoolLeague-Contacts">Contacts</h2><p><a class="confluence-userlink user-mention current-user-mention" data-username="rwa" href="/display/~rwa" data-linked-resource-id="1540690" data-linked-resource-version="2" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Richard Walker</a> &amp; <a class="confluence-userlink user-mention" data-username="mav" href="/display/~mav" data-linked-resource-id="13303932" data-linked-resource-version="1" data-linked-resource-type="userinfo" data-base-url="https://share.emakina.net">Maxime Verleye</a></p><p> </p></div>
 </div>
 </div>
 </div>

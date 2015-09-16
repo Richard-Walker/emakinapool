@@ -16,8 +16,9 @@ EP.ProfileSection = function() {
 	// Variables
 
 	var variables = {
-		summary : EP.CurrentUser.level.toUpperCase() + ' &nbsp;-&nbsp; Ranked #' + EP.CurrentUser.rank	
+		summary : EP.CurrentUser.level.toUpperCase() + ' &nbsp;-&nbsp; ' + (EP.CurrentUser.rank ? 'Ranked #' + EP.CurrentUser.rank : 'Not ranked')
 	}
+
 	if (EP.CurrentUser.hasBelt) {
 		variables.summary += ' &nbsp;-&nbsp; Belt owner';
 	}

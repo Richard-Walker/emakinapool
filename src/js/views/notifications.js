@@ -29,7 +29,8 @@ EP.Notifications = function() {
 			EP.Players.removeNotifications(EP.CurrentUser.username);
 		});
 
-		dialog.show();
+		// Let's delay the notification for a better user experience
+		window.setTimeout(function() { dialog.show(); }, 3000);
 
 	}
 
