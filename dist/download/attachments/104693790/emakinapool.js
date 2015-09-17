@@ -306,7 +306,22 @@ EP.Mail = function() {
 
 	EP.Mail = {}
 
+
+	// All files that can be used in templates
+	EP.Mail.files = [{
+      	cid:          'hookedUpBanner',
+      	url:          'https://dl.dropboxusercontent.com/u/14573395/emakinapool/hooked-up-banner.jpg',
+	    filename:     'hooked-up-banner.jpg'
+	}, {
+      	cid:          'invitationBanner',
+      	url:          'https://dl.dropboxusercontent.com/u/14573395/emakinapool/invite-banner.jpeg',
+	    filename:     'invite-banner.jpeg'
+	}];
+
+
 	EP.Mail.send = function (to, template, templateData, callback) {
+
+		templateData.files = templateData.files || [];
 
 		function parseRecipient(r) {
 			switch (r.constructor) {
@@ -327,15 +342,19 @@ EP.Mail = function() {
 
 		var from = EP.Helpers.parseEmail(EP.Settings.emailFrom);
 
-		var $html = $(JST[template + 'Mail'](templateData));
+		var html = JST[template + 'Mail'](templateData);
+		var parsed = html.match(/<subject>([\S\s]*)<\/subject>[\S\s]*<message>([\S\s]*)<\/message>/m);
+		var subject = $.trim(parsed[1]);
+		var message = parsed[2];
 
 		var data = {
 			from: from.email,
 			fromname: from.name,
 			to: _(to).pluck('email'),
 			toname: _(to).pluck('name'),
-			subject: $.trim($html.find('subject').text()),
-			html: JST.mailHeader() + $html.find('message').html()
+			subject: subject,
+			html: JST.mailHeader() + message,
+			files: _(EP.Mail.files).filter(function(f) { return _(templateData.files).contains(f.cid) })
 		}
 
 		$.ajax({
@@ -942,8 +961,8 @@ EP.Match = function() {
 			this.loser.rating = newRatings.loser;
 
 			// Update belt ownership
-			var isBeltChallenge = (this.winner.hasBelt || this.loser.hasBelt) && raceTo > 1;
-			if (this.loser.hasBelt && isBeltChallenge) {
+			var isBeltChallenge = (this.winner.hasBelt || this.loser.hasBelt || _(EP.Players.list()).findWhere({'hasBelt': true}) === undefined) && raceTo > 1;
+			if (isBeltChallenge) {
 				this.loser.hasBelt = false;
 				this.winner.hasBelt = true;
 			}
@@ -958,7 +977,7 @@ EP.Match = function() {
 				p.perfects += this.perfects[i];
 				p.opponents = _.union(p.opponents, [this.players[1-i].username]);
 				p.streak = p === this.winner ? p.streak + 1 : 0; 
-				if (isBeltChallenge) { p.beltPossession = !p.hasBelt ? null : ( p.beltPossession === null ? 0 : p.beltPossession + 1 );  }
+				if (isBeltChallenge) { p.beltPossession = p.hasBelt ? ( p.beltPossession === null ? 0 : p.beltPossession + 1 ) : null;  }
 				p.weekPoints = p.weekMatches().length === 0 ? points : p.weekPoints + points;
 				// p.inTopSince = p.rank > 5 ? null : ( p.inTopSince ?  p.inTopSince : EP.Helpers.today() );
 				p.games = _.union(p.games, [this.game]);
@@ -1360,7 +1379,6 @@ EP.Players = function() {
 			})
 		});
 		EP.Players.set(resetPlayers);
-		EP.Players.get(EP.Settings.initialBeltOwner).hasBelt = true;
 
 		// Reset matches
 		var resetMatches = _(matchesNow).map(function(m) {
@@ -1742,7 +1760,8 @@ EP.InviteDialog = function() {
 			invitee: EP.Helpers.parseName(invitee).firstName,
 			referer: EP.CurrentUser,
 			message: $('#invite-message').val(),
-			url: AJS.Confluence.getBaseUrl() + EP.Settings.pagePath
+			url: AJS.Confluence.getBaseUrl() + EP.Settings.pagePath,
+			files: ['invitationBanner']
 		}
 
 		EP.Mail.send(to, 'invitation', data, function() {
@@ -2158,8 +2177,12 @@ EP.PlayDialogs = function() {
 			EP.Properties.get('availablePlayer', {
 				
 				found: function(data) {
-					EP.Mail.send(EP.CurrentUser, 'hookedup', data.value, function() {
-						EP.Mail.send(new EP.Player(data.value), 'hookedup', EP.CurrentUser, function() {
+					
+					var templateData1 = _(data.value).extend({files: ['hookedUpBanner']});
+					var templateData2 = _.chain(EP.CurrentUser).clone().extend({files: ['hookedUpBanner']}).value();
+
+					EP.Mail.send(EP.CurrentUser, 'hookedup', templateData1, function() {
+						EP.Mail.send(new EP.Player(data.value), 'hookedup', templateData2, function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
 									AJS.messages.success({
@@ -2187,7 +2210,7 @@ EP.PlayDialogs = function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
 								title: 'Request submitted',
-								body: '<p>You will get an email as soon we find someone.</p><p>Don\'t forget to cancel shall you become unavailable...</p>',
+								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>',
 								delay: 15000,
 								closeable: true
 
@@ -2633,7 +2656,7 @@ EP.Settings = {
 	forceEmailTo: 'Tester <rwa@emakina.com>',
 
 	// To use incombination with forceEmailTo. If set, only emails using the specified templates are forced.
-	//forceEmailTemplates: ['invitation'],
+	forceEmailTemplates: ['invitation'],
 
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  
@@ -2668,9 +2691,6 @@ EP.Settings = {
 
 	// Send error notifications by email to the admins.
 	sendErrors : true,
-
-	// Initial belt owner's username (used for data verification)
-	initialBeltOwner: 'rwa'
 
 }
 

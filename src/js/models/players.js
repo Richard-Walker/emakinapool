@@ -167,7 +167,6 @@ EP.Players = function() {
 			})
 		});
 		EP.Players.set(resetPlayers);
-		EP.Players.get(EP.Settings.initialBeltOwner).hasBelt = true;
 
 		// Reset matches
 		var resetMatches = _(matchesNow).map(function(m) {

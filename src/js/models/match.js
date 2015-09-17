@@ -64,8 +64,8 @@ EP.Match = function() {
 			this.loser.rating = newRatings.loser;
 
 			// Update belt ownership
-			var isBeltChallenge = (this.winner.hasBelt || this.loser.hasBelt) && raceTo > 1;
-			if (this.loser.hasBelt && isBeltChallenge) {
+			var isBeltChallenge = (this.winner.hasBelt || this.loser.hasBelt || _(EP.Players.list()).findWhere({'hasBelt': true}) === undefined) && raceTo > 1;
+			if (isBeltChallenge) {
 				this.loser.hasBelt = false;
 				this.winner.hasBelt = true;
 			}
@@ -80,7 +80,7 @@ EP.Match = function() {
 				p.perfects += this.perfects[i];
 				p.opponents = _.union(p.opponents, [this.players[1-i].username]);
 				p.streak = p === this.winner ? p.streak + 1 : 0; 
-				if (isBeltChallenge) { p.beltPossession = !p.hasBelt ? null : ( p.beltPossession === null ? 0 : p.beltPossession + 1 );  }
+				if (isBeltChallenge) { p.beltPossession = p.hasBelt ? ( p.beltPossession === null ? 0 : p.beltPossession + 1 ) : null;  }
 				p.weekPoints = p.weekMatches().length === 0 ? points : p.weekPoints + points;
 				// p.inTopSince = p.rank > 5 ? null : ( p.inTopSince ?  p.inTopSince : EP.Helpers.today() );
 				p.games = _.union(p.games, [this.game]);

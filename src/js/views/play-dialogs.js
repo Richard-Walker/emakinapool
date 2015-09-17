@@ -81,8 +81,12 @@ EP.PlayDialogs = function() {
 			EP.Properties.get('availablePlayer', {
 				
 				found: function(data) {
-					EP.Mail.send(EP.CurrentUser, 'hookedup', data.value, function() {
-						EP.Mail.send(new EP.Player(data.value), 'hookedup', EP.CurrentUser, function() {
+					
+					var templateData1 = _(data.value).extend({files: ['hookedUpBanner']});
+					var templateData2 = _.chain(EP.CurrentUser).clone().extend({files: ['hookedUpBanner']}).value();
+
+					EP.Mail.send(EP.CurrentUser, 'hookedup', templateData1, function() {
+						EP.Mail.send(new EP.Player(data.value), 'hookedup', templateData2, function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
 									AJS.messages.success({
@@ -110,7 +114,7 @@ EP.PlayDialogs = function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
 								title: 'Request submitted',
-								body: '<p>You will get an email as soon we find someone.</p><p>Don\'t forget to cancel shall you become unavailable...</p>',
+								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>',
 								delay: 15000,
 								closeable: true
 

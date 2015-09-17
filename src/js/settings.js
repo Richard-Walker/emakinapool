@@ -68,9 +68,6 @@ EP.Settings = {
 	// Set to true to send error notifications by email to the admins.
 	sendErrors: false,
 
-	// Initial belt owner's username (used for data verification)
-	initialBeltOwner: 'rwa'
-
 }
 
 
