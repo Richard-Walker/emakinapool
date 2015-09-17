@@ -114,10 +114,7 @@ EP.PlayDialogs = function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
 								title: 'Request submitted',
-								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>',
-								delay: 15000,
-								closeable: true
-
+								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>'
 							});
 							setToolbar(true);
 						})

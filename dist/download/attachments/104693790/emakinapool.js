@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-09-17
+/*! emakinapool - v0.1.0 - 2015-09-18
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -167,10 +167,15 @@ EP.Helpers = function() {
 	EP.Helpers.dateFromString = function(d, format) {
 		format = format || 'FR';
 
-		if (format === 'ISO') { return new Date(d); }
+		var parts = [];
 
-		var parts = d.split('/');
-		return new Date(parts[2] + "-" + parts[1] + "-" + parts[0]);
+		if (format === 'ISO') { 
+			parts = _(d.split('-')).map(function(n) {return parseInt(n)});
+			return new Date(parts[0], parts[1] - 1, parts[2]);
+		} else {
+			parts = _(d.split('/')).map(function(n) {return parseInt(n)});
+			return new Date(parts[2], parts[1] - 1, parts[0]);
+		}
 	}
 
 
@@ -1490,6 +1495,9 @@ EP.Players = function() {
 
 EP.Properties
 
+Available properties:
+- availablePlayer
+
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -2210,10 +2218,7 @@ EP.PlayDialogs = function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
 								title: 'Request submitted',
-								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>',
-								delay: 15000,
-								closeable: true
-
+								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>'
 							});
 							setToolbar(true);
 						})
