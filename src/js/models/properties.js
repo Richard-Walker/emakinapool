@@ -5,6 +5,7 @@ EP.Properties
 
 Available properties:
 - availablePlayer
+- gameResponseFor_<username>
 
 ---------------------------------------------------------------------------------------------------
 */

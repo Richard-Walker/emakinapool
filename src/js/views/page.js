@@ -21,14 +21,12 @@ EP.Page = function() {
 	if (!_.chain(EP.Settings.admins).pluck('username').contains(EP.CurrentUser.username).value()) {
 
 		// disable keyboard shortcut ("e")
-
 		window.document.onkeydown = function (e) { return e.which !== 69 };
 		
 		// add warning dialog when edit button is clicked
-		
 		$('body').append(JST.editInfoDialog(EP.Settings.admins[0]));
+		
 		var editInfoDialog = AJS.dialog2('#edit-info-dialog');
-
 		$('#editPageLink').click(function(e) {
 			e.preventDefault();
 			e.stopImmediatePropagation();
@@ -36,6 +34,10 @@ EP.Page = function() {
 		});
 
 		$('#edit-info-ok-button').click(function() { editInfoDialog.hide()})
+
+		// Remove admin sub-pages
+		$('#rw_pagetree_item_' + EP.Settings.badgesPageId).remove();
+		$('#rw_pagetree_item_' + EP.Settings.scriptsPageId).remove();
 
 	}
 

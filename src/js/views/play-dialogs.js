@@ -35,6 +35,14 @@ EP.PlayDialogs = function() {
 
 	setToolbar(false);
 
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	Manage properties
+	---------------------------------------------------------------------------------------------------
+	*/
+
+	// availablePlayer
 	EP.Properties.get('availablePlayer', {
 		found: function(property) {
 			var propertyDate = new Date(property.version.when);
@@ -42,14 +50,79 @@ EP.PlayDialogs = function() {
 				// We remove the property if it is expired (not from today)
 				EP.Properties.delete('availablePlayer');
 				setToolbar(false);
+				checkResponse();
 			} else {
-				setToolbar(property.value.username === EP.CurrentUser.username);
+				// The user has a pending request!
+				if (property.value.username === EP.CurrentUser.username) {
+					setToolbar(true);
+					waitForResponse();
+				} else {
+					setToolbar(false);					
+					checkResponse();
+				}
 			}
 		},
 		notFound: function () {
-			setToolbar(false)
+			setToolbar(false);
+			checkResponse();
 		}
 	});
+
+	// gameResponseFor_<username>
+	function checkResponse(successCallback) {
+		EP.Properties.get('gameResponseFor_' + EP.CurrentUser.username, {
+			found: function(property) {
+				if (new Date() <= new Date(property.version.when).addMinutes(30)) {
+					// The user has a match!
+					showHookedUpPopup(property.value);
+					setToolbar(false, true);
+				}
+				EP.Properties.delete('gameResponseFor_' + EP.CurrentUser.username);
+				setToolbar(false, true);
+				if (successCallback) { successCallback(); }
+			},
+			notFound: function() {}
+		});
+	}
+
+	function waitForResponse() {
+		var timer = window.setInterval(function() {
+			checkResponse(function() {
+				window.clearInterval(timer)
+			});
+		}, 5000);
+	}
+
+
+	function propertyData(player) {
+		return {
+			username:  player.username,
+			firstName: player.firstName,
+			lastName:  player.lastName,
+			stageName: player.stageName,
+			email:     player.email
+		}
+	}
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	Hooked-up popup	
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+	function showHookedUpPopup(data) {
+		$('#hooked-up-popup').remove();
+		$('body').append(JST.hookedUpPopup(data));
+		AJS.dialog2("#hooked-up-popup").show();
+	}
+
+	// AJS.messages.success({
+	// 	title: data.value.stageName + ' is available',
+	// 	body: '<p>Have a nice game! (Details have been sent by email)</p>',
+	// 	delay: 15000,
+	// 	closeable: true
+	// })
+
 
 
 	/* 
@@ -80,22 +153,24 @@ EP.PlayDialogs = function() {
 
 			EP.Properties.get('availablePlayer', {
 				
-				found: function(data) {
+				found: function(propAvailPlayer) {
 					
-					var templateData1 = _(data.value).extend({files: ['hookedUpBanner']});
-					var templateData2 = _.chain(EP.CurrentUser).clone().extend({files: ['hookedUpBanner']}).value();
+					// We've got someone, no need to wait!
 
-					EP.Mail.send(EP.CurrentUser, 'hookedup', templateData1, function() {
-						EP.Mail.send(new EP.Player(data.value), 'hookedup', templateData2, function() {
+					var templateDataOpponent = _(propAvailPlayer.value).extend({files: ['hookedUpBanner']});
+					var templateDataUser = _(propertyData(EP.CurrentUser)).extend({files: ['hookedUpBanner']});
+
+					EP.Mail.send(EP.CurrentUser, 'hookedup', templateDataOpponent, function() {
+						EP.Mail.send(new EP.Player(propAvailPlayer.value), 'hookedup', templateDataUser, function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
-									AJS.messages.success({
-										title: data.value.stageName + ' is available',
-										body: '<p>Have a nice game! (Details have been sent by email)</p>',
-										delay: 15000,
-										closeable: true
-									})
-									setToolbar(false, true);
+									EP.Properties.set('gameResponseFor_' + propAvailPlayer.value.username, propertyData(EP.CurrentUser));
+									dialog.hide();
+									setToolbar(true);
+									window.setTimeout(function() {
+										showHookedUpPopup(templateDataOpponent);
+										setToolbar(false, true);
+									}, 1500)
 								})
 							})
 						})
@@ -103,20 +178,17 @@ EP.PlayDialogs = function() {
 				},
 				
 				notFound: function() {
-					var data = {
-						username:  EP.CurrentUser.username,
-						firstName: EP.CurrentUser.firstName,
-						lastName:  EP.CurrentUser.lastName,
-						stageName: EP.CurrentUser.stageName,
-						email:     EP.CurrentUser.email
-					}
-					EP.Properties.set('availablePlayer', data, function() {
+
+					// Nobody's available, but let's poll to notify in real time shall somone becomes available
+
+					EP.Properties.set('availablePlayer', propertyData(EP.CurrentUser), function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
-								title: 'Request submitted',
+								title: 'Game request submitted',
 								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>'
 							});
 							setToolbar(true);
+							waitForResponse();
 						})
 					});					
 				}

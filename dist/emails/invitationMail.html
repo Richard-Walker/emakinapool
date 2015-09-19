@@ -22,11 +22,12 @@
 						</p>
 		 				{{! if (message !== '') { }}
 						<p style="text-align: center; font-family: 'Open Sans', arial, sans-serif; font-size: 16px; line-height: 30px; font-weight: 400; color: #7e8890;">
+							<br>
 							He/she says:
-							<blockquote style="font-style: italic; font-size: 22px; font-weight: 200;">
-								<span class="quotes" style="font-weight: bold; color: #3572b0;">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes" style="font-weight: bold; color: #3572b0;">&nbsp;&rdquo;</span>
-							</blockquote>
 						</p>
+						<blockquote style="font-style: italic; font-size: 22px; font-weight: 200;">
+							<span class="quotes" style="font-weight: bold; color: #3572b0;">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes" style="font-weight: bold; color: #3572b0;">&nbsp;&rdquo;</span>
+						</blockquote>
 		 				{{! } }}
 						<p style="text-align: center; font-family: 'Open Sans', arial, sans-serif; font-size: 16px; line-height: 30px; font-weight: 400; color: #7e8890;">
 							<a class="button" href="{{ url }}" style="white-space: nowrap; margin-bottom: 25px; color: #ffffff; font-weight: 400; background-color: #3572b0; padding: 14px 28px 14px 28px; -webkit-border-radius: 3px; border-radius: 3px; letter-spacing: 0.125em; text-decoration: none; font-size: 13px; font-family: 'Open Sans', Arial, sans-serif; display: inline-block; margin-top: 25px; -webkit-text-size-adjust: none; mso-hide: all; text-transform: uppercase; line-height: 18px;">Check it out!</a>

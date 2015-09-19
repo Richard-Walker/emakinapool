@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-09-18
+/*! emakinapool - v0.1.0 - 2015-09-19
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -110,7 +110,7 @@ EP.Helpers = function() {
 	/* 
 	---------------------------------------------------------------------------------------------------
 	
-	Functions
+	Misc
 
 	---------------------------------------------------------------------------------------------------
 	*/
@@ -139,45 +139,11 @@ EP.Helpers = function() {
 	EP.Helpers.encodeURIComponentWithQuotes = function (str) {
 		return encodeURIComponent(str).replace(/'/g, "%27");
 	}
+
 	EP.Helpers.tipLink = function(list) {
 		var listStr = _(list).map(EP.Helpers.encodeURIComponentWithQuotes).join('++');
 		return 'tip://list?' + listStr; 
 	}
-
-	EP.Helpers.today = function() {
-		var d = EP.Helpers.formatDate(new Date());
-		d = EP.Helpers.dateFromString(d);
-		return d;
-
-		// Alternate implementation:
-		// var d = new Date();
-		// d.setHours(0, 0, 0, 0);
-	}
-
-	EP.Helpers.formatDate = function(d, format) {
-		format = format || 'FR';
-
-		var yyyy = d.getFullYear(),
-			dd = d.getDate().pad(),
-			mm = (d.getMonth() + 1).pad()
-
-		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
-	}
-
-	EP.Helpers.dateFromString = function(d, format) {
-		format = format || 'FR';
-
-		var parts = [];
-
-		if (format === 'ISO') { 
-			parts = _(d.split('-')).map(function(n) {return parseInt(n)});
-			return new Date(parts[0], parts[1] - 1, parts[2]);
-		} else {
-			parts = _(d.split('/')).map(function(n) {return parseInt(n)});
-			return new Date(parts[2], parts[1] - 1, parts[0]);
-		}
-	}
-
 
 	EP.Helpers.leafs = function($e) {
 		return $e('*').filter( function() {
@@ -223,6 +189,61 @@ EP.Helpers = function() {
 	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 	        results = regex.exec(location.search);
 	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	Date & time
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
+	Date.prototype.addHours = function(h) {    
+   		this.setTime(this.getTime() + (h*60*60*1000)); 
+   		return this;   
+	}
+
+	Date.prototype.addMinutes = function(m) {    
+   		this.setTime(this.getTime() + (m*60*1000)); 
+   		return this;   
+	}
+
+
+	EP.Helpers.today = function() {
+		var d = EP.Helpers.formatDate(new Date());
+		d = EP.Helpers.dateFromString(d);
+		return d;
+
+		// Alternate implementation:
+		// var d = new Date();
+		// d.setHours(0, 0, 0, 0);
+	}
+
+	EP.Helpers.formatDate = function(d, format) {
+		format = format || 'FR';
+
+		var yyyy = d.getFullYear(),
+			dd = d.getDate().pad(),
+			mm = (d.getMonth() + 1).pad()
+
+		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
+	}
+
+	EP.Helpers.dateFromString = function(d, format) {
+		format = format || 'FR';
+
+		var parts = [];
+
+		if (format === 'ISO') { 
+			parts = _(d.split('-')).map(function(n) {return parseInt(n)});
+			return new Date(parts[0], parts[1] - 1, parts[2]);
+		} else {
+			parts = _(d.split('/')).map(function(n) {return parseInt(n)});
+			return new Date(parts[2], parts[1] - 1, parts[0]);
+		}
 	}
 
 	/* 
@@ -1497,6 +1518,7 @@ EP.Properties
 
 Available properties:
 - availablePlayer
+- gameResponseFor_<username>
 
 ---------------------------------------------------------------------------------------------------
 */
@@ -1970,14 +1992,12 @@ EP.Page = function() {
 	if (!_.chain(EP.Settings.admins).pluck('username').contains(EP.CurrentUser.username).value()) {
 
 		// disable keyboard shortcut ("e")
-
 		window.document.onkeydown = function (e) { return e.which !== 69 };
 		
 		// add warning dialog when edit button is clicked
-		
 		$('body').append(JST.editInfoDialog(EP.Settings.admins[0]));
+		
 		var editInfoDialog = AJS.dialog2('#edit-info-dialog');
-
 		$('#editPageLink').click(function(e) {
 			e.preventDefault();
 			e.stopImmediatePropagation();
@@ -1985,6 +2005,10 @@ EP.Page = function() {
 		});
 
 		$('#edit-info-ok-button').click(function() { editInfoDialog.hide()})
+
+		// Remove admin sub-pages
+		$('#rw_pagetree_item_' + EP.Settings.badgesPageId).remove();
+		$('#rw_pagetree_item_' + EP.Settings.scriptsPageId).remove();
 
 	}
 
@@ -2139,6 +2163,14 @@ EP.PlayDialogs = function() {
 
 	setToolbar(false);
 
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	Manage properties
+	---------------------------------------------------------------------------------------------------
+	*/
+
+	// availablePlayer
 	EP.Properties.get('availablePlayer', {
 		found: function(property) {
 			var propertyDate = new Date(property.version.when);
@@ -2146,14 +2178,79 @@ EP.PlayDialogs = function() {
 				// We remove the property if it is expired (not from today)
 				EP.Properties.delete('availablePlayer');
 				setToolbar(false);
+				checkResponse();
 			} else {
-				setToolbar(property.value.username === EP.CurrentUser.username);
+				// The user has a pending request!
+				if (property.value.username === EP.CurrentUser.username) {
+					setToolbar(true);
+					waitForResponse();
+				} else {
+					setToolbar(false);					
+					checkResponse();
+				}
 			}
 		},
 		notFound: function () {
-			setToolbar(false)
+			setToolbar(false);
+			checkResponse();
 		}
 	});
+
+	// gameResponseFor_<username>
+	function checkResponse(successCallback) {
+		EP.Properties.get('gameResponseFor_' + EP.CurrentUser.username, {
+			found: function(property) {
+				if (new Date() <= new Date(property.version.when).addMinutes(30)) {
+					// The user has a match!
+					showHookedUpPopup(property.value);
+					setToolbar(false, true);
+				}
+				EP.Properties.delete('gameResponseFor_' + EP.CurrentUser.username);
+				setToolbar(false, true);
+				if (successCallback) { successCallback(); }
+			},
+			notFound: function() {}
+		});
+	}
+
+	function waitForResponse() {
+		var timer = window.setInterval(function() {
+			checkResponse(function() {
+				window.clearInterval(timer)
+			});
+		}, 5000);
+	}
+
+
+	function propertyData(player) {
+		return {
+			username:  player.username,
+			firstName: player.firstName,
+			lastName:  player.lastName,
+			stageName: player.stageName,
+			email:     player.email
+		}
+	}
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	Hooked-up popup	
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+	function showHookedUpPopup(data) {
+		$('#hooked-up-popup').remove();
+		$('body').append(JST.hookedUpPopup(data));
+		AJS.dialog2("#hooked-up-popup").show();
+	}
+
+	// AJS.messages.success({
+	// 	title: data.value.stageName + ' is available',
+	// 	body: '<p>Have a nice game! (Details have been sent by email)</p>',
+	// 	delay: 15000,
+	// 	closeable: true
+	// })
+
 
 
 	/* 
@@ -2184,22 +2281,24 @@ EP.PlayDialogs = function() {
 
 			EP.Properties.get('availablePlayer', {
 				
-				found: function(data) {
+				found: function(propAvailPlayer) {
 					
-					var templateData1 = _(data.value).extend({files: ['hookedUpBanner']});
-					var templateData2 = _.chain(EP.CurrentUser).clone().extend({files: ['hookedUpBanner']}).value();
+					// We've got someone, no need to wait!
 
-					EP.Mail.send(EP.CurrentUser, 'hookedup', templateData1, function() {
-						EP.Mail.send(new EP.Player(data.value), 'hookedup', templateData2, function() {
+					var templateDataOpponent = _(propAvailPlayer.value).extend({files: ['hookedUpBanner']});
+					var templateDataUser = _(propertyData(EP.CurrentUser)).extend({files: ['hookedUpBanner']});
+
+					EP.Mail.send(EP.CurrentUser, 'hookedup', templateDataOpponent, function() {
+						EP.Mail.send(new EP.Player(propAvailPlayer.value), 'hookedup', templateDataUser, function() {
 							EP.Properties.delete('availablePlayer', function() {
 								EP.Data.releaseLock(function() {
-									AJS.messages.success({
-										title: data.value.stageName + ' is available',
-										body: '<p>Have a nice game! (Details have been sent by email)</p>',
-										delay: 15000,
-										closeable: true
-									})
-									setToolbar(false, true);
+									EP.Properties.set('gameResponseFor_' + propAvailPlayer.value.username, propertyData(EP.CurrentUser));
+									dialog.hide();
+									setToolbar(true);
+									window.setTimeout(function() {
+										showHookedUpPopup(templateDataOpponent);
+										setToolbar(false, true);
+									}, 1500)
 								})
 							})
 						})
@@ -2207,20 +2306,17 @@ EP.PlayDialogs = function() {
 				},
 				
 				notFound: function() {
-					var data = {
-						username:  EP.CurrentUser.username,
-						firstName: EP.CurrentUser.firstName,
-						lastName:  EP.CurrentUser.lastName,
-						stageName: EP.CurrentUser.stageName,
-						email:     EP.CurrentUser.email
-					}
-					EP.Properties.set('availablePlayer', data, function() {
+
+					// Nobody's available, but let's poll to notify in real time shall somone becomes available
+
+					EP.Properties.set('availablePlayer', propertyData(EP.CurrentUser), function() {
 						EP.Data.releaseLock(function() {
 							AJS.messages.success({
-								title: 'Request submitted',
+								title: 'Game request submitted',
 								body: '<p>Don\'t forget to cancel shall you become unavailable...</p>'
 							});
 							setToolbar(true);
+							waitForResponse();
 						})
 					});					
 				}
@@ -2661,12 +2757,16 @@ EP.Settings = {
 	forceEmailTo: 'Tester <rwa@emakina.com>',
 
 	// To use incombination with forceEmailTo. If set, only emails using the specified templates are forced.
-	forceEmailTemplates: ['invitation'],
+	// forceEmailTemplates: ['invitation'],
 
 	// Confluence Page that holds all the league data.
 	// ATTENTION: DO NOT USE THE PRODUCTION PAGE IN TEST or your tests will mess up the official players ratings.  
 	pageId: '102662893',
 	pagePath: '/display/activities/Pool+League',
+
+	// Resource pages
+	badgesPageId: '102665363',
+	scriptsPageId: '104693790',
 
 	// Elo config
 	kFactor: 32,

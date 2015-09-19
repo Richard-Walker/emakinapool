@@ -22,11 +22,12 @@
 						</p>
 		 				{{! if (message !== '') { }}
 						<p>
+							<br>
 							He/she says:
-							<blockquote>
-								<span class="quotes">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes">&nbsp;&rdquo;</span>
-							</blockquote>
 						</p>
+						<blockquote>
+							<span class="quotes">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes">&nbsp;&rdquo;</span>
+						</blockquote>
 		 				{{! } }}
 						<p>
 							<a class="button" href="{{ url }}">Check it out!</a>

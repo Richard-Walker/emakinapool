@@ -39,6 +39,10 @@ EP.Settings = {
 	pageId: '102662893',
 	pagePath: '/display/activities/Pool+League',
 
+	// Resource pages
+	badgesPageId: '102665363',
+	scriptsPageId: '104693790',
+
 	// Elo config
 	kFactor: 32,
 	initialRating: 1500,

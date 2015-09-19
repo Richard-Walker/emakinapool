@@ -17,9 +17,8 @@ module.exports = function(grunt) {
     
     pagePath: 'display/activities/Pool+League',
     
-    assetsPageId: '102665363',
-    
-    scriptsPageId: '104693790',
+    assetsPageId: Settings.badgesPageId,
+    scriptsPageId: Settings.scriptsPageId,
 
     // Tasks config
 

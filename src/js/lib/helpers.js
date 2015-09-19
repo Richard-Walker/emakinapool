@@ -16,7 +16,7 @@ EP.Helpers = function() {
 	/* 
 	---------------------------------------------------------------------------------------------------
 	
-	Functions
+	Misc
 
 	---------------------------------------------------------------------------------------------------
 	*/
@@ -45,45 +45,11 @@ EP.Helpers = function() {
 	EP.Helpers.encodeURIComponentWithQuotes = function (str) {
 		return encodeURIComponent(str).replace(/'/g, "%27");
 	}
+
 	EP.Helpers.tipLink = function(list) {
 		var listStr = _(list).map(EP.Helpers.encodeURIComponentWithQuotes).join('++');
 		return 'tip://list?' + listStr; 
 	}
-
-	EP.Helpers.today = function() {
-		var d = EP.Helpers.formatDate(new Date());
-		d = EP.Helpers.dateFromString(d);
-		return d;
-
-		// Alternate implementation:
-		// var d = new Date();
-		// d.setHours(0, 0, 0, 0);
-	}
-
-	EP.Helpers.formatDate = function(d, format) {
-		format = format || 'FR';
-
-		var yyyy = d.getFullYear(),
-			dd = d.getDate().pad(),
-			mm = (d.getMonth() + 1).pad()
-
-		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
-	}
-
-	EP.Helpers.dateFromString = function(d, format) {
-		format = format || 'FR';
-
-		var parts = [];
-
-		if (format === 'ISO') { 
-			parts = _(d.split('-')).map(function(n) {return parseInt(n)});
-			return new Date(parts[0], parts[1] - 1, parts[2]);
-		} else {
-			parts = _(d.split('/')).map(function(n) {return parseInt(n)});
-			return new Date(parts[2], parts[1] - 1, parts[0]);
-		}
-	}
-
 
 	EP.Helpers.leafs = function($e) {
 		return $e('*').filter( function() {
@@ -129,6 +95,61 @@ EP.Helpers = function() {
 	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 	        results = regex.exec(location.search);
 	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
+
+	/* 
+	---------------------------------------------------------------------------------------------------
+	
+	Date & time
+
+	---------------------------------------------------------------------------------------------------
+	*/
+	 
+
+	Date.prototype.addHours = function(h) {    
+   		this.setTime(this.getTime() + (h*60*60*1000)); 
+   		return this;   
+	}
+
+	Date.prototype.addMinutes = function(m) {    
+   		this.setTime(this.getTime() + (m*60*1000)); 
+   		return this;   
+	}
+
+
+	EP.Helpers.today = function() {
+		var d = EP.Helpers.formatDate(new Date());
+		d = EP.Helpers.dateFromString(d);
+		return d;
+
+		// Alternate implementation:
+		// var d = new Date();
+		// d.setHours(0, 0, 0, 0);
+	}
+
+	EP.Helpers.formatDate = function(d, format) {
+		format = format || 'FR';
+
+		var yyyy = d.getFullYear(),
+			dd = d.getDate().pad(),
+			mm = (d.getMonth() + 1).pad()
+
+		return format === 'ISO'  ?  yyyy + '-' + mm + '-' + dd  :  dd + '/' + mm + '/' + yyyy
+	}
+
+	EP.Helpers.dateFromString = function(d, format) {
+		format = format || 'FR';
+
+		var parts = [];
+
+		if (format === 'ISO') { 
+			parts = _(d.split('-')).map(function(n) {return parseInt(n)});
+			return new Date(parts[0], parts[1] - 1, parts[2]);
+		} else {
+			parts = _(d.split('/')).map(function(n) {return parseInt(n)});
+			return new Date(parts[2], parts[1] - 1, parts[0]);
+		}
 	}
 
 	/* 
