@@ -114,13 +114,13 @@ EP.Achievements = function() {
 		// Rating
 		
 		'Dragonfly': function(p) {
-			return p.weekPoints >= 25;
+			return p.weekPoints >= 30;
 		},
 		'Bird': function(p) {
-			return p.weekPoints >= 50;
+			return p.weekPoints >= 60;
 		},
 		'Eagle': function(p) {
-			return p.weekPoints >= 75;
+			return p.weekPoints >= 100;
 		}
 	}
 

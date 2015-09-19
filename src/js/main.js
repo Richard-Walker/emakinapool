@@ -19,6 +19,7 @@ $(function () {
 	// Models
 	EP.Data();
 	EP.Properties();
+	EP.Banners();
 	EP.Player();
 	EP.Match();
 	EP.Achievements();

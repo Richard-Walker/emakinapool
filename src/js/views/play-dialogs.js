@@ -170,7 +170,7 @@ EP.PlayDialogs = function() {
 									window.setTimeout(function() {
 										showHookedUpPopup(templateDataOpponent);
 										setToolbar(false, true);
-									}, 1500)
+									}, 1000)
 								})
 							})
 						})

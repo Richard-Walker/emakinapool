@@ -71,6 +71,9 @@ a {
   color: #3572b0;
   font-weight: bold;
 }
+strong {
+  font-weight: bold;
+}
 a.button {
   background-color: #3572b0;
   padding: 14px 28px 14px 28px;

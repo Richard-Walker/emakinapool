@@ -373,6 +373,11 @@ EP.Mail = function() {
 		var subject = $.trim(parsed[1]);
 		var message = parsed[2];
 
+		var files = _(EP.Mail.files).filter(function(f) { return _(templateData.files).contains(f.cid) });
+		if (templateData.banner) {
+			files.push(templateData.banner.file);
+		}
+
 		var data = {
 			from: from.email,
 			fromname: from.name,
@@ -380,7 +385,7 @@ EP.Mail = function() {
 			toname: _(to).pluck('name'),
 			subject: subject,
 			html: JST.mailHeader() + message,
-			files: _(EP.Mail.files).filter(function(f) { return _(templateData.files).contains(f.cid) })
+			files: files
 		}
 
 		$.ajax({
@@ -617,13 +622,13 @@ EP.Achievements = function() {
 		// Rating
 		
 		'Dragonfly': function(p) {
-			return p.weekPoints >= 25;
+			return p.weekPoints >= 30;
 		},
 		'Bird': function(p) {
-			return p.weekPoints >= 50;
+			return p.weekPoints >= 60;
 		},
 		'Eagle': function(p) {
-			return p.weekPoints >= 75;
+			return p.weekPoints >= 100;
 		}
 	}
 
@@ -707,6 +712,106 @@ EP.Achievements = function() {
 
 
 
+/* 
+---------------------------------------------------------------------------------------------------
+
+EP.Banners
+
+---------------------------------------------------------------------------------------------------
+*/
+
+EP = EP || {}
+
+var EP = EP || {};
+
+EP.Banners = function() {
+
+	EP.Banners = {};
+
+	var banners = [{
+			image: 'barak.jpg',
+			players: ['Barak']
+		}, {
+			image: 'brad.jpg',
+			players: ['Brad']
+		}, {
+			image: 'cat.jpg',
+			players: ['The cat']
+		}, {
+			image: 'clint.jpg',
+			players: ['Clint']
+		}, {
+			image: 'elvis-marilyn-james.jpg',
+			players: ['Elvis', 'Marilyn', 'James Dean']
+		}, {
+			image: 'god.jpg',
+			players: ['God']
+		}, {
+			image: 'jack.jpg',
+			players: ['Jack']
+		}, {
+			image: 'jackie.jpg',
+			players: ['Jackie']
+		}, {
+			image: 'john.jpg',
+			players: ['John']
+		}, {
+			image: 'johnny-dep.jpg',
+			players: ['Johnny']
+		}, {
+			image: 'johnny-halliday.jpg',
+			players: ['Johnny']
+		}, {
+			image: 'justin.jpg',
+			players: ['Justin']
+		}, {
+			image: 'marlon.jpg',
+			players: ['Marlon']
+		}, {
+			image: 'michael-jackson.jpg',
+			players: ['Michael']
+		}, {
+			image: 'michael-jordan.jpg',
+			players: ['Michael Jordan']
+		}, {
+			image: 'nicolas-sean.jpg',
+			players: ['Nicolas', 'Sean']
+		}, {
+			image: 'spok-kirk.jpg',
+			players: ['Spok', 'Capitain Kirk']
+		}, {
+			image: 'tom-paul.jpg',
+			players: ['Tom Cruise', 'Paul Newman']
+		}, {
+			image: 'troopers.jpg',
+			players: ['The troopers']
+		}
+	]
+
+	var meta = {
+		females: ['Marilyn'],
+		plurals: ['The troopers']
+	}
+
+	EP.Banners.get = function() {
+		var banner = _(banners).sample();
+		var player = _(banner.players).sample();
+		
+		return {
+			file: {
+				path: './img/' + banner.image,
+				cid: banner.image.split('.')[0]
+			},
+			player: {
+				name: player,
+				female: _(meta.females).contains(player),
+				plural: _(meta.plurals).contains(player)
+			}
+		}
+	}
+
+
+}
 /*
 
 EP.CurrentUser
@@ -1791,7 +1896,7 @@ EP.InviteDialog = function() {
 			referer: EP.CurrentUser,
 			message: $('#invite-message').val(),
 			url: AJS.Confluence.getBaseUrl() + EP.Settings.pagePath,
-			files: ['invitationBanner']
+			banner: EP.Banners.get()
 		}
 
 		EP.Mail.send(to, 'invitation', data, function() {
@@ -2298,7 +2403,7 @@ EP.PlayDialogs = function() {
 									window.setTimeout(function() {
 										showHookedUpPopup(templateDataOpponent);
 										setToolbar(false, true);
-									}, 1500)
+									}, 1000)
 								})
 							})
 						})
@@ -2827,6 +2932,7 @@ $(function () {
 	// Models
 	EP.Data();
 	EP.Properties();
+	EP.Banners();
 	EP.Player();
 	EP.Match();
 	EP.Achievements();

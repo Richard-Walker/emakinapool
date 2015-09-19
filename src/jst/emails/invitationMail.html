@@ -8,27 +8,27 @@
 			<table class="main" align="center"><tbody>
 				<tr>
 					<td>
-						<img width="580" src="cid:invitationBanner" />
+						<img width="580" src="cid:{{ banner.file.cid }}" />
 					</td>
 				</tr>
 				<tr>
 					<td class="content">
-						<h1>Invitation</h1>
+						<h1>{{ banner.player.name }} play{{ banner.player.plural ? '' : 's' }} it, and you?</h1>
 						<p>
-							Hi {{ invitee }},
+							Follow {{ banner.player.plural ? 'their' : ( banner.player.female ? 'her' : 'his' ) }} footsteps and join <a href="{{ url }}">the EMAKINA POOL LEAGUE</a>.
 						</p>
 						<p>
-							{{ referer.fullName() }} -- also known as <strong>{{ referer.stageName }}</strong> -- thinks you might be interested in joining <a href="{{ url }}">the EMAKINA POOL LEAGUE</a>.
+			 				{{ message ? '<br>' : '' }}
+							You habe been invited by your friend <strong>{{ referer.fullName() }}</strong>.
+			 				{{ message ? '<br> He/She says:' : '' }}
 						</p>
-		 				{{! if (message !== '') { }}
-						<p>
-							<br>
-							He/she says:
-						</p>
+
+						{{! if (message) {  }}
 						<blockquote>
 							<span class="quotes">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes">&nbsp;&rdquo;</span>
 						</blockquote>
 		 				{{! } }}
+
 						<p>
 							<a class="button" href="{{ url }}">Check it out!</a>
 						</p>

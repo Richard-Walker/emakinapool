@@ -54,6 +54,11 @@ EP.Mail = function() {
 		var subject = $.trim(parsed[1]);
 		var message = parsed[2];
 
+		var files = _(EP.Mail.files).filter(function(f) { return _(templateData.files).contains(f.cid) });
+		if (templateData.banner) {
+			files.push(templateData.banner.file);
+		}
+
 		var data = {
 			from: from.email,
 			fromname: from.name,
@@ -61,7 +66,7 @@ EP.Mail = function() {
 			toname: _(to).pluck('name'),
 			subject: subject,
 			html: JST.mailHeader() + message,
-			files: _(EP.Mail.files).filter(function(f) { return _(templateData.files).contains(f.cid) })
+			files: files
 		}
 
 		$.ajax({
