@@ -148,7 +148,7 @@ EP.InviteDialog = function() {
 				currentUser.invitations = _(currentUser.invitations).union([inviteeUsername]);
 				EP.Achievements.evaluate(currentUser);
 				EP.Players.writeData();
-				EP.Data.saveAndReload('Invitation sent! Thanks for spreading the word :)');
+				EP.Data.saveAndReload({title: 'Invitation sent!', body:'Thanks for spreading the word :)'});
 			});
 
 		})

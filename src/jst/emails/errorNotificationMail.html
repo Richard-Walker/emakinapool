@@ -4,20 +4,22 @@
 		ERROR on Emakina Pool League !
 	</subject>
 	<message>
-		<table class="body"><tbody><tr><td valign="top">
-			<table class="main" align="center"><tbody>
-				<tr>
-					<td class="content">
-						<h1>We've got a problem on {{ environment }}</h1>
-						<p>
-							{{ user }} caused the error:
-							<blockquote>
-								<span class="quotes">&ldquo;&nbsp;</span>{{ error }}<span class="quotes">&nbsp;&rdquo;</span>
-							</blockquote>
-						</p>
-					</td>
-				</tr>
-			</tbody></table>
-		</td></tr></tbody></table>
+		<body>
+			<table class="body"><tbody><tr><td valign="top">
+				<table class="main" align="center"><tbody>
+					<tr>
+						<td class="content">
+							<h1>We've got a problem on {{ environment }}</h1>
+							<p>
+								{{ user }} caused the error:
+								<blockquote>
+									<span class="quotes">&ldquo;&nbsp;</span>{{ error }}<span class="quotes">&nbsp;&rdquo;</span>
+								</blockquote>
+							</p>
+						</td>
+					</tr>
+				</tbody></table>
+			</td></tr></tbody></table>
+		</body>
 	</message>
 </email>

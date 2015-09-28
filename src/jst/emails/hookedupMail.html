@@ -1,37 +1,35 @@
 <link href="../../../dist/emails/emails.css" rel="stylesheet" />
 <email>
 	<subject>
-		{{ stageName }} is available for pool
+		Someone is available!
 	</subject>
 	<message>
-		<table class="body"><tbody><tr><td valign="top">
-			<table class="main" align="center"><tbody>
-				<tr>
-					<td>
-						<img width="580" src="cid:hookedUpBanner" />
-					</td>
-				</tr>
-				<tr>
-					<td class="content">
-						<h1>You've got yourself a game&nbsp;!</h1>
-						<p>
-							{{ firstName }} "<strong>{{ stageName }}</strong>" is up to a game with you!
-						</p>
-						<p>
-							Meet at the pool table or <a href="mailto:{{ stageName }} %3c{{ email }}%3e?subject=Pool game">send him/her an email</a>
-						</p>
-						<p>
-							<br>
-							Barak wants you to win:
-						</p>
-						<blockquote>
-							<span class="quotes">&ldquo;&nbsp;</span>
-							If you're walking down the right path and you're willing to keep walking, eventually you'll make progress.
-							<span class="quotes">&nbsp;&rdquo;</span>
-						</blockquote>
-					</td>
-				</tr>
-			</tbody></table>
-		</td></tr></tbody></table>
+		<body>
+			<table class="body"><tbody><tr><td valign="top">
+				<table class="main" align="center"><tbody>
+					<tr>
+						<td>
+							<img class="banner" width="580" src="cid:{{ banner.file.cid }}" />
+						</td>
+					</tr>
+					<tr>
+						<td class="content">
+							<h1>You've got yourself a game&nbsp;!</h1>
+							<p>
+								{{ firstName }} "<strong>{{ stageName }}</strong>" is up to a game with you!
+								<br>
+								Meet at the pool table or <a href="mailto:{{ stageName }} %3c{{ email }}%3e?subject=Pool game">contact him/her</a>.
+							</p>
+							<blockquote>
+								<span class="quotes">&ldquo;&nbsp;</span>{{ banner.quote }}<span class="quotes">&nbsp;&rdquo;</span>
+							</blockquote>
+							<p>
+								-- {{ banner.quoteName }}
+							</p>
+						</td>
+					</tr>
+				</tbody></table>
+			</td></tr></tbody></table>
+		</body>
 	</message>
 </email>

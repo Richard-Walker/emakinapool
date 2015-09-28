@@ -48,8 +48,8 @@ EP.Page = function() {
 
 	// Display confirmation message if query string parameter set
 	var confirmation = EP.Helpers.getQueryStringParam('confirmation');
-	if (confirmation !== '') {
-		AJS.messages.success({title: confirmation});
+	if (confirmation) {
+		AJS.messages.success(JSON.parse(confirmation));
 		history.replaceState(null, null, location.href.split("?")[0]);
 	}
 

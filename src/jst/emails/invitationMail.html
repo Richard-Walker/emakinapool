@@ -4,37 +4,39 @@
 		Emakina Pool Invitation
 	</subject>
 	<message>
-		<table class="body"><tbody><tr><td valign="top">
-			<table class="main" align="center"><tbody>
-				<tr>
-					<td>
-						<img width="580" src="cid:{{ banner.file.cid }}" />
-					</td>
-				</tr>
-				<tr>
-					<td class="content">
-						<h1>{{ banner.player.name }} play{{ banner.player.plural ? '' : 's' }} it, and you?</h1>
-						<p>
-							Follow {{ banner.player.plural ? 'their' : ( banner.player.female ? 'her' : 'his' ) }} footsteps and join <a href="{{ url }}">the EMAKINA POOL LEAGUE</a>.
-						</p>
-						<p>
-			 				{{ message ? '<br>' : '' }}
-							You habe been invited by your friend <strong>{{ referer.fullName() }}</strong>.
-			 				{{ message ? '<br> He/She says:' : '' }}
-						</p>
+		<body>
+			<table class="body"><tbody><tr><td valign="top">
+				<table class="main" align="center"><tbody>
+					<tr>
+						<td>
+							<img class="banner" width="580" src="cid:{{ banner.file.cid }}" />
+						</td>
+					</tr>
+					<tr>
+						<td class="content">
+							<h1>{{ banner.player.name }} play{{ banner.player.plural ? '' : 's' }} it, and you?</h1>
+							<p>
+								Follow {{ banner.player.plural ? 'their' : ( banner.player.female ? 'her' : 'his' ) }} footsteps and join <a class="strong" href="{{ url }}">the Emakina Pool League</a>.
+							</p>
+							<p>
+				 				{{ message ? '<br>' : '' }}
+								You habe been invited by <strong>{{ referer.fullName() }}</strong>.
+				 				{{ message ? '<br> He/She says:' : '' }}
+							</p>
 
-						{{! if (message) {  }}
-						<blockquote>
-							<span class="quotes">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes">&nbsp;&rdquo;</span>
-						</blockquote>
-		 				{{! } }}
+							{{! if (message) {  }}
+							<blockquote>
+								<span class="quotes">&ldquo;&nbsp;</span>{{ message.replace(/[\r\n]/g, '<br>\n') }}<span class="quotes">&nbsp;&rdquo;</span>
+							</blockquote>
+			 				{{! } }}
 
-						<p>
-							<a class="button" href="{{ url }}">Check it out!</a>
-						</p>
-					</td>
-				</tr>
-			</tbody></table>
-		</td></tr></tbody></table>
+							<p>
+								<a class="button" href="{{ url }}">Check it out!</a>
+							</p>
+						</td>
+					</tr>
+				</tbody></table>
+			</td></tr></tbody></table>
+		</body>
 	</message>
 </email>

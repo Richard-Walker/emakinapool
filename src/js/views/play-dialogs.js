@@ -157,8 +157,17 @@ EP.PlayDialogs = function() {
 					
 					// We've got someone, no need to wait!
 
-					var templateDataOpponent = _(propAvailPlayer.value).extend({files: ['hookedUpBanner']});
-					var templateDataUser = _(propertyData(EP.CurrentUser)).extend({files: ['hookedUpBanner']});
+					var bannerUser = EP.Banners.getWithQuote({
+						recipient: EP.CurrentUser,
+						opponent: propAvailPlayer.value
+					});
+					var bannerOpponent = EP.Banners.getWithQuote({
+						recipient: propAvailPlayer.value,
+						opponent: EP.CurrentUser
+					});
+
+					var templateDataUser = _(propertyData(EP.CurrentUser)).extend({banner: bannerUser});
+					var templateDataOpponent = _(propAvailPlayer.value).extend({banner: bannerOpponent});
 
 					EP.Mail.send(EP.CurrentUser, 'hookedup', templateDataOpponent, function() {
 						EP.Mail.send(new EP.Player(propAvailPlayer.value), 'hookedup', templateDataUser, function() {
@@ -223,7 +232,7 @@ EP.PlayDialogs = function() {
 			found: function (data) {
 				if (data.value.username === EP.CurrentUser.username) {
 					EP.Properties.delete('availablePlayer', function() {
-						AJS.messages.success({title: 'Game request cancelled'});
+						AJS.messages.success({title: 'Game request cancelled', body: 'Thanks for letting us know.'});
 						setToolbar(false);
 					});
 				} else {

@@ -178,7 +178,7 @@ EP.Data = function() {
 
 	EP.Data.saveAndReload = function(message) {
 		EP.Data.save(function() {
-			location.href = AJS.Confluence.getBaseUrl() + EP.Settings.pagePath + '?confirmation=' + encodeURIComponent(message);
+			location.href = AJS.Confluence.getBaseUrl() + EP.Settings.pagePath + '?confirmation=' + encodeURIComponent(JSON.stringify(message));
 		});
 	}
 

@@ -116,7 +116,7 @@ EP.Matches = function() {
 
 			EP.Players.writeData();
 			EP.Matches.writeData();
-			EP.Data.saveAndReload("Your match has been recorded!");
+			EP.Data.saveAndReload({title: "Your match has been recorded!"});
 
 		});
 	}

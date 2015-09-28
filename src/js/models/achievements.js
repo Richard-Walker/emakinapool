@@ -74,6 +74,7 @@ EP.Achievements = function() {
 		},
 
 		// Belt
+
 		'Kid Wrestler': function(p) {
 			return p.beltPossession === 0 || p.beltPossession > 0;
 		},
@@ -114,13 +115,13 @@ EP.Achievements = function() {
 		// Rating
 		
 		'Dragonfly': function(p) {
-			return p.weekPoints >= 30;
+			return p.matches >= 10 && p.weekPoints >= 30;
 		},
 		'Bird': function(p) {
-			return p.weekPoints >= 60;
+			return p.matches >= 10 && p.weekPoints >= 60;
 		},
 		'Eagle': function(p) {
-			return p.weekPoints >= 100;
+			return p.matches >= 10 && p.weekPoints >= 100;
 		}
 	}
 

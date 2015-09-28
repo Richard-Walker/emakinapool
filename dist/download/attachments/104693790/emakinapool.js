@@ -1,4 +1,4 @@
-/*! emakinapool - v0.1.0 - 2015-09-19
+/*! emakinapool - v0.1.0 - 2015-09-28
 * Copyright (c) 2015 Richard Walker; Licensed GPL-3.0 */
 
 /*
@@ -582,6 +582,7 @@ EP.Achievements = function() {
 		},
 
 		// Belt
+
 		'Kid Wrestler': function(p) {
 			return p.beltPossession === 0 || p.beltPossession > 0;
 		},
@@ -622,13 +623,13 @@ EP.Achievements = function() {
 		// Rating
 		
 		'Dragonfly': function(p) {
-			return p.weekPoints >= 30;
+			return p.matches >= 10 && p.weekPoints >= 30;
 		},
 		'Bird': function(p) {
-			return p.weekPoints >= 60;
+			return p.matches >= 10 && p.weekPoints >= 60;
 		},
 		'Eagle': function(p) {
-			return p.weekPoints >= 100;
+			return p.matches >= 10 && p.weekPoints >= 100;
 		}
 	}
 
@@ -728,63 +729,155 @@ EP.Banners = function() {
 
 	EP.Banners = {};
 
-	var banners = [{
+	var banners = [
+		{
 			image: 'barak.jpg',
-			players: ['Barak']
-		}, {
+			players: [{
+				name: 'Barak',
+				quotes: ["If you're walking down the right path and you're willing to keep walking, eventually you'll make progress."],
+				quoteName: 'Barak Obama'
+			}]
+		}, 
+		{
 			image: 'brad.jpg',
-			players: ['Brad']
+			players: [{
+				name: 'Brad',
+				quotes: ["If you want to look cool <%=recipient.firstName%>, remember to play it cool."],
+				quoteName: 'Brad Pitt'
+			}]
 		}, {
 			image: 'cat.jpg',
-			players: ['The cat']
+			players: [{
+				name: 'The cat',
+				quotes: ["Sometimes the predator has to hide from its pray."],
+				quoteName: 'A clever cat'
+			}]
 		}, {
 			image: 'clint.jpg',
-			players: ['Clint']
+			players: [{
+				name: 'Clint',
+				quotes: ["You see, in this world there's two kinds of people, my friend: Those with loaded guns and those who dig. On which side of the gun are you <%=recipient.stageName%>?"],
+				quoteName: 'Clint Eastwood as Blondie'
+			}]
 		}, {
 			image: 'elvis-marilyn-james.jpg',
-			players: ['Elvis', 'Marilyn', 'James Dean']
+			players: [{
+				name: 'Elvis',
+				quotes: ["Well it's one for the money, two for the show, three to get ready, now go cat go!"],
+				quoteName: 'Elvis Presley'
+			}, {
+				name: 'Marilyn',
+				quotes: ["Fear is stupid. So are regrets. Don't be stupid <%=recipient.firstName%>."],
+				quoteName: 'Marilyn Monroe'
+			}, {
+				name: 'James Dean',
+				quotes: ["The gratification comes in playing, not in winning."],
+				quoteName: 'James Dean'
+			}]
 		}, {
 			image: 'god.jpg',
-			players: ['God']
+			players: [{
+				name: 'God',
+				quotes: ["May the pool gods be on your side <%=recipient.stageName%>..."],
+				quoteName: '',
+			}]
 		}, {
 			image: 'jack.jpg',
-			players: ['Jack']
+			players: [{
+				name: 'Jack',
+				quotes: ["When I play pool I like a drink, a Martini."],
+				quoteName: 'James Bond'
+			}]
 		}, {
 			image: 'jackie.jpg',
-			players: ['Jackie']
+			players: [{
+				name: 'Jackie',
+				quotes: ["Anyone can be a Superman, but nobody can be <%=recipient.stageName%>."],
+				quoteName: 'Jackie Chan'
+			}]
 		}, {
 			image: 'john.jpg',
-			players: ['John']
+			players: [{
+				name: 'Don Draper'
+			}]
 		}, {
 			image: 'johnny-dep.jpg',
-			players: ['Johnny']
+			players: [{
+				name: 'Johnny',
+				quotes: ["I slept on the pool table and made a dream. You were winning in my dream <%=recipient.firstName%>."],
+				quoteName: 'Johnny Depp'
+			}]
 		}, {
 			image: 'johnny-halliday.jpg',
-			players: ['Johnny']
+			players: [{
+				name: 'Johnny',
+				quotes: ["Ce match, <%=recipient.firstName%>, c'est l'occasion de remettre les pendules à leur place."],
+				quoteName: 'Johnny Halliday'
+			}]
 		}, {
 			image: 'justin.jpg',
-			players: ['Justin']
+			players: [{
+				name: 'Justin',
+				quotes: ["<%=recipient.firstName%>, I want your game to be fun."],
+				quoteName: 'Justin Bieber'
+			}]
 		}, {
 			image: 'marlon.jpg',
-			players: ['Marlon']
+			players: [{
+				name: 'Marlon Brando',
+			}]
 		}, {
 			image: 'michael-jackson.jpg',
-			players: ['Michael']
+			players: [{
+				name: 'Michael',
+				quotes: ["Pool is easier than the moonwalk."],
+				quoteName: 'Michael Jackson'
+			}]
 		}, {
 			image: 'michael-jordan.jpg',
-			players: ['Michael Jordan']
-		}, {
-			image: 'nicolas-sean.jpg',
-			players: ['Nicolas', 'Sean']
+			players: [{
+				name: 'Michael Jordan',
+				quotes: ["Be confident <%=recipient.stageName%>, kill this <%=opponent.stageName%> son of a ****!"],
+				quoteName: 'Michael Jordan'
+			}]
 		}, {
 			image: 'spok-kirk.jpg',
-			players: ['Spok', 'Capitain Kirk']
+			players: [{
+				name: 'Spock',
+				quotes: ["<%=recipient.stageName%>, I see no reason to stand here and be insulted."],
+				quoteName: "Spock"
+			},{
+				name: 'Captain Kirk',
+				quotes: ["Conquest is easy. Control of the white ball is not."],
+				quoteName: "Capitain Kirk"
+			}]
+		}, {
+			image: 'batman-robin.jpg',
+			players: [{
+				name: 'Batman',
+				quotes: ["I'm Batman, he's Robin, you're <%=recipient.stageName%>, we are super heros. <%=opponent.stageName%> is the super villain."],
+				quoteName: 'Bruce Wayne'
+			}, {
+				name: 'Robin',
+				quotes: ["He's Batman, I'm Robin, you're <%=recipient.stageName%>, we are super heros. <%=opponent.stageName%> is the super villain."],
+				quoteName: 'Robin'
+			}]
 		}, {
 			image: 'tom-paul.jpg',
-			players: ['Tom Cruise', 'Paul Newman']
+			players: [{
+				name: 'Tom Cruise'
+			}, {
+				name: 'Paul Newman',
+				quotes: ["You gotta have two things to win. You gotta have brains and you gotta have balls. Now <%=recipient.firstName%>, you got too much of one and not enough of the other."],
+				quoteName: 'Paul Newman as Eddie Felson'
+			}]
 		}, {
 			image: 'troopers.jpg',
-			players: ['The troopers']
+			players: [{
+				name: 'The troopers',
+				quotes: ["It's fun on the dark side, come and join the party!"],
+				quoteName: 'A starship trooper'
+			}]
 		}
 	]
 
@@ -803,13 +896,33 @@ EP.Banners = function() {
 				cid: banner.image.split('.')[0]
 			},
 			player: {
-				name: player,
-				female: _(meta.females).contains(player),
-				plural: _(meta.plurals).contains(player)
+				name: player.name,
+				female: _(meta.females).contains(player.name),
+				plural: _(meta.plurals).contains(player.name)
 			}
 		}
 	}
 
+	EP.Banners.getWithQuote = function(templateData) {
+		
+		var banner = _(banners).sample();
+		var player = _(banner.players).sample();
+		while (!player.quotes || player.quotes.length === 0) {
+			banner = _(banners).sample();
+			player = _(banner.players).sample();
+		}
+
+		var quote = _.template(_(player.quotes).sample());
+
+		return {
+			file: {
+				path: './img/' + banner.image,
+				cid: banner.image.split('.')[0]
+			},
+			quote: quote(templateData),
+			quoteName: player.quoteName
+		}
+	}
 
 }
 /*
@@ -1020,7 +1133,7 @@ EP.Data = function() {
 
 	EP.Data.saveAndReload = function(message) {
 		EP.Data.save(function() {
-			location.href = AJS.Confluence.getBaseUrl() + EP.Settings.pagePath + '?confirmation=' + encodeURIComponent(message);
+			location.href = AJS.Confluence.getBaseUrl() + EP.Settings.pagePath + '?confirmation=' + encodeURIComponent(JSON.stringify(message));
 		});
 	}
 
@@ -1108,9 +1221,16 @@ EP.Match = function() {
 				p.perfects += this.perfects[i];
 				p.opponents = _.union(p.opponents, [this.players[1-i].username]);
 				p.streak = p === this.winner ? p.streak + 1 : 0; 
+				
 				if (isBeltChallenge) { p.beltPossession = p.hasBelt ? ( p.beltPossession === null ? 0 : p.beltPossession + 1 ) : null;  }
-				p.weekPoints = p.weekMatches().length === 0 ? points : p.weekPoints + points;
-				// p.inTopSince = p.rank > 5 ? null : ( p.inTopSince ?  p.inTopSince : EP.Helpers.today() );
+				
+				var numMatchesInWeek = p.weekMatches().length;
+				if (p.matches - numMatchesInWeek >= 10) {
+					p.weekPoints = numMatchesInWeek === 1 ? points : p.weekPoints + points;
+				} else {
+					p.weekPoints = 0;
+				}
+				
 				p.games = _.union(p.games, [this.game]);
 
 			}, this);
@@ -1246,7 +1366,7 @@ EP.Matches = function() {
 
 			EP.Players.writeData();
 			EP.Matches.writeData();
-			EP.Data.saveAndReload("Your match has been recorded!");
+			EP.Data.saveAndReload({title: "Your match has been recorded!"});
 
 		});
 	}
@@ -1908,7 +2028,7 @@ EP.InviteDialog = function() {
 				currentUser.invitations = _(currentUser.invitations).union([inviteeUsername]);
 				EP.Achievements.evaluate(currentUser);
 				EP.Players.writeData();
-				EP.Data.saveAndReload('Invitation sent! Thanks for spreading the word :)');
+				EP.Data.saveAndReload({title: 'Invitation sent!', body:'Thanks for spreading the word :)'});
 			});
 
 		})
@@ -2124,8 +2244,8 @@ EP.Page = function() {
 
 	// Display confirmation message if query string parameter set
 	var confirmation = EP.Helpers.getQueryStringParam('confirmation');
-	if (confirmation !== '') {
-		AJS.messages.success({title: confirmation});
+	if (confirmation) {
+		AJS.messages.success(JSON.parse(confirmation));
 		history.replaceState(null, null, location.href.split("?")[0]);
 	}
 
@@ -2390,8 +2510,17 @@ EP.PlayDialogs = function() {
 					
 					// We've got someone, no need to wait!
 
-					var templateDataOpponent = _(propAvailPlayer.value).extend({files: ['hookedUpBanner']});
-					var templateDataUser = _(propertyData(EP.CurrentUser)).extend({files: ['hookedUpBanner']});
+					var bannerUser = EP.Banners.getWithQuote({
+						recipient: EP.CurrentUser,
+						opponent: propAvailPlayer.value
+					});
+					var bannerOpponent = EP.Banners.getWithQuote({
+						recipient: propAvailPlayer.value,
+						opponent: EP.CurrentUser
+					});
+
+					var templateDataUser = _(propertyData(EP.CurrentUser)).extend({banner: bannerUser});
+					var templateDataOpponent = _(propAvailPlayer.value).extend({banner: bannerOpponent});
 
 					EP.Mail.send(EP.CurrentUser, 'hookedup', templateDataOpponent, function() {
 						EP.Mail.send(new EP.Player(propAvailPlayer.value), 'hookedup', templateDataUser, function() {
@@ -2456,7 +2585,7 @@ EP.PlayDialogs = function() {
 			found: function (data) {
 				if (data.value.username === EP.CurrentUser.username) {
 					EP.Properties.delete('availablePlayer', function() {
-						AJS.messages.success({title: 'Game request cancelled'});
+						AJS.messages.success({title: 'Game request cancelled', body: 'Thanks for letting us know.'});
 						setToolbar(false);
 					});
 				} else {
@@ -2856,7 +2985,7 @@ EP.Settings = {
 	serverAuthPassword: 'no1shallbeTrusted',
 
 	// Value of 'from' field when sending emails
-	emailFrom: 'Emakina Pool Test  <info@league.emakinapool.xyz>',
+	emailFrom: 'Emakina Pool Test <info@league.emakinapool.xyz>',
 
 	// Force email recipient. If set, all emails are sent to this address. A must have in test environement!
 	forceEmailTo: 'Tester <rwa@emakina.com>',

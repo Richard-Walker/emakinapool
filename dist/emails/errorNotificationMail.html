@@ -4,20 +4,22 @@
 		ERROR on Emakina Pool League !
 	</subject>
 	<message>
-		<table class="body" style="border-spacing: 0px; width: 100%; height: 100%; background-color: #eaeced; padding: 50px 0px; margin: 0px;"><tbody><tr><td valign="top" style="padding: 0px;">
-			<table class="main" align="center" style="border-spacing: 0px; width: 580px; background-color: #fff;"><tbody>
-				<tr>
-					<td class="content" style="text-align: center; font-family: 'Open Sans', arial, sans-serif; font-size: 16px; line-height: 30px; font-weight: 400; color: #7e8890; padding: 40px;">
-						<h1 style="font-size: 28px; line-height: 38px; font-weight: 200; color: #252b33; margin-top: 25px; margin-bottom: 25px;">We've got a problem on {{ environment }}</h1>
-						<p style="text-align: center; font-family: 'Open Sans', arial, sans-serif; font-size: 16px; line-height: 30px; font-weight: 400; color: #7e8890;">
-							{{ user }} caused the error:
-							<blockquote style="font-style: italic; font-size: 22px; font-weight: 200;">
-								<span class="quotes" style="font-weight: bold; color: #3572b0;">&ldquo;&nbsp;</span>{{ error }}<span class="quotes" style="font-weight: bold; color: #3572b0;">&nbsp;&rdquo;</span>
-							</blockquote>
-						</p>
-					</td>
-				</tr>
-			</tbody></table>
-		</td></tr></tbody></table>
+		<body style="margin: 0px; padding: 0px 10px; background-color: #eaeced;">
+			<table class="body" style="border-spacing: 0px; width: 100%; height: 100%; padding: 30px 0px; margin: 0px;"><tbody><tr><td valign="top" style="padding: 0px;">
+				<table class="main" align="center" style="border-spacing: 0px; max-width: 580px; background-color: #fff;"><tbody>
+					<tr>
+						<td class="content" style="text-align: center; font-family: 'Open Sans', arial, sans-serif; font-size: 16px; line-height: 30px; font-weight: 400; color: #7e8890; padding: 20px;">
+							<h1 style="font-size: 28px; line-height: 38px; font-weight: 200; color: #252b33; margin-top: 25px; margin-bottom: 25px;">We've got a problem on {{ environment }}</h1>
+							<p style="text-align: center; font-family: 'Open Sans', arial, sans-serif; font-size: 16px; line-height: 30px; font-weight: 400; color: #7e8890;">
+								{{ user }} caused the error:
+								<blockquote style="font-style: italic; font-size: 22px; font-weight: 200;">
+									<span class="quotes" style="font-weight: bold; color: #3572b0;">&ldquo;&nbsp;</span>{{ error }}<span class="quotes" style="font-weight: bold; color: #3572b0;">&nbsp;&rdquo;</span>
+								</blockquote>
+							</p>
+						</td>
+					</tr>
+				</tbody></table>
+			</td></tr></tbody></table>
+		</body>
 	</message>
 </email>

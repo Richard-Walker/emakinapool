@@ -80,9 +80,16 @@ EP.Match = function() {
 				p.perfects += this.perfects[i];
 				p.opponents = _.union(p.opponents, [this.players[1-i].username]);
 				p.streak = p === this.winner ? p.streak + 1 : 0; 
+				
 				if (isBeltChallenge) { p.beltPossession = p.hasBelt ? ( p.beltPossession === null ? 0 : p.beltPossession + 1 ) : null;  }
-				p.weekPoints = p.weekMatches().length === 0 ? points : p.weekPoints + points;
-				// p.inTopSince = p.rank > 5 ? null : ( p.inTopSince ?  p.inTopSince : EP.Helpers.today() );
+				
+				var numMatchesInWeek = p.weekMatches().length;
+				if (p.matches - numMatchesInWeek >= 10) {
+					p.weekPoints = numMatchesInWeek === 1 ? points : p.weekPoints + points;
+				} else {
+					p.weekPoints = 0;
+				}
+				
 				p.games = _.union(p.games, [this.game]);
 
 			}, this);
